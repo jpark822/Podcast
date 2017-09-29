@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>196777285589-ap1nbacpo2sob6e2raa3m72mu5ii6dgv.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.196777285589-ap1nbacpo2sob6e2raa3m72mu5ii6dgv</string>
+	<key>API_KEY</key>
+	<string>AIzaSyDo2sRKhD3x4ft16Lao_-f9T_T1GU-ekrE</string>
+	<key>GCM_SENDER_ID</key>
+	<string>196777285589</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.allearsenglish.ios.AllEarsEnglish</string>
+	<key>PROJECT_ID</key>
+	<string>all-ears-english</string>
+	<key>STORAGE_BUCKET</key>
+	<string>all-ears-english.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:196777285589:ios:c06334ed34fedf01</string>
+	<key>DATABASE_URL</key>
+	<string>https://all-ears-english.firebaseio.com</string>
+</dict>
+</plist>

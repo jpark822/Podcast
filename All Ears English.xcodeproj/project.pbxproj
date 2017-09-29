@@ -1,0 +1,618 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4602032C1F1B66960078A275 /* Cache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4602032B1F1B66960078A275 /* Cache.swift */; };
+		4640CD441EFA0414006B0C5E /* BrowserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4640CD431EFA0414006B0C5E /* BrowserViewController.swift */; };
+		4640CD471EFA267D006B0C5E /* contactus.html in Resources */ = {isa = PBXBuildFile; fileRef = 4640CD461EFA267D006B0C5E /* contactus.html */; };
+		4640CD491EFA3638006B0C5E /* aboutus.html in Resources */ = {isa = PBXBuildFile; fileRef = 4640CD481EFA3638006B0C5E /* aboutus.html */; };
+		4640CD4E1EFA3CA9006B0C5E /* Jessica.png in Resources */ = {isa = PBXBuildFile; fileRef = 4640CD4A1EFA3CA9006B0C5E /* Jessica.png */; };
+		4640CD4F1EFA3CA9006B0C5E /* Lindsay-Michelle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4640CD4B1EFA3CA9006B0C5E /* Lindsay-Michelle.png */; };
+		4640CD501EFA3CA9006B0C5E /* Lindsay.png in Resources */ = {isa = PBXBuildFile; fileRef = 4640CD4C1EFA3CA9006B0C5E /* Lindsay.png */; };
+		4640CD511EFA3CA9006B0C5E /* Michelle.png in Resources */ = {isa = PBXBuildFile; fileRef = 4640CD4D1EFA3CA9006B0C5E /* Michelle.png */; };
+		464415CF1EF8A5B300129F07 /* SplashViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464415CE1EF8A5B300129F07 /* SplashViewController.swift */; };
+		464415D11EF8A83E00129F07 /* EpisodesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 464415D01EF8A83E00129F07 /* EpisodesViewController.swift */; };
+		46478FE01EFB6D0D00B2690C /* Montserrat-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46478FDF1EFB6CCA00B2690C /* Montserrat-Regular.ttf */; };
+		4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 466344891EFCC9BE00080704 /* EpisodeDetailsViewController.swift */; };
+		4663448C1EFCFE1E00080704 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4663448B1EFCFE1E00080704 /* AVFoundation.framework */; };
+		4668D2901F1747B500845FE5 /* BannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4668D28F1F1747B500845FE5 /* BannerView.xib */; };
+		4668D2921F1748F700845FE5 /* BannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4668D2911F1748F700845FE5 /* BannerView.swift */; };
+		466FD2A21EF88BAD009E3ACC /* Fabric.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466FD2A01EF88BAD009E3ACC /* Fabric.framework */; };
+		466FD2A31EF88BAD009E3ACC /* Crashlytics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466FD2A11EF88BAD009E3ACC /* Crashlytics.framework */; };
+		466FD2A51EF891BA009E3ACC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 466FD2A41EF891BA009E3ACC /* GoogleService-Info.plist */; };
+		466FD2A71EF8936A009E3ACC /* AdSupport.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 466FD2A61EF8936A009E3ACC /* AdSupport.framework */; };
+		4672E5DD1EF8787B006B5F25 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4672E5DC1EF8787B006B5F25 /* AppDelegate.swift */; };
+		4672E5DF1EF8787B006B5F25 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4672E5DE1EF8787B006B5F25 /* ViewController.swift */; };
+		4672E5E21EF8787B006B5F25 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4672E5E01EF8787B006B5F25 /* Main.storyboard */; };
+		4672E5E41EF8787B006B5F25 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4672E5E31EF8787B006B5F25 /* Assets.xcassets */; };
+		4672E5E71EF8787B006B5F25 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4672E5E51EF8787B006B5F25 /* LaunchScreen.storyboard */; };
+		46993BE01EFB6DA800806635 /* PT_Sans-Web-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46993BDF1EFB6DA800806635 /* PT_Sans-Web-Regular.ttf */; };
+		46993BE21EFB6E0200806635 /* Nunito-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46993BE11EFB6E0200806635 /* Nunito-Regular.ttf */; };
+		46993BE41EFB6E3E00806635 /* Nunito-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46993BE31EFB6E3E00806635 /* Nunito-Bold.ttf */; };
+		46993BE61EFB6E4800806635 /* PT_Sans-Web-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46993BE51EFB6E4800806635 /* PT_Sans-Web-Bold.ttf */; };
+		46993BE81EFB6E5400806635 /* Montserrat-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 46993BE71EFB6E5400806635 /* Montserrat-Bold.ttf */; };
+		46993BEA1EFB72AC00806635 /* style.css in Resources */ = {isa = PBXBuildFile; fileRef = 46993BE91EFB72AC00806635 /* style.css */; };
+		4699F6171F0211E200D9D9CB /* Player.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699F6161F0211E200D9D9CB /* Player.swift */; };
+		4699F6191F02376C00D9D9CB /* MainTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4699F6181F02376C00D9D9CB /* MainTabBarViewController.swift */; };
+		469F7EFF1F1B01250039FA03 /* EpisodePlaybackViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 469F7EFE1F1B01250039FA03 /* EpisodePlaybackViewController.swift */; };
+		469F7F011F1B30430039FA03 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F7F001F1B30430039FA03 /* MediaPlayer.framework */; };
+		46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7A2AC1EFB967200B9AA23 /* Feed.swift */; };
+		46C7A2B11EFBC26300B9AA23 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */; };
+		46EFFD6F1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46EFFD6E1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift */; };
+		4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */; };
+		76CBA8E68F3DEA2363825682 /* Pods_All_Ears_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1600F9E8D17076D9FA39D4BB /* Pods-All Ears English.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All Ears English.release.xcconfig"; path = "Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English.release.xcconfig"; sourceTree = "<group>"; };
+		4602032B1F1B66960078A275 /* Cache.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Cache.swift; sourceTree = "<group>"; };
+		4640CD431EFA0414006B0C5E /* BrowserViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BrowserViewController.swift; sourceTree = "<group>"; };
+		4640CD461EFA267D006B0C5E /* contactus.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = contactus.html; sourceTree = "<group>"; };
+		4640CD481EFA3638006B0C5E /* aboutus.html */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.html; path = aboutus.html; sourceTree = "<group>"; };
+		4640CD4A1EFA3CA9006B0C5E /* Jessica.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Jessica.png; sourceTree = "<group>"; };
+		4640CD4B1EFA3CA9006B0C5E /* Lindsay-Michelle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Lindsay-Michelle.png"; sourceTree = "<group>"; };
+		4640CD4C1EFA3CA9006B0C5E /* Lindsay.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Lindsay.png; sourceTree = "<group>"; };
+		4640CD4D1EFA3CA9006B0C5E /* Michelle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Michelle.png; sourceTree = "<group>"; };
+		464415CE1EF8A5B300129F07 /* SplashViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SplashViewController.swift; sourceTree = "<group>"; };
+		464415D01EF8A83E00129F07 /* EpisodesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesViewController.swift; sourceTree = "<group>"; };
+		46478FDF1EFB6CCA00B2690C /* Montserrat-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Regular.ttf"; sourceTree = "<group>"; };
+		466344891EFCC9BE00080704 /* EpisodeDetailsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeDetailsViewController.swift; sourceTree = "<group>"; };
+		4663448B1EFCFE1E00080704 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4668D28F1F1747B500845FE5 /* BannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BannerView.xib; sourceTree = "<group>"; };
+		4668D2911F1748F700845FE5 /* BannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerView.swift; sourceTree = "<group>"; };
+		466FD2A01EF88BAD009E3ACC /* Fabric.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Fabric.framework; sourceTree = "<group>"; };
+		466FD2A11EF88BAD009E3ACC /* Crashlytics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Crashlytics.framework; sourceTree = "<group>"; };
+		466FD2A41EF891BA009E3ACC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		466FD2A61EF8936A009E3ACC /* AdSupport.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AdSupport.framework; path = System/Library/Frameworks/AdSupport.framework; sourceTree = SDKROOT; };
+		4672E5D91EF8787B006B5F25 /* All Ears English.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "All Ears English.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		4672E5DC1EF8787B006B5F25 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4672E5DE1EF8787B006B5F25 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		4672E5E11EF8787B006B5F25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		4672E5E31EF8787B006B5F25 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		4672E5E61EF8787B006B5F25 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4672E5E81EF8787B006B5F25 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		46993BDF1EFB6DA800806635 /* PT_Sans-Web-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PT_Sans-Web-Regular.ttf"; sourceTree = "<group>"; };
+		46993BE11EFB6E0200806635 /* Nunito-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Regular.ttf"; sourceTree = "<group>"; };
+		46993BE31EFB6E3E00806635 /* Nunito-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Nunito-Bold.ttf"; sourceTree = "<group>"; };
+		46993BE51EFB6E4800806635 /* PT_Sans-Web-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "PT_Sans-Web-Bold.ttf"; sourceTree = "<group>"; };
+		46993BE71EFB6E5400806635 /* Montserrat-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Montserrat-Bold.ttf"; sourceTree = "<group>"; };
+		46993BE91EFB72AC00806635 /* style.css */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.css; path = style.css; sourceTree = "<group>"; };
+		4699F6161F0211E200D9D9CB /* Player.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Player.swift; sourceTree = "<group>"; };
+		4699F6181F02376C00D9D9CB /* MainTabBarViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarViewController.swift; sourceTree = "<group>"; };
+		469F7EFE1F1B01250039FA03 /* EpisodePlaybackViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePlaybackViewController.swift; sourceTree = "<group>"; };
+		469F7F001F1B30430039FA03 /* MediaPlayer.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MediaPlayer.framework; path = System/Library/Frameworks/MediaPlayer.framework; sourceTree = SDKROOT; };
+		46BE4E251F1AFD93004ECDDD /* All Ears English.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = "All Ears English.entitlements"; sourceTree = "<group>"; };
+		46C7A2AC1EFB967200B9AA23 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
+		46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
+		46EFFD6E1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesContainerViewController.swift; sourceTree = "<group>"; };
+		4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
+		DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All Ears English.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English.debug.xcconfig"; sourceTree = "<group>"; };
+		EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_All_Ears_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		4672E5D61EF8787B006B5F25 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				469F7F011F1B30430039FA03 /* MediaPlayer.framework in Frameworks */,
+				4663448C1EFCFE1E00080704 /* AVFoundation.framework in Frameworks */,
+				466FD2A71EF8936A009E3ACC /* AdSupport.framework in Frameworks */,
+				466FD2A31EF88BAD009E3ACC /* Crashlytics.framework in Frameworks */,
+				466FD2A21EF88BAD009E3ACC /* Fabric.framework in Frameworks */,
+				76CBA8E68F3DEA2363825682 /* Pods_All_Ears_English.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		154FBBFF3A46E3DF7E621E15 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */,
+				1600F9E8D17076D9FA39D4BB /* Pods-All Ears English.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		4640CD451EFA267D006B0C5E /* Web */ = {
+			isa = PBXGroup;
+			children = (
+				46993BE91EFB72AC00806635 /* style.css */,
+				4640CD481EFA3638006B0C5E /* aboutus.html */,
+				4640CD461EFA267D006B0C5E /* contactus.html */,
+				4640CD4A1EFA3CA9006B0C5E /* Jessica.png */,
+				4640CD4B1EFA3CA9006B0C5E /* Lindsay-Michelle.png */,
+				4640CD4C1EFA3CA9006B0C5E /* Lindsay.png */,
+				4640CD4D1EFA3CA9006B0C5E /* Michelle.png */,
+			);
+			name = Web;
+			path = ../html;
+			sourceTree = "<group>";
+		};
+		46478FDC1EFB6A8800B2690C /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				46478FDF1EFB6CCA00B2690C /* Montserrat-Regular.ttf */,
+				46993BE71EFB6E5400806635 /* Montserrat-Bold.ttf */,
+				46993BDF1EFB6DA800806635 /* PT_Sans-Web-Regular.ttf */,
+				46993BE51EFB6E4800806635 /* PT_Sans-Web-Bold.ttf */,
+				46993BE11EFB6E0200806635 /* Nunito-Regular.ttf */,
+				46993BE31EFB6E3E00806635 /* Nunito-Bold.ttf */,
+			);
+			name = Fonts;
+			sourceTree = "<group>";
+		};
+		4672E5D01EF8787B006B5F25 = {
+			isa = PBXGroup;
+			children = (
+				4672E5DB1EF8787B006B5F25 /* All Ears English */,
+				4672E5DA1EF8787B006B5F25 /* Products */,
+				46478FDC1EFB6A8800B2690C /* Fonts */,
+				154FBBFF3A46E3DF7E621E15 /* Pods */,
+				7DFAE26E221195811D48861F /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		4672E5DA1EF8787B006B5F25 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				4672E5D91EF8787B006B5F25 /* All Ears English.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
+			isa = PBXGroup;
+			children = (
+				4E31E8741F7D0AC000AD05D2 /* AudioPlayer */,
+				46C7A2AF1EFB969E00B9AA23 /* Classes */,
+				4640CD451EFA267D006B0C5E /* Web */,
+				46C7A2AE1EFB969500B9AA23 /* Resources */,
+			);
+			path = "All Ears English";
+			sourceTree = "<group>";
+		};
+		46C7A2AE1EFB969500B9AA23 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				46BE4E251F1AFD93004ECDDD /* All Ears English.entitlements */,
+				4672E5E31EF8787B006B5F25 /* Assets.xcassets */,
+				4668D28F1F1747B500845FE5 /* BannerView.xib */,
+				466FD2A41EF891BA009E3ACC /* GoogleService-Info.plist */,
+				4672E5E81EF8787B006B5F25 /* Info.plist */,
+				4672E5E51EF8787B006B5F25 /* LaunchScreen.storyboard */,
+				4672E5E01EF8787B006B5F25 /* Main.storyboard */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		46C7A2AF1EFB969E00B9AA23 /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				4672E5DC1EF8787B006B5F25 /* AppDelegate.swift */,
+				4668D2911F1748F700845FE5 /* BannerView.swift */,
+				4640CD431EFA0414006B0C5E /* BrowserViewController.swift */,
+				4602032B1F1B66960078A275 /* Cache.swift */,
+				46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */,
+				466344891EFCC9BE00080704 /* EpisodeDetailsViewController.swift */,
+				469F7EFE1F1B01250039FA03 /* EpisodePlaybackViewController.swift */,
+				46EFFD6E1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift */,
+				464415D01EF8A83E00129F07 /* EpisodesViewController.swift */,
+				46C7A2AC1EFB967200B9AA23 /* Feed.swift */,
+				4699F6181F02376C00D9D9CB /* MainTabBarViewController.swift */,
+				4699F6161F0211E200D9D9CB /* Player.swift */,
+				464415CE1EF8A5B300129F07 /* SplashViewController.swift */,
+				4672E5DE1EF8787B006B5F25 /* ViewController.swift */,
+			);
+			name = Classes;
+			sourceTree = "<group>";
+		};
+		4E31E8741F7D0AC000AD05D2 /* AudioPlayer */ = {
+			isa = PBXGroup;
+			children = (
+				4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */,
+			);
+			name = AudioPlayer;
+			sourceTree = "<group>";
+		};
+		7DFAE26E221195811D48861F /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				469F7F001F1B30430039FA03 /* MediaPlayer.framework */,
+				4663448B1EFCFE1E00080704 /* AVFoundation.framework */,
+				466FD2A01EF88BAD009E3ACC /* Fabric.framework */,
+				466FD2A11EF88BAD009E3ACC /* Crashlytics.framework */,
+				466FD2A61EF8936A009E3ACC /* AdSupport.framework */,
+				EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		4672E5D81EF8787B006B5F25 /* All Ears English */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4672E5EB1EF8787B006B5F25 /* Build configuration list for PBXNativeTarget "All Ears English" */;
+			buildPhases = (
+				F5CAFB336CD9049E78787C40 /* [CP] Check Pods Manifest.lock */,
+				4672E5D51EF8787B006B5F25 /* Sources */,
+				4672E5D61EF8787B006B5F25 /* Frameworks */,
+				4672E5D71EF8787B006B5F25 /* Resources */,
+				466FD29F1EF88B8F009E3ACC /* ShellScript */,
+				A7453992E006234C0875F45A /* [CP] Embed Pods Frameworks */,
+				8F546FF73ADAF4B7A1FB6344 /* [CP] Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "All Ears English";
+			productName = "All Ears English";
+			productReference = 4672E5D91EF8787B006B5F25 /* All Ears English.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4672E5D11EF8787B006B5F25 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 0830;
+				LastUpgradeCheck = 0830;
+				ORGANIZATIONNAME = "All Ears English";
+				TargetAttributes = {
+					4672E5D81EF8787B006B5F25 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 79H836U56A;
+						ProvisioningStyle = Manual;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
+					};
+				};
+			};
+			buildConfigurationList = 4672E5D41EF8787B006B5F25 /* Build configuration list for PBXProject "All Ears English" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4672E5D01EF8787B006B5F25;
+			productRefGroup = 4672E5DA1EF8787B006B5F25 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				4672E5D81EF8787B006B5F25 /* All Ears English */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		4672E5D71EF8787B006B5F25 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				46993BE41EFB6E3E00806635 /* Nunito-Bold.ttf in Resources */,
+				4640CD491EFA3638006B0C5E /* aboutus.html in Resources */,
+				46478FE01EFB6D0D00B2690C /* Montserrat-Regular.ttf in Resources */,
+				4672E5E71EF8787B006B5F25 /* LaunchScreen.storyboard in Resources */,
+				466FD2A51EF891BA009E3ACC /* GoogleService-Info.plist in Resources */,
+				4640CD4F1EFA3CA9006B0C5E /* Lindsay-Michelle.png in Resources */,
+				46993BE01EFB6DA800806635 /* PT_Sans-Web-Regular.ttf in Resources */,
+				4640CD511EFA3CA9006B0C5E /* Michelle.png in Resources */,
+				4672E5E41EF8787B006B5F25 /* Assets.xcassets in Resources */,
+				4640CD501EFA3CA9006B0C5E /* Lindsay.png in Resources */,
+				46993BE61EFB6E4800806635 /* PT_Sans-Web-Bold.ttf in Resources */,
+				4672E5E21EF8787B006B5F25 /* Main.storyboard in Resources */,
+				4668D2901F1747B500845FE5 /* BannerView.xib in Resources */,
+				46993BE81EFB6E5400806635 /* Montserrat-Bold.ttf in Resources */,
+				46993BEA1EFB72AC00806635 /* style.css in Resources */,
+				46993BE21EFB6E0200806635 /* Nunito-Regular.ttf in Resources */,
+				4640CD4E1EFA3CA9006B0C5E /* Jessica.png in Resources */,
+				4640CD471EFA267D006B0C5E /* contactus.html in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		466FD29F1EF88B8F009E3ACC /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "./Fabric.framework/run 16f9d19a2affc20f7cd124419e4dc03d7ec10116 c40fbd091f5a43ef8a64d425ba05de88332cd6148927579eca09147b89fdb27a";
+		};
+		8F546FF73ADAF4B7A1FB6344 /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		A7453992E006234C0875F45A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
+				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
+				"${BUILT_PRODUCTS_DIR}/iRate/iRate.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iRate.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F5CAFB336CD9049E78787C40 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-All Ears English-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4672E5D51EF8787B006B5F25 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4602032C1F1B66960078A275 /* Cache.swift in Sources */,
+				464415CF1EF8A5B300129F07 /* SplashViewController.swift in Sources */,
+				4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */,
+				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
+				4672E5DF1EF8787B006B5F25 /* ViewController.swift in Sources */,
+				4640CD441EFA0414006B0C5E /* BrowserViewController.swift in Sources */,
+				46C7A2B11EFBC26300B9AA23 /* EpisodeCell.swift in Sources */,
+				4699F6191F02376C00D9D9CB /* MainTabBarViewController.swift in Sources */,
+				464415D11EF8A83E00129F07 /* EpisodesViewController.swift in Sources */,
+				4672E5DD1EF8787B006B5F25 /* AppDelegate.swift in Sources */,
+				4668D2921F1748F700845FE5 /* BannerView.swift in Sources */,
+				469F7EFF1F1B01250039FA03 /* EpisodePlaybackViewController.swift in Sources */,
+				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
+				46EFFD6F1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift in Sources */,
+				4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		4672E5E01EF8787B006B5F25 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4672E5E11EF8787B006B5F25 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		4672E5E51EF8787B006B5F25 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				4672E5E61EF8787B006B5F25 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		4672E5E91EF8787B006B5F25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4672E5EA1EF8787B006B5F25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		4672E5EC1EF8787B006B5F25 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "All Ears English/All Ears English.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 79H836U56A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "All Ears English/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ee583d2d-76b9-409e-8b92-11cfa988d1cd";
+				PROVISIONING_PROFILE_SPECIFIER = "AllEarsEnglish Distribution";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Debug;
+		};
+		4672E5ED1EF8787B006B5F25 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 1600F9E8D17076D9FA39D4BB /* Pods-All Ears English.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = "All Ears English/All Ears English.entitlements";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				DEVELOPMENT_TEAM = 79H836U56A;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				INFOPLIST_FILE = "All Ears English/Info.plist";
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "ee583d2d-76b9-409e-8b92-11cfa988d1cd";
+				PROVISIONING_PROFILE_SPECIFIER = "AllEarsEnglish Distribution";
+				SWIFT_VERSION = 3.0;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		4672E5D41EF8787B006B5F25 /* Build configuration list for PBXProject "All Ears English" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4672E5E91EF8787B006B5F25 /* Debug */,
+				4672E5EA1EF8787B006B5F25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		4672E5EB1EF8787B006B5F25 /* Build configuration list for PBXNativeTarget "All Ears English" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4672E5EC1EF8787B006B5F25 /* Debug */,
+				4672E5ED1EF8787B006B5F25 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 4672E5D11EF8787B006B5F25 /* Project object */;
+}
