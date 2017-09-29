@@ -56,6 +56,14 @@ class EpisodePlaybackViewController: UIViewController {
             self.playButton?.setImage(UIImage(named: "ic_play_arrow_48pt"), for: UIControlState.normal)
         }
     }
+    
+    @IBAction func nextTrackPressed(_ sender: Any) {
+        AudioPlayer.sharedInstance.seekToNextTrack()
+    }
+    
+    @IBAction func previousTrackPressed(_ sender: Any) {
+    }
+    
 
     func updateUI() {
         self.episodeTitle?.text = Player.shared?.item?.title

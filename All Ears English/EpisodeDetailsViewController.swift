@@ -105,12 +105,17 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate {
                 player.play()
             }
         } else if self.item?.url != nil {
-//            AudioPlayer.sharedInstance.play(item: self.item)
-            Player.shared?.play(from: self.item)
+            AudioPlayer.sharedInstance.play(item: self.item)
+//            Player.shared?.play(from: self.item)
             self.loaded = true
         } else {
             print("no url to play")
         }
+    }
+    //test func
+    @IBAction func nextPressed(_ sender: Any) {
+        print("next")
+    AudioPlayer.sharedInstance.seekToNextTrack()
     }
     
     func updatePlayButton() {

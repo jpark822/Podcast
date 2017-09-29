@@ -337,6 +337,14 @@
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qw2-KQ-PwW">
                                                 <rect key="frame" x="290" y="499" width="20" height="20"/>
                                             </activityIndicatorView>
+                                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jac-3F-fZf">
+                                                <rect key="frame" x="50" y="489" width="30" height="30"/>
+                                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                <state key="normal" title="next"/>
+                                                <connections>
+                                                    <action selector="nextPressed:" destination="a6m-hK-Cr0" eventType="touchUpInside" id="6F5-Bk-scj"/>
+                                                </connections>
+                                            </button>
                                         </subviews>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <constraints>
@@ -559,6 +567,22 @@
                                 <state key="normal" image="ic_play_arrow_48pt"/>
                                 <connections>
                                     <action selector="togglePlayback:" destination="pId-ud-lQB" eventType="touchUpInside" id="X5E-T2-xhj"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Vop-f6-y8I">
+                                <rect key="frame" x="200" y="436" width="30" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="next"/>
+                                <connections>
+                                    <action selector="nextTrackPressed:" destination="pId-ud-lQB" eventType="touchUpInside" id="wTR-1o-cBC"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="l32-mD-b5v">
+                                <rect key="frame" x="80" y="433" width="34" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Back"/>
+                                <connections>
+                                    <action selector="previousTrackPressed:" destination="pId-ud-lQB" eventType="touchUpInside" id="tOU-Ge-fU8"/>
                                 </connections>
                             </button>
                         </subviews>

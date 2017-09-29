@@ -29,7 +29,6 @@ internal class AudioPlayer:NSObject {
         }
     }
 
-    
     private func initAudioSessionAndControls() -> Bool {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -78,20 +77,42 @@ internal class AudioPlayer:NSObject {
         }
         
         self.updatePlayingInfoCenterData(item: item)
+        //send notification for player change
         self.queuePlayer.play()
         
     }
     
+    func play() {
+        
+    }
+    
+    func seekToNextTrack() {
+        guard let currentItem = self.currentItem else {
+            return
+        }
+        
+        //TODO replace with updated swift index(of)
+        var index = 0
+        for item:Feed.Item in Feed.shared.items {
+        if item.number == currentItem.number && Feed.shared.items.count > (index + 1) {
+                self.play(item: Feed.shared.items[index + 1])
+            }
+            index += 1
+        }
+    }
+    
+    
+}
+
+
+//Mark: Now Playing and Command Center remote controls
+extension AudioPlayer {
     func commandCenterNextTrackPressed()  {
         print("next")
     }
     
     func commandCenterPreviousTrackPressed() {
         print("back")
-    }
-    
-    func play() {
-        
     }
     
     func updatePlayingInfoCenterData(item: Feed.Item?) {
