@@ -115,7 +115,7 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate {
     //test func
     @IBAction func nextPressed(_ sender: Any) {
         print("next")
-    AudioPlayer.sharedInstance.seekToNextTrack()
+    AudioPlayer.sharedInstance.seekToBeginningOrPreviousTrack()
     }
     
     func updatePlayButton() {

@@ -83,9 +83,17 @@ internal class AudioPlayer:NSObject {
     }
     
     func play() {
-        
+        guard self.currentItem != nil else {
+            return
+        }
+        self.queuePlayer.play()
     }
     
+
+}
+
+//MARK: Seeking
+extension AudioPlayer {
     func seekToNextTrack() {
         guard let currentItem = self.currentItem else {
             return
@@ -94,18 +102,44 @@ internal class AudioPlayer:NSObject {
         //TODO replace with updated swift index(of)
         var index = 0
         for item:Feed.Item in Feed.shared.items {
-        if item.number == currentItem.number && Feed.shared.items.count > (index + 1) {
+            if item.number == currentItem.number && Feed.shared.items.count > (index + 1) {
                 self.play(item: Feed.shared.items[index + 1])
             }
             index += 1
         }
     }
     
+    func seekToBeginningOrPreviousTrack() {
+        let playerTime = self.queuePlayer.currentTime()
+        if CMTimeGetSeconds(playerTime) < 3.0 {
+            self.seekToPreviousTrack()
+        }
+        else {
+            self.seekToBeginningOfTrack()
+        }
+    }
     
+    func seekToBeginningOfTrack() {
+        self.queuePlayer.seek(to: kCMTimeZero)
+    }
+    
+    func seekToPreviousTrack() {
+        guard let currentItem = self.currentItem else {
+            return
+        }
+        
+        //TODO replace with updated swift index(of)
+        var index = 0
+        for item:Feed.Item in Feed.shared.items {
+            if item.number == currentItem.number && (index-1) >= 0 {
+                self.play(item: Feed.shared.items[index-1])
+            }
+            index += 1
+        }
+    }
 }
 
-
-//Mark: Now Playing and Command Center remote controls
+//MARK: Now Playing and Command Center remote controls
 extension AudioPlayer {
     func commandCenterNextTrackPressed()  {
         print("next")
