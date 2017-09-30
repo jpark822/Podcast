@@ -14,7 +14,14 @@ import AVFoundation
 class EpisodePlayerViewController : UIViewController {
     
     //MARK: Dependency
-    var episodeItem:Feed.Item!
+    var episodeItem:Feed.Item! {
+        didSet {
+            guard self.isViewLoaded else {
+                return
+            }
+            self.setupInitialViewStateForEpisode()
+        }
+    }
     
     @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var timeElapsedLabel: UILabel!
@@ -49,6 +56,7 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     func updateControlViews() {
+        
         //play button
         if AudioPlayer.sharedInstance.isPlaying {
             self.playButton?.setImage(UIImage(named: "ic_pause_48pt"), for: UIControlState.normal)
@@ -64,6 +72,8 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     func updatePlaybackProgress() {
+        self.progressSlider.isEnabled = AudioPlayer.sharedInstance.queuePlayer.status == AVPlayerStatus.readyToPlay ? true : false
+
         self.timeElapsedLabel.text = AudioPlayer.sharedInstance.currentPlaybackFormattedTime
         self.timeRemainingLabel.text = "-\(AudioPlayer.sharedInstance.remainingPlaybackFormattedTime)"
         
@@ -84,11 +94,32 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     @IBAction func previousSeekPressed(_ sender: Any) {
-        AudioPlayer.sharedInstance.seekToBeginningOrPreviousTrack()
+        if let prevEpisodeItem = AudioPlayer.sharedInstance.seekToBeginningOrPreviousTrack() {
+            self.episodeItem = prevEpisodeItem
+        }
     }
     
     @IBAction func forwardSeekPressed(_ sender: Any) {
-        AudioPlayer.sharedInstance.seekToNextTrack()
+        if let nextEpisodeItem = AudioPlayer.sharedInstance.seekToNextTrack() {
+            self.episodeItem = nextEpisodeItem
+        }
+    }
+    
+    @IBAction func skipBackwardPressed(_ sender: Any) {
+        AudioPlayer.sharedInstance.seekForward(seconds: -15.0)
+    }
+    
+    @IBAction func skipForwardPressed(_ sender: Any) {
+        AudioPlayer.sharedInstance.seekForward(seconds: 15.0)
+    }
+    
+    @IBAction func progressSliderTouchDown(_ sender: Any) {
+        self.userIsScrubbing = true
+    }
+    
+    @IBAction func progressSliderTouchUpInside(_ sender: Any) {
+        self.userIsScrubbing = false
+        AudioPlayer.sharedInstance.seekToProgress(self.progressSlider.value)
     }
     
     @IBAction func playbackRatePressed(_ sender: Any) {
@@ -112,21 +143,6 @@ class EpisodePlayerViewController : UIViewController {
         self.updateControlViews()
     }
     
-    @IBAction func skipBackwardPressed(_ sender: Any) {
-        AudioPlayer.sharedInstance.seekForward(seconds: -15.0)
-    }
     
-    @IBAction func skipForwardPressed(_ sender: Any) {
-        AudioPlayer.sharedInstance.seekForward(seconds: 15.0)
-    }
-    
-    @IBAction func progressSliderTouchDown(_ sender: Any) {
-        self.userIsScrubbing = true
-    }
-    
-    @IBAction func progressSliderTouchUpInside(_ sender: Any) {
-        self.userIsScrubbing = false
-        AudioPlayer.sharedInstance.seekToProgress(self.progressSlider.value)
-    }
     
 }

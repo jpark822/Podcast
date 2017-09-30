@@ -51,6 +51,8 @@ internal class AudioPlayer:NSObject {
     private func initAudioSessionAndControls() -> Bool {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            self.queuePlayer.automaticallyWaitsToMinimizeStalling = false
+            
             UIApplication.shared.beginReceivingRemoteControlEvents()
             
             let commandCenter = MPRemoteCommandCenter.shared()
@@ -121,28 +123,33 @@ internal class AudioPlayer:NSObject {
 
 //MARK: Seeking
 extension AudioPlayer {
-    func seekToNextTrack() {
+    func seekToNextTrack() -> Feed.Item? {
         guard let currentItem = self.currentItem else {
-            return
+            return nil
         }
         
         //TODO replace with updated swift index(of)
         var index = 0
         for item:Feed.Item in Feed.shared.items {
-            if item.number == currentItem.number && Feed.shared.items.count > (index + 1) {
-                self.play(item: Feed.shared.items[index + 1])
+            if item.url == currentItem.url && Feed.shared.items.count > (index + 1) {
+                let nextEpisodeItem = Feed.shared.items[index + 1]
+                self.play(item: nextEpisodeItem)
+                return nextEpisodeItem
             }
             index += 1
         }
+        
+        return nil
     }
     
-    func seekToBeginningOrPreviousTrack() {
+    func seekToBeginningOrPreviousTrack() -> Feed.Item? {
         let playerTime = self.queuePlayer.currentTime()
         if CMTimeGetSeconds(playerTime) < 3.0 {
-            self.seekToPreviousTrack()
+            return self.seekToPreviousTrack()
         }
         else {
             self.seekToBeginningOfTrack()
+            return self.currentItem
         }
     }
     
@@ -150,19 +157,23 @@ extension AudioPlayer {
         self.queuePlayer.seek(to: kCMTimeZero)
     }
     
-    func seekToPreviousTrack() {
+    func seekToPreviousTrack() -> Feed.Item? {
         guard let currentItem = self.currentItem else {
-            return
+            return nil
         }
         
         //TODO replace with updated swift index(of)
         var index = 0
         for item:Feed.Item in Feed.shared.items {
-            if item.number == currentItem.number && (index-1) >= 0 {
-                self.play(item: Feed.shared.items[index-1])
+            if item.url == currentItem.url && (index-1) >= 0 {
+                let prevEpisodeItem = Feed.shared.items[index-1]
+                self.play(item: prevEpisodeItem)
+                return prevEpisodeItem
             }
             index += 1
         }
+        
+        return nil
     }
     
     func seekForward(seconds:Double) {
@@ -279,8 +290,8 @@ extension AudioPlayer {
     }
     
     fileprivate func formatPlaybackTime(_ time: Float) -> String {
-        let minutes = Int(time)/60
-        let seconds = Int(time) - minutes*60
+        let minutes = Int64(time)/60
+        let seconds = Int64(time) - minutes*60
         let text = String(format: "%d:%02d", arguments: [minutes, seconds])
         return text
     }

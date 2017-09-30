@@ -58,7 +58,7 @@ class EpisodePlaybackViewController: UIViewController {
     }
     
     @IBAction func nextTrackPressed(_ sender: Any) {
-        AudioPlayer.sharedInstance.seekToNextTrack()
+//        AudioPlayer.sharedInstance.seekToNextTrack()
     }
     
     @IBAction func previousTrackPressed(_ sender: Any) {
