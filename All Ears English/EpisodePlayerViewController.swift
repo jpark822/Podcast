@@ -58,6 +58,9 @@ class EpisodePlayerViewController : UIViewController {
             self.playButton?.setImage(UIImage(named: "ic_play_arrow_48pt"), for: UIControlState.normal)
             self.playButton?.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.highlighted)
         }
+        
+        //playback rate
+        self.playbackRateButton.setTitle("\(AudioPlayer.sharedInstance.playbackRate)x", for: UIControlState.normal)
     }
     
     func updatePlaybackProgress() {
@@ -89,6 +92,24 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     @IBAction func playbackRatePressed(_ sender: Any) {
+        let currentRate = AudioPlayer.sharedInstance.playbackRate
+        
+        var newRate:Float = 1
+        switch currentRate {
+        case 0.5:
+            newRate = 1
+        case 1:
+            newRate = 1.5
+        case 1.5:
+            newRate = 2
+        case 2:
+            newRate = 0.5
+        default:
+            newRate = 1
+        }
+        
+        AudioPlayer.sharedInstance.changePlaybackRate(to: newRate)
+        self.updateControlViews()
     }
     
     @IBAction func skipBackwardPressed(_ sender: Any) {

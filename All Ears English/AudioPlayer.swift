@@ -41,6 +41,12 @@ internal class AudioPlayer:NSObject {
             return progress
         }
     }
+    
+    var playbackRate:Float {
+        get {
+            return self.queuePlayer.rate
+        }
+    }
 
     private func initAudioSessionAndControls() -> Bool {
         do {
@@ -89,6 +95,7 @@ internal class AudioPlayer:NSObject {
             print("playing \(itemUrl)")
         }
         
+        self.queuePlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmTimeDomain
         self.updatePlayingInfoCenterData(item: item)
         //send notification for player change
         self.queuePlayer.play()
@@ -109,7 +116,7 @@ internal class AudioPlayer:NSObject {
         self.queuePlayer.pause()
     }
     
-
+    
 }
 
 //MARK: Seeking
@@ -276,5 +283,9 @@ extension AudioPlayer {
         let seconds = Int(time) - minutes*60
         let text = String(format: "%d:%02d", arguments: [minutes, seconds])
         return text
+    }
+    
+    func changePlaybackRate(to rate:Float) {
+        self.queuePlayer.rate = rate
     }
 }
