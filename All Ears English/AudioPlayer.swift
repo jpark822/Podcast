@@ -28,6 +28,19 @@ internal class AudioPlayer:NSObject {
             return false
         }
     }
+    
+    var playbackProgress:Float {
+        get {
+            guard let audioPlayerItem = self.queuePlayer.currentItem else {
+                return -1.0
+            }
+            
+            let time = Float(self.queuePlayer.currentTime().value)/Float(self.queuePlayer.currentTime().timescale)
+            let duration = Float(audioPlayerItem.duration.value)/Float(audioPlayerItem.duration.timescale)
+            let progress = time/duration
+            return progress
+        }
+    }
 
     private func initAudioSessionAndControls() -> Bool {
         do {
@@ -89,6 +102,13 @@ internal class AudioPlayer:NSObject {
         self.queuePlayer.play()
     }
     
+    func pause() {
+        guard self.currentItem != nil else {
+            return
+        }
+        self.queuePlayer.pause()
+    }
+    
 
 }
 
@@ -136,6 +156,12 @@ extension AudioPlayer {
             }
             index += 1
         }
+    }
+    
+    func seekForward(seconds:Double) {
+        let currentTime = queuePlayer.currentTime()
+        let seekToTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(currentTime) + seconds, currentTime.timescale)
+        queuePlayer.seek(to: seekToTime)
     }
 }
 
@@ -194,5 +220,49 @@ extension AudioPlayer {
             info?[MPNowPlayingInfoPropertyPlaybackRate] = 1
             infoCenter.nowPlayingInfo = info
         }
+    }
+}
+
+//MARK: Helpers 
+extension AudioPlayer {
+    var currentPlaybackFormattedTime:String {
+        get {
+            guard let item = self.queuePlayer.currentItem,
+                CMTIME_IS_VALID(self.queuePlayer.currentTime()),
+                CMTIME_IS_VALID(item.duration),
+                !CMTIME_IS_INDEFINITE(item.duration) else {
+                    return "0:00"
+            }
+            
+            let currentTime = self.queuePlayer.currentTime()
+            let time = floor(Float(currentTime.value)/Float(currentTime.timescale))
+            let currentTimeString = self.formatPlaybackTime(time)
+            return currentTimeString
+        }
+    }
+    
+    var remainingPlaybackFormattedTime:String {
+        get {
+            guard let item = self.queuePlayer.currentItem,
+                CMTIME_IS_VALID(self.queuePlayer.currentTime()),
+                CMTIME_IS_VALID(item.duration),
+                !CMTIME_IS_INDEFINITE(item.duration) else {
+                    return "0:00"
+            }
+            let currentTime = self.queuePlayer.currentTime()
+            let time = floor(Float(currentTime.value)/Float(currentTime.timescale))
+            let duration = floor(Float(item.duration.value)/Float(item.duration.timescale))
+            let remaining = duration - time
+            let remainingTimeString = self.formatPlaybackTime(remaining)
+            
+            return remainingTimeString
+        }
+    }
+    
+    fileprivate func formatPlaybackTime(_ time: Float) -> String {
+        let minutes = Int(time)/60
+        let seconds = Int(time) - minutes*60
+        let text = String(format: "%d:%02d", arguments: [minutes, seconds])
+        return text
     }
 }
