@@ -161,7 +161,19 @@ extension AudioPlayer {
     func seekForward(seconds:Double) {
         let currentTime = queuePlayer.currentTime()
         let seekToTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(currentTime) + seconds, currentTime.timescale)
-        queuePlayer.seek(to: seekToTime)
+        self.queuePlayer.seek(to: seekToTime)
+    }
+    
+    func seekToProgress(_ progress:Float) {
+        guard let currentPlayerAVItem = self.queuePlayer.currentItem else {
+            return
+        }
+        
+        let duration = CMTimeGetSeconds(currentPlayerAVItem.duration)
+        let secondToSeekTo = Double(progress) * duration
+        
+        
+        self.queuePlayer.seek(to: CMTimeMakeWithSeconds(secondToSeekTo, self.queuePlayer.currentTime().timescale))
     }
 }
 

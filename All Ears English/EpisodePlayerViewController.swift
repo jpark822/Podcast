@@ -8,6 +8,8 @@
 
 import Foundation
 import UIKit
+import AVKit
+import AVFoundation
 
 class EpisodePlayerViewController : UIViewController {
     
@@ -15,16 +17,17 @@ class EpisodePlayerViewController : UIViewController {
     var episodeItem:Feed.Item!
     
     @IBOutlet weak var episodeImageView: UIImageView!
-    @IBOutlet weak var progressView: UIProgressView!
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
     @IBOutlet weak var episodeDescriptionLabel: UILabel!
     @IBOutlet weak var playbackRateButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var progressSlider: UISlider!
     
     fileprivate var displayLink: CADisplayLink!
     
     fileprivate var playbackRate = 1.0
+    fileprivate var userIsScrubbing = false
     
     override func viewDidLoad() {
         AudioPlayer.sharedInstance.play(item: self.episodeItem)
@@ -36,6 +39,7 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        setupInitialViewStateForEpisode()
     }
     
     func setupInitialViewStateForEpisode() {
@@ -57,9 +61,12 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     func updatePlaybackProgress() {
-        self.progressView.progress = AudioPlayer.sharedInstance.playbackProgress
         self.timeElapsedLabel.text = AudioPlayer.sharedInstance.currentPlaybackFormattedTime
-        self.timeRemainingLabel.text = AudioPlayer.sharedInstance.remainingPlaybackFormattedTime
+        self.timeRemainingLabel.text = "-\(AudioPlayer.sharedInstance.remainingPlaybackFormattedTime)"
+        
+        if (self.userIsScrubbing == false) {
+            self.progressSlider.value = AudioPlayer.sharedInstance.playbackProgress
+        }
     }
     
     //MARK: Playback Controls
@@ -90,6 +97,15 @@ class EpisodePlayerViewController : UIViewController {
     
     @IBAction func skipForwardPressed(_ sender: Any) {
         AudioPlayer.sharedInstance.seekForward(seconds: 15.0)
+    }
+    
+    @IBAction func progressSliderTouchDown(_ sender: Any) {
+        self.userIsScrubbing = true
+    }
+    
+    @IBAction func progressSliderTouchUpInside(_ sender: Any) {
+        self.userIsScrubbing = false
+        AudioPlayer.sharedInstance.seekToProgress(self.progressSlider.value)
     }
     
 }

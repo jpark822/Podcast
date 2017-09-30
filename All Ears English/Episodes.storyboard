@@ -62,7 +62,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E05-Ry-XRa">
-                                        <rect key="frame" x="317" y="27.5" width="50" height="30"/>
+                                        <rect key="frame" x="317" y="27" width="50" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="hgD-C9-iv4"/>
                                         </constraints>
@@ -72,7 +72,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Vg-fWP">
-                                        <rect key="frame" x="8" y="27.5" width="54" height="30"/>
+                                        <rect key="frame" x="8" y="27" width="54" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="W9T-AJ-VmK"/>
                                         </constraints>
@@ -103,7 +103,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
-                                        <rect key="frame" x="8" y="65.5" width="359" height="146"/>
+                                        <rect key="frame" x="8" y="65" width="359" height="146.5"/>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -133,24 +133,26 @@
                                     <constraint firstAttribute="trailing" secondItem="rcB-Dw-PFa" secondAttribute="trailing" constant="8" id="zXl-fc-oLS"/>
                                 </constraints>
                             </view>
-                            <progressView opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" progress="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ati-cv-JZs">
-                                <rect key="frame" x="0.0" y="377" width="375" height="2"/>
-                                <color key="progressTintColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </progressView>
+                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9M4-4R-8SO">
+                                <rect key="frame" x="-2" y="363" width="379" height="31"/>
+                                <connections>
+                                    <action selector="progressSliderTouchDown:" destination="kX4-DS-RbJ" eventType="touchDown" id="gcI-p6-LNm"/>
+                                    <action selector="progressSliderTouchUpInside:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="2Ef-7r-dca"/>
+                                </connections>
+                            </slider>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="9M4-4R-8SO" firstAttribute="top" secondItem="SlZ-as-vdN" secondAttribute="bottom" constant="-14.5" id="2eU-13-oim"/>
                             <constraint firstItem="hNm-Kw-aFM" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leading" id="5au-bR-sZ3"/>
                             <constraint firstItem="ovX-k9-R5U" firstAttribute="top" secondItem="hNm-Kw-aFM" secondAttribute="bottom" id="EkU-y9-EoU"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="ati-cv-JZs" secondAttribute="trailing" constant="-16" id="Fcy-FN-dp7"/>
-                            <constraint firstItem="hNm-Kw-aFM" firstAttribute="top" secondItem="ati-cv-JZs" secondAttribute="bottom" id="L0V-o2-hQf"/>
+                            <constraint firstItem="9M4-4R-8SO" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leading" id="Gka-By-TE3"/>
                             <constraint firstItem="SlZ-as-vdN" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leading" id="SPe-yl-HOI"/>
                             <constraint firstAttribute="trailing" secondItem="SlZ-as-vdN" secondAttribute="trailing" id="WGl-ne-qw2"/>
                             <constraint firstItem="SlZ-as-vdN" firstAttribute="top" secondItem="zPV-d0-MZR" secondAttribute="topMargin" id="WQd-kX-Y8x"/>
-                            <constraint firstItem="ati-cv-JZs" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leadingMargin" constant="-16" id="cEG-PL-YeL"/>
+                            <constraint firstAttribute="trailing" secondItem="9M4-4R-8SO" secondAttribute="trailing" id="X6f-09-kQb"/>
                             <constraint firstAttribute="trailing" secondItem="hNm-Kw-aFM" secondAttribute="trailing" id="dZ2-ba-N8U"/>
-                            <constraint firstItem="ati-cv-JZs" firstAttribute="top" secondItem="SlZ-as-vdN" secondAttribute="bottom" id="lhO-K0-E4b"/>
+                            <constraint firstItem="hNm-Kw-aFM" firstAttribute="top" secondItem="SlZ-as-vdN" secondAttribute="bottom" constant="2" id="y4J-Jn-P9o"/>
                         </constraints>
                     </view>
                     <connections>
@@ -158,7 +160,7 @@
                         <outlet property="episodeImageView" destination="SlZ-as-vdN" id="Nzx-Zs-BVw"/>
                         <outlet property="playButton" destination="2Bg-XG-e1w" id="2Nw-RV-V2X"/>
                         <outlet property="playbackRateButton" destination="kau-uT-o0D" id="ZWi-AA-x6B"/>
-                        <outlet property="progressView" destination="ati-cv-JZs" id="QTj-Eb-sya"/>
+                        <outlet property="progressSlider" destination="9M4-4R-8SO" id="r1x-G9-lcD"/>
                         <outlet property="timeElapsedLabel" destination="5R4-49-PcW" id="bck-Gc-P8Z"/>
                         <outlet property="timeRemainingLabel" destination="rcB-Dw-PFa" id="7L6-QH-LDl"/>
                     </connections>
