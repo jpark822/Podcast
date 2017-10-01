@@ -201,7 +201,7 @@
                                 <rect key="frame" x="0.0" y="28" width="320" height="100"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="hhM-YN-f73" id="xrE-E0-Vew">
-                                    <rect key="frame" x="0.0" y="0.0" width="287" height="99.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="287" height="100"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="D4a-AG-1xA">
@@ -445,7 +445,7 @@
         <!--Browser View Controller-->
         <scene sceneID="2Ka-fr-PHM">
             <objects>
-                <viewController id="FDa-4k-KhN" customClass="BrowserViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="BrowserViewControllerId" id="FDa-4k-KhN" customClass="BrowserViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jpB-6F-Eb3"/>
                         <viewControllerLayoutGuide type="bottom" id="7dd-LO-fgO"/>
@@ -716,6 +716,6 @@
         <image name="ic_share" width="24" height="24"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="sMI-tr-WhM"/>
+        <segue reference="nhW-fn-SWt"/>
     </inferredMetricsTieBreakers>
 </document>

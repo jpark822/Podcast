@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import UIKit
 import AVKit
 import AVFoundation
 import MediaPlayer
@@ -19,7 +20,6 @@ internal class AudioPlayer:NSObject {
     
     var queuePlayer:AVQueuePlayer = AVQueuePlayer()
     var currentItem:Feed.Item?
-//    fileprivate var displayLink: CADisplayLink!
     
     var isPlaying:Bool {
         get {
@@ -51,10 +51,16 @@ internal class AudioPlayer:NSObject {
     
     override init() {
         super.init()
-//        displayLink = CADisplayLink(target: self, selector: #selector(AudioPlayer.updatePlayingInfoCenterData))
-//        displayLink.add(to: .current, forMode: .defaultRunLoopMode)
+        
+        _ = self.initAudioSessionAndControls()
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.queuePlayer.currentItem)
     }
-
+    
+    func playerDidFinishPlaying(notification: NSNotification) {
+        print("DID FINISH PLAYING") //add config for autoplay
+        self.seekToNextTrack()
+    }
+    
     private func initAudioSessionAndControls() -> Bool {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
@@ -94,22 +100,22 @@ internal class AudioPlayer:NSObject {
             return
         }
         
-        guard self.initAudioSessionAndControls() else {
-            return
-        }
-        
         if self.currentItem?.url == item.url && !self.isPlaying {
             self.play()
             return
         }
         
         self.currentItem = item
+        
+        self.queuePlayer.removeAllItems()
         if let localURL = Cache.shared.get(item) {
-            self.queuePlayer = AVQueuePlayer(url: localURL)
+            let newPlayerItem = AVPlayerItem.init(url: localURL)
+            self.queuePlayer.insert(newPlayerItem, after: nil)
             print("playing \(localURL)")
         }
         else {
-            self.queuePlayer = AVQueuePlayer(url: itemUrl)
+            let newPlayerItem = AVPlayerItem.init(url: itemUrl)
+            self.queuePlayer.insert(newPlayerItem, after: nil)
             print("playing \(itemUrl)")
         }
         

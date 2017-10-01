@@ -46,9 +46,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
     }
     
     func setInitialView() {
+        UITabBar.appearance().isTranslucent = false
+//        UITabBar.appearance().tintColor = UIColor.blue
+        UITabBar.appearance().barTintColor = UIColor.white
+        UITabBar.appearance().backgroundColor = UIColor.white
+        
+//        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:UIFont.helveticaRegularFontWithSize(18)]
+        UINavigationBar.appearance().isTranslucent = false
+//        UINavigationBar.appearance().tintColor = UIColor.materiallTeal()
+        
         let viewed = UserDefaults.standard.bool(forKey: "splash.viewed");
         if viewed {
-            return;
+            let initialVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarControllerId") as! MainTabBarController
+            self.window?.rootViewController = initialVC
+            self.window?.makeKeyAndVisible()
+            return
         }
         
         UserDefaults.standard.set(true, forKey: "splash.viewed")

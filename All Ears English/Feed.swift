@@ -41,8 +41,42 @@ class Feed: NSObject {
             }
         }
     }
+    
+    func fetchData(completion:(([Feed.Item]?)->Void)?) {
+        self.items.removeAll()
+        Alamofire.request(baseURL).responseData { response in
+            if let data = response.data {
+                let xml = XML.parse(data)
+                let channel = xml["rss", "channel"]
+                
+                var feedItems:[Item] = [Item]()
+                for xmlItem in channel["item"] {
+                    if let builtItem = self.buildItem(xmlItem) {
+                        feedItems.append(builtItem)
+                    }
+                }
+                
+                self.items = feedItems
+                if let completion = completion {
+                    completion(feedItems)
+                }
+            }
+            else {
+                print("FEED: unable to parse RSS feed")
+                let userInfo: [String: String] = [
+                    NSLocalizedDescriptionKey: "Unable to read RSS feed",
+                    NSLocalizedFailureReasonErrorKey: "RSS feed URL returned nothing"
+                ]
+                let error = NSError(domain: "AEEReadRSSFeedError", code: -1001, userInfo: userInfo)
+                Crashlytics.sharedInstance().recordError(error)
+                if let completion = completion {
+                    completion(nil)
+                }
+            }
+        }
+    }
 
-    func buildItem(_ xmlItem: XML.Accessor) {
+    func buildItem(_ xmlItem: XML.Accessor) -> Feed.Item? {
         var attributes: [String: String] = Dictionary()
         let elementNames: [String: String] = [
                 "title": "title",
@@ -53,40 +87,32 @@ class Feed: NSObject {
                 "itunes:subtitle": "subtitle",
                 "itunes:duration": "duration"
         ]
+        
         for (elementName, attributeName) in elementNames {
-            print("FEED: Looking up \(elementName)")
+//            print("FEED: Looking up \(elementName)")
             let element = xmlItem[elementName]
             if let text = element.text {
-                print("FEED: \(attributeName) = \(text)")
+//                print("FEED: \(attributeName) = \(text)")
                 attributes[attributeName] = text
-            } else {
-                print("FEED: \(attributeName) = UNDEFINED!!!")
+            }
+            else {
+//                print("FEED: \(attributeName) = UNDEFINED!!!")
             }
         }
         let enclosure = xmlItem["enclosure"]
         if let url = enclosure.attributes["url"] {
-            print("FEED: url = \(url)")
+//            print("FEED: url = \(url)")
             attributes["url"] = url
-        } else {
-            print("FEED: url = UNDEFINED!!!")
+        }
+        else {
+//            print("FEED: url = UNDEFINED!!!")
         }
         let item = Item(attributes)
         if item.isAfterCutoff {
-            self.items.append(item)
+            return item
         }
-    }
-
-    func _loadOriginal(_ controller: EpisodesViewController) {
-        print("FEED: Loading feed...")
-        self.items.removeAll()
-        self.itemBuilder = ItemBuilder(self)
-        self.parser = XMLParser(contentsOf: baseURL)
-        self.parser?.delegate = self.itemBuilder
-        if let success = parser?.parse() {
-            print("FEED: success \(success)")
-            controller.tableView.reloadData()
-        } else {
-            print("FEED: unable to parse RSS feed")
+        else {
+            return nil
         }
     }
 
