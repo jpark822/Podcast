@@ -19,6 +19,7 @@ internal class AudioPlayer:NSObject {
     
     var queuePlayer:AVQueuePlayer = AVQueuePlayer()
     var currentItem:Feed.Item?
+//    fileprivate var displayLink: CADisplayLink!
     
     var isPlaying:Bool {
         get {
@@ -47,6 +48,12 @@ internal class AudioPlayer:NSObject {
             return self.queuePlayer.rate
         }
     }
+    
+    override init() {
+        super.init()
+//        displayLink = CADisplayLink(target: self, selector: #selector(AudioPlayer.updatePlayingInfoCenterData))
+//        displayLink.add(to: .current, forMode: .defaultRunLoopMode)
+    }
 
     private func initAudioSessionAndControls() -> Bool {
         do {
@@ -56,11 +63,20 @@ internal class AudioPlayer:NSObject {
             UIApplication.shared.beginReceivingRemoteControlEvents()
             
             let commandCenter = MPRemoteCommandCenter.shared()
+            commandCenter.playCommand.isEnabled = true
+            commandCenter.playCommand.addTarget(self, action: #selector(commandCenterPlayPressed))
+            
+            commandCenter.pauseCommand.isEnabled = true
+            commandCenter.pauseCommand.addTarget(self, action: #selector(commandCenterPausePressed))
+            
             commandCenter.nextTrackCommand.isEnabled = true
             commandCenter.nextTrackCommand.addTarget(self, action:#selector(commandCenterNextTrackPressed))
             
             commandCenter.previousTrackCommand.isEnabled = true
             commandCenter.previousTrackCommand.addTarget(self, action: #selector(commandCenterPreviousTrackPressed))
+            
+            commandCenter.changePlaybackPositionCommand.isEnabled = true
+            commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(commandCenterDidChangePlaybackPosition))
         }
         catch {
             NSLog("error initting audio session")
@@ -98,10 +114,9 @@ internal class AudioPlayer:NSObject {
         }
         
         self.queuePlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmTimeDomain
-        self.updatePlayingInfoCenterData(item: item)
-        //send notification for player change
         self.queuePlayer.play()
         
+        self.updatePlayingInfoCenterData()
     }
     
     func play() {
@@ -116,6 +131,8 @@ internal class AudioPlayer:NSObject {
             return
         }
         self.queuePlayer.pause()
+        
+        self.updatePlayingInfoCenterData()
     }
     
     
@@ -180,6 +197,9 @@ extension AudioPlayer {
         let currentTime = queuePlayer.currentTime()
         let seekToTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(currentTime) + seconds, currentTime.timescale)
         self.queuePlayer.seek(to: seekToTime)
+        
+        //need up update control center with new elapsed time
+        self.updatePlayingInfoCenterData()
     }
     
     func seekToProgress(_ progress:Float) {
@@ -190,47 +210,61 @@ extension AudioPlayer {
         let duration = CMTimeGetSeconds(currentPlayerAVItem.duration)
         let secondToSeekTo = Double(progress) * duration
         
-        
         self.queuePlayer.seek(to: CMTimeMakeWithSeconds(secondToSeekTo, self.queuePlayer.currentTime().timescale))
+        
+        //need up update control center with new elapsed time
+        self.updatePlayingInfoCenterData()
+    }
+    
+    func seekToTimeInSeconds(_ seconds: Double) {
+        self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, self.queuePlayer.currentTime().timescale))
     }
 }
 
 //MARK: Now Playing and Command Center remote controls
 extension AudioPlayer {
+    func commandCenterPlayPressed() {
+        self.play()
+    }
+    
+    func commandCenterPausePressed() {
+        self.pause()
+    }
+    
     func commandCenterNextTrackPressed()  {
-        print("next")
+        if let nextEpisodeItem = self.seekToNextTrack() {
+            self.updatePlayingInfoCenterData()
+        }
     }
     
     func commandCenterPreviousTrackPressed() {
-        print("back")
+        if let prevEpisodeItem = self.seekToBeginningOrPreviousTrack() {
+            self.updatePlayingInfoCenterData()
+        }
     }
     
-    func updatePlayingInfoCenterData(item: Feed.Item?) {
-        guard let item = item else {
+    func updatePlayingInfoCenterData() {
+        guard let currentItem = self.currentItem,
+            let currentPlayerAVItem = self.queuePlayer.currentItem else {
             return
         }
         
-        if let title = item.title,
+        
+        
+        if let title = currentItem.title,
             let image = UIImage(named: "Cover") {
             
-            let infoCenter = MediaPlayer.MPNowPlayingInfoCenter.default()
+            
+            var info: [String: Any]? = [:]
             
             var artwork:MPMediaItemArtwork
-            if #available(iOS 10.0, *) {
-                artwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: {
-                    size in
-                    return image
-                })
-            }
-            else {
-                artwork = MPMediaItemArtwork(image: image)
-            }
+            artwork = MPMediaItemArtwork(boundsSize: image.size, requestHandler: {
+                size in
+                return image
+            })
             
-            var info: [String: Any]? = [
-                MPMediaItemPropertyTitle: title,
-                MPMediaItemPropertyArtwork: artwork
-            ]
-            if let duration = item.duration {
+            
+            if let duration = currentItem.duration {
                 let components = duration.components(separatedBy: ":")
                 print("Duration \(duration) - Components \(components)")
                 if components.count == 2 {
@@ -239,17 +273,30 @@ extension AudioPlayer {
                 } else if components.count == 3 {
                     let seconds = Int(components[0])! * 60 * 60 + Int(components[1])! * 60 + Int(components[2])!
                     info?[MPMediaItemPropertyPlaybackDuration] = seconds
-                } else {
+                }
+                else {
                     print("Duration CANNOT parse")
                 }
-            } else {
+            }
+            else {
                 print("Duration NONE")
             }
+//            let duration = CMTimeGetSeconds(currentPlayerAVItem.duration)
             
+            
+            info?[MPMediaItemPropertyTitle] = title
+            info?[MPMediaItemPropertyArtwork] = artwork
             info?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(queuePlayer.currentTime())
-            info?[MPNowPlayingInfoPropertyPlaybackRate] = 1
-            infoCenter.nowPlayingInfo = info
+            info?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: Double(self.playbackRate))
+            
+            MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = info
         }
+    }
+    
+    func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
+        self.seekToTimeInSeconds(event.positionTime)
+        
+        self.updatePlayingInfoCenterData()
     }
 }
 
@@ -298,5 +345,8 @@ extension AudioPlayer {
     
     func changePlaybackRate(to rate:Float) {
         self.queuePlayer.rate = rate
+        
+        //need to update control center with playback rate
+        self.updatePlayingInfoCenterData()
     }
 }
