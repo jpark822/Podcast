@@ -286,7 +286,7 @@ extension AudioPlayer {
             
             info?[MPMediaItemPropertyTitle] = title
             info?[MPMediaItemPropertyArtwork] = artwork
-            info?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = CMTimeGetSeconds(queuePlayer.currentTime())
+            info?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: CMTimeGetSeconds(currentPlayerAVItem.currentTime()))
             info?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: Double(self.playbackRate))
             
             MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = info
