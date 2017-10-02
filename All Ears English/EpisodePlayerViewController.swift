@@ -29,6 +29,7 @@ class EpisodePlayerViewController : UIViewController {
     @IBOutlet weak var episodeDescriptionLabel: UILabel!
     @IBOutlet weak var playbackRateButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var autoplayButton: UIButton!
     @IBOutlet weak var progressSlider: UISlider!
     
     fileprivate var displayLink: CADisplayLink!
@@ -51,10 +52,19 @@ class EpisodePlayerViewController : UIViewController {
         }
         
         NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerRemoteCommandDidFinish), name: AudioPlayer.didFinishRemoteControlCommandNotification, object: AudioPlayer.sharedInstance)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlayingCurrentTrack), name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: AudioPlayer.sharedInstance)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
+        DispatchQueue.main.async {
+            if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
+                self.episodeItem = currentLoadedAudioPlayerItem
+            }
+        }
     }
     
     func audioPlayerRemoteCommandDidFinish(notification:Notification) {
@@ -85,6 +95,15 @@ class EpisodePlayerViewController : UIViewController {
         
         //playback rate
         self.playbackRateButton.setTitle("\(AudioPlayer.sharedInstance.playbackRate)x", for: UIControlState.normal)
+        
+        //Autoplay
+        if (ApplicationData.isAutoPlayEnabled) {
+            print("autoplay is on")
+            self.autoplayButton.setTitle("Auto On", for: .normal)
+        }
+        else {
+            self.autoplayButton.setTitle("Auto Off", for: .normal)
+        }
     }
     
     func updatePlaybackProgress() {
@@ -159,6 +178,10 @@ class EpisodePlayerViewController : UIViewController {
         self.updateControlViews()
     }
     
+    @IBAction func autoPlayPressed(_ sender: Any) {
+        ApplicationData.isAutoPlayEnabled = !ApplicationData.isAutoPlayEnabled
+        self.updateControlViews()
+    }
     
     
 }

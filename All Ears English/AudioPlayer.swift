@@ -22,6 +22,7 @@ internal class AudioPlayer:NSObject {
     var currentItem:Feed.Item?
     
     static let didFinishRemoteControlCommandNotification: Notification.Name = Notification.Name(rawValue: "AudioPlayerDidFinishRemoteControlCommandNotification")
+    static let didFinishPlayingCurrentTrackNotification: Notification.Name = Notification.Name(rawValue: "didFinishPlayingCurrentTrackNotification")
     
     var isPlaying:Bool {
         get {
@@ -56,11 +57,22 @@ internal class AudioPlayer:NSObject {
         
         _ = self.initAudioSessionAndControls()
         NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: self.queuePlayer.currentItem)
+        self.queuePlayer.actionAtItemEnd = .pause
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     func playerDidFinishPlaying(notification: NSNotification) {
-        print("DID FINISH PLAYING") //add config for autoplay
-        self.seekToNextTrack()
+        if ApplicationData.isAutoPlayEnabled {
+            _ = self.seekToNextTrack()
+        }
+        else {
+            self.queuePlayer.seek(to: kCMTimeZero)
+            self.pause()
+        }
+        NotificationCenter.default.post(name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: self)
     }
     
     private func initAudioSessionAndControls() -> Bool {
@@ -226,6 +238,7 @@ extension AudioPlayer {
     
     func seekToTimeInSeconds(_ seconds: Double) {
         self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, self.queuePlayer.currentTime().timescale))
+        self.updatePlayingInfoCenterData()
     }
 }
 
@@ -300,7 +313,6 @@ extension AudioPlayer {
             info?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: Double(self.playbackRate))
             
             MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = info
-            NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
         }
     }
     
