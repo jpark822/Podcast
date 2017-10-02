@@ -97,21 +97,28 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate {
     */
     
     @IBAction func play(_ sender: Any) {
-        if self.loaded {
-            if AudioPlayer.sharedInstance.isPlaying {
-                AudioPlayer.sharedInstance.pause()
-            }
-            else {
-                AudioPlayer.sharedInstance.play()
-            }
+        guard let item = self.item else {
+            return
         }
-        else if self.item?.url != nil {
-            AudioPlayer.sharedInstance.play(item: self.item)
-            self.loaded = true
-        }
-        else {
-            print("no url to play")
-        }
+        
+        let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
+        playerVC.episodeItem = item
+        self.present(playerVC, animated: true)
+//        if self.loaded {
+//            if AudioPlayer.sharedInstance.isPlaying {
+//                AudioPlayer.sharedInstance.pause()
+//            }
+//            else {
+//                AudioPlayer.sharedInstance.play()
+//            }
+//        }
+//        else if self.item?.url != nil {
+//            AudioPlayer.sharedInstance.play(item: self.item)
+//            self.loaded = true
+//        }
+//        else {
+//            print("no url to play")
+//        }
     }
     //test func
     @IBAction func nextPressed(_ sender: Any) {

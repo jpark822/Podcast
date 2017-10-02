@@ -21,6 +21,8 @@ internal class AudioPlayer:NSObject {
     var queuePlayer:AVQueuePlayer = AVQueuePlayer()
     var currentItem:Feed.Item?
     
+    static let didFinishRemoteControlCommandNotification: Notification.Name = Notification.Name(rawValue: "AudioPlayerDidFinishRemoteControlCommandNotification")
+    
     var isPlaying:Bool {
         get {
             if ((queuePlayer.rate != 0) && (queuePlayer.error == nil)) {
@@ -231,22 +233,26 @@ extension AudioPlayer {
 extension AudioPlayer {
     func commandCenterPlayPressed() {
         self.play()
+        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func commandCenterPausePressed() {
         self.pause()
+        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func commandCenterNextTrackPressed()  {
-        if let nextEpisodeItem = self.seekToNextTrack() {
+        if self.seekToNextTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
+        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func commandCenterPreviousTrackPressed() {
-        if let prevEpisodeItem = self.seekToBeginningOrPreviousTrack() {
+        if self.seekToBeginningOrPreviousTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
+        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func updatePlayingInfoCenterData() {
@@ -254,8 +260,6 @@ extension AudioPlayer {
             let currentPlayerAVItem = self.queuePlayer.currentItem else {
             return
         }
-        
-        
         
         if let title = currentItem.title,
             let image = UIImage(named: "Cover") {
@@ -296,13 +300,14 @@ extension AudioPlayer {
             info?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: Double(self.playbackRate))
             
             MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = info
+            NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
         }
     }
     
     func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
         self.seekToTimeInSeconds(event.positionTime)
-        
         self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
 }
 

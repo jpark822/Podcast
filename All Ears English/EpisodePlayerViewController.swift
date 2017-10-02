@@ -46,7 +46,23 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        setupInitialViewStateForEpisode()
+        if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
+            self.episodeItem = currentLoadedAudioPlayerItem
+        }
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerRemoteCommandDidFinish), name: AudioPlayer.didFinishRemoteControlCommandNotification, object: AudioPlayer.sharedInstance)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func audioPlayerRemoteCommandDidFinish(notification:Notification) {
+        DispatchQueue.main.async {
+            if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
+                self.episodeItem = currentLoadedAudioPlayerItem
+            }
+        }
     }
     
     func setupInitialViewStateForEpisode() {
