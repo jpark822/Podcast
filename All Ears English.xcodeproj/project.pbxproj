@@ -52,6 +52,7 @@
 		4E31E8881F81612B00AD05D2 /* EpisodeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */; };
 		4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */; };
 		4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F771F82687D0095CAAA /* ApplicationData.swift */; };
+		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		76CBA8E68F3DEA2363825682 /* Pods_All_Ears_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */; };
 /* End PBXBuildFile section */
 
@@ -105,6 +106,7 @@
 		4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewController.swift; sourceTree = "<group>"; };
 		4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AEE.swift"; sourceTree = "<group>"; };
 		4E687F771F82687D0095CAAA /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
+		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All Ears English.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English.debug.xcconfig"; sourceTree = "<group>"; };
 		EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_All_Ears_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -185,6 +187,7 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
+				4E687F7A1F83AE8C0095CAAA /* WebViewController */,
 				4E31E8891F81770700AD05D2 /* Utilities */,
 				4E31E8801F815F2000AD05D2 /* TabBar */,
 				4E31E8791F7FB9D100AD05D2 /* Episodes */,
@@ -265,6 +268,14 @@
 				4E687F771F82687D0095CAAA /* ApplicationData.swift */,
 			);
 			name = Utilities;
+			sourceTree = "<group>";
+		};
+		4E687F7A1F83AE8C0095CAAA /* WebViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */,
+			);
+			name = WebViewController;
 			sourceTree = "<group>";
 		};
 		7DFAE26E221195811D48861F /* Frameworks */ = {
@@ -463,6 +474,7 @@
 				4E31E8881F81612B00AD05D2 /* EpisodeListTableViewController.swift in Sources */,
 				464415CF1EF8A5B300129F07 /* SplashViewController.swift in Sources */,
 				4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */,
+				4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */,
 				4E31E87F1F7FC03200AD05D2 /* EpisodePlayerViewController.swift in Sources */,
 				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
 				4672E5DF1EF8787B006B5F25 /* ViewController.swift in Sources */,

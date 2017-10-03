@@ -38,6 +38,8 @@ class EpisodePlayerViewController : UIViewController {
     fileprivate var userIsScrubbing = false
     
     override func viewDidLoad() {
+        super.viewDidLoad()
+        
         AudioPlayer.sharedInstance.play(item: self.episodeItem)
         
         displayLink = CADisplayLink(target: self, selector: #selector(EpisodePlayerViewController.updatePlaybackProgress))

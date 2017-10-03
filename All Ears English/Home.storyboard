@@ -6,9 +6,43 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="12088"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Web View Controller-->
+        <scene sceneID="80c-2y-nW1">
+            <objects>
+                <viewController storyboardIdentifier="WebViewControllerId" id="Ydk-bv-d3t" customClass="WebViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="rz5-4u-ioA"/>
+                        <viewControllerLayoutGuide type="bottom" id="IlK-We-9eC"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="soK-QK-JMo">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PMj-nr-xXU">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </webView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="topMargin" secondItem="PMj-nr-xXU" secondAttribute="top" id="7nz-wG-kHs"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="PMj-nr-xXU" secondAttribute="bottom" id="FfV-IE-puj"/>
+                            <constraint firstAttribute="trailing" secondItem="PMj-nr-xXU" secondAttribute="trailing" id="gOw-Wy-T5J"/>
+                            <constraint firstItem="PMj-nr-xXU" firstAttribute="leading" secondItem="soK-QK-JMo" secondAttribute="leading" id="v0y-sk-lhj"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="PMj-nr-xXU" id="Kx4-ID-djw"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="VW8-om-hoQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-924" y="-1011.544227886057"/>
+        </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="odK-6q-lOt">
             <objects>

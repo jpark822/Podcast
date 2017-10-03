@@ -16,6 +16,7 @@ class EpisodeListTableViewController: UITableViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         self.setupRefreshControl()
         self.fetchData()
     }
