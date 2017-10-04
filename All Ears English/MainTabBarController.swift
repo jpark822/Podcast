@@ -27,7 +27,7 @@ class MainTabBarController: UITabBarController {
         _ = episodeListVC.view
         
         let freeTipsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
-        freeTipsVC.url = URL(string: "http://allearsenglish.com/bridge")
+        freeTipsVC.url = URL(string: "http://allearsenglish.com/tips")
         let freeTipsTabImage = UIImage(named: "ic_public_white")
         freeTipsVC.tabBarItem = UITabBarItem(title: "Free Tips", image: freeTipsTabImage, tag: 0)
         _ = freeTipsVC.view
