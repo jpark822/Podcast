@@ -7,8 +7,11 @@
 //
 
 import UIKit
+import Foundation
 
 class MainTabBarController: UITabBarController {
+    
+    var nowPlayingBannerView:UIView!
     
     enum MainTabBarTab:Int {
         case episodes = 0
@@ -52,5 +55,15 @@ class MainTabBarController: UITabBarController {
         _ = quickLinksVC.view
         
         self.viewControllers = [epispodeNavVC, freeTipsVC, aboutUsVC, quickLinksVC, contactUsVC]
+        
+        self.setupNowPlayingBanner()
+    }
+    
+    func setupNowPlayingBanner() {
+        
+        self.nowPlayingBannerView = NowPlayingBannerView(frame: CGRect(x: 0, y: 0, width: 375, height: 60))
+        self.view.addSubview(self.nowPlayingBannerView)
+
+//        self.view.addSubview(nowPlayingBannerView)
     }
 }
