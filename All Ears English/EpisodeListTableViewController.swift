@@ -19,11 +19,26 @@ class EpisodeListTableViewController: UITableViewController {
         
         self.setupRefreshControl()
         self.fetchData()
+        self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.updateContentInsetBasedOnNowPlayingBanner()
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
+        NotificationCenter.default.removeObserver(self)
     }
     
     func setupRefreshControl() {
         self.pullToRefreshControl = UIRefreshControl()
-        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSFontAttributeName:UIFont(name: "Montserrat-Regular", size: 17.0)])
+        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSFontAttributeName:UIFont(name: "Montserrat-Regular", size: 17.0)!])
         self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControlEvents.valueChanged)
         self.pullToRefreshControl.backgroundColor = UIColor.white
         self.tableView.addSubview(self.pullToRefreshControl)
@@ -40,6 +55,25 @@ class EpisodeListTableViewController: UITableViewController {
                     print("unable to load feed")
                 }
                 self.pullToRefreshControl.endRefreshing()
+            }
+        }
+    }
+    
+    func nowPlayingBannerDidShowHandler(notification: Notification) {
+        self.updateContentInsetBasedOnNowPlayingBanner()
+    }
+    
+    func nowPlayingBannerDidHideHandler(notification: Notification) {
+        self.updateContentInsetBasedOnNowPlayingBanner()
+    }
+    
+    func updateContentInsetBasedOnNowPlayingBanner() {
+        if let mainTabBarVC = self.tabBarController as? MainTabBarController {
+            if mainTabBarVC.nowPlayingBannerView.isHidden {
+                self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+            }
+            else {
+                self.tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: MainTabBarController.nowPlayingBannerHeight, right: 0)
             }
         }
     }

@@ -12,6 +12,7 @@ import Foundation
 class MainTabBarController: UITabBarController {
     
     var nowPlayingBannerView:NowPlayingBannerView!
+    static let nowPlayingBannerHeight:CGFloat = 60.0
     
     static let didHideNowPlayingBannerNotification: Notification.Name = Notification.Name(rawValue: "didHideNowPlayingBannerNotification")
     static let didShowNowPlayingBannerNotification: Notification.Name = Notification.Name(rawValue: "didShowNowPlayingBannerNotification")
@@ -80,12 +81,12 @@ class MainTabBarController: UITabBarController {
 extension MainTabBarController {
     func setupNowPlayingBanner() {
         
-        let nowPlayingBannerHeight:CGFloat = 60.0
+        
         let tabBarHeight = self.tabBar.frame.size.height
         
-        let yPosition = self.view.frame.size.height - nowPlayingBannerHeight - tabBarHeight
+        let yPosition = self.view.frame.size.height - MainTabBarController.nowPlayingBannerHeight - tabBarHeight
         
-        self.nowPlayingBannerView = NowPlayingBannerView(frame: CGRect(x: 0, y: yPosition, width: self.view.frame.size.width, height: nowPlayingBannerHeight))
+        self.nowPlayingBannerView = NowPlayingBannerView(frame: CGRect(x: 0, y: yPosition, width: self.view.frame.size.width, height: MainTabBarController.nowPlayingBannerHeight))
         self.view.addSubview(self.nowPlayingBannerView)
         
         let views:[String:UIView] = ["nowPlayingView":self.nowPlayingBannerView]
@@ -120,7 +121,7 @@ extension MainTabBarController {
         }
         
         self.nowPlayingBannerView.isHidden = true
-        NotificationCenter.default.post(name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: MainTabBarController.didHideNowPlayingBannerNotification, object: self, userInfo: nil)
     }
     
     func showNowPlayingBannerAndNotify() {
@@ -129,7 +130,7 @@ extension MainTabBarController {
         }
         
         self.nowPlayingBannerView.isHidden = false
-        NotificationCenter.default.post(name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil, userInfo: nil)
+        NotificationCenter.default.post(name: MainTabBarController.didShowNowPlayingBannerNotification, object: self, userInfo: nil)
     }
 }
 
