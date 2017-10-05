@@ -21,7 +21,7 @@ internal class AudioPlayer:NSObject {
     var queuePlayer:AVQueuePlayer = AVQueuePlayer()
     var currentItem:Feed.Item?
     
-    static let didFinishRemoteControlCommandNotification: Notification.Name = Notification.Name(rawValue: "AudioPlayerDidFinishRemoteControlCommandNotification")
+    static let playbackStateDidChangeNotification: Notification.Name = Notification.Name(rawValue: "audioPlayerPlaybackStateDidChangeNotification")
     static let didFinishPlayingCurrentTrackNotification: Notification.Name = Notification.Name(rawValue: "didFinishPlayingCurrentTrackNotification")
     
     var isPlaying:Bool {
@@ -137,6 +137,7 @@ internal class AudioPlayer:NSObject {
         self.queuePlayer.play()
         
         self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
     func play() {
@@ -144,6 +145,9 @@ internal class AudioPlayer:NSObject {
             return
         }
         self.queuePlayer.play()
+        
+        self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
     func pause() {
@@ -153,9 +157,16 @@ internal class AudioPlayer:NSObject {
         self.queuePlayer.pause()
         
         self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
-    
+    func changePlaybackRate(to rate:Float) {
+        self.queuePlayer.rate = rate
+        
+        //need to update control center with playback rate
+        self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+    }
 }
 
 //MARK: Seeking
@@ -171,14 +182,20 @@ extension AudioPlayer {
             if item.url == currentItem.url && Feed.shared.items.count > (index + 1) {
                 let nextEpisodeItem = Feed.shared.items[index + 1]
                 self.play(item: nextEpisodeItem)
+                
+                NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+                
                 return nextEpisodeItem
             }
             index += 1
         }
         
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+        
         return nil
     }
     
+    //this method doesnt send notification for update state change because it's a helper
     func seekToBeginningOrPreviousTrack() -> Feed.Item? {
         let playerTime = self.queuePlayer.currentTime()
         if CMTimeGetSeconds(playerTime) < 3.0 {
@@ -192,6 +209,7 @@ extension AudioPlayer {
     
     func seekToBeginningOfTrack() {
         self.queuePlayer.seek(to: kCMTimeZero)
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
     func seekToPreviousTrack() -> Feed.Item? {
@@ -205,10 +223,15 @@ extension AudioPlayer {
             if item.url == currentItem.url && (index-1) >= 0 {
                 let prevEpisodeItem = Feed.shared.items[index-1]
                 self.play(item: prevEpisodeItem)
+                
+                NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+                
                 return prevEpisodeItem
             }
             index += 1
         }
+        
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
         
         return nil
     }
@@ -220,6 +243,7 @@ extension AudioPlayer {
         
         //need up update control center with new elapsed time
         self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
     func seekToProgress(_ progress:Float) {
@@ -234,11 +258,13 @@ extension AudioPlayer {
         
         //need up update control center with new elapsed time
         self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
     func seekToTimeInSeconds(_ seconds: Double) {
         self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, self.queuePlayer.currentTime().timescale))
         self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
 }
 
@@ -246,26 +272,28 @@ extension AudioPlayer {
 extension AudioPlayer {
     func commandCenterPlayPressed() {
         self.play()
-        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func commandCenterPausePressed() {
         self.pause()
-        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func commandCenterNextTrackPressed()  {
         if self.seekToNextTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
-        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
     }
     
     func commandCenterPreviousTrackPressed() {
         if self.seekToBeginningOrPreviousTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
-        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
+    }
+    
+    func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
+        self.seekToTimeInSeconds(event.positionTime)
+        self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self)
     }
     
     func updatePlayingInfoCenterData() {
@@ -315,12 +343,6 @@ extension AudioPlayer {
             MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = info
         }
     }
-    
-    func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
-        self.seekToTimeInSeconds(event.positionTime)
-        self.updatePlayingInfoCenterData()
-        NotificationCenter.default.post(name: AudioPlayer.didFinishRemoteControlCommandNotification, object: self)
-    }
 }
 
 //MARK: Helpers 
@@ -364,12 +386,5 @@ extension AudioPlayer {
         let seconds = Int64(time) - minutes*60
         let text = String(format: "%d:%02d", arguments: [minutes, seconds])
         return text
-    }
-    
-    func changePlaybackRate(to rate:Float) {
-        self.queuePlayer.rate = rate
-        
-        //need to update control center with playback rate
-        self.updatePlayingInfoCenterData()
     }
 }

@@ -17,6 +17,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="NowPlayingBannerView" customModule="All_Ears_English" customModuleProvider="target">
             <connections>
+                <outlet property="episodesTitleLabel" destination="NpW-Ic-RVB" id="65f-O5-Cu0"/>
+                <outlet property="playButton" destination="o2G-sK-gre" id="EGO-6H-BJa"/>
                 <outlet property="view" destination="iN0-l3-epB" id="i5L-w0-Bll"/>
             </connections>
         </placeholder>

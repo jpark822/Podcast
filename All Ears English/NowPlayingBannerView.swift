@@ -14,6 +14,7 @@ class NowPlayingBannerView : UIView {
     @IBOutlet var view: UIView!
     
     @IBOutlet weak var playButton: UIButton!
+    @IBOutlet weak var episodesTitleLabel: UILabel!
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -31,12 +32,41 @@ class NowPlayingBannerView : UIView {
         Bundle.main.loadNibNamed("NowPlayingBannerView", owner: self, options: nil)
         self.addSubview(self.view)
         self.view.frame = self.bounds
+        self.view.translatesAutoresizingMaskIntoConstraints = false
         self.view.autoresizingMask = [.flexibleHeight, .flexibleWidth]
+        
+        let views:[String:UIView] = ["view":self.view]
+        var allConstraints = [NSLayoutConstraint]()
+        
+        let horizontalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "H:|[view]|", options: [], metrics: nil, views: views)
+        allConstraints += horizontalConstraints
+        
+        let verticalConstraints = NSLayoutConstraint.constraints(withVisualFormat: "V:|[view]|", options: [], metrics: nil, views: views)
+        allConstraints += verticalConstraints
+        
+        NSLayoutConstraint.activate(allConstraints)
     }
     
     
     @IBAction func playPressed(_ sender: Any) {
-        print("press play")
+        if AudioPlayer.sharedInstance.isPlaying {
+            AudioPlayer.sharedInstance.pause()
+        }
+        else {
+            AudioPlayer.sharedInstance.play()
+        }
     }
     
+    func updateControlViews() {
+        if let currentAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
+            self.episodesTitleLabel.text = currentAudioPlayerItem.title
+        }
+        
+        if AudioPlayer.sharedInstance.isPlaying {
+            self.playButton.setImage(UIImage(named: "ic_pause_white"), for: UIControlState.normal)
+        }
+        else {
+            self.playButton.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.normal)
+        }
+    }
 }

@@ -49,11 +49,16 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        
         if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
+            //changing the item will trigger UI updates
             self.episodeItem = currentLoadedAudioPlayerItem
         }
+        else {
+            self.setupInitialViewStateForEpisode()
+        }
         
-        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerRemoteCommandDidFinish), name: AudioPlayer.didFinishRemoteControlCommandNotification, object: AudioPlayer.sharedInstance)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerPlaybackStateDidChange), name:AudioPlayer.playbackStateDidChangeNotification , object: AudioPlayer.sharedInstance)
         NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlayingCurrentTrack), name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: AudioPlayer.sharedInstance)
     }
     
@@ -61,15 +66,20 @@ class EpisodePlayerViewController : UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
+    func audioPlayerPlaybackStateDidChange(notification: Notification) {
+        print("Audio player state change. updating Playback VC views")
         DispatchQueue.main.async {
             if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
                 self.episodeItem = currentLoadedAudioPlayerItem
             }
+            else {
+                //possible error state
+                self.setupInitialViewStateForEpisode()
+            }
         }
     }
     
-    func audioPlayerRemoteCommandDidFinish(notification:Notification) {
+    func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
         DispatchQueue.main.async {
             if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
                 self.episodeItem = currentLoadedAudioPlayerItem
@@ -118,6 +128,10 @@ class EpisodePlayerViewController : UIViewController {
             self.progressSlider.value = AudioPlayer.sharedInstance.playbackProgress
         }
     }
+    @IBAction func dismissButtonPressed(_ sender: Any) {
+        //TODO change when delegate is implemented
+        self.dismiss(animated: true)
+    }
     
     //MARK: Playback Controls
     @IBAction func playPressed(_ sender: Any) {
@@ -127,7 +141,6 @@ class EpisodePlayerViewController : UIViewController {
         else {
             AudioPlayer.sharedInstance.play()
         }
-        self.updateControlViews()
     }
     
     @IBAction func previousSeekPressed(_ sender: Any) {
@@ -177,7 +190,6 @@ class EpisodePlayerViewController : UIViewController {
         }
         
         AudioPlayer.sharedInstance.changePlaybackRate(to: newRate)
-        self.updateControlViews()
     }
     
     @IBAction func autoPlayPressed(_ sender: Any) {
