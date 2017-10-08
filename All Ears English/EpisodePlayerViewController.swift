@@ -11,7 +11,13 @@ import UIKit
 import AVKit
 import AVFoundation
 
+protocol EpisodePlayerViewControllerDelegate:class {
+    func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController:EpisodePlayerViewController)
+}
+
 class EpisodePlayerViewController : UIViewController {
+    
+    var delegate:EpisodePlayerViewControllerDelegate?
     
     //MARK: Dependency
     var episodeItem:Feed.Item! {
@@ -129,8 +135,9 @@ class EpisodePlayerViewController : UIViewController {
         }
     }
     @IBAction func dismissButtonPressed(_ sender: Any) {
-        //TODO change when delegate is implemented
-        self.dismiss(animated: true)
+        if let delegate = self.delegate {
+            delegate.episodePlayerViewControllerDidPressDismiss(episodePlayerViewController: self)
+        }
     }
     
     //MARK: Playback Controls

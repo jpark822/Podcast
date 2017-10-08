@@ -9,7 +9,7 @@
 import UIKit
 import Foundation
 
-class MainTabBarController: UITabBarController {
+class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, EpisodePlayerViewControllerDelegate {
     
     var nowPlayingBannerView:NowPlayingBannerView!
     static let nowPlayingBannerHeight:CGFloat = 60.0
@@ -30,7 +30,7 @@ class MainTabBarController: UITabBarController {
         episodeListVC.title = "Episodes"
         let episodeListTabImage = UIImage(named: "ic_playlist_play_white")
         let epispodeNavVC = UINavigationController(rootViewController: episodeListVC)
-        episodeListVC.tabBarItem = UITabBarItem(title: "Episodes", image: episodeListTabImage, tag: 0)
+        epispodeNavVC.tabBarItem = UITabBarItem(title: "Episodes", image: episodeListTabImage, tag: 0)
         _ = episodeListVC.view
         
         let freeTipsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
@@ -38,11 +38,6 @@ class MainTabBarController: UITabBarController {
         let freeTipsTabImage = UIImage(named: "ic_public_white")
         freeTipsVC.tabBarItem = UITabBarItem(title: "Free Tips", image: freeTipsTabImage, tag: 0)
         _ = freeTipsVC.view
-        
-        let contactUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
-        let contactUsTabImage = UIImage(named: "ic_public_white")
-        contactUsVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
-        _ = contactUsVC.view
         
         let aboutUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
         if let path = Bundle.main.path(forResource: "aboutus", ofType: "html") {
@@ -55,8 +50,13 @@ class MainTabBarController: UITabBarController {
         let quickLinksVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
         quickLinksVC.url = URL(string: "https://www.allearsenglish.com/resources/")
         let quickLinksVCTabImage = UIImage(named: "ic_public_white")
-        quickLinksVC.tabBarItem = UITabBarItem(title: "Free Tips", image: quickLinksVCTabImage, tag: 0)
+        quickLinksVC.tabBarItem = UITabBarItem(title: "Quick Links", image: quickLinksVCTabImage, tag: 0)
         _ = quickLinksVC.view
+        
+        let contactUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
+        let contactUsTabImage = UIImage(named: "ic_public_white")
+        contactUsVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
+        _ = contactUsVC.view
         
         self.viewControllers = [epispodeNavVC, freeTipsVC, aboutUsVC, quickLinksVC, contactUsVC]
         
@@ -102,6 +102,7 @@ extension MainTabBarController {
         
         //banner starts hidden
         self.nowPlayingBannerView.isHidden = true
+        self.nowPlayingBannerView.delegate = self
     }
     
     func updateNowPlayingBannerState() {
@@ -146,5 +147,26 @@ extension MainTabBarController {
         DispatchQueue.main.async {
             self.updateNowPlayingBannerState()
         }
+    }
+}
+
+//MARK: NowPlayingBannerViewDelegate 
+extension MainTabBarController {
+    func nowPlayingBannerViewWasTapped(nowPlayingBannerView: NowPlayingBannerView) {
+        guard let currentItem = AudioPlayer.sharedInstance.currentItem else {
+            return
+        }
+        
+        let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
+        playerVC.episodeItem = currentItem
+        playerVC.delegate = self
+        self.present(playerVC, animated: true)
+    }
+}
+
+//MARK: EpisodePlayerViewControllerDelegate
+extension MainTabBarController {
+    func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController: EpisodePlayerViewController) {
+        self.dismiss(animated: true)
     }
 }

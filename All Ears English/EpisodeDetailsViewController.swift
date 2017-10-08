@@ -11,7 +11,7 @@ import AVFoundation
 import Crashlytics
 import Firebase
 
-class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate {
+class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate, EpisodePlayerViewControllerDelegate {
     
     @IBOutlet weak var episodeTitle: UILabel?
     @IBOutlet weak var episodeDescription: UILabel?
@@ -103,6 +103,7 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate {
         
         let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
         playerVC.episodeItem = item
+        playerVC.delegate = self
         self.present(playerVC, animated: true)
 //        if self.loaded {
 //            if AudioPlayer.sharedInstance.isPlaying {
@@ -218,5 +219,9 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate {
                         AnalyticsParameterItemCategory: type as NSObject,
                         AnalyticsParameterItemID: id as NSObject
                 ])
+    }
+    
+    func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController: EpisodePlayerViewController) {
+        self.dismiss(animated: true)
     }
 }

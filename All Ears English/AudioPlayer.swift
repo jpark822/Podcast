@@ -114,7 +114,7 @@ internal class AudioPlayer:NSObject {
             return
         }
         
-        if self.currentItem?.url == item.url && !self.isPlaying {
+        if self.currentItem?.url == item.url {
             self.play()
             return
         }

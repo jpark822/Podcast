@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EpisodeListTableViewController: UITableViewController {
+class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewControllerDelegate {
 
     var pullToRefreshControl: UIRefreshControl!
     
@@ -98,10 +98,16 @@ extension EpisodeListTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let episodeDetailVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodeDetailsViewControllerId") as! EpisodeDetailsViewController
-        //workaround for inherited code
-        _ = episodeDetailVC.view
-        episodeDetailVC.item = self.episodeItems[indexPath.row]
-        self.navigationController?.pushViewController(episodeDetailVC, animated: true)
+        let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
+        playerVC.episodeItem = self.episodeItems[indexPath.row]
+        playerVC.delegate = self
+        self.present(playerVC, animated: true)
+    }
+}
+
+//MARK: EpisodePlayerViewControllerDelegate
+extension EpisodeListTableViewController {
+    func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController:EpisodePlayerViewController) {
+        self.dismiss(animated: true)
     }
 }

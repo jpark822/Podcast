@@ -9,12 +9,18 @@
 import Foundation
 import UIKit
 
+protocol NowPlayingBannerViewDelegate:class {
+    func nowPlayingBannerViewWasTapped(nowPlayingBannerView: NowPlayingBannerView)
+}
+
 class NowPlayingBannerView : UIView {
     
     @IBOutlet var view: UIView!
     
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var episodesTitleLabel: UILabel!
+    
+    var delegate:NowPlayingBannerViewDelegate?
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -45,8 +51,10 @@ class NowPlayingBannerView : UIView {
         allConstraints += verticalConstraints
         
         NSLayoutConstraint.activate(allConstraints)
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTappedHandler(recognizer:)))
+        self.view .addGestureRecognizer(tapGestureRecognizer)
     }
-    
     
     @IBAction func playPressed(_ sender: Any) {
         if AudioPlayer.sharedInstance.isPlaying {
@@ -67,6 +75,12 @@ class NowPlayingBannerView : UIView {
         }
         else {
             self.playButton.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.normal)
+        }
+    }
+    
+    func viewTappedHandler(recognizer:UITapGestureRecognizer) {
+        if let delegate = self.delegate {
+            delegate.nowPlayingBannerViewWasTapped(nowPlayingBannerView: self)
         }
     }
 }
