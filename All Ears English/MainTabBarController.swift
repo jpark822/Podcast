@@ -33,6 +33,20 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         epispodeNavVC.tabBarItem = UITabBarItem(title: "Episodes", image: episodeListTabImage, tag: 0)
         _ = episodeListVC.view
         
+        let bonusesVC = UIViewController()
+        bonusesVC.title = "Bonuses"
+        let bonusesTabImage = UIImage(named: "ic_playlist_play_white")
+        let bonusesNavVC = UINavigationController(rootViewController: bonusesVC)
+        bonusesNavVC.tabBarItem = UITabBarItem(title: "Bonuses", image: bonusesTabImage, tag: 0)
+        _ = bonusesVC.view
+        
+        let favoritesVC = UIViewController()
+        favoritesVC.title = "Bonuses"
+        let favoritesTabImage = UIImage(named: "ic_playlist_play_white")
+        let favoritesNavVC = UINavigationController(rootViewController: favoritesVC)
+        favoritesNavVC.tabBarItem = UITabBarItem(title: "Favorites", image: favoritesTabImage, tag: 0)
+        _ = favoritesVC.view
+        
         let freeTipsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
         freeTipsVC.url = URL(string: "http://allearsenglish.com/tips")
         let freeTipsTabImage = UIImage(named: "ic_public_white")
@@ -58,7 +72,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         contactUsVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
         _ = contactUsVC.view
         
-        self.viewControllers = [epispodeNavVC, freeTipsVC, aboutUsVC, quickLinksVC, contactUsVC]
+        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsVC, aboutUsVC, quickLinksVC, contactUsVC]
         
         self.setupNowPlayingBanner()
     }
