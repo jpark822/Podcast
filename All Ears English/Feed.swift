@@ -262,6 +262,7 @@ class Feed: NSObject {
                 self.parseDetails()
             }
         }
+        
         // computed for display or internal use
         var displayTitle: String?
         var displayDetails: String?

@@ -55,6 +55,7 @@
 		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */; };
 		4E687F811F84F1120095CAAA /* NowPlayingBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F801F84F1120095CAAA /* NowPlayingBannerView.swift */; };
+		4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */; };
 		76CBA8E68F3DEA2363825682 /* Pods_All_Ears_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */; };
 /* End PBXBuildFile section */
 
@@ -111,6 +112,7 @@
 		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingBannerView.xib; sourceTree = "<group>"; };
 		4E687F801F84F1120095CAAA /* NowPlayingBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingBannerView.swift; sourceTree = "<group>"; };
+		4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All Ears English.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English.debug.xcconfig"; sourceTree = "<group>"; };
 		EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_All_Ears_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -191,6 +193,7 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
+				4E687F891F8C0BAA0095CAAA /* Favorites */,
 				4E687F7D1F84F0520095CAAA /* NowPlayingBanner */,
 				4E687F7A1F83AE8C0095CAAA /* WebViewController */,
 				4E31E8891F81770700AD05D2 /* Utilities */,
@@ -290,6 +293,14 @@
 				4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */,
 			);
 			name = NowPlayingBanner;
+			sourceTree = "<group>";
+		};
+		4E687F891F8C0BAA0095CAAA /* Favorites */ = {
+			isa = PBXGroup;
+			children = (
+				4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */,
+			);
+			name = Favorites;
 			sourceTree = "<group>";
 		};
 		7DFAE26E221195811D48861F /* Frameworks */ = {
@@ -504,6 +515,7 @@
 				4668D2921F1748F700845FE5 /* BannerView.swift in Sources */,
 				469F7EFF1F1B01250039FA03 /* EpisodePlaybackViewController.swift in Sources */,
 				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
+				4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */,
 				46EFFD6F1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift in Sources */,
 				4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */,
 				4E31E8861F81604C00AD05D2 /* MainTabBarController.swift in Sources */,
