@@ -13,10 +13,12 @@ class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewCo
     var pullToRefreshControl: UIRefreshControl!
     
     fileprivate var episodeItems:[Feed.Item] = []
+    fileprivate var episodeCellReuseID = "EpisodeListCellReuseId"
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.tableView.register(UINib(nibName: "EpisodeCell", bundle: nil) , forCellReuseIdentifier: self.episodeCellReuseID)
         self.setupRefreshControl()
         self.fetchData()
         self.automaticallyAdjustsScrollViewInsets = false
@@ -82,7 +84,7 @@ class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewCo
 //MARK: TableView datasource and delegate
 extension EpisodeListTableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "EpisodeCell", for: indexPath) as! EpisodeCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.episodeCellReuseID, for: indexPath) as! EpisodeCell
         
         cell.item = self.episodeItems[indexPath.row]
         
