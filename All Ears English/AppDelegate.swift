@@ -52,6 +52,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         UITabBar.appearance().backgroundColor = UIColor.white
         
         UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:UIFont(name: "Montserrat-Regular", size: 17.0)!]
+        UINavigationBar.appearance().barTintColor = UIColor.AEEYellow
         UINavigationBar.appearance().isTranslucent = false
 //        UINavigationBar.appearance().tintColor = UIColor.materiallTeal()
         
