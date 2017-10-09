@@ -8,7 +8,7 @@
 
 import UIKit
 
-class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewControllerDelegate {
+class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate {
 
     var pullToRefreshControl: UIRefreshControl!
     
@@ -30,6 +30,8 @@ class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewCo
         
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
+        
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -87,7 +89,8 @@ extension EpisodeListTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.episodeCellReuseID, for: indexPath) as! EpisodeCell
         
         cell.item = self.episodeItems[indexPath.row]
-        
+        cell.delegate = self
+        cell.indexPath = indexPath
         return cell
     }
     
@@ -111,5 +114,23 @@ extension EpisodeListTableViewController {
 extension EpisodeListTableViewController {
     func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController:EpisodePlayerViewController) {
         self.dismiss(animated: true)
+    }
+}
+
+//MARK: EpisodeCellDelegate
+extension EpisodeListTableViewController {
+    func episodeCellDidTapFavoriteButton(episodeCell: EpisodeCell) {
+        guard let item = episodeCell.item else {
+            return
+        }
+        
+        if FavoritesManager.isItemInFavorites(item: item) {
+            FavoritesManager.sharedInstance.removeFavorite(item)
+        }
+        else {
+            FavoritesManager.sharedInstance.addFavorite(item)
+        }
+        
+        self.tableView.reloadRows(at: [episodeCell.indexPath], with: .none)
     }
 }

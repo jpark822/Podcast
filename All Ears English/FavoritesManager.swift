@@ -35,6 +35,16 @@ class FavoritesManager: NSObject {
         }
     }
     
+    static func isItemInFavorites(item:Feed.Item) -> Bool {
+        let allFavorites = FavoritesManager.sharedInstance.allStoredFavorites
+        for storedFavoriteItem in allFavorites {
+            if item.guid == storedFavoriteItem.guid {
+                return true
+            }
+        }
+        return false
+    }
+    
     func addFavorite(_ item:Feed.Item) {
         guard FavoritesManager.isItemInFavorites(item: item) == false else {
             return
@@ -46,7 +56,7 @@ class FavoritesManager: NSObject {
     }
     
     func removeFavorite(_ item:Feed.Item) {
-        guard FavoritesManager.isItemInFavorites(item: item) == false else {
+        guard FavoritesManager.isItemInFavorites(item: item) == true else {
             return
         }
         
@@ -139,15 +149,5 @@ fileprivate extension FavoritesManager {
             feedItemDicts.append(itemDict)
         }
         return feedItemDicts
-    }
-    
-    static func isItemInFavorites(item:Feed.Item) -> Bool {
-        let allFavorites = FavoritesManager.sharedInstance.allStoredFavorites
-            for storedFavoriteItem in allFavorites {
-                if item.guid == storedFavoriteItem.guid {
-                    return true
-                }
-            }
-        return false
     }
 }
