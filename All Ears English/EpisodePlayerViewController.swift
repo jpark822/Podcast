@@ -35,8 +35,8 @@ class EpisodePlayerViewController : UIViewController {
     @IBOutlet weak var episodeDescriptionLabel: UILabel!
     @IBOutlet weak var playbackRateButton: UIButton!
     @IBOutlet weak var playButton: UIButton!
-    @IBOutlet weak var autoplayButton: UIButton!
     @IBOutlet weak var progressSlider: UISlider!
+    @IBOutlet weak var autoPlaySwitch: UISwitch!
     
     fileprivate var displayLink: CADisplayLink!
     
@@ -130,11 +130,10 @@ class EpisodePlayerViewController : UIViewController {
         
         //Autoplay
         if (ApplicationData.isAutoPlayEnabled) {
-            print("autoplay is on")
-            self.autoplayButton.setTitle("Auto On", for: .normal)
+            self.autoPlaySwitch.isOn = true
         }
         else {
-            self.autoplayButton.setTitle("Auto Off", for: .normal)
+            self.autoPlaySwitch.isOn = false
         }
     }
     
@@ -213,7 +212,7 @@ class EpisodePlayerViewController : UIViewController {
         AudioPlayer.sharedInstance.changePlaybackRate(to: newRate)
     }
     
-    @IBAction func autoPlayPressed(_ sender: Any) {
+    @IBAction func autoPlaySwitchPressed(_ sender: Any) {
         ApplicationData.isAutoPlayEnabled = !ApplicationData.isAutoPlayEnabled
         self.updateControlViews()
     }

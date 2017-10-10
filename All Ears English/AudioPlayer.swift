@@ -47,7 +47,7 @@ internal class AudioPlayer:NSObject {
     }
     
     //keeping a stored playback rate. Pausing the player naturally causes the playbackrate to go to 0
-    var playbackRate:Float = 1.0
+    public fileprivate(set) var playbackRate:Float = 1.0
     
     override init() {
         super.init()
