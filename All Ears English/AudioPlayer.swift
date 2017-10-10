@@ -46,11 +46,8 @@ internal class AudioPlayer:NSObject {
         }
     }
     
-    var playbackRate:Float {
-        get {
-            return self.queuePlayer.rate
-        }
-    }
+    //keeping a stored playback rate. Pausing the player naturally causes the playbackrate to go to 0
+    var playbackRate:Float = 1.0
     
     override init() {
         super.init()
@@ -135,6 +132,7 @@ internal class AudioPlayer:NSObject {
         
         self.queuePlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmTimeDomain
         self.queuePlayer.play()
+        self.queuePlayer.rate = self.playbackRate
         
         self.updatePlayingInfoCenterData()
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
@@ -144,7 +142,9 @@ internal class AudioPlayer:NSObject {
         guard self.currentItem != nil else {
             return
         }
+        
         self.queuePlayer.play()
+        self.queuePlayer.rate = self.playbackRate
         
         self.updatePlayingInfoCenterData()
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
@@ -161,6 +161,7 @@ internal class AudioPlayer:NSObject {
     }
     
     func changePlaybackRate(to rate:Float) {
+        self.playbackRate = rate
         self.queuePlayer.rate = rate
         
         //need to update control center with playback rate

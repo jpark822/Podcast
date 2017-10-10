@@ -40,7 +40,6 @@ class EpisodePlayerViewController : UIViewController {
     
     fileprivate var displayLink: CADisplayLink!
     
-    fileprivate var playbackRate = 1.0
     fileprivate var userIsScrubbing = false
     
     override func viewDidLoad() {
@@ -112,7 +111,22 @@ class EpisodePlayerViewController : UIViewController {
         }
         
         //playback rate
-        self.playbackRateButton.setTitle("\(AudioPlayer.sharedInstance.playbackRate)x", for: UIControlState.normal)
+        var playbackRateString = ""
+        switch AudioPlayer.sharedInstance.playbackRate {
+        case 0:
+            playbackRateString = "Paused"
+        case 0.5:
+            playbackRateString = "0.5x"
+        case 1:
+            playbackRateString = "1x"
+        case 1.5:
+            playbackRateString = "1.5x"
+        case 2:
+            playbackRateString = "2x"
+        default:
+            playbackRateString = "1x"
+        }
+        self.playbackRateButton.setTitle(playbackRateString, for: UIControlState.normal)
         
         //Autoplay
         if (ApplicationData.isAutoPlayEnabled) {
