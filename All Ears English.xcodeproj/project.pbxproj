@@ -51,6 +51,7 @@
 		4E31E8861F81604C00AD05D2 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8851F81604C00AD05D2 /* MainTabBarController.swift */; };
 		4E31E8881F81612B00AD05D2 /* EpisodeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */; };
 		4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */; };
+		4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */; };
 		4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F771F82687D0095CAAA /* ApplicationData.swift */; };
 		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */; };
@@ -109,6 +110,7 @@
 		4E31E8851F81604C00AD05D2 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewController.swift; sourceTree = "<group>"; };
 		4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AEE.swift"; sourceTree = "<group>"; };
+		4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesListTableViewController.swift; sourceTree = "<group>"; };
 		4E687F771F82687D0095CAAA /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingBannerView.xib; sourceTree = "<group>"; };
@@ -195,7 +197,8 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
-				4E687F891F8C0BAA0095CAAA /* Favorites */,
+				4E4AE98C1F8C25B700B6CF10 /* FavoritesList */,
+				4E687F891F8C0BAA0095CAAA /* FavoritesManager */,
 				4E687F7D1F84F0520095CAAA /* NowPlayingBanner */,
 				4E687F7A1F83AE8C0095CAAA /* WebViewController */,
 				4E31E8891F81770700AD05D2 /* Utilities */,
@@ -280,6 +283,14 @@
 			name = Utilities;
 			sourceTree = "<group>";
 		};
+		4E4AE98C1F8C25B700B6CF10 /* FavoritesList */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */,
+			);
+			name = FavoritesList;
+			sourceTree = "<group>";
+		};
 		4E687F7A1F83AE8C0095CAAA /* WebViewController */ = {
 			isa = PBXGroup;
 			children = (
@@ -297,12 +308,12 @@
 			name = NowPlayingBanner;
 			sourceTree = "<group>";
 		};
-		4E687F891F8C0BAA0095CAAA /* Favorites */ = {
+		4E687F891F8C0BAA0095CAAA /* FavoritesManager */ = {
 			isa = PBXGroup;
 			children = (
 				4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */,
 			);
-			name = Favorites;
+			name = FavoritesManager;
 			sourceTree = "<group>";
 		};
 		4E687F8C1F8C184D0095CAAA /* EpisodeCell */ = {
@@ -515,6 +526,7 @@
 				4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */,
 				4E31E87F1F7FC03200AD05D2 /* EpisodePlayerViewController.swift in Sources */,
 				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
+				4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */,
 				4672E5DF1EF8787B006B5F25 /* ViewController.swift in Sources */,
 				4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */,
 				4640CD441EFA0414006B0C5E /* BrowserViewController.swift in Sources */,

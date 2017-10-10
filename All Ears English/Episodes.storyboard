@@ -149,10 +149,9 @@
                                     <action selector="progressSliderTouchUpInside:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="2Ef-7r-dca"/>
                                 </connections>
                             </slider>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBS-tS-akQ">
-                                <rect key="frame" x="13" y="20" width="52" height="30"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                <state key="normal" title="dismiss"/>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hBS-tS-akQ">
+                                <rect key="frame" x="8" y="8" width="48" height="48"/>
+                                <state key="normal" image="ic_keyboard_arrow_down_48pt"/>
                                 <connections>
                                     <action selector="dismissButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="LuW-Y5-u56"/>
                                 </connections>
@@ -160,6 +159,7 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="hBS-tS-akQ" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leading" constant="8" id="1OO-u2-4Ib"/>
                             <constraint firstItem="9M4-4R-8SO" firstAttribute="top" secondItem="SlZ-as-vdN" secondAttribute="bottom" constant="-14.5" id="2eU-13-oim"/>
                             <constraint firstItem="hNm-Kw-aFM" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leading" id="5au-bR-sZ3"/>
                             <constraint firstItem="ovX-k9-R5U" firstAttribute="top" secondItem="hNm-Kw-aFM" secondAttribute="bottom" id="EkU-y9-EoU"/>
@@ -167,6 +167,7 @@
                             <constraint firstItem="SlZ-as-vdN" firstAttribute="leading" secondItem="zPV-d0-MZR" secondAttribute="leading" id="SPe-yl-HOI"/>
                             <constraint firstAttribute="trailing" secondItem="SlZ-as-vdN" secondAttribute="trailing" id="WGl-ne-qw2"/>
                             <constraint firstItem="SlZ-as-vdN" firstAttribute="top" secondItem="zPV-d0-MZR" secondAttribute="topMargin" id="WQd-kX-Y8x"/>
+                            <constraint firstItem="hBS-tS-akQ" firstAttribute="top" secondItem="zPV-d0-MZR" secondAttribute="topMargin" constant="8" id="Wbg-iq-r1i"/>
                             <constraint firstAttribute="trailing" secondItem="9M4-4R-8SO" secondAttribute="trailing" id="X6f-09-kQb"/>
                             <constraint firstAttribute="trailing" secondItem="hNm-Kw-aFM" secondAttribute="trailing" id="dZ2-ba-N8U"/>
                             <constraint firstItem="hNm-Kw-aFM" firstAttribute="top" secondItem="SlZ-as-vdN" secondAttribute="bottom" constant="2" id="y4J-Jn-P9o"/>
@@ -377,10 +378,29 @@
             </objects>
             <point key="canvasLocation" x="967" y="145"/>
         </scene>
+        <!--Favorites List Table View Controller-->
+        <scene sceneID="DpM-zh-r4s">
+            <objects>
+                <tableViewController storyboardIdentifier="FavoritesListTableViewControllerId" id="8k3-5n-dx4" customClass="FavoritesListTableViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TMo-wl-qdK">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="8k3-5n-dx4" id="K7E-28-ktp"/>
+                            <outlet property="delegate" destination="8k3-5n-dx4" id="3wL-tS-P3E"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="56x-FI-lg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1930" y="27"/>
+        </scene>
     </scenes>
     <resources>
         <image name="Cover" width="512" height="512"/>
         <image name="ic_cloud_download" width="24" height="24"/>
+        <image name="ic_keyboard_arrow_down_48pt" width="48" height="48"/>
         <image name="ic_play_arrow_48pt" width="48" height="48"/>
         <image name="ic_play_arrow_white" width="24" height="24"/>
         <image name="ic_share" width="24" height="24"/>

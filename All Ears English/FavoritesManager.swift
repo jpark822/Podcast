@@ -15,15 +15,14 @@ class FavoritesManager: NSObject {
     
     static let sharedInstance = FavoritesManager()
     
-    var allStoredFavorites:[Feed.Item] {
-        get {
-            let allFavoriteDictionaries = self.allFavoritesAsDictionaries
-            return FavoritesManager.convertStoredDictionariesToFeedItems(dicts: allFavoriteDictionaries)
-        }
-        set {
-            let convertedFavorites = FavoritesManager.convertFeedItemArrayToDictionaryArray(newValue)
-            UserDefaults.standard.set(convertedFavorites, forKey: FavoritesManagerKey.storedFavorites.rawValue)
-        }
+    func getAllStoredFavorites() -> [Feed.Item] {
+        let allFavoriteDictionaries = self.allFavoritesAsDictionaries
+        return FavoritesManager.convertStoredDictionariesToFeedItems(dicts: allFavoriteDictionaries)
+    }
+    
+    func setStoredFavorites(favorites:[Feed.Item]) {
+        let convertedFavorites = FavoritesManager.convertFeedItemArrayToDictionaryArray(favorites)
+        UserDefaults.standard.set(convertedFavorites, forKey: FavoritesManagerKey.storedFavorites.rawValue)
     }
     
     fileprivate var allFavoritesAsDictionaries:[[String:String]] {
@@ -36,7 +35,7 @@ class FavoritesManager: NSObject {
     }
     
     static func isItemInFavorites(item:Feed.Item) -> Bool {
-        let allFavorites = FavoritesManager.sharedInstance.allStoredFavorites
+        let allFavorites = FavoritesManager.sharedInstance.getAllStoredFavorites()
         for storedFavoriteItem in allFavorites {
             if item.guid == storedFavoriteItem.guid {
                 return true
@@ -50,9 +49,9 @@ class FavoritesManager: NSObject {
             return
         }
         
-        var allFavorites = self.allStoredFavorites
+        var allFavorites = self.getAllStoredFavorites()
         allFavorites.append(item)
-        self.allStoredFavorites = allFavorites
+        self.setStoredFavorites(favorites: allFavorites)
     }
     
     func removeFavorite(_ item:Feed.Item) {
@@ -61,13 +60,13 @@ class FavoritesManager: NSObject {
         }
         
         var newFavorites:[Feed.Item] = []
-        for storedItem in self.allStoredFavorites {
+        for storedItem in self.getAllStoredFavorites() {
             if item.guid != storedItem.guid {
                 newFavorites.append(storedItem)
             }
         }
         
-        self.allStoredFavorites = newFavorites
+        self.setStoredFavorites(favorites: newFavorites)
     }
 }
 
@@ -143,7 +142,7 @@ fileprivate extension FavoritesManager {
     }
     
     static func convertFeedItemArrayToDictionaryArray(_ items:[Feed.Item]) -> [[String:String]] {
-        var feedItemDicts:[[String:String]] = [[:]]
+        var feedItemDicts:[[String:String]] = []
         for item in items {
             let itemDict = FavoritesManager.convertFeedItemToDictionary(item: item)
             feedItemDicts.append(itemDict)

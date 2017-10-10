@@ -40,12 +40,6 @@
                             <constraint firstAttribute="width" constant="80" id="gIC-U4-xwq"/>
                         </constraints>
                     </view>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is a very very very very very very very long long long loooooong title in a very small space" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dg-Eg-CB9">
-                        <rect key="frame" x="88" y="8" width="307" height="62.5"/>
-                        <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="16"/>
-                        <nil key="textColor"/>
-                        <nil key="highlightedColor"/>
-                    </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date • 01:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-gJ-1ye">
                         <rect key="frame" x="88" y="252" width="64.5" height="16"/>
                         <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="12"/>
@@ -59,9 +53,14 @@
                             <action selector="favoritesButtonPressed:" destination="lxe-vq-LpI" eventType="touchUpInside" id="8gM-yk-9og"/>
                         </connections>
                     </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is a very very very very very very very long long long loooooong title in a very small space" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dg-Eg-CB9">
+                        <rect key="frame" x="88" y="103" width="307" height="62.5"/>
+                        <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="16"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="9dg-Eg-CB9" firstAttribute="top" secondItem="9yO-Ob-tpx" secondAttribute="top" constant="8" id="1D1-UH-tEp"/>
                     <constraint firstAttribute="trailing" secondItem="63r-qf-2TP" secondAttribute="trailing" constant="8" id="7Lw-14-12l"/>
                     <constraint firstItem="VxW-ii-kbu" firstAttribute="leading" secondItem="9yO-Ob-tpx" secondAttribute="leading" id="9jb-ha-Onq"/>
                     <constraint firstAttribute="trailing" secondItem="9dg-Eg-CB9" secondAttribute="trailing" constant="8" id="Fq9-iC-oyO"/>
@@ -69,6 +68,7 @@
                     <constraint firstAttribute="bottom" secondItem="VxW-ii-kbu" secondAttribute="bottom" constant="3.5" id="JsF-nm-9gu"/>
                     <constraint firstItem="63r-qf-2TP" firstAttribute="bottom" secondItem="VxW-ii-kbu" secondAttribute="bottom" id="b91-IS-Kgx"/>
                     <constraint firstItem="UW1-gJ-1ye" firstAttribute="bottom" secondItem="VxW-ii-kbu" secondAttribute="bottom" id="eK3-VM-MP9"/>
+                    <constraint firstItem="9dg-Eg-CB9" firstAttribute="centerY" secondItem="VxW-ii-kbu" secondAttribute="centerY" id="eb4-L1-fhA"/>
                     <constraint firstItem="9dg-Eg-CB9" firstAttribute="leading" secondItem="VxW-ii-kbu" secondAttribute="trailing" constant="8" id="lPe-2i-ZvQ"/>
                     <constraint firstItem="VxW-ii-kbu" firstAttribute="top" secondItem="9yO-Ob-tpx" secondAttribute="top" id="mzB-7B-cks"/>
                 </constraints>
