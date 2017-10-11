@@ -30,7 +30,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="SlZ-as-vdN">
-                                <rect key="frame" x="48" y="48" width="279" height="280.5"/>
+                                <rect key="frame" x="48" y="48" width="279" height="281"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="SlZ-as-vdN" secondAttribute="height" multiplier="375:377" id="be9-da-cyb"/>
                                 </constraints>
@@ -43,7 +43,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Kw-aFM">
-                                <rect key="frame" x="0.0" y="330" width="375" height="337"/>
+                                <rect key="frame" x="0.0" y="331" width="375" height="336"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-49-PcW">
                                         <rect key="frame" x="20" y="39" width="28.5" height="15"/>
@@ -58,14 +58,14 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kau-uT-o0D">
-                                        <rect key="frame" x="8" y="299" width="30" height="30"/>
+                                        <rect key="frame" x="8" y="298" width="30" height="30"/>
                                         <state key="normal" title="1x"/>
                                         <connections>
                                             <action selector="playbackRatePressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="m0Z-oX-lW1"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
-                                        <rect key="frame" x="8" y="62" width="359" height="41.5"/>
+                                        <rect key="frame" x="8" y="62" width="359" height="92"/>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -79,31 +79,31 @@
                                         </connections>
                                     </slider>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqE-Rh-2UF">
-                                        <rect key="frame" x="316" y="298.5" width="51" height="31"/>
+                                        <rect key="frame" x="316" y="298" width="51" height="31"/>
                                         <color key="onTintColor" red="0.0" green="0.47843137250000001" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="autoPlaySwitchPressed:" destination="kX4-DS-RbJ" eventType="valueChanged" id="MID-Iw-VcL"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfm-Or-GZ6">
-                                        <rect key="frame" x="236" y="304" width="72" height="20.5"/>
+                                        <rect key="frame" x="236" y="303.5" width="72" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ERz-bF-xrk">
-                                        <rect key="frame" x="20" y="162.5" width="335" height="48"/>
+                                        <rect key="frame" x="20" y="161.5" width="335" height="48"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMi-Hd-b0T">
                                                 <rect key="frame" x="0.0" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="Previous"/>
+                                                <state key="normal" title="&lt;&lt;"/>
                                                 <connections>
                                                     <action selector="previousSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="DO9-37-Hfw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Vg-fWP">
                                                 <rect key="frame" x="68.5" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="Back 15"/>
+                                                <state key="normal" title="&lt; 15"/>
                                                 <connections>
                                                     <action selector="skipBackwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="3ko-Kd-boT"/>
                                                 </connections>
@@ -116,18 +116,18 @@
                                                     <action selector="playPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="Fys-zL-hDg"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-aA-fKv">
-                                                <rect key="frame" x="206" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="Forward"/>
-                                                <connections>
-                                                    <action selector="forwardSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="pf6-EQ-Oey"/>
-                                                </connections>
-                                            </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E05-Ry-XRa">
-                                                <rect key="frame" x="274.5" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="Skip 15"/>
+                                                <rect key="frame" x="206" y="0.0" width="60.5" height="48"/>
+                                                <state key="normal" title="15 &gt;"/>
                                                 <connections>
                                                     <action selector="skipForwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="hJK-4F-ZRt"/>
+                                                </connections>
+                                            </button>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-aA-fKv">
+                                                <rect key="frame" x="274.5" y="0.0" width="60.5" height="48"/>
+                                                <state key="normal" title="&gt;&gt;"/>
+                                                <connections>
+                                                    <action selector="forwardSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="pf6-EQ-Oey"/>
                                                 </connections>
                                             </button>
                                         </subviews>
@@ -141,6 +141,7 @@
                                     <constraint firstItem="rcB-Dw-PFa" firstAttribute="trailing" secondItem="9M4-4R-8SO" secondAttribute="trailing" id="Ort-OC-3Gi"/>
                                     <constraint firstItem="pfm-Or-GZ6" firstAttribute="centerY" secondItem="VqE-Rh-2UF" secondAttribute="centerY" id="P27-dc-DpJ"/>
                                     <constraint firstItem="uWh-0k-GGL" firstAttribute="top" secondItem="5R4-49-PcW" secondAttribute="bottom" constant="8" id="QjS-21-lKz"/>
+                                    <constraint firstItem="ERz-bF-xrk" firstAttribute="top" secondItem="uWh-0k-GGL" secondAttribute="bottom" constant="7.5" id="RaE-e3-p8y"/>
                                     <constraint firstAttribute="bottom" secondItem="ERz-bF-xrk" secondAttribute="bottom" multiplier="1.6" id="TqK-BE-7q0"/>
                                     <constraint firstAttribute="trailing" secondItem="VqE-Rh-2UF" secondAttribute="trailing" constant="10" id="Wl2-ot-uce"/>
                                     <constraint firstItem="5R4-49-PcW" firstAttribute="top" secondItem="9M4-4R-8SO" secondAttribute="bottom" constant="1" id="Wxc-jT-S2K"/>
