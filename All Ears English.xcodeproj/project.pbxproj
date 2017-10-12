@@ -52,6 +52,7 @@
 		4E31E8881F81612B00AD05D2 /* EpisodeListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */; };
 		4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */; };
 		4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */; };
+		4E4AE9911F8F853F00B6CF10 /* ExternalShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9901F8F853F00B6CF10 /* ExternalShareManager.swift */; };
 		4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F771F82687D0095CAAA /* ApplicationData.swift */; };
 		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */; };
@@ -111,6 +112,7 @@
 		4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeListTableViewController.swift; sourceTree = "<group>"; };
 		4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AEE.swift"; sourceTree = "<group>"; };
 		4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesListTableViewController.swift; sourceTree = "<group>"; };
+		4E4AE9901F8F853F00B6CF10 /* ExternalShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalShareManager.swift; sourceTree = "<group>"; };
 		4E687F771F82687D0095CAAA /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingBannerView.xib; sourceTree = "<group>"; };
@@ -197,6 +199,7 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
+				4E4AE98F1F8F852100B6CF10 /* ShareController */,
 				4E4AE98C1F8C25B700B6CF10 /* FavoritesList */,
 				4E687F891F8C0BAA0095CAAA /* FavoritesManager */,
 				4E687F7D1F84F0520095CAAA /* NowPlayingBanner */,
@@ -289,6 +292,14 @@
 				4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */,
 			);
 			name = FavoritesList;
+			sourceTree = "<group>";
+		};
+		4E4AE98F1F8F852100B6CF10 /* ShareController */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE9901F8F853F00B6CF10 /* ExternalShareManager.swift */,
+			);
+			name = ShareController;
 			sourceTree = "<group>";
 		};
 		4E687F7A1F83AE8C0095CAAA /* WebViewController */ = {
@@ -541,6 +552,7 @@
 				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
 				4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */,
 				46EFFD6F1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift in Sources */,
+				4E4AE9911F8F853F00B6CF10 /* ExternalShareManager.swift in Sources */,
 				4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */,
 				4E31E8861F81604C00AD05D2 /* MainTabBarController.swift in Sources */,
 			);
@@ -669,7 +681,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = "All Ears English/All Ears English.entitlements";
-				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 79H836U56A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -679,8 +691,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ee583d2d-76b9-409e-8b92-11cfa988d1cd";
-				PROVISIONING_PROFILE_SPECIFIER = "AllEarsEnglish Distribution";
+				PROVISIONING_PROFILE = "2b31fb29-e05f-40e7-9ca1-5dabf6483293";
+				PROVISIONING_PROFILE_SPECIFIER = "Jay Dev Profile";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -701,8 +713,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "ee583d2d-76b9-409e-8b92-11cfa988d1cd";
-				PROVISIONING_PROFILE_SPECIFIER = "AllEarsEnglish Distribution";
+				PROVISIONING_PROFILE = "f7b58412-a751-4aa7-a2bf-c0c3d96512ca";
+				PROVISIONING_PROFILE_SPECIFIER = "AEE AppStore Distro";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

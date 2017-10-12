@@ -35,7 +35,7 @@ class ApplicationData: NSObject {
             if let isAutoplayEnabled = self.getAppData(key: .autoplay) {
                 return isAutoplayEnabled as! Bool
             }
-            return false
+            return true
         }
         set {
             self.setAppData(value: newValue, key: .autoplay)

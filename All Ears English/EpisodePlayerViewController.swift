@@ -102,12 +102,10 @@ class EpisodePlayerViewController : UIViewController {
         
         //play button
         if AudioPlayer.sharedInstance.isPlaying {
-            self.playButton?.setImage(UIImage(named: "ic_pause_48pt"), for: UIControlState.normal)
-            self.playButton?.setImage(UIImage(named: "ic_pause_white"), for: UIControlState.highlighted)
+            self.playButton?.setImage(UIImage(named: "ic_pause_50"), for: UIControlState.normal)
         }
         else {
-            self.playButton?.setImage(UIImage(named: "ic_play_arrow_48pt"), for: UIControlState.normal)
-            self.playButton?.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.highlighted)
+            self.playButton?.setImage(UIImage(named: "ic_play_50"), for: UIControlState.normal)
         }
         
         //playback rate
@@ -216,6 +214,7 @@ class EpisodePlayerViewController : UIViewController {
         ApplicationData.isAutoPlayEnabled = !ApplicationData.isAutoPlayEnabled
         self.updateControlViews()
     }
+    
     
     
 }

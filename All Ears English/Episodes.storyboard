@@ -65,7 +65,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
-                                        <rect key="frame" x="8" y="62" width="359" height="92"/>
+                                        <rect key="frame" x="8" y="62" width="359" height="91"/>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -92,40 +92,40 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ERz-bF-xrk">
-                                        <rect key="frame" x="20" y="161.5" width="335" height="48"/>
+                                        <rect key="frame" x="8" y="160" width="359" height="50"/>
                                         <subviews>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMi-Hd-b0T">
-                                                <rect key="frame" x="0.0" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="&lt;&lt;"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMi-Hd-b0T">
+                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="50"/>
+                                                <state key="normal" image="ic_seek_prev"/>
                                                 <connections>
                                                     <action selector="previousSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="DO9-37-Hfw"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Vg-fWP">
-                                                <rect key="frame" x="68.5" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="&lt; 15"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Vg-fWP">
+                                                <rect key="frame" x="73.5" y="0.0" width="65.5" height="50"/>
+                                                <state key="normal" image="ic_15_back"/>
                                                 <connections>
                                                     <action selector="skipBackwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="3ko-Kd-boT"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bg-XG-e1w">
-                                                <rect key="frame" x="137" y="0.0" width="61" height="48"/>
-                                                <state key="normal" image="ic_play_arrow_48pt"/>
+                                                <rect key="frame" x="147" y="0.0" width="65" height="50"/>
+                                                <state key="normal" image="ic_play_50"/>
                                                 <state key="selected" image="ic_play_arrow_white"/>
                                                 <connections>
                                                     <action selector="playPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="Fys-zL-hDg"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E05-Ry-XRa">
-                                                <rect key="frame" x="206" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="15 &gt;"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E05-Ry-XRa">
+                                                <rect key="frame" x="220" y="0.0" width="65.5" height="50"/>
+                                                <state key="normal" image="ic_15_forward"/>
                                                 <connections>
                                                     <action selector="skipForwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="hJK-4F-ZRt"/>
                                                 </connections>
                                             </button>
-                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-aA-fKv">
-                                                <rect key="frame" x="274.5" y="0.0" width="60.5" height="48"/>
-                                                <state key="normal" title="&gt;&gt;"/>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-aA-fKv">
+                                                <rect key="frame" x="293.5" y="0.0" width="65.5" height="50"/>
+                                                <state key="normal" image="ic_seek_next"/>
                                                 <connections>
                                                     <action selector="forwardSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="pf6-EQ-Oey"/>
                                                 </connections>
@@ -148,13 +148,13 @@
                                     <constraint firstItem="VqE-Rh-2UF" firstAttribute="leading" secondItem="pfm-Or-GZ6" secondAttribute="trailing" constant="8" id="XLz-QU-BlA"/>
                                     <constraint firstAttribute="bottom" secondItem="kau-uT-o0D" secondAttribute="bottom" constant="8" id="b0d-V0-QeE"/>
                                     <constraint firstItem="9M4-4R-8SO" firstAttribute="leading" secondItem="hNm-Kw-aFM" secondAttribute="leading" constant="20" id="cvA-hH-TL4"/>
-                                    <constraint firstAttribute="trailing" secondItem="ERz-bF-xrk" secondAttribute="trailing" constant="20" id="g0H-nq-Pts"/>
+                                    <constraint firstAttribute="trailing" secondItem="ERz-bF-xrk" secondAttribute="trailing" constant="8" id="g0H-nq-Pts"/>
                                     <constraint firstAttribute="bottom" secondItem="VqE-Rh-2UF" secondAttribute="bottom" constant="7.5" id="gld-ia-IGw"/>
                                     <constraint firstAttribute="trailing" secondItem="9M4-4R-8SO" secondAttribute="trailing" constant="20" id="hd3-7w-4sW"/>
                                     <constraint firstItem="rcB-Dw-PFa" firstAttribute="top" secondItem="9M4-4R-8SO" secondAttribute="bottom" constant="1" id="kxx-4F-K9J"/>
                                     <constraint firstItem="9M4-4R-8SO" firstAttribute="top" secondItem="hNm-Kw-aFM" secondAttribute="top" constant="8" id="t40-6X-sqG"/>
                                     <constraint firstItem="kau-uT-o0D" firstAttribute="leading" secondItem="hNm-Kw-aFM" secondAttribute="leading" constant="8" id="tov-np-KWp"/>
-                                    <constraint firstItem="ERz-bF-xrk" firstAttribute="leading" secondItem="hNm-Kw-aFM" secondAttribute="leading" constant="20" id="wjK-Oe-Q0K"/>
+                                    <constraint firstItem="ERz-bF-xrk" firstAttribute="leading" secondItem="hNm-Kw-aFM" secondAttribute="leading" constant="8" id="wjK-Oe-Q0K"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -397,10 +397,14 @@
     </scenes>
     <resources>
         <image name="Cover" width="512" height="512"/>
+        <image name="ic_15_back" width="25" height="25"/>
+        <image name="ic_15_forward" width="25" height="25"/>
         <image name="ic_cloud_download" width="24" height="24"/>
         <image name="ic_keyboard_arrow_down_48pt" width="48" height="48"/>
-        <image name="ic_play_arrow_48pt" width="48" height="48"/>
+        <image name="ic_play_50" width="50" height="50"/>
         <image name="ic_play_arrow_white" width="24" height="24"/>
+        <image name="ic_seek_next" width="50" height="50"/>
+        <image name="ic_seek_prev" width="50" height="50"/>
         <image name="ic_share" width="24" height="24"/>
     </resources>
 </document>
