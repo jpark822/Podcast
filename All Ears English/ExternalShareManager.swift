@@ -30,10 +30,11 @@ class ExternalShareManager: NSObject {
         controller.completionWithItemsHandler = {
             (activityType, completed, returnedItems, activityError) in
             if completed {
-                DispatchQueue.main.async {
-                    let method = activityType?.rawValue ?? "Default"
-                    self.logEventShareEpisode(withMethod: method)
-                }
+//                  the original code logged event
+//                DispatchQueue.main.async {
+//                    let method = activityType?.rawValue ?? "Default"
+//                    self.logEventShareEpisode(withMethod: method)
+//                }
             }
         }
         

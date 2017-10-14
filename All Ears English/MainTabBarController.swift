@@ -49,8 +49,11 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         
         let freeTipsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
         freeTipsVC.url = URL(string: "http://allearsenglish.com/tips")
-        let freeTipsTabImage = UIImage(named: "ic_public_white")
-        freeTipsVC.tabBarItem = UITabBarItem(title: "Free Tips", image: freeTipsTabImage, tag: 0)
+        freeTipsVC.title = "Free Tips"
+        freeTipsVC.doesReloadOnViewWillAppear = true
+        let freeTipsNavVC = UINavigationController(rootViewController: freeTipsVC)
+        let freeTipsNavTabImage = UIImage(named: "ic_public_white")
+        freeTipsNavVC.tabBarItem = UITabBarItem(title: "Free Tips", image: freeTipsNavTabImage, tag: 0)
         _ = freeTipsVC.view
         
         let aboutUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
@@ -72,7 +75,9 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         contactUsVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
         _ = contactUsVC.view
         
-        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsVC, aboutUsVC, quickLinksVC, contactUsVC]
+        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsVC]
+        
+        self.customizableViewControllers = []
         
         self.setupNowPlayingBanner()
     }

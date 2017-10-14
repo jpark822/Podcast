@@ -384,8 +384,9 @@ extension AudioPlayer {
     
     fileprivate func formatPlaybackTime(_ time: Float) -> String {
         let minutes = Int64(time)/60
-        let seconds = Int64(time) - minutes*60
-        let text = String(format: "%d:%02d", arguments: [minutes, seconds])
+        let seconds = Int64(time) - (minutes * 60)
+//        let text = "\(minutes):\(seconds)"
+        let text = String(format: "%lld:%02lld", arguments: [minutes, seconds])
         return text
     }
 }

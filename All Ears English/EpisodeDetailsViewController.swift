@@ -187,7 +187,6 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate, Episode
         let type = "episode"
         let id = self.item?.identifier ?? "0"
         let attributes: [String: Any] = [:]
-        print("Logging share event: method=\(String(describing: method)) name=\(name) type=\(type) id=\(id) attributes=\(attributes)")
         Answers.logShare(
                 withMethod: method,
                 contentName: name,

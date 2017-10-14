@@ -11,6 +11,8 @@ import UIKit
 
 class WebViewController : UIViewController {
     
+    var doesReloadOnViewWillAppear = false
+    
     @IBOutlet weak var webView: UIWebView!
     
     var url: URL? {
@@ -26,6 +28,14 @@ class WebViewController : UIViewController {
         super.viewDidLoad()
         
         self.loadWebview()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if self.doesReloadOnViewWillAppear {
+            self.webView.reload()
+        }
     }
     
     private func loadWebview() {

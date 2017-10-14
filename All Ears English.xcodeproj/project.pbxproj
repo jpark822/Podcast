@@ -53,6 +53,9 @@
 		4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */; };
 		4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */; };
 		4E4AE9911F8F853F00B6CF10 /* ExternalShareManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9901F8F853F00B6CF10 /* ExternalShareManager.swift */; };
+		4E4AE9931F8F8C0300B6CF10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4AE9921F8F8C0300B6CF10 /* StoreKit.framework */; };
+		4E4AE9961F8F8C3400B6CF10 /* StoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9951F8F8C3400B6CF10 /* StoreReviewManager.swift */; };
+		4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9981F924A8D00B6CF10 /* AnalyticsManager.swift */; };
 		4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F771F82687D0095CAAA /* ApplicationData.swift */; };
 		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */; };
@@ -113,6 +116,9 @@
 		4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+AEE.swift"; sourceTree = "<group>"; };
 		4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesListTableViewController.swift; sourceTree = "<group>"; };
 		4E4AE9901F8F853F00B6CF10 /* ExternalShareManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ExternalShareManager.swift; sourceTree = "<group>"; };
+		4E4AE9921F8F8C0300B6CF10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		4E4AE9951F8F8C3400B6CF10 /* StoreReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreReviewManager.swift; sourceTree = "<group>"; };
+		4E4AE9981F924A8D00B6CF10 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
 		4E687F771F82687D0095CAAA /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingBannerView.xib; sourceTree = "<group>"; };
@@ -128,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4AE9931F8F8C0300B6CF10 /* StoreKit.framework in Frameworks */,
 				469F7F011F1B30430039FA03 /* MediaPlayer.framework in Frameworks */,
 				4663448C1EFCFE1E00080704 /* AVFoundation.framework in Frameworks */,
 				466FD2A71EF8936A009E3ACC /* AdSupport.framework in Frameworks */,
@@ -199,7 +206,9 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
-				4E4AE98F1F8F852100B6CF10 /* ShareController */,
+				4E4AE9971F924A7000B6CF10 /* AnalyticsManager */,
+				4E4AE9941F8F8C2300B6CF10 /* StoreReviewManager */,
+				4E4AE98F1F8F852100B6CF10 /* ExternalShareManager */,
 				4E4AE98C1F8C25B700B6CF10 /* FavoritesList */,
 				4E687F891F8C0BAA0095CAAA /* FavoritesManager */,
 				4E687F7D1F84F0520095CAAA /* NowPlayingBanner */,
@@ -294,12 +303,28 @@
 			name = FavoritesList;
 			sourceTree = "<group>";
 		};
-		4E4AE98F1F8F852100B6CF10 /* ShareController */ = {
+		4E4AE98F1F8F852100B6CF10 /* ExternalShareManager */ = {
 			isa = PBXGroup;
 			children = (
 				4E4AE9901F8F853F00B6CF10 /* ExternalShareManager.swift */,
 			);
-			name = ShareController;
+			name = ExternalShareManager;
+			sourceTree = "<group>";
+		};
+		4E4AE9941F8F8C2300B6CF10 /* StoreReviewManager */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE9951F8F8C3400B6CF10 /* StoreReviewManager.swift */,
+			);
+			name = StoreReviewManager;
+			sourceTree = "<group>";
+		};
+		4E4AE9971F924A7000B6CF10 /* AnalyticsManager */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE9981F924A8D00B6CF10 /* AnalyticsManager.swift */,
+			);
+			name = AnalyticsManager;
 			sourceTree = "<group>";
 		};
 		4E687F7A1F83AE8C0095CAAA /* WebViewController */ = {
@@ -339,6 +364,7 @@
 		7DFAE26E221195811D48861F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				4E4AE9921F8F8C0300B6CF10 /* StoreKit.framework */,
 				469F7F001F1B30430039FA03 /* MediaPlayer.framework */,
 				4663448B1EFCFE1E00080704 /* AVFoundation.framework */,
 				466FD2A01EF88BAD009E3ACC /* Fabric.framework */,
@@ -530,7 +556,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */,
 				4602032C1F1B66960078A275 /* Cache.swift in Sources */,
+				4E4AE9961F8F8C3400B6CF10 /* StoreReviewManager.swift in Sources */,
 				4E31E8881F81612B00AD05D2 /* EpisodeListTableViewController.swift in Sources */,
 				464415CF1EF8A5B300129F07 /* SplashViewController.swift in Sources */,
 				4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */,
