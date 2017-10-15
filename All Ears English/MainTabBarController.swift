@@ -94,9 +94,11 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         quickLinksVC.tabBarItem = UITabBarItem(title: "Quick Links", image: quickLinksVCTabImage, tag: 0)
         _ = quickLinksVC.view
         
-        let contactUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
+        let contactUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ContactUsViewControllerId") as! ContactUsViewController
+        contactUsVC.title = "Contact Us"
         let contactUsTabImage = UIImage(named: "ic_public_white")
-        contactUsVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
+        let contactUsNavVC = UINavigationController(rootViewController: contactUsVC)
+        contactUsNavVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
         _ = contactUsVC.view
         
         let rateUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "RateUsViewControllerId") as! RateUsViewController
@@ -110,10 +112,10 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         shareVC.title = "Share"
         let shareVCTabImage = UIImage(named: "ic_public_white")
         let shareNavVC = UINavigationController(rootViewController: shareVC)
-        shareNavVC.tabBarItem = UITabBarItem(title: "Share", image: rateUsVCTabImage, tag: 0)
+        shareNavVC.tabBarItem = UITabBarItem(title: "Share", image: shareVCTabImage, tag: 0)
         _ = shareVC.view
         
-        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsVC, rateUsNavVC, shareNavVC]
+        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsNavVC, rateUsNavVC, shareNavVC]
     }
     
     func shareButtonPressed() {

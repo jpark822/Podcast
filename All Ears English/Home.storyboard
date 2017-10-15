@@ -78,7 +78,45 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLU-m8-v6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="103" y="-1012"/>
+            <point key="canvasLocation" x="498" y="-324"/>
+        </scene>
+        <!--Contact Us View Controller-->
+        <scene sceneID="Elx-wH-0tm">
+            <objects>
+                <viewController storyboardIdentifier="ContactUsViewControllerId" id="fb8-ik-URF" customClass="ContactUsViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="nh3-Xa-VVL"/>
+                        <viewControllerLayoutGuide type="bottom" id="2Nj-WH-zB6"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="S7K-lr-wHl">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" editable="NO" textAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="v8W-6d-wRI">
+                                <rect key="frame" x="16" y="60" width="343" height="276"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="276" id="u7B-pd-qxv"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                                <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="v8W-6d-wRI" firstAttribute="leading" secondItem="S7K-lr-wHl" secondAttribute="leading" constant="16" id="NlS-Zm-tlP"/>
+                            <constraint firstAttribute="trailing" secondItem="v8W-6d-wRI" secondAttribute="trailing" constant="16" id="ax8-5c-q2R"/>
+                            <constraint firstItem="v8W-6d-wRI" firstAttribute="top" secondItem="S7K-lr-wHl" secondAttribute="topMargin" constant="60" id="jfJ-kE-9W4"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="contentTextView" destination="v8W-6d-wRI" id="dlQ-8f-JcO"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="EWZ-RC-kpy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1272.8" y="-324.28785607196403"/>
         </scene>
         <!--Share View Controller-->
         <scene sceneID="BWy-uA-lLi">
@@ -118,7 +156,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Rrh-86-dvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="92" y="-292.80359820089956"/>
+            <point key="canvasLocation" x="-198" y="-324"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="odK-6q-lOt">
