@@ -16,11 +16,14 @@ class Feed: NSObject {
     static let shared = Feed()
 
     fileprivate let baseURL = URL.init(string: "http://allearsenglish.libsyn.com/rss")!
+    internal let bonusURL = URL.init(string:"http://appforaee.libsyn.com/rss")!
     fileprivate var parser: XMLParser?
     fileprivate var itemBuilder: ItemBuilder!
 
     var items = [Item]()
     var itemsByGUID: [String: Feed.Item] = [:]
+    
+    var bonusItems = [Item]()
 
     func load(_ controller: EpisodesViewController) {
         self.items.removeAll()

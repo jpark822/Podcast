@@ -13,6 +13,7 @@ class ApplicationData: NSObject {
     
     enum ApplicationDataKey:String {
         case autoplay = "AEEAppDataAutoPlayEnabled"
+        case ratingCompleted = "AEERatingWasCompleted"
     }
     
     static let sharedInstance = ApplicationData()
@@ -39,6 +40,18 @@ class ApplicationData: NSObject {
         }
         set {
             self.setAppData(value: newValue, key: .autoplay)
+        }
+    }
+    
+    static var userCompletedRating:Bool {
+        get {
+            if let isAutoplayEnabled = self.getAppData(key: .ratingCompleted) {
+                return isAutoplayEnabled as! Bool
+            }
+            return false
+        }
+        set {
+            self.setAppData(value: newValue, key: .ratingCompleted)
         }
     }
 }

@@ -9,6 +9,11 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
+    <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
+    </customFonts>
     <scenes>
         <!--Web View Controller-->
         <scene sceneID="80c-2y-nW1">
@@ -42,6 +47,38 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VW8-om-hoQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-924" y="-1011.544227886057"/>
+        </scene>
+        <!--Rate Us View Controller-->
+        <scene sceneID="dwg-aV-eyF">
+            <objects>
+                <viewController storyboardIdentifier="RateUsViewControllerId" id="J5w-bY-osR" customClass="RateUsViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="DKE-Ht-VfF"/>
+                        <viewControllerLayoutGuide type="bottom" id="Nwx-6d-y1E"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="te5-2M-0tO">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for rating us!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-YQ-ipn">
+                                <rect key="frame" x="16" y="85" width="343" height="30"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="dKO-YQ-ipn" firstAttribute="top" secondItem="te5-2M-0tO" secondAttribute="topMargin" constant="85" id="DGc-GU-LzG"/>
+                            <constraint firstItem="dKO-YQ-ipn" firstAttribute="centerX" secondItem="te5-2M-0tO" secondAttribute="centerX" id="gcX-ni-XWV"/>
+                            <constraint firstAttribute="trailing" secondItem="dKO-YQ-ipn" secondAttribute="trailing" constant="16" id="hBK-YI-sqv"/>
+                            <constraint firstItem="dKO-YQ-ipn" firstAttribute="leading" secondItem="te5-2M-0tO" secondAttribute="leading" constant="16" id="kHz-Eo-DiG"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="fLU-m8-v6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="800.79999999999995" y="-788.45577211394311"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="odK-6q-lOt">

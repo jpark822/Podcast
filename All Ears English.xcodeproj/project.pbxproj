@@ -56,6 +56,9 @@
 		4E4AE9931F8F8C0300B6CF10 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4E4AE9921F8F8C0300B6CF10 /* StoreKit.framework */; };
 		4E4AE9961F8F8C3400B6CF10 /* StoreReviewManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9951F8F8C3400B6CF10 /* StoreReviewManager.swift */; };
 		4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9981F924A8D00B6CF10 /* AnalyticsManager.swift */; };
+		4E4AE99C1F926EFE00B6CF10 /* Feed+Bonus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE99B1F926EFE00B6CF10 /* Feed+Bonus.swift */; };
+		4E4AE99F1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE99E1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift */; };
+		4E4AE9A31F93D6C900B6CF10 /* RateUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9A21F93D6C900B6CF10 /* RateUsViewController.swift */; };
 		4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F771F82687D0095CAAA /* ApplicationData.swift */; };
 		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */; };
@@ -119,6 +122,9 @@
 		4E4AE9921F8F8C0300B6CF10 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		4E4AE9951F8F8C3400B6CF10 /* StoreReviewManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StoreReviewManager.swift; sourceTree = "<group>"; };
 		4E4AE9981F924A8D00B6CF10 /* AnalyticsManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AnalyticsManager.swift; sourceTree = "<group>"; };
+		4E4AE99B1F926EFE00B6CF10 /* Feed+Bonus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Feed+Bonus.swift"; sourceTree = "<group>"; };
+		4E4AE99E1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BonusEpisodesTableViewController.swift; sourceTree = "<group>"; };
+		4E4AE9A21F93D6C900B6CF10 /* RateUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateUsViewController.swift; sourceTree = "<group>"; };
 		4E687F771F82687D0095CAAA /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingBannerView.xib; sourceTree = "<group>"; };
@@ -206,6 +212,9 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
+				4E4AE9A11F93D6A700B6CF10 /* RateViewController */,
+				4E4AE99D1F926FDF00B6CF10 /* Bonuses */,
+				4E4AE99A1F926EEE00B6CF10 /* Feed */,
 				4E4AE9971F924A7000B6CF10 /* AnalyticsManager */,
 				4E4AE9941F8F8C2300B6CF10 /* StoreReviewManager */,
 				4E4AE98F1F8F852100B6CF10 /* ExternalShareManager */,
@@ -216,7 +225,6 @@
 				4E31E8891F81770700AD05D2 /* Utilities */,
 				4E31E8801F815F2000AD05D2 /* TabBar */,
 				4E31E8791F7FB9D100AD05D2 /* Episodes */,
-				4E31E8741F7D0AC000AD05D2 /* AudioPlayer */,
 				46C7A2AF1EFB969E00B9AA23 /* Classes */,
 				4640CD451EFA267D006B0C5E /* Web */,
 				46C7A2AE1EFB969500B9AA23 /* Resources */,
@@ -241,6 +249,7 @@
 		46C7A2AF1EFB969E00B9AA23 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				4E31E8741F7D0AC000AD05D2 /* AudioPlayer */,
 				4699F6181F02376C00D9D9CB /* MainTabBarViewController.swift */,
 				4672E5DC1EF8787B006B5F25 /* AppDelegate.swift */,
 				4668D2911F1748F700845FE5 /* BannerView.swift */,
@@ -250,7 +259,6 @@
 				469F7EFE1F1B01250039FA03 /* EpisodePlaybackViewController.swift */,
 				46EFFD6E1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift */,
 				464415D01EF8A83E00129F07 /* EpisodesViewController.swift */,
-				46C7A2AC1EFB967200B9AA23 /* Feed.swift */,
 				4699F6161F0211E200D9D9CB /* Player.swift */,
 				464415CE1EF8A5B300129F07 /* SplashViewController.swift */,
 				4672E5DE1EF8787B006B5F25 /* ViewController.swift */,
@@ -325,6 +333,31 @@
 				4E4AE9981F924A8D00B6CF10 /* AnalyticsManager.swift */,
 			);
 			name = AnalyticsManager;
+			sourceTree = "<group>";
+		};
+		4E4AE99A1F926EEE00B6CF10 /* Feed */ = {
+			isa = PBXGroup;
+			children = (
+				46C7A2AC1EFB967200B9AA23 /* Feed.swift */,
+				4E4AE99B1F926EFE00B6CF10 /* Feed+Bonus.swift */,
+			);
+			name = Feed;
+			sourceTree = "<group>";
+		};
+		4E4AE99D1F926FDF00B6CF10 /* Bonuses */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE99E1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift */,
+			);
+			name = Bonuses;
+			sourceTree = "<group>";
+		};
+		4E4AE9A11F93D6A700B6CF10 /* RateViewController */ = {
+			isa = PBXGroup;
+			children = (
+				4E4AE9A21F93D6C900B6CF10 /* RateUsViewController.swift */,
+			);
+			name = RateViewController;
 			sourceTree = "<group>";
 		};
 		4E687F7A1F83AE8C0095CAAA /* WebViewController */ = {
@@ -556,14 +589,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E4AE99F1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift in Sources */,
 				4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */,
 				4602032C1F1B66960078A275 /* Cache.swift in Sources */,
 				4E4AE9961F8F8C3400B6CF10 /* StoreReviewManager.swift in Sources */,
 				4E31E8881F81612B00AD05D2 /* EpisodeListTableViewController.swift in Sources */,
 				464415CF1EF8A5B300129F07 /* SplashViewController.swift in Sources */,
+				4E4AE99C1F926EFE00B6CF10 /* Feed+Bonus.swift in Sources */,
 				4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */,
 				4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */,
 				4E31E87F1F7FC03200AD05D2 /* EpisodePlayerViewController.swift in Sources */,
+				4E4AE9A31F93D6C900B6CF10 /* RateUsViewController.swift in Sources */,
 				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
 				4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */,
 				4672E5DF1EF8787B006B5F25 /* ViewController.swift in Sources */,

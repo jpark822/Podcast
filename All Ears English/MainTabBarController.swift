@@ -26,6 +26,30 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.setupTabBarViewControllers()
+        
+        self.customizableViewControllers = []
+        self.setupMoreViewControllerNavigationItems()
+        
+        self.setupNowPlayingBanner()
+        
+        
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerPlaybackStateDidChange), name: AudioPlayer.playbackStateDidChangeNotification, object: AudioPlayer.sharedInstance)
+        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlayingCurrentTrack), name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: AudioPlayer.sharedInstance)
+        
+        self.updateNowPlayingBannerState()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
+    func setupTabBarViewControllers() {
         let episodeListVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodeListTableViewControllerId") as! EpisodeListTableViewController
         episodeListVC.title = "Episodes"
         let episodeListTabImage = UIImage(named: "ic_playlist_play_white")
@@ -33,7 +57,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         epispodeNavVC.tabBarItem = UITabBarItem(title: "Episodes", image: episodeListTabImage, tag: 0)
         _ = episodeListVC.view
         
-        let bonusesVC = UIViewController()
+        let bonusesVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "BonusEpisodesTableViewControllerId")
         bonusesVC.title = "Bonuses"
         let bonusesTabImage = UIImage(named: "ic_playlist_play_white")
         let bonusesNavVC = UINavigationController(rootViewController: bonusesVC)
@@ -75,24 +99,23 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         contactUsVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
         _ = contactUsVC.view
         
-        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsVC]
+        let rateUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "RateUsViewControllerId") as! RateUsViewController
+        rateUsVC.title = "Rate Us"
+        let rateUsVCTabImage = UIImage(named: "ic_public_white")
+        let rateUsNavVC = UINavigationController(rootViewController: rateUsVC)
+        rateUsNavVC.tabBarItem = UITabBarItem(title: "Rate Us", image: rateUsVCTabImage, tag: 0)
+        _ = rateUsVC.view
         
-        self.customizableViewControllers = []
-        
-        self.setupNowPlayingBanner()
+        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsVC, rateUsNavVC]
     }
     
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
+    func shareButtonPressed() {
         
-        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerPlaybackStateDidChange), name: AudioPlayer.playbackStateDidChangeNotification, object: AudioPlayer.sharedInstance)
-        NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlayingCurrentTrack), name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: AudioPlayer.sharedInstance)
-        
-        self.updateNowPlayingBannerState()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        NotificationCenter.default.removeObserver(self)
+    func setupMoreViewControllerNavigationItems() {
+        let shareButton = UIBarButtonItem(image: UIImage(named: "ic_share") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(shareButtonPressed))
+        self.moreNavigationController.navigationItem.rightBarButtonItem = shareButton
     }
 }
 

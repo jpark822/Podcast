@@ -205,6 +205,24 @@
             </objects>
             <point key="canvasLocation" x="-930" y="27"/>
         </scene>
+        <!--Bonus Episodes Table View Controller-->
+        <scene sceneID="spG-m8-KD5">
+            <objects>
+                <tableViewController storyboardIdentifier="BonusEpisodesTableViewControllerId" id="xsr-hP-Tl1" customClass="BonusEpisodesTableViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="100" sectionHeaderHeight="28" sectionFooterHeight="28" id="Ucs-gC-hIM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <connections>
+                            <outlet property="dataSource" destination="xsr-hP-Tl1" id="WPh-ao-6le"/>
+                            <outlet property="delegate" destination="xsr-hP-Tl1" id="0ky-KT-NcS"/>
+                        </connections>
+                    </tableView>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Q6H-Ku-dXu" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-1022" y="792"/>
+        </scene>
         <!--All Ears English-->
         <scene sceneID="Ccg-6L-ily">
             <objects>
