@@ -106,7 +106,14 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         rateUsNavVC.tabBarItem = UITabBarItem(title: "Rate Us", image: rateUsVCTabImage, tag: 0)
         _ = rateUsVC.view
         
-        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsVC, rateUsNavVC]
+        let shareVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ShareViewControllerId") as! ShareViewController
+        shareVC.title = "Share"
+        let shareVCTabImage = UIImage(named: "ic_public_white")
+        let shareNavVC = UINavigationController(rootViewController: shareVC)
+        shareNavVC.tabBarItem = UITabBarItem(title: "Share", image: rateUsVCTabImage, tag: 0)
+        _ = shareVC.view
+        
+        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsVC, rateUsNavVC, shareNavVC]
     }
     
     func shareButtonPressed() {

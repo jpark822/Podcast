@@ -12,13 +12,16 @@ class ExternalShareManager: NSObject {
     
     static let sharedInstance = ExternalShareManager()
     
-    func presentShareControllerFromViewController(fromController:UIViewController, title:String, urlString:String?) {
+    func presentShareControllerFromViewController(fromController:UIViewController, title:String, urlString:String?, image:UIImage?) {
         
         
         var activityItems:[Any] = [title]
         if let urlString = urlString,
             let url = URL(string: urlString) {
             activityItems.append(url)
+        }
+        if let image = image {
+            activityItems.append(image)
         }
         
         let controller = UIActivityViewController.init(activityItems: activityItems, applicationActivities: nil)

@@ -78,7 +78,47 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLU-m8-v6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="800.79999999999995" y="-788.45577211394311"/>
+            <point key="canvasLocation" x="103" y="-1012"/>
+        </scene>
+        <!--Share View Controller-->
+        <scene sceneID="BWy-uA-lLi">
+            <objects>
+                <viewController storyboardIdentifier="ShareViewControllerId" id="KbS-Xo-fMf" customClass="ShareViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="PDM-hT-CIj"/>
+                        <viewControllerLayoutGuide type="bottom" id="Cqj-zM-CIB"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="ZEN-Eh-7LH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you love AEE please share it with a friend!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eXs-Gf-mL3">
+                                <rect key="frame" x="16" y="81" width="343" height="59"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAi-Vk-e6A">
+                                <rect key="frame" x="131" y="160" width="113" height="30"/>
+                                <state key="normal" title="Okay! Share app"/>
+                                <connections>
+                                    <action selector="sharePressed:" destination="KbS-Xo-fMf" eventType="touchUpInside" id="tZn-VF-Axx"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="uAi-Vk-e6A" firstAttribute="top" secondItem="eXs-Gf-mL3" secondAttribute="bottom" constant="20" id="3cn-zV-0rE"/>
+                            <constraint firstItem="eXs-Gf-mL3" firstAttribute="top" secondItem="ZEN-Eh-7LH" secondAttribute="topMargin" constant="81" id="G9o-oL-GoM"/>
+                            <constraint firstAttribute="trailing" secondItem="eXs-Gf-mL3" secondAttribute="trailing" constant="16" id="SKQ-yv-PSw"/>
+                            <constraint firstItem="eXs-Gf-mL3" firstAttribute="leading" secondItem="ZEN-Eh-7LH" secondAttribute="leading" constant="16" id="Sye-Hr-KVH"/>
+                            <constraint firstItem="uAi-Vk-e6A" firstAttribute="centerX" secondItem="eXs-Gf-mL3" secondAttribute="centerX" id="uIS-US-dZ7"/>
+                        </constraints>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Rrh-86-dvI" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="92" y="-292.80359820089956"/>
         </scene>
         <!--Main Tab Bar Controller-->
         <scene sceneID="odK-6q-lOt">
