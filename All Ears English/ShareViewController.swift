@@ -19,5 +19,8 @@ class ShareViewController: UIViewController {
         ExternalShareManager.sharedInstance.presentShareControllerFromViewController(fromController: self, title: "Check out the All Ears English app!", urlString: "https://www.allearsenglish.com/", image: UIImage(named: "Cover"))
     }
 
+    @IBAction func declinePressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 
 }

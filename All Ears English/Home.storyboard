@@ -137,10 +137,19 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAi-Vk-e6A">
-                                <rect key="frame" x="131" y="160" width="113" height="30"/>
+                                <rect key="frame" x="100.5" y="160" width="175" height="39"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
                                 <state key="normal" title="Okay! Share app"/>
                                 <connections>
                                     <action selector="sharePressed:" destination="KbS-Xo-fMf" eventType="touchUpInside" id="tZn-VF-Axx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTh-Us-LPi">
+                                <rect key="frame" x="144.5" y="215" width="86" height="33"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <state key="normal" title="No thanks"/>
+                                <connections>
+                                    <action selector="declinePressed:" destination="KbS-Xo-fMf" eventType="touchUpInside" id="CjN-Bs-qeS"/>
                                 </connections>
                             </button>
                         </subviews>
@@ -148,8 +157,10 @@
                         <constraints>
                             <constraint firstItem="uAi-Vk-e6A" firstAttribute="top" secondItem="eXs-Gf-mL3" secondAttribute="bottom" constant="20" id="3cn-zV-0rE"/>
                             <constraint firstItem="eXs-Gf-mL3" firstAttribute="top" secondItem="ZEN-Eh-7LH" secondAttribute="topMargin" constant="81" id="G9o-oL-GoM"/>
+                            <constraint firstItem="kTh-Us-LPi" firstAttribute="centerX" secondItem="uAi-Vk-e6A" secondAttribute="centerX" id="IDV-pG-5fz"/>
                             <constraint firstAttribute="trailing" secondItem="eXs-Gf-mL3" secondAttribute="trailing" constant="16" id="SKQ-yv-PSw"/>
                             <constraint firstItem="eXs-Gf-mL3" firstAttribute="leading" secondItem="ZEN-Eh-7LH" secondAttribute="leading" constant="16" id="Sye-Hr-KVH"/>
+                            <constraint firstItem="kTh-Us-LPi" firstAttribute="top" secondItem="uAi-Vk-e6A" secondAttribute="bottom" constant="16" id="eWm-aK-ilJ"/>
                             <constraint firstItem="uAi-Vk-e6A" firstAttribute="centerX" secondItem="eXs-Gf-mL3" secondAttribute="centerX" id="uIS-US-dZ7"/>
                         </constraints>
                     </view>
