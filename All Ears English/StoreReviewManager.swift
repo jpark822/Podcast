@@ -9,6 +9,7 @@
 import UIKit
 import StoreKit
 
+//Not in use
 class StoreReviewManager: NSObject {
     static let sharedInstance = StoreReviewManager()
     

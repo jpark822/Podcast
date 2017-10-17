@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import StoreKit
 
 class RateUsViewController: UIViewController {
 
@@ -18,10 +19,20 @@ class RateUsViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        if ApplicationData.userCompletedRating == false {
-            StoreReviewManager.sharedInstance.displayReviewController(fromViewController: self)
-        }
     }
 
+    @IBAction func confirmPressed(_ sender: Any) {
+        if #available( iOS 10.3,*){
+            SKStoreReviewController.requestReview()
+        }
+        else if let url = URL(string: "https://itunes.apple.com/us/app/all-ears-english/id1260196995?ls=1&mt=8") {
+            UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+            })
+        }
+        ApplicationData.userCompletedRating = true
+    }
 
+    @IBAction func declinePressed(_ sender: Any) {
+        self.navigationController?.popViewController(animated: true)
+    }
 }

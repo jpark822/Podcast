@@ -66,25 +66,44 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Thank you for rating us!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dKO-YQ-ipn">
-                                <rect key="frame" x="16" y="85" width="343" height="30"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you love All Ears English? Please rate us now!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rx0-tZ-aBj">
+                                <rect key="frame" x="16" y="82" width="343" height="59"/>
                                 <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ib-MI-uAn">
+                                <rect key="frame" x="70" y="159" width="235" height="39"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
+                                <state key="normal" title="Yes, I will rate the app"/>
+                                <connections>
+                                    <action selector="confirmPressed:" destination="J5w-bY-osR" eventType="touchUpInside" id="Hhf-8u-9X0"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-1Y-Cio">
+                                <rect key="frame" x="143" y="214" width="88" height="33"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
+                                <state key="normal" title="No Thanks"/>
+                                <connections>
+                                    <action selector="declinePressed:" destination="J5w-bY-osR" eventType="touchUpInside" id="Io5-Oj-kR5"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="dKO-YQ-ipn" firstAttribute="top" secondItem="te5-2M-0tO" secondAttribute="topMargin" constant="85" id="DGc-GU-LzG"/>
-                            <constraint firstItem="dKO-YQ-ipn" firstAttribute="centerX" secondItem="te5-2M-0tO" secondAttribute="centerX" id="gcX-ni-XWV"/>
-                            <constraint firstAttribute="trailing" secondItem="dKO-YQ-ipn" secondAttribute="trailing" constant="16" id="hBK-YI-sqv"/>
-                            <constraint firstItem="dKO-YQ-ipn" firstAttribute="leading" secondItem="te5-2M-0tO" secondAttribute="leading" constant="16" id="kHz-Eo-DiG"/>
+                            <constraint firstAttribute="trailing" secondItem="rx0-tZ-aBj" secondAttribute="trailing" constant="16" id="2Cx-r7-GWh"/>
+                            <constraint firstItem="rx0-tZ-aBj" firstAttribute="top" secondItem="te5-2M-0tO" secondAttribute="topMargin" constant="82" id="NNe-aT-uN1"/>
+                            <constraint firstItem="rx0-tZ-aBj" firstAttribute="leading" secondItem="te5-2M-0tO" secondAttribute="leading" constant="16" id="UGf-8R-mVS"/>
+                            <constraint firstItem="7Ib-MI-uAn" firstAttribute="top" secondItem="rx0-tZ-aBj" secondAttribute="bottom" constant="18" id="VZ8-Ae-AMG"/>
+                            <constraint firstItem="2rb-1Y-Cio" firstAttribute="top" secondItem="7Ib-MI-uAn" secondAttribute="bottom" constant="16" id="h3h-Il-oBQ"/>
+                            <constraint firstItem="2rb-1Y-Cio" firstAttribute="centerX" secondItem="7Ib-MI-uAn" secondAttribute="centerX" id="koX-oq-h65"/>
+                            <constraint firstItem="7Ib-MI-uAn" firstAttribute="centerX" secondItem="rx0-tZ-aBj" secondAttribute="centerX" id="nC0-qP-jg0"/>
                         </constraints>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fLU-m8-v6Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="498" y="-324"/>
+            <point key="canvasLocation" x="496.80000000000001" y="-324.28785607196403"/>
         </scene>
         <!--Contact Us View Controller-->
         <scene sceneID="Elx-wH-0tm">
