@@ -31,16 +31,22 @@
                                 <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                             </webView>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="8MN-FZ-YRq">
+                                <rect key="frame" x="177" y="323" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstAttribute="topMargin" secondItem="PMj-nr-xXU" secondAttribute="top" id="7nz-wG-kHs"/>
                             <constraint firstAttribute="bottomMargin" secondItem="PMj-nr-xXU" secondAttribute="bottom" id="FfV-IE-puj"/>
+                            <constraint firstItem="8MN-FZ-YRq" firstAttribute="centerY" secondItem="soK-QK-JMo" secondAttribute="centerY" id="Ytl-Pq-sPH"/>
                             <constraint firstAttribute="trailing" secondItem="PMj-nr-xXU" secondAttribute="trailing" id="gOw-Wy-T5J"/>
+                            <constraint firstItem="8MN-FZ-YRq" firstAttribute="centerX" secondItem="soK-QK-JMo" secondAttribute="centerX" id="jip-rn-Baj"/>
                             <constraint firstItem="PMj-nr-xXU" firstAttribute="leading" secondItem="soK-QK-JMo" secondAttribute="leading" id="v0y-sk-lhj"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="loadingActivityIndicator" destination="8MN-FZ-YRq" id="12M-VM-hg0"/>
                         <outlet property="webView" destination="PMj-nr-xXU" id="Kx4-ID-djw"/>
                     </connections>
                 </viewController>

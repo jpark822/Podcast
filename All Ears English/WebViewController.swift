@@ -9,9 +9,10 @@
 import Foundation
 import UIKit
 
-class WebViewController : UIViewController {
+class WebViewController : UIViewController, UIWebViewDelegate {
     
     var doesReloadOnViewWillAppear = false
+    @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
     @IBOutlet weak var webView: UIWebView!
     
@@ -27,6 +28,7 @@ class WebViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.webView.delegate = self
         self.loadWebview()
     }
     
@@ -43,5 +45,15 @@ class WebViewController : UIViewController {
             let request = URLRequest(url: url)
             webView.loadRequest(request)
         }
+    }
+}
+
+extension WebViewController {
+    func webViewDidStartLoad(_ webView: UIWebView) {
+        self.loadingActivityIndicator.startAnimating()
+        
+    }
+    func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.loadingActivityIndicator.stopAnimating()
     }
 }
