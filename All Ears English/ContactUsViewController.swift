@@ -15,7 +15,7 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.contentTextView.text = "Need help?\nContact Lindsay McMahon\nLindsay@allearsenglish.com\nwww.allearsenglish.com"
+        self.contentTextView.text = "Need help?\n\n\nContact Lindsay McMahon\nLindsay@allearsenglish.com\n\n\nwww.allearsenglish.com"
     }
 
 }
