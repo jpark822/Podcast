@@ -86,6 +86,7 @@ fileprivate extension FavoritesManager {
         case summary = "summary"
         case author = "author"
         case duration = "duration"
+        case type = "type"
     }
     
     static func convertStoredDictionariesToFeedItems(dicts:[[String:String]]) -> [Feed.Item] {
@@ -136,6 +137,9 @@ fileprivate extension FavoritesManager {
         }
         if let duration = item.duration {
             dict[FeedItemKey.duration.rawValue] = duration
+        }
+        if let type = item.type {
+            dict[FeedItemKey.type.rawValue] = type
         }
         
         return dict

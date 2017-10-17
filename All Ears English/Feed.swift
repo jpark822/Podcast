@@ -107,6 +107,9 @@ class Feed: NSObject {
 //            print("FEED: url = \(url)")
             attributes["url"] = url
         }
+        if let type = enclosure.attributes["type"] {
+            attributes["type"] = type
+        }
         else {
 //            print("FEED: url = UNDEFINED!!!")
         }
@@ -255,6 +258,7 @@ class Feed: NSObject {
                 self.parseId()
             }
         }
+        var type:String?
         var description: String?
         var url: String?
         var subtitle: String?
@@ -310,6 +314,7 @@ class Feed: NSObject {
             summary = attributes["summary"]
             author = attributes["author"]
             duration = attributes["duration"]
+            type = attributes["type"]
             self.parseTitle()
             self.parseDetails()
             self.parseId()
