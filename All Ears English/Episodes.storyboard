@@ -12,6 +12,9 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
+        <array key="Montserrat-Regular.ttf">
+            <string>Montserrat-Regular</string>
+        </array>
         <array key="PT_Sans-Web-Bold.ttf">
             <string>PTSans-Bold</string>
         </array>
@@ -395,22 +398,49 @@
             <point key="canvasLocation" x="967" y="145"/>
         </scene>
         <!--Favorites List Table View Controller-->
-        <scene sceneID="DpM-zh-r4s">
+        <scene sceneID="kJt-dH-hCs">
             <objects>
-                <tableViewController storyboardIdentifier="FavoritesListTableViewControllerId" id="8k3-5n-dx4" customClass="FavoritesListTableViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="TMo-wl-qdK">
-                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                <viewController storyboardIdentifier="FavoritesListTableViewControllerId" id="8dj-Ff-XbG" customClass="FavoritesListTableViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="QjC-v5-Js8"/>
+                        <viewControllerLayoutGuide type="bottom" id="qJQ-Gv-i1A"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Dez-Ac-Bij">
+                        <rect key="frame" x="0.0" y="64" width="375" height="603"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NCx-pR-GCr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No favorite episodes found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VQm-m1-a0J">
+                                <rect key="frame" x="20" y="289.5" width="335" height="24.5"/>
+                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <connections>
-                            <outlet property="dataSource" destination="8k3-5n-dx4" id="K7E-28-ktp"/>
-                            <outlet property="delegate" destination="8k3-5n-dx4" id="3wL-tS-P3E"/>
-                        </connections>
-                    </tableView>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="56x-FI-lg4" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                        <constraints>
+                            <constraint firstItem="NCx-pR-GCr" firstAttribute="leading" secondItem="Dez-Ac-Bij" secondAttribute="leading" id="S1q-10-4KX"/>
+                            <constraint firstAttribute="bottomMargin" secondItem="NCx-pR-GCr" secondAttribute="bottom" id="UQU-q1-TVH"/>
+                            <constraint firstAttribute="trailing" secondItem="VQm-m1-a0J" secondAttribute="trailing" constant="20" id="d2d-Nn-sfe"/>
+                            <constraint firstItem="VQm-m1-a0J" firstAttribute="centerY" secondItem="Dez-Ac-Bij" secondAttribute="centerY" id="hBv-ne-Kge"/>
+                            <constraint firstAttribute="trailing" secondItem="NCx-pR-GCr" secondAttribute="trailing" id="hpO-3Y-qk7"/>
+                            <constraint firstItem="VQm-m1-a0J" firstAttribute="leading" secondItem="Dez-Ac-Bij" secondAttribute="leading" constant="20" id="hxC-h2-6gl"/>
+                            <constraint firstItem="VQm-m1-a0J" firstAttribute="centerX" secondItem="Dez-Ac-Bij" secondAttribute="centerX" id="uZH-fu-VEI"/>
+                            <constraint firstAttribute="topMargin" secondItem="NCx-pR-GCr" secondAttribute="top" id="uvy-j8-wco"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="noFavoritesLabel" destination="VQm-m1-a0J" id="xTZ-Zt-ESz"/>
+                        <outlet property="tableView" destination="NCx-pR-GCr" id="tHx-VJ-OGy"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="auV-Ul-3go" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1930" y="27"/>
+            <point key="canvasLocation" x="1941.5999999999999" y="133.5832083958021"/>
         </scene>
     </scenes>
     <resources>
