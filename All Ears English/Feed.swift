@@ -271,6 +271,17 @@ class Feed: NSObject {
         }
         
         // computed for display or internal use
+        var isVideoContent: Bool {
+            get {
+                if let type = self.type {
+                    if type.lowercased().range(of:"video") != nil {
+                        return true
+                    }
+                    return false
+                }
+                return false
+            }
+        }
         var displayTitle: String?
         var displayDetails: String?
         var published: Date?
