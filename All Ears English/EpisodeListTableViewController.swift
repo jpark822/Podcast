@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import AlamofireImage
+import Alamofire
 
 class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate {
 
@@ -107,6 +109,18 @@ extension EpisodeListTableViewController {
         playerVC.episodeItem = self.episodeItems[indexPath.row]
         playerVC.delegate = self
         self.present(playerVC, animated: true)
+    }
+    
+    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        guard let episodeImage = UIImage(named: "episode_stub_image") else {
+            return 100
+        }
+        let oldWidth = episodeImage.size.width
+        let oldHeight = episodeImage.size.height
+        let aspectRatio = oldHeight/oldWidth
+        let newHeight = aspectRatio * self.tableView.frame.size.width
+        let newHeightWithDescription = newHeight + 100
+        return newHeightWithDescription
     }
 }
 
