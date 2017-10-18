@@ -61,6 +61,7 @@
 		4E4AE9A31F93D6C900B6CF10 /* RateUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9A21F93D6C900B6CF10 /* RateUsViewController.swift */; };
 		4E4AE9A61F93E64200B6CF10 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9A51F93E64200B6CF10 /* ShareViewController.swift */; };
 		4E4AE9A91F9402AB00B6CF10 /* ContactUsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9A81F9402AB00B6CF10 /* ContactUsViewController.swift */; };
+		4E4AE9AB1F97647800B6CF10 /* UIImage+Resize.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E4AE9AA1F97647800B6CF10 /* UIImage+Resize.swift */; };
 		4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F771F82687D0095CAAA /* ApplicationData.swift */; };
 		4E687F7C1F83AE9F0095CAAA /* WebViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */; };
 		4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */; };
@@ -129,6 +130,7 @@
 		4E4AE9A21F93D6C900B6CF10 /* RateUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RateUsViewController.swift; sourceTree = "<group>"; };
 		4E4AE9A51F93E64200B6CF10 /* ShareViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
 		4E4AE9A81F9402AB00B6CF10 /* ContactUsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContactUsViewController.swift; sourceTree = "<group>"; };
+		4E4AE9AA1F97647800B6CF10 /* UIImage+Resize.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Resize.swift"; sourceTree = "<group>"; };
 		4E687F771F82687D0095CAAA /* ApplicationData.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationData.swift; sourceTree = "<group>"; };
 		4E687F7B1F83AE9F0095CAAA /* WebViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = WebViewController.swift; sourceTree = "<group>"; };
 		4E687F7E1F84F0600095CAAA /* NowPlayingBannerView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = NowPlayingBannerView.xib; sourceTree = "<group>"; };
@@ -305,6 +307,7 @@
 			children = (
 				4E31E88A1F81771300AD05D2 /* UIColor+AEE.swift */,
 				4E687F771F82687D0095CAAA /* ApplicationData.swift */,
+				4E4AE9AA1F97647800B6CF10 /* UIImage+Resize.swift */,
 			);
 			name = Utilities;
 			sourceTree = "<group>";
@@ -639,6 +642,7 @@
 				4672E5DD1EF8787B006B5F25 /* AppDelegate.swift in Sources */,
 				4668D2921F1748F700845FE5 /* BannerView.swift in Sources */,
 				469F7EFF1F1B01250039FA03 /* EpisodePlaybackViewController.swift in Sources */,
+				4E4AE9AB1F97647800B6CF10 /* UIImage+Resize.swift in Sources */,
 				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
 				4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */,
 				46EFFD6F1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift in Sources */,

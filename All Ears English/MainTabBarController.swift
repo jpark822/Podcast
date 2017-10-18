@@ -29,11 +29,8 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         self.setupTabBarViewControllers()
         
         self.customizableViewControllers = []
-        self.setupMoreViewControllerNavigationItems()
         
         self.setupNowPlayingBanner()
-        
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -50,6 +47,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
     }
     
     func setupTabBarViewControllers() {
+        let iconImageSize = CGSize(width: 22, height: 22)
         let episodeListVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodeListTableViewControllerId") as! EpisodeListTableViewController
         episodeListVC.title = "Episodes"
         let episodeListTabImage = UIImage(named: "ic_playlist_play_white")
@@ -59,14 +57,15 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         
         let bonusesVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "BonusEpisodesTableViewControllerId")
         bonusesVC.title = "Bonuses"
-        let bonusesTabImage = UIImage(named: "ic_playlist_play_white")
+        
+        let bonusesTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_bonus")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_bonus")
         let bonusesNavVC = UINavigationController(rootViewController: bonusesVC)
         bonusesNavVC.tabBarItem = UITabBarItem(title: "Bonuses", image: bonusesTabImage, tag: 0)
         _ = bonusesVC.view
         
         let favoritesVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "FavoritesListTableViewControllerId") as! FavoritesListTableViewController
         favoritesVC.title = "Favorites"
-        let favoritesTabImage = UIImage(named: "ic_playlist_play_white")
+        let favoritesTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_favorites")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_favorites")
         let favoritesNavVC = UINavigationController(rootViewController: favoritesVC)
         favoritesNavVC.tabBarItem = UITabBarItem(title: "Favorites", image: favoritesTabImage, tag: 0)
         _ = favoritesVC.view
@@ -84,47 +83,38 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         if let path = Bundle.main.path(forResource: "aboutus", ofType: "html") {
             aboutUsVC.url = URL.init(fileURLWithPath: path)
         }
-        let aboutUsTabImage = UIImage(named: "ic_public_white")
+        let aboutUsTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_about")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_about")
         aboutUsVC.tabBarItem = UITabBarItem(title: "About Us", image: aboutUsTabImage, tag: 0)
         _ = aboutUsVC.view
         
         let quickLinksVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
         quickLinksVC.url = URL(string: "https://www.allearsenglish.com/resources/")
-        let quickLinksVCTabImage = UIImage(named: "ic_public_white")
+        let quickLinksVCTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_quick_links")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_quick_links")
         quickLinksVC.tabBarItem = UITabBarItem(title: "Quick Links", image: quickLinksVCTabImage, tag: 0)
         _ = quickLinksVC.view
         
         let contactUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ContactUsViewControllerId") as! ContactUsViewController
         contactUsVC.title = "Contact Us"
-        let contactUsTabImage = UIImage(named: "ic_public_white")
+        let contactUsTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_contact_us")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_contact_us")
         let contactUsNavVC = UINavigationController(rootViewController: contactUsVC)
         contactUsNavVC.tabBarItem = UITabBarItem(title: "Contact Us", image: contactUsTabImage, tag: 0)
         _ = contactUsVC.view
         
         let rateUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "RateUsViewControllerId") as! RateUsViewController
         rateUsVC.title = "Rate Us"
-        let rateUsVCTabImage = UIImage(named: "ic_public_white")
+        let rateUsVCTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_rate_us")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_rate_us")
         let rateUsNavVC = UINavigationController(rootViewController: rateUsVC)
         rateUsNavVC.tabBarItem = UITabBarItem(title: "Rate Us", image: rateUsVCTabImage, tag: 0)
         _ = rateUsVC.view
         
         let shareVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ShareViewControllerId") as! ShareViewController
         shareVC.title = "Share"
-        let shareVCTabImage = UIImage(named: "ic_public_white")
+        let shareVCTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_share")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_share")
         let shareNavVC = UINavigationController(rootViewController: shareVC)
         shareNavVC.tabBarItem = UITabBarItem(title: "Share", image: shareVCTabImage, tag: 0)
         _ = shareVC.view
         
         self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsNavVC, rateUsNavVC, shareNavVC]
-    }
-    
-    func shareButtonPressed() {
-        
-    }
-    
-    func setupMoreViewControllerNavigationItems() {
-        let shareButton = UIBarButtonItem(image: UIImage(named: "ic_share") , style: UIBarButtonItemStyle.plain, target: self, action: #selector(shareButtonPressed))
-        self.moreNavigationController.navigationItem.rightBarButtonItem = shareButton
     }
 }
 
