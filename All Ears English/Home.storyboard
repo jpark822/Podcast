@@ -80,14 +80,6 @@
                                     <action selector="confirmPressed:" destination="J5w-bY-osR" eventType="touchUpInside" id="Hhf-8u-9X0"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2rb-1Y-Cio">
-                                <rect key="frame" x="143" y="214" width="88" height="33"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <state key="normal" title="No Thanks"/>
-                                <connections>
-                                    <action selector="declinePressed:" destination="J5w-bY-osR" eventType="touchUpInside" id="Io5-Oj-kR5"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -95,8 +87,6 @@
                             <constraint firstItem="rx0-tZ-aBj" firstAttribute="top" secondItem="te5-2M-0tO" secondAttribute="topMargin" constant="82" id="NNe-aT-uN1"/>
                             <constraint firstItem="rx0-tZ-aBj" firstAttribute="leading" secondItem="te5-2M-0tO" secondAttribute="leading" constant="16" id="UGf-8R-mVS"/>
                             <constraint firstItem="7Ib-MI-uAn" firstAttribute="top" secondItem="rx0-tZ-aBj" secondAttribute="bottom" constant="18" id="VZ8-Ae-AMG"/>
-                            <constraint firstItem="2rb-1Y-Cio" firstAttribute="top" secondItem="7Ib-MI-uAn" secondAttribute="bottom" constant="16" id="h3h-Il-oBQ"/>
-                            <constraint firstItem="2rb-1Y-Cio" firstAttribute="centerX" secondItem="7Ib-MI-uAn" secondAttribute="centerX" id="koX-oq-h65"/>
                             <constraint firstItem="7Ib-MI-uAn" firstAttribute="centerX" secondItem="rx0-tZ-aBj" secondAttribute="centerX" id="nC0-qP-jg0"/>
                         </constraints>
                     </view>
@@ -169,23 +159,13 @@
                                     <action selector="sharePressed:" destination="KbS-Xo-fMf" eventType="touchUpInside" id="tZn-VF-Axx"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kTh-Us-LPi">
-                                <rect key="frame" x="144.5" y="215" width="86" height="33"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="17"/>
-                                <state key="normal" title="No thanks"/>
-                                <connections>
-                                    <action selector="declinePressed:" destination="KbS-Xo-fMf" eventType="touchUpInside" id="CjN-Bs-qeS"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="uAi-Vk-e6A" firstAttribute="top" secondItem="eXs-Gf-mL3" secondAttribute="bottom" constant="20" id="3cn-zV-0rE"/>
                             <constraint firstItem="eXs-Gf-mL3" firstAttribute="top" secondItem="ZEN-Eh-7LH" secondAttribute="topMargin" constant="81" id="G9o-oL-GoM"/>
-                            <constraint firstItem="kTh-Us-LPi" firstAttribute="centerX" secondItem="uAi-Vk-e6A" secondAttribute="centerX" id="IDV-pG-5fz"/>
                             <constraint firstAttribute="trailing" secondItem="eXs-Gf-mL3" secondAttribute="trailing" constant="16" id="SKQ-yv-PSw"/>
                             <constraint firstItem="eXs-Gf-mL3" firstAttribute="leading" secondItem="ZEN-Eh-7LH" secondAttribute="leading" constant="16" id="Sye-Hr-KVH"/>
-                            <constraint firstItem="kTh-Us-LPi" firstAttribute="top" secondItem="uAi-Vk-e6A" secondAttribute="bottom" constant="16" id="eWm-aK-ilJ"/>
                             <constraint firstItem="uAi-Vk-e6A" firstAttribute="centerX" secondItem="eXs-Gf-mL3" secondAttribute="centerX" id="uIS-US-dZ7"/>
                         </constraints>
                     </view>
