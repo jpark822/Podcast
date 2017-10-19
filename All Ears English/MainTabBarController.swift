@@ -31,6 +31,8 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         self.customizableViewControllers = []
         
         self.setupNowPlayingBanner()
+        
+        self.configureMoreNavigationStyle()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -117,6 +119,17 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         _ = shareVC.view
         
         self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsNavVC, rateUsNavVC, shareNavVC]
+    }
+    
+    func configureMoreNavigationStyle() {
+        if let moreNavTableView = self.moreNavigationController.topViewController?.view as? UITableView {
+            if moreNavTableView.subviews.count > 0 {
+                for cell in moreNavTableView.visibleCells {
+                    cell.textLabel?.font = UIFont(name: "Montserrat-Regular", size: 16)
+                }
+            }
+        }
+        
     }
 }
 
