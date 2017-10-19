@@ -19,7 +19,7 @@ class EpisodesViewController: UITableViewController, PlayerDelegate {
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem()
 
-        Feed.shared.load(self)
+//        Feed.shared.load(self)
         Player.shared?.delegate = self
         if let link = Player.shared?.link {
             self.openDeepLink(link)
