@@ -80,6 +80,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         _ = freeTipsVC.view
         
         let aboutUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
+        aboutUsVC.title = "About Us"
         if let path = Bundle.main.path(forResource: "aboutus", ofType: "html") {
             aboutUsVC.url = URL.init(fileURLWithPath: path)
         }
@@ -88,6 +89,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         _ = aboutUsVC.view
         
         let quickLinksVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
+        quickLinksVC.title = "Quick Links"
         quickLinksVC.url = URL(string: "https://www.allearsenglish.com/resources/")
         let quickLinksVCTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_quick_links")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_quick_links")
         quickLinksVC.tabBarItem = UITabBarItem(title: "Quick Links", image: quickLinksVCTabImage, tag: 0)

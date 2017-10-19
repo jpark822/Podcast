@@ -50,10 +50,12 @@ class WebViewController : UIViewController, UIWebViewDelegate {
 
 extension WebViewController {
     func webViewDidStartLoad(_ webView: UIWebView) {
+        self.loadingActivityIndicator.isHidden = false
         self.loadingActivityIndicator.startAnimating()
         
     }
     func webViewDidFinishLoad(_ webView: UIWebView) {
+        self.loadingActivityIndicator.isHidden = true
         self.loadingActivityIndicator.stopAnimating()
     }
 }

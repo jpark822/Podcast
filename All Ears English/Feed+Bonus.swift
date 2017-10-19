@@ -20,8 +20,9 @@ extension Feed {
                 
                 var feedItems:[Item] = [Item]()
                 for xmlItem in channel["item"] {
-                    if let builtItem = self.buildItem(xmlItem) {
-                        feedItems.append(builtItem)
+                    let newItem = Item(xmlItem)
+                    if newItem.isAfterCutoff {
+                        feedItems.append(newItem)
                     }
                 }
                 
