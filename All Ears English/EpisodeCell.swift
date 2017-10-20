@@ -34,10 +34,10 @@ class EpisodeCell: UITableViewCell {
             self.episodeTitle.text = item.displayTitle
             self.episodeDetails.text = item.displayDetails
             if FavoritesManager.isItemInFavorites(item: item) {
-                self.favoriteButton.setTitle("Un-Fave", for: .normal)
+                self.favoriteButton.setImage(UIImage(named:"ic_heart_filled"), for: .normal)
             }
             else {
-                self.favoriteButton.setTitle("Favorite", for: .normal)
+                self.favoriteButton.setImage(UIImage(named:"ic_heart_unfilled"), for: .normal)
             }
             
         }
