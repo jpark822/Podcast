@@ -12,12 +12,14 @@ protocol EpisodeCellDelegate:class {
     func episodeCellDidTapFavoriteButton(episodeCell:EpisodeCell)
 }
 
+//episode cell begins configured for episodes. you must call "configure as favorite" when coming from a favorited item
 class EpisodeCell: UITableViewCell {
 
     @IBOutlet weak var episodeNumber: UILabel!
     @IBOutlet weak var episodeTitle: UILabel!
     @IBOutlet weak var episodeDetails: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
+    @IBOutlet weak var favoritesItemTypeImageView: UIImageView!
     
     //dependencies
     var delegate:EpisodeCellDelegate?
@@ -37,11 +39,36 @@ class EpisodeCell: UITableViewCell {
             else {
                 self.favoriteButton.setTitle("Favorite", for: .normal)
             }
+            
         }
     }
 
     override func awakeFromNib() {
         super.awakeFromNib()
+    }
+    
+    func configureAsBonusItem() {
+        guard let item = item,
+        let mediaType = item.type else {
+            return
+        }
+        
+        guard mediaType.isEmpty == false else {
+            return
+        }
+        
+        self.episodeNumber.isHidden = true
+        self.favoritesItemTypeImageView.isHidden = false
+        
+        if item.isVideoContent {
+            self.favoritesItemTypeImageView.image = UIImage(named: "ic_video_item")
+            self.favoriteButton.isHidden = true
+        }
+        else {
+            self.favoritesItemTypeImageView.image = UIImage(named: "ic_audio_item")
+        }
+        
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -52,6 +79,12 @@ class EpisodeCell: UITableViewCell {
         if let delegate = self.delegate {
             delegate.episodeCellDidTapFavoriteButton(episodeCell: self)
         }
+    }
+    
+    override func prepareForReuse() {
+        self.episodeNumber.isHidden = false
+        self.favoritesItemTypeImageView.isHidden = true
+        self.favoriteButton.isHidden = false
     }
 
 }

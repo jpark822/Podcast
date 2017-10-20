@@ -39,12 +39,19 @@
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
+                                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Uc0-Hc-Dgn">
+                                        <rect key="frame" x="16" y="16" width="63.5" height="66"/>
+                                    </imageView>
                                 </subviews>
                                 <color key="backgroundColor" red="0.99607843139999996" green="0.88235294119999996" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
+                                    <constraint firstAttribute="bottom" secondItem="Uc0-Hc-Dgn" secondAttribute="bottom" constant="16" id="3tK-rA-vrQ"/>
                                     <constraint firstItem="uCl-GU-toc" firstAttribute="centerX" secondItem="VxW-ii-kbu" secondAttribute="centerX" id="7eW-BZ-Yzw"/>
                                     <constraint firstAttribute="width" secondItem="VxW-ii-kbu" secondAttribute="height" multiplier="40:41" id="BZn-yx-bFu"/>
                                     <constraint firstItem="uCl-GU-toc" firstAttribute="centerY" secondItem="VxW-ii-kbu" secondAttribute="centerY" id="LGe-WN-YmQ"/>
+                                    <constraint firstItem="Uc0-Hc-Dgn" firstAttribute="leading" secondItem="VxW-ii-kbu" secondAttribute="leading" constant="16" id="es5-6L-a8N"/>
+                                    <constraint firstAttribute="trailing" secondItem="Uc0-Hc-Dgn" secondAttribute="trailing" constant="16" id="plE-fF-cb6"/>
+                                    <constraint firstItem="Uc0-Hc-Dgn" firstAttribute="top" secondItem="VxW-ii-kbu" secondAttribute="top" constant="16" id="qIt-6W-mR1"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date • 01:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-gJ-1ye">
@@ -99,6 +106,7 @@
                 <outlet property="episodeNumber" destination="uCl-GU-toc" id="ooe-He-1AY"/>
                 <outlet property="episodeTitle" destination="9dg-Eg-CB9" id="IVd-oL-9Vw"/>
                 <outlet property="favoriteButton" destination="63r-qf-2TP" id="RDc-9Y-0DJ"/>
+                <outlet property="favoritesItemTypeImageView" destination="Uc0-Hc-Dgn" id="LtU-Oo-tJc"/>
             </connections>
             <point key="canvasLocation" x="-146.5" y="8.5"/>
         </tableViewCell>

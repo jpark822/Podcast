@@ -92,6 +92,7 @@ extension BonusEpisodesTableViewController {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.episodeCellReuseID, for: indexPath) as! EpisodeCell
         
         cell.item = self.episodeItems[indexPath.row]
+        cell.configureAsBonusItem()
         cell.delegate = self
         cell.indexPath = indexPath
         return cell
