@@ -59,6 +59,21 @@ class FavoritesManager: NSObject {
             return
         }
         
+        //safeguard against the current track being the last favorite item
+        if AudioPlayer.sharedInstance.currentlyPlayingFeedType == .favorites && AudioPlayer.sharedInstance.currentItem?.guid == item.guid {
+            let isCurrentlyPlaying = AudioPlayer.sharedInstance.isPlaying
+            
+            if AudioPlayer.sharedInstance.seekToNextTrack() == nil {
+                AudioPlayer.sharedInstance.clearPlayerItems()
+            }
+            else {
+                if isCurrentlyPlaying == false {
+                    AudioPlayer.sharedInstance.pause()
+                }
+            }
+        }
+        
+        //now build new favorites list
         var newFavorites:[Feed.Item] = []
         for storedItem in self.getAllStoredFavorites() {
             if item.guid != storedItem.guid {

@@ -16,10 +16,17 @@ import Firebase
 
 internal class AudioPlayer:NSObject {
     
+    enum FeedType {
+        case none
+        case episodes
+        case favorites
+    }
+    
     static var sharedInstance = AudioPlayer()
     
     var queuePlayer:AVQueuePlayer = AVQueuePlayer()
     var currentItem:Feed.Item?
+    var currentlyPlayingFeedType:AudioPlayer.FeedType = AudioPlayer.FeedType.none
     
     static let playbackStateDidChangeNotification: Notification.Name = Notification.Name(rawValue: "audioPlayerPlaybackStateDidChangeNotification")
     static let didFinishPlayingCurrentTrackNotification: Notification.Name = Notification.Name(rawValue: "didFinishPlayingCurrentTrackNotification")
@@ -103,7 +110,17 @@ internal class AudioPlayer:NSObject {
         return true
     }
     
-    func play(item: Feed.Item?) {
+    func play(episodeItem: Feed.Item?) {
+        self.currentlyPlayingFeedType = .episodes
+        self.play(item: episodeItem)
+    }
+    
+    func play(favoriteItem:Feed.Item?) {
+        self.currentlyPlayingFeedType = .favorites
+        self.play(item: favoriteItem)
+    }
+    
+    fileprivate func play(item: Feed.Item?) {
         guard let item = item,
             let itemUrlString = item.url,
             let itemUrl = URL.init(string: itemUrlString) else {
@@ -160,6 +177,14 @@ internal class AudioPlayer:NSObject {
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
+    func clearPlayerItems() {
+        self.currentItem = nil
+        self.queuePlayer.removeAllItems()
+        
+        self.updatePlayingInfoCenterData()
+        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+    }
+    
     func changePlaybackRate(to rate:Float) {
         self.playbackRate = rate
         self.queuePlayer.rate = rate
@@ -177,11 +202,18 @@ extension AudioPlayer {
             return nil
         }
         
+        var feedItems:[Feed.Item] = []
+        if self.currentlyPlayingFeedType == .episodes {
+            feedItems = Feed.shared.items
+        }
+        else if self.currentlyPlayingFeedType == .favorites {
+            feedItems = FavoritesManager.sharedInstance.getAllStoredFavorites()
+        }
         //TODO replace with updated swift index(of)
         var index = 0
-        for item:Feed.Item in Feed.shared.items {
-            if item.url == currentItem.url && Feed.shared.items.count > (index + 1) {
-                let nextEpisodeItem = Feed.shared.items[index + 1]
+        for item:Feed.Item in feedItems {
+            if item.url == currentItem.url && feedItems.count > (index + 1) {
+                let nextEpisodeItem = feedItems[index + 1]
                 self.play(item: nextEpisodeItem)
                 
                 NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
@@ -218,11 +250,18 @@ extension AudioPlayer {
             return nil
         }
         
+        var feedItems:[Feed.Item] = []
+        if self.currentlyPlayingFeedType == .episodes {
+            feedItems = Feed.shared.items
+        }
+        else if self.currentlyPlayingFeedType == .favorites {
+            feedItems = FavoritesManager.sharedInstance.getAllStoredFavorites()
+        }
         //TODO replace with updated swift index(of)
         var index = 0
-        for item:Feed.Item in Feed.shared.items {
+        for item:Feed.Item in feedItems {
             if item.url == currentItem.url && (index-1) >= 0 {
-                let prevEpisodeItem = Feed.shared.items[index-1]
+                let prevEpisodeItem = feedItems[index-1]
                 self.play(item: prevEpisodeItem)
                 
                 NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
@@ -300,7 +339,10 @@ extension AudioPlayer {
     func updatePlayingInfoCenterData() {
         guard let currentItem = self.currentItem,
             let currentPlayerAVItem = self.queuePlayer.currentItem else {
-            return
+                
+                MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = nil
+                
+                return
         }
         
         if let title = currentItem.title,

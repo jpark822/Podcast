@@ -19,7 +19,7 @@ class EpisodePlayerViewController : UIViewController {
     
     var delegate:EpisodePlayerViewControllerDelegate?
     
-    //MARK: Dependency
+    //MARK: Dependency section
     var episodeItem:Feed.Item! {
         didSet {
             guard self.isViewLoaded else {
@@ -28,6 +28,7 @@ class EpisodePlayerViewController : UIViewController {
             self.setupInitialViewStateForEpisode()
         }
     }
+    var feedType:AudioPlayer.FeedType = .none
     
     @IBOutlet weak var episodeImageView: UIImageView!
     @IBOutlet weak var timeElapsedLabel: UILabel!
@@ -45,7 +46,14 @@ class EpisodePlayerViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        AudioPlayer.sharedInstance.play(item: self.episodeItem)
+        switch self.feedType {
+        case .none:
+            break
+        case .episodes:
+            AudioPlayer.sharedInstance.play(episodeItem: self.episodeItem)
+        case .favorites:
+            AudioPlayer.sharedInstance.play(favoriteItem: self.episodeItem)
+        }
         
         displayLink = CADisplayLink(target: self, selector: #selector(EpisodePlayerViewController.updatePlaybackProgress))
         displayLink.add(to: .current, forMode: .defaultRunLoopMode)

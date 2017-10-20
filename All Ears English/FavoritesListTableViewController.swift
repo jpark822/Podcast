@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, EpisodePlayerViewControllerDelegate {
+class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, EpisodePlayerViewControllerDelegate, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var noFavoritesLabel: UILabel!
@@ -33,6 +33,8 @@ class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, E
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
         
         self.tableView.register(UINib(nibName: "EpisodeCell", bundle: nil) , forCellReuseIdentifier: self.favoriteEpisodeCellReuseID)
     }
@@ -99,6 +101,7 @@ extension FavoritesListTableViewController {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
         playerVC.episodeItem = self.favoriteItems[indexPath.row]
+        playerVC.feedType = .favorites
         playerVC.delegate = self
         self.present(playerVC, animated: true)
     }

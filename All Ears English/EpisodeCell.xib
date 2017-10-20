@@ -54,12 +54,12 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is a very very very very very very very long long long loooooong title in a very small space" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dg-Eg-CB9">
-                                <rect key="frame" x="103" y="18.5" width="292" height="62.5"/>
+                                <rect key="frame" x="103" y="19" width="292" height="62.5"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63r-qf-2TP">
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="63r-qf-2TP">
                                 <rect key="frame" x="336" y="68" width="59" height="30"/>
                                 <state key="normal" title="Favorite "/>
                                 <connections>

@@ -107,6 +107,7 @@ extension EpisodeListTableViewController {
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
         playerVC.episodeItem = self.episodeItems[indexPath.row]
+        playerVC.feedType = .episodes
         playerVC.delegate = self
         self.present(playerVC, animated: true)
     }
