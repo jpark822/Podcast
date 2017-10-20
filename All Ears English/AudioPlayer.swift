@@ -20,6 +20,7 @@ internal class AudioPlayer:NSObject {
         case none
         case episodes
         case favorites
+        case bonus
     }
     
     static var sharedInstance = AudioPlayer()
@@ -69,7 +70,8 @@ internal class AudioPlayer:NSObject {
     }
     
     func playerDidFinishPlaying(notification: NSNotification) {
-        if ApplicationData.isAutoPlayEnabled {
+        //bonus content doesnt autoplay
+        if ApplicationData.isAutoPlayEnabled && self.currentlyPlayingFeedType != .bonus {
             _ = self.seekToNextTrack()
         }
         else {
@@ -118,6 +120,11 @@ internal class AudioPlayer:NSObject {
     func play(favoriteItem:Feed.Item?) {
         self.currentlyPlayingFeedType = .favorites
         self.play(item: favoriteItem)
+    }
+    
+    func play(bonusItem:Feed.Item?) {
+        self.currentlyPlayingFeedType = .bonus
+        self.play(item:bonusItem)
     }
     
     fileprivate func play(item: Feed.Item?) {

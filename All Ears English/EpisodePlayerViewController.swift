@@ -53,6 +53,8 @@ class EpisodePlayerViewController : UIViewController {
             AudioPlayer.sharedInstance.play(episodeItem: self.episodeItem)
         case .favorites:
             AudioPlayer.sharedInstance.play(favoriteItem: self.episodeItem)
+        case .bonus:
+            AudioPlayer.sharedInstance.play(bonusItem: self.episodeItem)
         }
         
         displayLink = CADisplayLink(target: self, selector: #selector(EpisodePlayerViewController.updatePlaybackProgress))

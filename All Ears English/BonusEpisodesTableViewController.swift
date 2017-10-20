@@ -107,21 +107,24 @@ extension BonusEpisodesTableViewController {
     }
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        old audio code
-//        let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
-//        playerVC.episodeItem = self.episodeItems[indexPath.row]
-//        playerVC.delegate = self
-//        self.present(playerVC, animated: true)
+        let episodeItem = self.episodeItems[indexPath.row]
         
-//        native video player code
-//        let videoItem = self.episodeItems[indexPath.row]
-//        let videoURL = URL(string: videoItem.url!)
-//        let player = AVPlayer(url: videoURL!)
-//        let playerViewController = AVPlayerViewController()
-//        playerViewController.player = player
-//        self.present(playerViewController, animated: true) {
-//            playerViewController.player!.play()
-//        }
+        if episodeItem.isVideoContent {
+            let videoURL = URL(string: episodeItem.url!)
+            let player = AVPlayer(url: videoURL!)
+            let playerViewController = AVPlayerViewController()
+            playerViewController.player = player
+            self.present(playerViewController, animated: true) {
+                playerViewController.player!.play()
+            }
+        }
+        else if episodeItem.isVideoContent == false {
+            let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
+            playerVC.episodeItem = episodeItem
+            playerVC.feedType = .bonus
+            playerVC.delegate = self
+            self.present(playerVC, animated: true)
+        }
     }
 }
 
