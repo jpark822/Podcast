@@ -38,6 +38,7 @@ class EpisodePlayerViewController : UIViewController {
     @IBOutlet weak var playButton: UIButton!
     @IBOutlet weak var progressSlider: UISlider!
     @IBOutlet weak var autoPlaySwitch: UISwitch!
+    @IBOutlet weak var autoPlayLabel: UILabel!
     
     fileprivate var displayLink: CADisplayLink!
     
@@ -135,6 +136,12 @@ class EpisodePlayerViewController : UIViewController {
             playbackRateString = "1x"
         }
         self.playbackRateButton.setTitle(playbackRateString, for: UIControlState.normal)
+        
+        //Turn off autoplay for bonus content
+        if AudioPlayer.sharedInstance.currentlyPlayingFeedType == .bonus {
+            self.autoPlaySwitch.isHidden = true
+            self.autoPlayLabel.isHidden = true
+        }
         
         //Autoplay
         if (ApplicationData.isAutoPlayEnabled) {
