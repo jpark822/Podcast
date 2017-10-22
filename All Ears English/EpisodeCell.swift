@@ -12,14 +12,14 @@ protocol EpisodeCellDelegate:class {
     func episodeCellDidTapFavoriteButton(episodeCell:EpisodeCell)
 }
 
-//episode cell begins configured for episodes. you must call "configure as favorite" when coming from a favorited item
+//episode cell begins configured for episodes. you must call "configureAsBonusItem" for the bonus screen
 class EpisodeCell: UITableViewCell {
 
     @IBOutlet weak var episodeNumber: UILabel!
     @IBOutlet weak var episodeTitle: UILabel!
     @IBOutlet weak var episodeDetails: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
-    @IBOutlet weak var favoritesItemTypeImageView: UIImageView!
+    @IBOutlet weak var mediaItemTypeImageView: UIImageView!
     
     //dependencies
     var delegate:EpisodeCellDelegate?
@@ -40,6 +40,7 @@ class EpisodeCell: UITableViewCell {
                 self.favoriteButton.setImage(UIImage(named:"ic_heart_unfilled"), for: .normal)
             }
             
+            
         }
     }
 
@@ -58,14 +59,14 @@ class EpisodeCell: UITableViewCell {
         }
         
         self.episodeNumber.isHidden = true
-        self.favoritesItemTypeImageView.isHidden = false
+        self.mediaItemTypeImageView.isHidden = false
+        self.favoriteButton.isHidden = true
         
         if item.isVideoContent {
-            self.favoritesItemTypeImageView.image = UIImage(named: "ic_video_item")
-            self.favoriteButton.isHidden = true
+            self.mediaItemTypeImageView.image = UIImage(named: "ic_video_item")
         }
         else {
-            self.favoritesItemTypeImageView.image = UIImage(named: "ic_audio_item")
+            self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")
         }
         
         
@@ -83,7 +84,7 @@ class EpisodeCell: UITableViewCell {
     
     override func prepareForReuse() {
         self.episodeNumber.isHidden = false
-        self.favoritesItemTypeImageView.isHidden = true
+        self.mediaItemTypeImageView.isHidden = true
         self.favoriteButton.isHidden = false
     }
 

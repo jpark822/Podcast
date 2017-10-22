@@ -106,7 +106,7 @@
                 <outlet property="episodeNumber" destination="uCl-GU-toc" id="ooe-He-1AY"/>
                 <outlet property="episodeTitle" destination="9dg-Eg-CB9" id="IVd-oL-9Vw"/>
                 <outlet property="favoriteButton" destination="63r-qf-2TP" id="RDc-9Y-0DJ"/>
-                <outlet property="favoritesItemTypeImageView" destination="Uc0-Hc-Dgn" id="LtU-Oo-tJc"/>
+                <outlet property="mediaItemTypeImageView" destination="Uc0-Hc-Dgn" id="4tt-ea-Tua"/>
             </connections>
             <point key="canvasLocation" x="-146.5" y="8.5"/>
         </tableViewCell>
