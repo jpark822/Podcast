@@ -371,8 +371,13 @@ extension AudioPlayer {
                 if components.count == 2 {
                     let seconds = Int(components[0])! * 60 + Int(components[1])!
                     info?[MPMediaItemPropertyPlaybackDuration] = seconds
-                } else if components.count == 3 {
+                }
+                else if components.count == 3 {
                     let seconds = Int(components[0])! * 60 * 60 + Int(components[1])! * 60 + Int(components[2])!
+                    info?[MPMediaItemPropertyPlaybackDuration] = seconds
+                }
+                else if components.count == 1 {
+                    let seconds = components[0]
                     info?[MPMediaItemPropertyPlaybackDuration] = seconds
                 }
                 else {
@@ -388,7 +393,7 @@ extension AudioPlayer {
             info?[MPMediaItemPropertyTitle] = title
             info?[MPMediaItemPropertyArtwork] = artwork
             info?[MPNowPlayingInfoPropertyElapsedPlaybackTime] = NSNumber(value: CMTimeGetSeconds(currentPlayerAVItem.currentTime()))
-            info?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: Double(self.playbackRate))
+            info?[MPNowPlayingInfoPropertyPlaybackRate] = NSNumber(value: Double(self.queuePlayer.rate))
             
             MediaPlayer.MPNowPlayingInfoCenter.default().nowPlayingInfo = info
         }
