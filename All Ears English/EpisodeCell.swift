@@ -143,7 +143,7 @@ class EpisodeCell: UITableViewCell {
             self.downloadActivityIndicator.stopAnimating()
             self.downloadActivityIndicator.isHidden = true
             
-            self.downloadButton.setImage(UIImage(named:"ic_cloud_download"), for: .normal)
+            self.downloadButton.setImage(UIImage(named:"ic_cloud_download_white"), for: .normal)
             self.downloadButton.isHidden = false
         }
     }

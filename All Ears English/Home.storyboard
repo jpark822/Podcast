@@ -10,8 +10,8 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Montserrat-Regular.ttf">
-            <string>Montserrat-Regular</string>
+        <array key="PT_Sans-Web-Regular.ttf">
+            <string>PTSans-Regular</string>
         </array>
     </customFonts>
     <scenes>
@@ -67,14 +67,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Do you love All Ears English? Please rate us now!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="rx0-tZ-aBj">
-                                <rect key="frame" x="16" y="82" width="343" height="59"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <rect key="frame" x="16" y="82" width="343" height="62.5"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Ib-MI-uAn">
-                                <rect key="frame" x="70" y="159" width="235" height="39"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
+                                <rect key="frame" x="84" y="162.5" width="207" height="41"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="22"/>
                                 <state key="normal" title="Yes, I will rate the app"/>
                                 <connections>
                                     <action selector="confirmPressed:" destination="J5w-bY-osR" eventType="touchUpInside" id="Hhf-8u-9X0"/>
@@ -113,7 +113,7 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="406" id="u7B-pd-qxv"/>
                                 </constraints>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="18"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="18"/>
                                 <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                 <dataDetectorType key="dataDetectorTypes" phoneNumber="YES" link="YES" address="YES"/>
                             </textView>
@@ -146,14 +146,14 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="If you love AEE please share it with a friend!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="eXs-Gf-mL3">
-                                <rect key="frame" x="16" y="81" width="343" height="59"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="24"/>
+                                <rect key="frame" x="16" y="81" width="343" height="62.5"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="24"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="uAi-Vk-e6A">
-                                <rect key="frame" x="100.5" y="160" width="175" height="39"/>
-                                <fontDescription key="fontDescription" name="Montserrat-Regular" family="Montserrat" pointSize="22"/>
+                                <rect key="frame" x="111" y="163.5" width="154" height="41"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="22"/>
                                 <state key="normal" title="Okay! Share app"/>
                                 <connections>
                                     <action selector="sharePressed:" destination="KbS-Xo-fMf" eventType="touchUpInside" id="tZn-VF-Axx"/>

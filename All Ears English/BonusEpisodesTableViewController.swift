@@ -45,7 +45,7 @@ class BonusEpisodesTableViewController: UITableViewController, EpisodePlayerView
     
     func setupRefreshControl() {
         self.pullToRefreshControl = UIRefreshControl()
-        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSFontAttributeName:UIFont(name: "Montserrat-Regular", size: 17.0)!])
+        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSFontAttributeName:UIFont(name: "PTSans-Regular", size: 17.0)!])
         self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControlEvents.valueChanged)
         self.pullToRefreshControl.backgroundColor = UIColor.white
         self.tableView.addSubview(self.pullToRefreshControl)

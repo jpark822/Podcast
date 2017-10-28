@@ -125,7 +125,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         if let moreNavTableView = self.moreNavigationController.topViewController?.view as? UITableView {
             if moreNavTableView.subviews.count > 0 {
                 for cell in moreNavTableView.visibleCells {
-                    cell.textLabel?.font = UIFont(name: "Montserrat-Regular", size: 16)
+                    cell.textLabel?.font = UIFont(name: "PTSans-Regular", size: 16)
                 }
             }
         }
