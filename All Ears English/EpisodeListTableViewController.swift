@@ -10,9 +10,11 @@ import UIKit
 import AlamofireImage
 import Alamofire
 
-class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate {
+class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate, UITableViewDataSource, UITableViewDelegate {
 
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     var pullToRefreshControl: UIRefreshControl!
+    @IBOutlet weak var tableView: UITableView!
     
     fileprivate var episodeItems:[Feed.Item] = []
     fileprivate var episodeCellReuseID = "EpisodeListCellReuseId"
@@ -21,8 +23,15 @@ class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewCo
         super.viewDidLoad()
         
         self.tableView.register(UINib(nibName: "EpisodeCell", bundle: nil) , forCellReuseIdentifier: self.episodeCellReuseID)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
         self.setupRefreshControl()
+        
+        //we only want this indicator for the initial empty state
+        self.loadingIndicator.startAnimating()
         self.fetchData()
+        
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
@@ -55,6 +64,8 @@ class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewCo
     func fetchData() {
         Feed.shared.fetchData { (feedItems) in
             DispatchQueue.main.async {
+                self.loadingIndicator.isHidden = true
+                
                 if let feedItems = feedItems {
                     self.episodeItems = feedItems
                     self.tableView.reloadData()
@@ -106,7 +117,7 @@ class EpisodeListTableViewController: UITableViewController, EpisodePlayerViewCo
 
 //MARK: TableView datasource and delegate
 extension EpisodeListTableViewController {
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.episodeCellReuseID, for: indexPath) as! EpisodeCell
         
         cell.item = self.episodeItems[indexPath.row]
@@ -115,15 +126,15 @@ extension EpisodeListTableViewController {
         return cell
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Feed.shared.items.count
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
         playerVC.episodeItem = self.episodeItems[indexPath.row]
         playerVC.feedType = .episodes
@@ -131,7 +142,7 @@ extension EpisodeListTableViewController {
         self.present(playerVC, animated: true)
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let episodeImage = UIImage(named: "episode_stub_image") else {
             return EpisodeCell.preferredDetailHeight
         }

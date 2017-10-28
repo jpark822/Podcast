@@ -10,8 +10,11 @@ import UIKit
 import AVKit
 import AVFoundation
 
-class BonusEpisodesTableViewController: UITableViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate {
+class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate, UITableViewDelegate, UITableViewDataSource {
     
+    
+    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var tableView: UITableView!
     var pullToRefreshControl: UIRefreshControl!
     
     fileprivate var episodeItems:[Feed.Item] = []
@@ -21,8 +24,15 @@ class BonusEpisodesTableViewController: UITableViewController, EpisodePlayerView
         super.viewDidLoad()
         
         self.tableView.register(UINib(nibName: "EpisodeCell", bundle: nil) , forCellReuseIdentifier: self.episodeCellReuseID)
+        self.tableView.dataSource = self
+        self.tableView.delegate = self
+        
         self.setupRefreshControl()
+        
+        //we only want this indicator for the initial empty state
+        self.loadingIndicator.startAnimating()
         self.fetchData()
+        
         self.automaticallyAdjustsScrollViewInsets = false
     }
 
@@ -54,6 +64,8 @@ class BonusEpisodesTableViewController: UITableViewController, EpisodePlayerView
     func fetchData() {
         Feed.shared.fetchBonusFeed { (feedItems) in
             DispatchQueue.main.async {
+                self.loadingIndicator.isHidden = true
+                
                 if let feedItems = feedItems {
                     self.episodeItems = feedItems
                     self.tableView.reloadData()
@@ -106,7 +118,7 @@ class BonusEpisodesTableViewController: UITableViewController, EpisodePlayerView
 
 //MARK: TableView datasource and delegate
 extension BonusEpisodesTableViewController {
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.episodeCellReuseID, for: indexPath) as! EpisodeCell
         
         cell.item = self.episodeItems[indexPath.row]
@@ -116,15 +128,15 @@ extension BonusEpisodesTableViewController {
         return cell
     }
     
-    override func numberOfSections(in tableView: UITableView) -> Int {
+    func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
     
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return Feed.shared.bonusItems.count
     }
     
-    override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let episodeImage = UIImage(named: "episode_stub_image") else {
             return EpisodeCell.preferredDetailHeight
         }
@@ -136,7 +148,7 @@ extension BonusEpisodesTableViewController {
         return newHeightWithDescription
     }
     
-    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let episodeItem = self.episodeItems[indexPath.row]
         
         if episodeItem.isVideoContent {
