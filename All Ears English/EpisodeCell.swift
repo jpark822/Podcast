@@ -19,6 +19,7 @@ protocol EpisodeCellDelegate:class {
 class EpisodeCell: UITableViewCell {
 
     @IBOutlet weak var episodeNumber: UILabel!
+    @IBOutlet weak var episodeNumberContainerView: UIView!
     @IBOutlet weak var episodeTitle: UILabel!
     @IBOutlet weak var episodeDetails: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
@@ -37,8 +38,12 @@ class EpisodeCell: UITableViewCell {
             guard let item = item else {
                 return
             }
-            self.downloadActivityIndicator.isHidden = true
+//            self.downloadActivityIndicator.isHidden = true
+            self.episodeNumber.text = item.number
+            self.episodeTitle.text = item.displayTitle
+            self.episodeDetails.text = item.displayDetails
             
+            //download/delete button state control
             if Cache.shared.isCurrentlyDownloadingItem(item) {
                 self.changeDownloadButtonToActivityIndicator()
             }
@@ -49,9 +54,7 @@ class EpisodeCell: UITableViewCell {
                 self.changeDownloadButtonToCloud()
             }
             
-            self.episodeNumber.text = item.number
-            self.episodeTitle.text = item.displayTitle
-            self.episodeDetails.text = item.displayDetails
+            //favorite button states
             if FavoritesManager.isItemInFavorites(item: item) {
                 let filledHeartImage = UIImage(named:"ic_heart_filled")?.withRenderingMode(.alwaysTemplate)
                 self.favoriteButton.tintColor = UIColor.red
@@ -63,6 +66,7 @@ class EpisodeCell: UITableViewCell {
                 self.favoriteButton.setImage(unfilledHeartImage, for: .normal)
             }
             
+            //setting the main image
             if let episodeNumber = item.number,
                 let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
                 
@@ -95,6 +99,7 @@ class EpisodeCell: UITableViewCell {
         }
         
         self.episodeNumber.isHidden = true
+        self.episodeNumberContainerView.backgroundColor = UIColor.AEEBonusBlue
         self.mediaItemTypeImageView.isHidden = false
         self.favoriteButton.isHidden = true
         
@@ -103,6 +108,18 @@ class EpisodeCell: UITableViewCell {
         }
         else {
             self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")
+        }
+        
+        if let imageUrl = URL(string: "https://s3.amazonaws.com/bonus-banner-images/830.jpg") {
+            self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                if response.result.value == nil {
+                    self.coverImageView.image = nil
+                    self.coverImageView.backgroundColor = UIColor.lightGray
+                }
+                else {
+                    self.coverImageView.backgroundColor = UIColor.clear
+                }
+            })
         }
     }
 
@@ -124,7 +141,7 @@ class EpisodeCell: UITableViewCell {
             self.changeDownloadButtonToActivityIndicator()
             
             if let delegate = self.delegate {
-                self.delegate?.episodeCellRequestDownload(episodeCell: self)
+                delegate.episodeCellRequestDownload(episodeCell: self)
             }
         }
     }
@@ -170,6 +187,7 @@ class EpisodeCell: UITableViewCell {
         self.episodeNumber.isHidden = false
         self.mediaItemTypeImageView.isHidden = true
         self.favoriteButton.isHidden = false
+        self.episodeNumberContainerView.backgroundColor = UIColor.AEEYellow
         
         self.downloadActivityIndicator.isHidden = true
         

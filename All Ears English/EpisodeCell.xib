@@ -21,7 +21,7 @@
             <rect key="frame" x="0.0" y="0.0" width="403" height="360"/>
             <autoresizingMask key="autoresizingMask"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="lxe-vq-LpI" id="9yO-Ob-tpx">
-                <rect key="frame" x="0.0" y="0.0" width="403" height="360"/>
+                <rect key="frame" x="0.0" y="0.0" width="403" height="359.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="X2p-b3-VNa">
@@ -55,7 +55,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date • 01:23" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UW1-gJ-1ye">
-                                <rect key="frame" x="103" y="84" width="66.5" height="14"/>
+                                <rect key="frame" x="103" y="82" width="64.5" height="16"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="12"/>
                                 <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <nil key="highlightedColor"/>
@@ -72,14 +72,14 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDY-2R-iox">
-                                <rect key="frame" x="177" y="73" width="25" height="25"/>
+                                <rect key="frame" x="175" y="73" width="25" height="25"/>
                                 <state key="normal" image="ic_cloud_download_white"/>
                                 <connections>
                                     <action selector="downloadPressed:" destination="lxe-vq-LpI" eventType="touchUpInside" id="GhX-zW-Wkd"/>
                                 </connections>
                             </button>
                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="751" verticalHuggingPriority="751" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-G3-K9l">
-                                <rect key="frame" x="177" y="73" width="25" height="25"/>
+                                <rect key="frame" x="175" y="73" width="25" height="25"/>
                             </activityIndicatorView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is a very very very very very very very long long long loooooong title in a very small space" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dg-Eg-CB9">
                                 <rect key="frame" x="103" y="8" width="292" height="66"/>
@@ -130,6 +130,7 @@
                 <outlet property="downloadButton" destination="dDY-2R-iox" id="ttO-Z4-SHn"/>
                 <outlet property="episodeDetails" destination="UW1-gJ-1ye" id="Ua3-Dw-YNA"/>
                 <outlet property="episodeNumber" destination="uCl-GU-toc" id="ooe-He-1AY"/>
+                <outlet property="episodeNumberContainerView" destination="VxW-ii-kbu" id="F5x-5P-8tW"/>
                 <outlet property="episodeTitle" destination="9dg-Eg-CB9" id="IVd-oL-9Vw"/>
                 <outlet property="favoriteButton" destination="63r-qf-2TP" id="RDc-9Y-0DJ"/>
                 <outlet property="mediaItemTypeImageView" destination="Uc0-Hc-Dgn" id="4tt-ea-Tua"/>
