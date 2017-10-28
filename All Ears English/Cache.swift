@@ -32,10 +32,19 @@ class Cache: NSObject {
         }
     }
 
-    fileprivate func getLocalURL(_ guid: String) -> URL? {
+    fileprivate func getLocalURL(item:Feed.Item) -> URL? {
+        
+        guard let guid = item.guid,
+            let link = item.link else {
+            return nil
+        }
+        
+        let convertedString:NSString = NSString(string: link)
+        let pathExtension = item.isVideoContent ? convertedString.pathExtension : "mp3"
+        
         let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         var localURL = baseURL?.appendingPathComponent("episodes", isDirectory: true)
-        localURL = localURL?.appendingPathComponent("\(guid).mp3")
+        localURL = localURL?.appendingPathComponent("\(guid).\(pathExtension)")
         return localURL
     }
     
@@ -58,7 +67,7 @@ class Cache: NSObject {
         if let url = self.items[guid] {
             return url
         }
-        let localURL = self.getLocalURL(guid)
+        let localURL = self.getLocalURL(item:item)
         do {
             let exists = try localURL?.checkResourceIsReachable()
             if exists != nil && exists! {
@@ -76,7 +85,7 @@ class Cache: NSObject {
         guard let item = item,
               let url = item.url,
               let guid = item.guid,
-              let localURL = self.getLocalURL(guid) else {
+            let localURL = self.getLocalURL(item: item) else {
             return
         }
         let sessionConfig = URLSessionConfiguration.default
@@ -119,7 +128,7 @@ class Cache: NSObject {
     func delete(item: Feed.Item?, completion: @escaping (Bool) -> Void) {
         guard let item = item,
             let guid = item.guid,
-            let localUrl = self.getLocalURL(guid) else { 
+            let localUrl = self.getLocalURL(item: item) else {
                 completion(false)
                 return
         }
