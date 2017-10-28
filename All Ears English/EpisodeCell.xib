@@ -61,7 +61,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="this is a very very very very very very very long long long loooooong title in a very small space" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9dg-Eg-CB9">
-                                <rect key="frame" x="103" y="18.5" width="292" height="62.5"/>
+                                <rect key="frame" x="103" y="19" width="292" height="62.5"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="16"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -73,9 +73,20 @@
                                     <action selector="favoritesButtonPressed:" destination="lxe-vq-LpI" eventType="touchUpInside" id="8gM-yk-9og"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dDY-2R-iox">
+                                <rect key="frame" x="175" y="74" width="24" height="24"/>
+                                <state key="normal" image="ic_cloud_download"/>
+                                <connections>
+                                    <action selector="downloadPressed:" destination="lxe-vq-LpI" eventType="touchUpInside" id="GhX-zW-Wkd"/>
+                                </connections>
+                            </button>
+                            <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="D7C-G3-K9l">
+                                <rect key="frame" x="177" y="76" width="20" height="20"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
+                            <constraint firstItem="D7C-G3-K9l" firstAttribute="centerY" secondItem="dDY-2R-iox" secondAttribute="centerY" id="1d0-9j-JQW"/>
                             <constraint firstItem="UW1-gJ-1ye" firstAttribute="leading" secondItem="VxW-ii-kbu" secondAttribute="trailing" constant="7.5" id="5py-WP-QZD"/>
                             <constraint firstItem="VxW-ii-kbu" firstAttribute="leading" secondItem="zoH-4Y-vkM" secondAttribute="leading" id="FQ6-xy-jKU"/>
                             <constraint firstItem="9dg-Eg-CB9" firstAttribute="leading" secondItem="VxW-ii-kbu" secondAttribute="trailing" constant="7.5" id="LLx-Gs-zok"/>
@@ -83,8 +94,11 @@
                             <constraint firstItem="VxW-ii-kbu" firstAttribute="top" secondItem="zoH-4Y-vkM" secondAttribute="top" id="YdD-uo-L46"/>
                             <constraint firstItem="9dg-Eg-CB9" firstAttribute="centerY" secondItem="uCl-GU-toc" secondAttribute="centerY" id="cn3-0y-PRU"/>
                             <constraint firstItem="UW1-gJ-1ye" firstAttribute="bottom" secondItem="VxW-ii-kbu" secondAttribute="bottom" id="cp2-lc-QHM"/>
+                            <constraint firstItem="dDY-2R-iox" firstAttribute="leading" secondItem="UW1-gJ-1ye" secondAttribute="trailing" constant="7.5" id="eu4-5A-BMu"/>
                             <constraint firstAttribute="trailing" secondItem="9dg-Eg-CB9" secondAttribute="trailing" constant="8" id="g0h-q6-Xqc"/>
+                            <constraint firstItem="D7C-G3-K9l" firstAttribute="centerX" secondItem="dDY-2R-iox" secondAttribute="centerX" id="iJH-7v-0lq"/>
                             <constraint firstAttribute="bottom" secondItem="VxW-ii-kbu" secondAttribute="bottom" constant="2" id="iMz-vR-Hio"/>
+                            <constraint firstItem="dDY-2R-iox" firstAttribute="bottom" secondItem="UW1-gJ-1ye" secondAttribute="bottom" id="lxT-E6-6MI"/>
                             <constraint firstItem="63r-qf-2TP" firstAttribute="bottom" secondItem="UW1-gJ-1ye" secondAttribute="bottom" id="okC-wo-z20"/>
                             <constraint firstAttribute="trailing" secondItem="63r-qf-2TP" secondAttribute="trailing" constant="8" id="zlp-9k-Yuh"/>
                         </constraints>
@@ -102,6 +116,8 @@
             </tableViewCellContentView>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
+                <outlet property="downloadActivityIndicator" destination="D7C-G3-K9l" id="iGj-1Q-Yoy"/>
+                <outlet property="downloadButton" destination="dDY-2R-iox" id="ttO-Z4-SHn"/>
                 <outlet property="episodeDetails" destination="UW1-gJ-1ye" id="Ua3-Dw-YNA"/>
                 <outlet property="episodeNumber" destination="uCl-GU-toc" id="ooe-He-1AY"/>
                 <outlet property="episodeTitle" destination="9dg-Eg-CB9" id="IVd-oL-9Vw"/>
@@ -113,6 +129,7 @@
     </objects>
     <resources>
         <image name="episode_stub_image" width="16" height="16"/>
+        <image name="ic_cloud_download" width="24" height="24"/>
         <image name="ic_heart_filled" width="25" height="25"/>
     </resources>
 </document>

@@ -110,8 +110,20 @@ extension BonusEpisodesTableViewController {
         let episodeItem = self.episodeItems[indexPath.row]
         
         if episodeItem.isVideoContent {
-            let videoURL = URL(string: episodeItem.url!)
-            let player = AVPlayer(url: videoURL!)
+            var finalUrl:URL? = nil
+            
+            if let localURL = Cache.shared.get(episodeItem) {
+                finalUrl = localURL
+            }
+            else if let urlString = episodeItem.url,
+                let remoteUrl = URL(string: urlString) {
+                finalUrl = remoteUrl
+            }
+            guard let videoURL = finalUrl else {
+                return
+            }
+        
+            let player = AVPlayer(url: videoURL)
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player
             self.present(playerViewController, animated: true) {
@@ -150,5 +162,15 @@ extension BonusEpisodesTableViewController {
         }
         
         self.tableView.reloadRows(at: [episodeCell.indexPath], with: .none)
+    }
+    
+    func episodeCellRequestDownload(episodeCell: EpisodeCell) {
+        guard let cellItem = episodeCell.item else {
+            return
+        }
+        
+        Cache.shared.download(cellItem, callback: { (downloadedItem) in
+            self.tableView.reloadRows(at: [episodeCell.indexPath], with: .none)
+        })
     }
 }

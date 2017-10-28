@@ -117,6 +117,16 @@ extension FavoritesListTableViewController {
         self.favoriteItems = FavoritesManager.sharedInstance.getAllStoredFavorites()
         self.tableView.reloadData()
     }
+    
+    func episodeCellRequestDownload(episodeCell: EpisodeCell) {
+        guard let cellItem = episodeCell.item else {
+            return
+        }
+        
+        Cache.shared.download(cellItem, callback: { (downloadedItem) in
+            self.tableView.reloadRows(at: [episodeCell.indexPath], with: .none)
+        })
+    }
 }
 
 //MARK: EpisodePlayerViewControllerDelegate

@@ -10,6 +10,7 @@ import UIKit
 
 protocol EpisodeCellDelegate:class {
     func episodeCellDidTapFavoriteButton(episodeCell:EpisodeCell)
+    func episodeCellRequestDownload(episodeCell:EpisodeCell)
 }
 
 //episode cell begins configured for episodes. you must call "configureAsBonusItem" for the bonus screen
@@ -20,6 +21,8 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var episodeDetails: UILabel!
     @IBOutlet weak var favoriteButton: UIButton!
     @IBOutlet weak var mediaItemTypeImageView: UIImageView!
+    @IBOutlet weak var downloadButton: UIButton!
+    @IBOutlet weak var downloadActivityIndicator: UIActivityIndicatorView!
     
     //dependencies
     var delegate:EpisodeCellDelegate?
@@ -30,14 +33,30 @@ class EpisodeCell: UITableViewCell {
             guard let item = item else {
                 return
             }
+            self.downloadActivityIndicator.isHidden = true
+            
+            if Cache.shared.isCurrentlyDownloadingItem(item) {
+                self.changeDownloadButtonToActivityIndicator()
+            }
+            else if Cache.shared.get(item) != nil {
+                self.changeDownloadButtonToTrash()
+            }
+            else {
+                self.changeDownloadButtonToCloud()
+            }
+            
             self.episodeNumber.text = item.number
             self.episodeTitle.text = item.displayTitle
             self.episodeDetails.text = item.displayDetails
             if FavoritesManager.isItemInFavorites(item: item) {
-                self.favoriteButton.setImage(UIImage(named:"ic_heart_filled"), for: .normal)
+                let filledHeartImage = UIImage(named:"ic_heart_filled")?.withRenderingMode(.alwaysTemplate)
+                self.favoriteButton.tintColor = UIColor.red
+                self.favoriteButton.setImage(filledHeartImage, for: .normal)
             }
             else {
-                self.favoriteButton.setImage(UIImage(named:"ic_heart_unfilled"), for: .normal)
+                let unfilledHeartImage = UIImage(named:"ic_heart_unfilled")?.withRenderingMode(.alwaysTemplate)
+                self.favoriteButton.tintColor = UIColor.black
+                self.favoriteButton.setImage(unfilledHeartImage, for: .normal)
             }
             
             
@@ -68,10 +87,58 @@ class EpisodeCell: UITableViewCell {
         else {
             self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")
         }
-        
-        
     }
 
+    @IBAction func downloadPressed(_ sender: Any) {
+        guard let item = self.item else {
+            return
+        }
+        
+        //item already downloaded which means we're deleting
+        if Cache.shared.get(item) != nil {
+            Cache.shared.delete(item: item, completion: { (success) in
+                if success == true && self.item?.guid == item.guid {
+                    self.changeDownloadButtonToCloud()
+                }
+            })
+        }
+        //item doesn't exist so download it
+        else {
+            self.changeDownloadButtonToActivityIndicator()
+            
+            if let delegate = self.delegate {
+                self.delegate?.episodeCellRequestDownload(episodeCell: self)
+            }
+        }
+    }
+    
+    func changeDownloadButtonToTrash() {
+        DispatchQueue.main.async {
+            self.downloadActivityIndicator.stopAnimating()
+            self.downloadActivityIndicator.isHidden = true
+            
+            self.downloadButton.setImage(UIImage(named:"ic_trash"), for: .normal)
+            self.downloadButton.isHidden = false
+        }
+    }
+    func changeDownloadButtonToCloud() {
+        DispatchQueue.main.async {
+            self.downloadActivityIndicator.stopAnimating()
+            self.downloadActivityIndicator.isHidden = true
+            
+            self.downloadButton.setImage(UIImage(named:"ic_cloud_download"), for: .normal)
+            self.downloadButton.isHidden = false
+        }
+    }
+    
+    func changeDownloadButtonToActivityIndicator() {
+        DispatchQueue.main.async {
+            self.downloadActivityIndicator.startAnimating()
+            self.downloadActivityIndicator.isHidden = false
+            self.downloadButton.isHidden = true
+        }
+    }
+    
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
@@ -86,6 +153,8 @@ class EpisodeCell: UITableViewCell {
         self.episodeNumber.isHidden = false
         self.mediaItemTypeImageView.isHidden = true
         self.favoriteButton.isHidden = false
+        
+        self.downloadActivityIndicator.isHidden = true
     }
 
 }
