@@ -46,6 +46,7 @@ class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, E
         self.updateContentInsetBasedOnNowPlayingBanner()
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
     }
 
     override func viewWillDisappear(_ animated: Bool) {
@@ -54,6 +55,23 @@ class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, E
         NotificationCenter.default.removeObserver(self)
     }
 
+    func episodeItemCachedStateDidChange(notification: Notification) {
+        guard let userInfo = notification.userInfo,
+            let guid = userInfo["guid"] as? String else {
+                return
+        }
+        
+        var index = 0
+        for item in self.favoriteItems {
+            if item.guid == guid {
+                let indexPath = IndexPath(row: index, section: 0)
+                self.tableView.reloadRows(at: [indexPath], with: .none)
+                break
+            }
+            index += 1
+        }
+    }
+    
     func nowPlayingBannerDidShowHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }

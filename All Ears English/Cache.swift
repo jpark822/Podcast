@@ -11,7 +11,7 @@ import UIKit
 class Cache: NSObject {
 
     static var shared = Cache()
-    static let episodeDidFinishDownloadingNotification:Notification.Name = Notification.Name(rawValue: "episodeDidFinishDownloadingNotification")
+    static let episodeItemDidChangeCachedStateNotification:Notification.Name = Notification.Name(rawValue: "episodeItemDidChangeCachedStateNotification")
 
     fileprivate var items: [String: URL?] = [:]
     
@@ -148,7 +148,9 @@ class Cache: NSObject {
         if let indexOfGuid = self.currentlyDownloadingGuids.index(of: guid) {
             self.currentlyDownloadingGuids.remove(at: indexOfGuid)
         }
-        NotificationCenter.default.post(name: Cache.episodeDidFinishDownloadingNotification, object: nil, userInfo: ["guid":guid])
+        DispatchQueue.main.async {
+            NotificationCenter.default.post(name: Cache.episodeItemDidChangeCachedStateNotification, object: nil, userInfo: ["guid":guid])
+        }
     }
 
 }
