@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 class Cache: NSObject {
 
@@ -18,6 +20,19 @@ class Cache: NSObject {
     var currentlyDownloadingGuids:[String] = []
 
     override init() {
+        
+        let imageCache = AutoPurgingImageCache(
+            memoryCapacity: 900 * 1024 * 1024,
+            preferredMemoryUsageAfterPurge: 600 * 1024 * 1024
+        )
+
+        UIImageView.af_sharedImageDownloader = ImageDownloader(
+            configuration: ImageDownloader.defaultURLSessionConfiguration(),
+            downloadPrioritization: ImageDownloader.DownloadPrioritization.fifo,
+            maximumActiveDownloads: 10,
+            imageCache:imageCache
+        )
+        
         do {
             let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
             let localURL = baseURL?.appendingPathComponent("episodes", isDirectory: true)

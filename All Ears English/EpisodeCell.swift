@@ -7,6 +7,8 @@
 //
 
 import UIKit
+import Alamofire
+import AlamofireImage
 
 protocol EpisodeCellDelegate:class {
     func episodeCellDidTapFavoriteButton(episodeCell:EpisodeCell)
@@ -23,11 +25,13 @@ class EpisodeCell: UITableViewCell {
     @IBOutlet weak var mediaItemTypeImageView: UIImageView!
     @IBOutlet weak var downloadButton: UIButton!
     @IBOutlet weak var downloadActivityIndicator: UIActivityIndicatorView!
+    @IBOutlet weak var coverImageView: UIImageView!
     
     //dependencies
     var delegate:EpisodeCellDelegate?
     var indexPath:IndexPath!
 
+    static let preferredDetailHeight:CGFloat = 100
     var item: Feed.Item? {
         didSet {
             guard let item = item else {
@@ -59,7 +63,15 @@ class EpisodeCell: UITableViewCell {
                 self.favoriteButton.setImage(unfilledHeartImage, for: .normal)
             }
             
-            
+            if let episodeNumber = item.number,
+                let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
+                
+                self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: UIImage(named: "ic_cloud_download"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (image) in
+                })
+            }
+            else {
+                self.coverImageView.image = UIImage(named: "episode_stub_image")
+            }
         }
     }
 
@@ -155,6 +167,8 @@ class EpisodeCell: UITableViewCell {
         self.favoriteButton.isHidden = false
         
         self.downloadActivityIndicator.isHidden = true
+        
+        self.coverImageView.image = nil
     }
 
 }

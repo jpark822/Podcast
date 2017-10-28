@@ -133,13 +133,13 @@ extension EpisodeListTableViewController {
     
     override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         guard let episodeImage = UIImage(named: "episode_stub_image") else {
-            return 100
+            return EpisodeCell.preferredDetailHeight
         }
         let oldWidth = episodeImage.size.width
         let oldHeight = episodeImage.size.height
         let aspectRatio = oldHeight/oldWidth
         let newHeight = aspectRatio * self.tableView.frame.size.width
-        let newHeightWithDescription = newHeight + 100
+        let newHeightWithDescription = newHeight + EpisodeCell.preferredDetailHeight
         return newHeightWithDescription
     }
 }
