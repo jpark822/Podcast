@@ -66,11 +66,16 @@ class EpisodeCell: UITableViewCell {
             if let episodeNumber = item.number,
                 let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
                 
-                self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: UIImage(named: "ic_cloud_download"), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (image) in
+                self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                    if response.result.value == nil {
+                        self.coverImageView.image = nil
+                        self.coverImageView.backgroundColor = UIColor.lightGray
+                    }
                 })
             }
             else {
-                self.coverImageView.image = UIImage(named: "episode_stub_image")
+                self.coverImageView.image = nil
+                self.coverImageView.backgroundColor = UIColor.lightGray
             }
         }
     }
@@ -169,6 +174,7 @@ class EpisodeCell: UITableViewCell {
         self.downloadActivityIndicator.isHidden = true
         
         self.coverImageView.image = nil
+        self.coverImageView.backgroundColor = UIColor.clear
     }
 
 }
