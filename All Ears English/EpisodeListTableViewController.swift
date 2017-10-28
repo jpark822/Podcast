@@ -59,6 +59,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControlEvents.valueChanged)
         self.pullToRefreshControl.backgroundColor = UIColor.white
         self.tableView.addSubview(self.pullToRefreshControl)
+        self.tableView.refreshControl = self.pullToRefreshControl
     }
 
     func fetchData() {
