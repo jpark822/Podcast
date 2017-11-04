@@ -10,6 +10,7 @@ import UIKit
 import Crashlytics
 import Alamofire
 import SwiftyXMLParser
+import Foundation
 
 class Feed: NSObject {
 
@@ -60,6 +61,27 @@ class Feed: NSObject {
         }
     }
 
+    func fetchLocalEpisodeItems() -> [Feed.Item] {
+        var items:[Feed.Item] = []
+        
+        let path = Bundle.main.path(forResource: "localEpisodeFeed", ofType: "xml")
+        
+        do {
+            let xmlString = try String(contentsOfFile: path!)
+            
+            let xml = try XML.parse(xmlString)
+            
+            let channel = xml["rss", "channel"]
+            for xmlItem in channel["item"] {
+                let newItem = Item(xmlItem)
+                items.append(newItem)
+            }
+            return items
+        }
+        catch {
+            return []
+        }
+    }
 
 
 

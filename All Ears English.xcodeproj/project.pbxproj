@@ -68,6 +68,7 @@
 		4E687F811F84F1120095CAAA /* NowPlayingBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F801F84F1120095CAAA /* NowPlayingBannerView.swift */; };
 		4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */; };
 		4E687F8E1F8C18710095CAAA /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */; };
+		4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */; };
 		76CBA8E68F3DEA2363825682 /* Pods_All_Ears_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */; };
 /* End PBXBuildFile section */
 
@@ -137,6 +138,7 @@
 		4E687F801F84F1120095CAAA /* NowPlayingBannerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NowPlayingBannerView.swift; sourceTree = "<group>"; };
 		4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
+		4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = localEpisodeFeed.xml; sourceTree = "<group>"; };
 		DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All Ears English.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English.debug.xcconfig"; sourceTree = "<group>"; };
 		EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_All_Ears_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -347,6 +349,7 @@
 		4E4AE99A1F926EEE00B6CF10 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */,
 				46C7A2AC1EFB967200B9AA23 /* Feed.swift */,
 				4E4AE99B1F926EFE00B6CF10 /* Feed+Bonus.swift */,
 			);
@@ -526,6 +529,7 @@
 				46993BEA1EFB72AC00806635 /* style.css in Resources */,
 				46993BE21EFB6E0200806635 /* Nunito-Regular.ttf in Resources */,
 				4640CD4E1EFA3CA9006B0C5E /* Jessica.png in Resources */,
+				4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */,
 				4640CD471EFA267D006B0C5E /* contactus.html in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

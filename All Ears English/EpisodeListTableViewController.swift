@@ -12,12 +12,12 @@ import Alamofire
 
 class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate, UITableViewDataSource, UITableViewDelegate {
 
-    @IBOutlet weak var loadingIndicator: UIActivityIndicatorView!
     var pullToRefreshControl: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
     
     fileprivate var episodeItems:[Feed.Item] = []
     fileprivate var episodeCellReuseID = "EpisodeListCellReuseId"
+    fileprivate var isFirstLaunch = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,11 +28,17 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         
         self.setupRefreshControl()
         
-        //we only want this indicator for the initial empty state
-        self.loadingIndicator.startAnimating()
-        self.fetchData()
+        self.episodeItems = Feed.shared.fetchLocalEpisodeItems()
         
         self.automaticallyAdjustsScrollViewInsets = false
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if self.isFirstLaunch == true {
+            self.showRefreshControl()
+            self.fetchData()
+        }
+        self.isFirstLaunch = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -61,11 +67,21 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         self.tableView.addSubview(self.pullToRefreshControl)
         self.tableView.refreshControl = self.pullToRefreshControl
     }
+    
+    func showRefreshControl() {
+        self.pullToRefreshControl.beginRefreshing()
+        if (self.tableView.contentOffset.y == 0) {
+            UIView.animate(withDuration: 0.25, delay: 0, options: [UIViewAnimationOptions.beginFromCurrentState], animations: { 
+                self.tableView.contentOffset = CGPoint(x:0, y: -self.tableView.refreshControl!.frame.size.height)
+            }, completion: { (finished) in
+                
+            })
+        }
+    }
 
     func fetchData() {
         Feed.shared.fetchData { (feedItems) in
             DispatchQueue.main.async {
-                self.loadingIndicator.isHidden = true
                 
                 if let feedItems = feedItems {
                     self.episodeItems = feedItems
@@ -132,7 +148,7 @@ extension EpisodeListTableViewController {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Feed.shared.items.count
+        return self.episodeItems.count
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {

@@ -211,22 +211,16 @@
                                 <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
-                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="bQf-B4-1Bc">
-                                <rect key="frame" x="150" y="274" width="20" height="20"/>
-                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstItem="bQf-B4-1Bc" firstAttribute="centerY" secondItem="JBx-m5-WY3" secondAttribute="centerY" id="Ib1-Mf-vTN"/>
                             <constraint firstAttribute="trailing" secondItem="O62-fq-MeV" secondAttribute="trailing" id="d0S-zd-Qxt"/>
                             <constraint firstAttribute="topMargin" secondItem="O62-fq-MeV" secondAttribute="top" id="gfg-Ae-tQI"/>
                             <constraint firstAttribute="bottomMargin" secondItem="O62-fq-MeV" secondAttribute="bottom" id="vqp-Pp-Wx4"/>
                             <constraint firstItem="O62-fq-MeV" firstAttribute="leading" secondItem="JBx-m5-WY3" secondAttribute="leading" id="wPW-I3-Bfj"/>
-                            <constraint firstItem="bQf-B4-1Bc" firstAttribute="centerX" secondItem="JBx-m5-WY3" secondAttribute="centerX" id="yU3-hW-doN"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="loadingIndicator" destination="bQf-B4-1Bc" id="VRG-TQ-M1S"/>
                         <outlet property="tableView" destination="O62-fq-MeV" id="a5J-BF-tqm"/>
                     </connections>
                 </viewController>
