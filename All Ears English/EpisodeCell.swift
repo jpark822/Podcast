@@ -98,7 +98,7 @@ class EpisodeCell: UITableViewCell {
         }
         
         self.episodeNumber.isHidden = true
-        self.episodeNumberContainerView.backgroundColor = UIColor.AEEBonusBlue
+
         self.mediaItemTypeImageView.isHidden = false
         self.favoriteButton.isHidden = true
         

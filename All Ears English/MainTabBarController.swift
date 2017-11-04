@@ -90,13 +90,14 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         aboutUsVC.tabBarItem = UITabBarItem(title: "About Us", image: aboutUsTabImage, tag: 0)
         _ = aboutUsVC.view
         
-        let quickLinksVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
-        quickLinksVC.title = "Quick Links"
-        quickLinksVC.doesReloadOnViewWillAppear = true
-        quickLinksVC.url = URL(string: "https://www.allearsenglish.com/resources/")
-        let quickLinksVCTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_quick_links")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_quick_links")
-        quickLinksVC.tabBarItem = UITabBarItem(title: "Quick Links", image: quickLinksVCTabImage, tag: 0)
-        _ = quickLinksVC.view
+//        let quickLinksVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
+//        quickLinksVC.title = "Quick Links"
+//        quickLinksVC.doesReloadOnViewWillAppear = true
+//        quickLinksVC.url = URL(string: "https://www.allearsenglish.com/resources/")
+//        let quickLinksVCTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_quick_links")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_quick_links")
+//        quickLinksVC.tabBarItem = UITabBarItem(title: "Quick Links", image: quickLinksVCTabImage, tag: 0)
+//        _ = quickLinksVC.view
+        
         let contactUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "ContactUsViewControllerId") as! ContactUsViewController
         contactUsVC.title = "Contact Us"
         let contactUsTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_contact_us")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_contact_us")
@@ -118,7 +119,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         shareNavVC.tabBarItem = UITabBarItem(title: "Share", image: shareVCTabImage, tag: 0)
         _ = shareVC.view
         
-        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, quickLinksVC, contactUsNavVC, rateUsNavVC, shareNavVC]
+        self.viewControllers = [epispodeNavVC, bonusesNavVC, favoritesNavVC, freeTipsNavVC, aboutUsVC, contactUsNavVC, rateUsNavVC, shareNavVC]
     }
     
     func configureMoreNavigationStyle() {
