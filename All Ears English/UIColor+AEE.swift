@@ -15,4 +15,10 @@ extension UIColor {
             return UIColor(red: 254.0/255.0, green: 225.0/255.0, blue: 1/255.0, alpha: 1)
         }
     }
+    
+    static var AEEBonusPink:UIColor {
+        get {
+            return UIColor(red: 255.0/255.0, green: 105.0/255.0, blue: 180.0/255.0, alpha: 1)
+        }
+    }
 }
