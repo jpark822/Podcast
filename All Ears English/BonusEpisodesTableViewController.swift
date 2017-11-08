@@ -44,7 +44,6 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
         
-        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

@@ -69,7 +69,7 @@ class EpisodeCell: UITableViewCell {
             if let episodeNumber = item.number, !episodeNumber.isEmpty,
                 let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
                 
-                self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: self.getRandomPlaceholderImageForEpisode(), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
                     if response.result.value == nil {
                         //there is no dedicated image or it failed
                         self.coverImageView.image = UIImage(named: "episode_stub_image")
@@ -109,7 +109,7 @@ class EpisodeCell: UITableViewCell {
             self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")
         }
         
-        self.coverImageView.image = UIImage(named: "episode_stub_image")
+        self.coverImageView.image = self.getRandomBonusEpisodeImage()
     }
 
     @IBAction func downloadPressed(_ sender: Any) {
@@ -184,5 +184,20 @@ class EpisodeCell: UITableViewCell {
         self.coverImageView.backgroundColor = UIColor.clear
     }
 
+}
+
+//MARK: random placeholder image helpers
+extension EpisodeCell {
+    fileprivate func getRandomPlaceholderImageForEpisode() -> UIImage {
+        let randomInt = arc4random_uniform(4)
+        let randomImage = UIImage(named: "episode_placeholder_image_\(randomInt)")!
+        return randomImage
+    }
+    
+    fileprivate func getRandomBonusEpisodeImage() -> UIImage {
+        let randomInt = arc4random_uniform(4)
+        let randomImage = UIImage(named: "bonus_random_image_\(randomInt)")!
+        return randomImage
+    }
 }
 
