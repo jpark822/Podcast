@@ -69,6 +69,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let initialViewController = storyboard.instantiateViewController(withIdentifier: "SplashViewController")
+        Cache.shared.copyPreloadedEpiosdesToCache()
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()

@@ -118,6 +118,7 @@ class Cache: NSObject {
                 }
                 do {
                     try FileManager.default.copyItem(at: tempLocalURL, to: localURL)
+
                     self.items[guid] = localURL
                     DispatchQueue.main.async {
                         callback(item)
@@ -138,6 +139,27 @@ class Cache: NSObject {
             }
         }
         task.resume()
+    }
+    
+    func copyPreloadedEpiosdesToCache() {
+        let episodes = Feed.shared.fetchLocalEpisodeItems()
+        for episode in episodes {
+            if let guid = episode.guid,
+                let bundleItemPath = Bundle.main.path(forResource: guid, ofType: "mp3") {
+                let baseURL = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+                var localURL = baseURL?.appendingPathComponent("episodes", isDirectory: true)
+                localURL = localURL?.appendingPathComponent("\(guid)")
+                
+                do {
+                    let localURL = self.getLocalURL(item: episode)
+                    try FileManager.default.copyItem(atPath: bundleItemPath, toPath: localURL!.path)
+                }
+                catch let error as NSError {
+                    print("error copying files")
+                    print(error.userInfo)
+                }
+            }
+        }
     }
     
     func delete(item: Feed.Item?, completion: @escaping (Bool) -> Void) {

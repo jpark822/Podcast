@@ -69,6 +69,10 @@
 		4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */; };
 		4E687F8E1F8C18710095CAAA /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */; };
 		4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */; };
+		4EF701561FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */; };
+		4EF701591FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */; };
+		4EF7015B1FB330B300A6C0A4 /* 5b475b5c72c41d13874bb5367b25d0bd.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF7015A1FB330B300A6C0A4 /* 5b475b5c72c41d13874bb5367b25d0bd.mp3 */; };
+		4EF7015D1FB330CA00A6C0A4 /* c29c8a597a77de3a959d463838bdffd7.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF7015C1FB330CA00A6C0A4 /* c29c8a597a77de3a959d463838bdffd7.mp3 */; };
 		76CBA8E68F3DEA2363825682 /* Pods_All_Ears_English.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */; };
 /* End PBXBuildFile section */
 
@@ -139,6 +143,10 @@
 		4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = localEpisodeFeed.xml; sourceTree = "<group>"; };
+		4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 7b7979ab224c3df9f64c70eb78171e45.mp3; sourceTree = "<group>"; };
+		4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 8842ad63259786d023b3055a8f8df06d.mp3; sourceTree = "<group>"; };
+		4EF7015A1FB330B300A6C0A4 /* 5b475b5c72c41d13874bb5367b25d0bd.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 5b475b5c72c41d13874bb5367b25d0bd.mp3; sourceTree = "<group>"; };
+		4EF7015C1FB330CA00A6C0A4 /* c29c8a597a77de3a959d463838bdffd7.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = c29c8a597a77de3a959d463838bdffd7.mp3; sourceTree = "<group>"; };
 		DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-All Ears English.debug.xcconfig"; path = "Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English.debug.xcconfig"; sourceTree = "<group>"; };
 		EC91E1602CF95C0D4F0F1C7E /* Pods_All_Ears_English.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_All_Ears_English.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -349,6 +357,10 @@
 		4E4AE99A1F926EEE00B6CF10 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */,
+				4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */,
+				4EF7015A1FB330B300A6C0A4 /* 5b475b5c72c41d13874bb5367b25d0bd.mp3 */,
+				4EF7015C1FB330CA00A6C0A4 /* c29c8a597a77de3a959d463838bdffd7.mp3 */,
 				4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */,
 				46C7A2AC1EFB967200B9AA23 /* Feed.swift */,
 				4E4AE99B1F926EFE00B6CF10 /* Feed+Bonus.swift */,
@@ -514,9 +526,12 @@
 				4E687F8E1F8C18710095CAAA /* EpisodeCell.xib in Resources */,
 				4672E5E71EF8787B006B5F25 /* LaunchScreen.storyboard in Resources */,
 				466FD2A51EF891BA009E3ACC /* GoogleService-Info.plist in Resources */,
+				4EF701561FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 in Resources */,
 				4640CD4F1EFA3CA9006B0C5E /* Lindsay-Michelle.png in Resources */,
 				4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */,
+				4EF701591FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 in Resources */,
 				46993BE01EFB6DA800806635 /* PT_Sans-Web-Regular.ttf in Resources */,
+				4EF7015D1FB330CA00A6C0A4 /* c29c8a597a77de3a959d463838bdffd7.mp3 in Resources */,
 				4640CD511EFA3CA9006B0C5E /* Michelle.png in Resources */,
 				4672E5E41EF8787B006B5F25 /* Assets.xcassets in Resources */,
 				4640CD501EFA3CA9006B0C5E /* Lindsay.png in Resources */,
@@ -531,6 +546,7 @@
 				4640CD4E1EFA3CA9006B0C5E /* Jessica.png in Resources */,
 				4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */,
 				4640CD471EFA267D006B0C5E /* contactus.html in Resources */,
+				4EF7015B1FB330B300A6C0A4 /* 5b475b5c72c41d13874bb5367b25d0bd.mp3 in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
