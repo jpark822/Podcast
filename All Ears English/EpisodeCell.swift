@@ -71,14 +71,14 @@ class EpisodeCell: UITableViewCell {
                 
                 self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
                     if response.result.value == nil {
-                        self.coverImageView.image = nil
-                        self.coverImageView.backgroundColor = UIColor.lightGray
+                        //there is no dedicated image or it failed
+                        self.coverImageView.image = UIImage(named: "episode_stub_image")
                     }
                 })
             }
             else {
-                self.coverImageView.image = nil
-                self.coverImageView.backgroundColor = UIColor.lightGray
+                //there isnt a number, so show a default image
+                self.coverImageView.image = UIImage(named: "episode_stub_image")
             }
         }
     }
@@ -109,17 +109,7 @@ class EpisodeCell: UITableViewCell {
             self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")
         }
         
-        if let imageUrl = URL(string: "https://s3.amazonaws.com/bonus-banner-images/830.jpg") {
-            self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: nil, filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
-                if response.result.value == nil {
-                    self.coverImageView.image = nil
-                    self.coverImageView.backgroundColor = UIColor.lightGray
-                }
-                else {
-                    self.coverImageView.backgroundColor = UIColor.clear
-                }
-            })
-        }
+        self.coverImageView.image = UIImage(named: "episode_stub_image")
     }
 
     @IBAction func downloadPressed(_ sender: Any) {
@@ -195,3 +185,4 @@ class EpisodeCell: UITableViewCell {
     }
 
 }
+
