@@ -98,18 +98,32 @@ class EpisodeCell: UITableViewCell {
         }
         
         self.episodeNumber.isHidden = true
-        self.episodeNumberContainerView.backgroundColor = UIColor.AEEBonusPink
+//        self.episodeNumberContainerView.backgroundColor = UIColor.AEEBonusPink
         self.mediaItemTypeImageView.isHidden = false
         self.favoriteButton.isHidden = true
         
         if item.isVideoContent {
-            self.mediaItemTypeImageView.image = UIImage(named: "ic_video_item")
+            self.mediaItemTypeImageView.image = UIImage(named: "ic_video_item")?.withRenderingMode(.alwaysTemplate)
+            self.mediaItemTypeImageView.tintColor = UIColor.AEEBonusPink
         }
         else {
-            self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")
+            self.mediaItemTypeImageView.image = UIImage(named: "ic_audio_item")?.withRenderingMode(.alwaysTemplate)
+            self.mediaItemTypeImageView.tintColor = UIColor.AEEBonusPink
         }
         
-        self.coverImageView.image = self.getRandomBonusEpisodeImage()
+        //cover image
+        if let guid = self.item?.guid,
+            let imageUrl = URL(string: "http://s3.amazonaws.com/bonus-banner-images/\(guid).jpg") {
+            self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: self.getRandomBonusEpisodeImage(), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                if response.result.value == nil {
+                    //there is no dedicated image or it failed
+                    self.coverImageView.image = UIImage(named: "episode_stub_image")
+                }
+            })
+        }
+        else {
+            self.coverImageView.image = self.getRandomBonusEpisodeImage()
+        }
     }
 
     @IBAction func downloadPressed(_ sender: Any) {

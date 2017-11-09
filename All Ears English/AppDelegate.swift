@@ -11,6 +11,7 @@ import Fabric
 import Crashlytics
 import Firebase
 import UserNotifications
+import Mixpanel
 
 
 @UIApplicationMain
@@ -23,6 +24,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         Fabric.with([Crashlytics.self])
 
         FirebaseApp.configure()
+        Mixpanel.sharedInstance(withToken: "d69005ea7336e8f91b42b4ed3b777962")
 
 //        if #available(iOS 10.0, *) {
 //            UNUserNotificationCenter.current().delegate = self

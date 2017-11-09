@@ -11,5 +11,6 @@ target 'All Ears English' do
   pod 'iRate'
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireImage', '~> 3.3'
+  pod 'Mixpanel'
   pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
 end
