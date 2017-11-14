@@ -29,7 +29,12 @@ class Feed: NSObject {
     func fetchData(completion:(([Feed.Item]?)->Void)?) {
         self.items.removeAll()
         Alamofire.request(baseURL).responseData { response in
-            if let data = response.data {
+            if let _ = response.error {
+                if let completion = completion {
+                    completion(nil)
+                }
+            }
+            else if let data = response.data {
                 let xml = XML.parse(data)
                 let channel = xml["rss", "channel"]
                 
