@@ -81,7 +81,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         Feed.shared.fetchData { (feedItems) in
             DispatchQueue.main.async {
                 
-                if let feedItems = feedItems {
+                if let feedItems = feedItems, feedItems.count > 0 {
                     self.episodeItems = feedItems
                     self.tableView.reloadData()
                 }
