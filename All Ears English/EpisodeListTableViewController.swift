@@ -30,6 +30,11 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         
         self.episodeItems = Feed.shared.fetchLocalEpisodeItems()
         
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(favoritesManagerDidUnfavoriteItem(notification:)), name: FavoritesManager.favoritesManagerDidUnfavoriteItemNotification, object: nil)
+        
         self.automaticallyAdjustsScrollViewInsets = false
     }
     
@@ -44,12 +49,6 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateContentInsetBasedOnNowPlayingBanner()
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(favoritesManagerDidUnfavoriteItem(notification:)), name: FavoritesManager.favoritesManagerDidUnfavoriteItemNotification, object: nil)
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
