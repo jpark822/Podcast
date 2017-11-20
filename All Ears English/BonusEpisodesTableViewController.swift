@@ -164,6 +164,8 @@ extension BonusEpisodesTableViewController {
                 return
             }
         
+            AudioPlayer.sharedInstance.pause()
+            
             let player = AVPlayer(url: videoURL)
             let playerViewController = AVPlayerViewController()
             playerViewController.player = player

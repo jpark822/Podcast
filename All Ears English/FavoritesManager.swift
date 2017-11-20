@@ -14,6 +14,7 @@ class FavoritesManager: NSObject {
     }
     
     static let sharedInstance = FavoritesManager()
+    static let favoritesManagerDidUnfavoriteItemNotification:Notification.Name = Notification.Name(rawValue: "favoritesManagerDidUnfavoriteItemNotification")
     
     func getAllStoredFavorites() -> [Feed.Item] {
         let allFavoriteDictionaries = self.allFavoritesAsDictionaries
@@ -82,6 +83,10 @@ class FavoritesManager: NSObject {
         }
         
         self.setStoredFavorites(favorites: newFavorites)
+        
+        if let guid = item.guid {
+            NotificationCenter.default.post(name: FavoritesManager.favoritesManagerDidUnfavoriteItemNotification, object: nil, userInfo: ["guid":guid])
+        }
     }
 }
 

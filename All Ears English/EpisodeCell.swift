@@ -38,7 +38,8 @@ class EpisodeCell: UITableViewCell {
             guard let item = item else {
                 return
             }
-            self.episodeNumber.text = item.number
+            
+            
             self.episodeTitle.text = item.displayTitle
             self.episodeDetails.text = item.displayDetails
             
@@ -68,6 +69,7 @@ class EpisodeCell: UITableViewCell {
             //setting the main image
             if let episodeNumber = item.number, !episodeNumber.isEmpty,
                 let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
+                self.episodeNumber.text = item.number
                 
                 self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: self.getRandomPlaceholderImageForEpisode(), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
                     if response.result.value == nil {
@@ -77,6 +79,7 @@ class EpisodeCell: UITableViewCell {
                 })
             }
             else {
+                self.episodeNumber.text = "Bonus"
                 //there isnt a number, so show a default image
                 self.coverImageView.image = UIImage(named: "episode_stub_image")
             }

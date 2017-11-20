@@ -103,6 +103,13 @@ internal class AudioPlayer:NSObject {
             
             commandCenter.changePlaybackPositionCommand.isEnabled = true
             commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(commandCenterDidChangePlaybackPosition))
+            
+            commandCenter.skipBackwardCommand.isEnabled = true
+            let skipBackwardCommand = commandCenter.skipBackwardCommand
+            skipBackwardCommand.preferredIntervals = [NSNumber(integerLiteral: 15)]
+            
+            
+            
         }
         catch {
             NSLog("error initting audio session")
