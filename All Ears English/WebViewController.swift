@@ -11,6 +11,8 @@ import UIKit
 
 class WebViewController : UIViewController, UIWebViewDelegate {
     
+    var analyticsPageVisitName:String?
+    
     var doesReloadOnViewWillAppear = false
     @IBOutlet weak var loadingActivityIndicator: UIActivityIndicatorView!
     
@@ -37,6 +39,10 @@ class WebViewController : UIViewController, UIWebViewDelegate {
         
         if self.doesReloadOnViewWillAppear {
             self.webView.reload()
+        }
+        
+        if let name = self.analyticsPageVisitName {
+            AnalyticsManager.sharedInstance.logPageVisit("Page Visit: \(name)")
         }
     }
     

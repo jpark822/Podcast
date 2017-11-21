@@ -9,30 +9,41 @@
 import UIKit
 import Crashlytics
 import Firebase
+import Mixpanel
 
 class AnalyticsManager: NSObject {
     static let sharedInstance = AnalyticsManager()
     
-    func logEpisodeShare(method:String, contentName:String, contentType:String, episodeId:String, attributes:[String:Any]?) {
-        Answers.logShare(withMethod: method, contentName: contentName, contentType: contentType, contentId: episodeId, customAttributes: attributes)
+    func logEpisodeEvent(_ name:String, item:Feed.Item?) {
+        guard let item = item else {
+            return
+        }
         
-        Analytics.logEvent(AnalyticsEventShare, parameters: [
-            AnalyticsParameterMedium: method as NSObject,
-            AnalyticsParameterItemName: contentName as NSObject,
-            AnalyticsParameterItemCategory: contentType as NSObject,
-            AnalyticsParameterItemID: episodeId as NSObject
-            ])
+        var properties:[AnyHashable : Any] = [:]
+        if let number = item.number {
+            properties["number"] = number
+            properties["type"] = "episode"
+        }
+        else {
+            properties["number"] = ""
+            properties["type"] = "Bonus"
+        }
+        if let guid = item.guid {
+            properties["guid"] = guid
+        }
+        
+        Mixpanel.sharedInstance()?.track(name, properties: properties)
     }
     
-    func logEpisodeView(episodeName:String, contentType:String, episodeId:String) {
-        Answers.logContentView(withName: episodeName, contentType: contentType, contentId: episodeId)
-        
-        Analytics.logEvent(
-            AnalyticsEventViewItem,
-            parameters: [
-                AnalyticsParameterItemName: episodeName as NSObject,
-                AnalyticsParameterItemCategory: contentType as NSObject,
-                AnalyticsParameterItemID: episodeId as NSObject
-            ])
+    func logPageVisit(_ name:String) {
+        Mixpanel.sharedInstance()?.track(name, properties: nil)
+    }
+    
+    func logShareBegin() {
+        Mixpanel.sharedInstance()?.track("Share Initiated", properties: nil)
+    }
+    
+    func logShareSuccess() {
+        Mixpanel.sharedInstance()?.track("Share Completed", properties: nil)
     }
 }

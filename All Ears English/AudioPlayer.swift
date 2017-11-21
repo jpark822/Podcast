@@ -71,6 +71,8 @@ internal class AudioPlayer:NSObject {
     }
     
     func playerDidFinishPlaying(notification: NSNotification) {
+        AnalyticsManager.sharedInstance.logEpisodeEvent("Episode Finished", item: self.currentItem)
+        
         //bonus content doesnt autoplay
         if ApplicationData.isAutoPlayEnabled && self.currentlyPlayingFeedType != .bonus {
             _ = self.seekToNextTrack()
@@ -165,6 +167,8 @@ internal class AudioPlayer:NSObject {
         
         self.updatePlayingInfoCenterData()
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+        
+        AnalyticsManager.sharedInstance.logEpisodeEvent("Play Episode", item: item)
     }
     
     func play() {

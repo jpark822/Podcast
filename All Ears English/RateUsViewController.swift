@@ -16,6 +16,9 @@ class RateUsViewController: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Rate Us")
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

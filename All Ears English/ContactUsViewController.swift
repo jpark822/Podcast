@@ -17,5 +17,9 @@ class ContactUsViewController: UIViewController {
         
         self.contentTextView.text = "Need help?\n\n\nContact Lindsay McMahon\nLindsay@allearsenglish.com\n\n\nwww.allearsenglish.com"
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Contact Us")
+    }
 
 }

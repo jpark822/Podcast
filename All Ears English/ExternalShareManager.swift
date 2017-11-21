@@ -14,6 +14,7 @@ class ExternalShareManager: NSObject {
     
     func presentShareControllerFromViewController(fromController:UIViewController, title:String, urlString:String?, image:UIImage?) {
         
+        AnalyticsManager.sharedInstance.logShareBegin()
         
         var activityItems:[Any] = [title]
         if let urlString = urlString,
@@ -33,11 +34,7 @@ class ExternalShareManager: NSObject {
         controller.completionWithItemsHandler = {
             (activityType, completed, returnedItems, activityError) in
             if completed {
-//                  the original code logged event
-//                DispatchQueue.main.async {
-//                    let method = activityType?.rawValue ?? "Default"
-//                    self.logEventShareEpisode(withMethod: method)
-//                }
+                AnalyticsManager.sharedInstance.logShareSuccess()
             }
         }
         

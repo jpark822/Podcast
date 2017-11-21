@@ -15,6 +15,10 @@ class ShareViewController: UIViewController {
 
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Share")
+    }
+    
     @IBAction func sharePressed(_ sender: Any) {
         ExternalShareManager.sharedInstance.presentShareControllerFromViewController(fromController: self, title: "Check out the All Ears English app!", urlString: "https://www.allearsenglish.com/", image: UIImage(named: "Cover"))
     }

@@ -79,6 +79,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         let freeTipsNavVC = UINavigationController(rootViewController: freeTipsVC)
         let freeTipsNavTabImage = UIImage(named: "ic_public_white")
         freeTipsNavVC.tabBarItem = UITabBarItem(title: "Free Tips", image: freeTipsNavTabImage, tag: 0)
+        freeTipsVC.analyticsPageVisitName = "Free Tips"
         _ = freeTipsVC.view
         
         let aboutUsVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController
@@ -88,6 +89,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         }
         let aboutUsTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_about")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_about")
         aboutUsVC.tabBarItem = UITabBarItem(title: "About Us", image: aboutUsTabImage, tag: 0)
+        aboutUsVC.analyticsPageVisitName = "About Us"
         _ = aboutUsVC.view
         
 //        let quickLinksVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "WebViewControllerId") as! WebViewController

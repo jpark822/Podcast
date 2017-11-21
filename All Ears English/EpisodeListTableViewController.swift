@@ -49,6 +49,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.updateContentInsetBasedOnNowPlayingBanner()
+        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Episode List")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
