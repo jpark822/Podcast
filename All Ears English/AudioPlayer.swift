@@ -13,6 +13,7 @@ import AVFoundation
 import MediaPlayer
 import Crashlytics
 import Firebase
+import Mixpanel
 
 internal class AudioPlayer:NSObject {
     
@@ -84,7 +85,7 @@ internal class AudioPlayer:NSObject {
     private func initAudioSessionAndControls() -> Bool {
         do {
             try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
-            self.queuePlayer.automaticallyWaitsToMinimizeStalling = false
+            self.queuePlayer.automaticallyWaitsToMinimizeStalling = true
             
             UIApplication.shared.beginReceivingRemoteControlEvents()
             
@@ -103,13 +104,6 @@ internal class AudioPlayer:NSObject {
             
             commandCenter.changePlaybackPositionCommand.isEnabled = true
             commandCenter.changePlaybackPositionCommand.addTarget(self, action: #selector(commandCenterDidChangePlaybackPosition))
-            
-            commandCenter.skipBackwardCommand.isEnabled = true
-            let skipBackwardCommand = commandCenter.skipBackwardCommand
-            skipBackwardCommand.preferredIntervals = [NSNumber(integerLiteral: 15)]
-            
-            
-            
         }
         catch {
             NSLog("error initting audio session")
@@ -117,6 +111,10 @@ internal class AudioPlayer:NSObject {
         }
         
         return true
+    }
+    
+    func remoteskipbackward() {
+        print("skip backward")
     }
     
     func play(episodeItem: Feed.Item?) {
@@ -316,9 +314,16 @@ extension AudioPlayer {
     }
     
     func seekToTimeInSeconds(_ seconds: Double) {
-        self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, self.queuePlayer.currentTime().timescale))
-        self.updatePlayingInfoCenterData()
-        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+        DispatchQueue.main.async {
+            print("seeking to \(seconds)")
+            self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, self.queuePlayer.currentTime().timescale))
+            NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
+            
+            let time = DispatchTime.now() + 0.25
+            DispatchQueue.main.asyncAfter(deadline: time, execute: {
+                self.updatePlayingInfoCenterData()
+            })
+        }
     }
 }
 
@@ -346,8 +351,7 @@ extension AudioPlayer {
     
     func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
         self.seekToTimeInSeconds(event.positionTime)
-        self.updatePlayingInfoCenterData()
-        NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self)
+        //seeking will take care of notification and updating playing center info
     }
     
     func updatePlayingInfoCenterData() {
@@ -374,7 +378,7 @@ extension AudioPlayer {
             
             if let duration = currentItem.duration {
                 let components = duration.components(separatedBy: ":")
-                print("Duration \(duration) - Components \(components)")
+//                print("Duration \(duration) - Components \(components)")
                 if components.count == 2 {
                     let seconds = Int(components[0])! * 60 + Int(components[1])!
                     info?[MPMediaItemPropertyPlaybackDuration] = seconds
