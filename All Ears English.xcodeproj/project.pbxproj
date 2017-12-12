@@ -118,6 +118,7 @@
 		46C7A2AC1EFB967200B9AA23 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		46EFFD6E1F1A8B4A0006C1AB /* EpisodesContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodesContainerViewController.swift; sourceTree = "<group>"; };
+		4E0F116A1FD5A51C00A84A2B /* All Ears English-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "All Ears English-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		4E31E87C1F7FBA0C00AD05D2 /* Episodes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
 		4E31E87E1F7FC03200AD05D2 /* EpisodePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePlayerViewController.swift; sourceTree = "<group>"; };
@@ -246,6 +247,7 @@
 				46C7A2AF1EFB969E00B9AA23 /* Classes */,
 				4640CD451EFA267D006B0C5E /* Web */,
 				46C7A2AE1EFB969500B9AA23 /* Resources */,
+				4E0F116A1FD5A51C00A84A2B /* All Ears English-Bridging-Header.h */,
 			);
 			path = "All Ears English";
 			sourceTree = "<group>";
@@ -485,6 +487,7 @@
 					4672E5D81EF8787B006B5F25 = {
 						CreatedOnToolsVersion = 8.3.2;
 						DevelopmentTeam = 79H836U56A;
+						LastSwiftMigration = 0910;
 						ProvisioningStyle = Manual;
 						SystemCapabilities = {
 							com.apple.BackgroundModes = {
@@ -796,6 +799,7 @@
 			baseConfigurationReference = DF3AF296231A45FC3F9579A1 /* Pods-All Ears English.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "All Ears English/All Ears English.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				DEVELOPMENT_TEAM = 79H836U56A;
@@ -809,6 +813,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "2b31fb29-e05f-40e7-9ca1-5dabf6483293";
 				PROVISIONING_PROFILE_SPECIFIER = "Jay Dev Profile";
+				SWIFT_OBJC_BRIDGING_HEADER = "All Ears English/All Ears English-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Debug;
@@ -818,6 +824,7 @@
 			baseConfigurationReference = 1600F9E8D17076D9FA39D4BB /* Pods-All Ears English.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "All Ears English/All Ears English.entitlements";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				DEVELOPMENT_TEAM = 79H836U56A;
@@ -831,6 +838,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "f7b58412-a751-4aa7-a2bf-c0c3d96512ca";
 				PROVISIONING_PROFILE_SPECIFIER = "AEE AppStore Distro";
+				SWIFT_OBJC_BRIDGING_HEADER = "All Ears English/All Ears English-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 			};
 			name = Release;

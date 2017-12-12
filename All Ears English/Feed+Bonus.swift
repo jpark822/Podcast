@@ -9,21 +9,29 @@ import Alamofire
 import Foundation
 import SwiftyXMLParser
 import Crashlytics
+//import BugfenderSDK
 
 extension Feed {
     func fetchBonusFeed(completion:(([Feed.Item]?)->Void)?) {
         self.bonusItems.removeAll()
         Alamofire.request(bonusURL).responseData { response in
-            if let data = response.data {
+            let statusCode = response.response?.statusCode ?? 0
+            
+            if let error = response.error {
+//                BFLog("Bonus Error:%@ Status code:%i", error.localizedDescription, statusCode)
+                
+                if let completion = completion {
+                    completion(nil)
+                }
+            }
+            else if let data = response.data {
                 let xml = XML.parse(data)
                 let channel = xml["rss", "channel"]
                 
                 var feedItems:[Item] = [Item]()
                 for xmlItem in channel["item"] {
                     let newItem = Item(xmlItem)
-                    if newItem.isAfterCutoff {
-                        feedItems.append(newItem)
-                    }
+                    feedItems.append(newItem)
                 }
                 
                 self.bonusItems = feedItems
@@ -32,6 +40,7 @@ extension Feed {
                 }
             }
             else {
+//                BFLog("Bonus parsing error")
                 print("FEED: unable to parse RSS feed")
                 let userInfo: [String: String] = [
                     NSLocalizedDescriptionKey: "Unable to read RSS feed",

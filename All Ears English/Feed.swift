@@ -11,6 +11,7 @@ import Crashlytics
 import Alamofire
 import SwiftyXMLParser
 import Foundation
+//import BugfenderSDK
 
 class Feed: NSObject {
 
@@ -29,7 +30,11 @@ class Feed: NSObject {
     func fetchData(completion:(([Feed.Item]?)->Void)?) {
         self.items.removeAll()
         Alamofire.request(baseURL).responseData { response in
-            if let _ = response.error {
+            let statusCode = response.response?.statusCode ?? 0
+            
+            if let error = response.error {
+//                BFLog("Feed Error:%@ Status code:%i", error.localizedDescription, statusCode)
+                
                 if let completion = completion {
                     completion(nil)
                 }
@@ -41,10 +46,37 @@ class Feed: NSObject {
                 var feedItems:[Item] = [Item]()
                 for xmlItem in channel["item"] {
                     let newItem = Item(xmlItem)
-                    if newItem.isAfterCutoff {
+                    //brute parsing for build 38
+//                    if newItem.isAfterNewCutoff {
                         feedItems.append(newItem)
-                    }
+//                    }
                 }
+                
+                //logging bug
+                
+                //new parsing
+//                var fakeFeedItems:[Item] = [Item]()
+//                for xmlItem in channel["item"] {
+//                    let anotherNewItem = Item(xmlItem)
+//                    if anotherNewItem.isAfterNewCutoff {
+//                        fakeFeedItems.append(anotherNewItem)
+//                    }
+//                }
+//
+//                //old parsing
+//                var moreFakeFeedItems:[Item] = [Item]()
+//                for xmlItem in channel["item"] {
+//                    let moreAnotherNewItem = Item(xmlItem)
+//                    if moreAnotherNewItem.isAfterOldCutoff {
+//                        moreFakeFeedItems.append(moreAnotherNewItem)
+//                    }
+//                }
+//
+//                if (moreFakeFeedItems.count < 500) {
+//                    BFLog("Count Discrepancy found. old parsing: %i items. New Parsing: %i. Brute Parsing %i", moreFakeFeedItems.count, fakeFeedItems.count, feedItems.count)
+//                }
+                //end logging bug
+                
                 
                 self.items = feedItems
                 if let completion = completion {
@@ -52,6 +84,7 @@ class Feed: NSObject {
                 }
             }
             else {
+//                BFLog("Feed parsing error")
                 print("FEED: unable to parse RSS feed")
                 let userInfo: [String: String] = [
                     NSLocalizedDescriptionKey: "Unable to read RSS feed",
@@ -142,7 +175,8 @@ class Feed: NSObject {
         var published: Date?
         var identifier: String?
 
-        var isAfterCutoff: Bool {
+        //Deprecated. Still having issues with international users
+        var isAfterOldCutoff: Bool {
             var components = DateComponents()
             components.year = 2014
             components.month = 11
@@ -152,7 +186,8 @@ class Feed: NSObject {
                let date = self.published {
                 if date.timeIntervalSince(cutoffDate) >= 0 {
                     return true
-                } else {
+                }
+                else {
                     if let number = self.number {
                         switch number {
                             case "218", "219", "220":
@@ -163,6 +198,33 @@ class Feed: NSObject {
                     }
                 }
             }
+            return false
+        }
+        
+        //Deprecated. Still having issues with international users
+        var isAfterNewCutoff: Bool {
+            var components = DateComponents()
+            components.year = 2014
+            components.month = 11
+            components.day = 19
+            let calendar = Calendar(identifier: .gregorian)
+            components.timeZone = TimeZone(abbreviation: "UTC")
+            if let cutoffDate = calendar.date(from: components),
+                let date = self.published {
+                if date > cutoffDate {
+                    return true
+                }
+                else {
+                    if let number = self.number {
+                        switch number {
+                        case "218", "219", "220":
+                            return true
+                        default:
+                            return false
+                        }
+                    }
+                }
+            } 
             return false
         }
 
@@ -254,14 +316,15 @@ class Feed: NSObject {
         }
 
         func parseDetails() {
-            let currentYear = Calendar.current.component(.year, from: Date())
+            let calendar = Calendar(identifier: .gregorian)
+            let currentYear = calendar.component(.year, from: Date())
             if let pubDate = self.pubDate {
                 let formatter = DateFormatter()
-                formatter.dateFormat = "E, d MMM yyyy HH:mm:ss Z"
+                formatter.dateFormat = "E, dd MMM yyyy HH:mm:ss Z"
                 self.published = formatter.date(from: pubDate)
                 formatter.dateFormat = "MMM d"
                 if let date = self.published {
-                    let publishedYear = Calendar.current.component(.year, from: date)
+                    let publishedYear = calendar.component(.year, from: date)
                     if publishedYear < currentYear {
                         formatter.dateFormat = "MMM d, yyyy"
                     }

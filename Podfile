@@ -12,5 +12,7 @@ target 'All Ears English' do
   pod 'Alamofire', '~> 4.4'
   pod 'AlamofireImage', '~> 3.3'
   pod 'Mixpanel'
+#  pod 'BugfenderSDK', '~> 1.5'
+
   pod "SwiftyXMLParser", :git => 'https://github.com/yahoojapan/SwiftyXMLParser.git'
 end
