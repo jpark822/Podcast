@@ -134,6 +134,14 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         }
         
     }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let tabBarHeight = self.tabBar.frame.size.height
+        let yPosition = self.view.frame.size.height - MainTabBarController.nowPlayingBannerHeight - tabBarHeight
+        self.nowPlayingBannerView.frame = CGRect(x: 0, y: yPosition, width: self.view.frame.size.width, height: MainTabBarController.nowPlayingBannerHeight)
+    }
 }
 
 //MARK: Now Playing Banner methods
