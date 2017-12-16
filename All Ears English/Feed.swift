@@ -17,7 +17,7 @@ class Feed: NSObject {
 
     static let shared = Feed()
 
-    fileprivate let baseURL = URL.init(string: "https://allearsenglish.libsyn.com/rss")!
+    fileprivate let baseURL = URL.init(string: "https://allearsenglish.libsyn.com/App")!
     internal let bonusURL = URL.init(string:"https://appforaee.libsyn.com/rss")!
     fileprivate var parser: XMLParser?
 //    fileprivate var itemBuilder: ItemBuilder!
