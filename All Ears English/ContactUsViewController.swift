@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Foundation
 
 class ContactUsViewController: UIViewController {
 
@@ -15,7 +16,17 @@ class ContactUsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.contentTextView.text = "Need help?\n\n\nContact Lindsay McMahon\nLindsay@allearsenglish.com\n\n\nwww.allearsenglish.com"
+        let font = UIFont(name: "PTSans-Regular", size: 21)
+        let centerStyle = NSMutableParagraphStyle()
+        centerStyle.alignment = .center
+        
+        let textViewString = NSMutableAttributedString(string: "Need help?\n\n\nContact Lindsay McMahon\nLindsay@allearsenglish.com\n\n\nwww.allearsenglish.com", attributes:[NSFontAttributeName:font, NSParagraphStyleAttributeName:centerStyle])
+        let legalHyperlinkString = NSMutableAttributedString(string: "\n\nLegal", attributes: [NSLinkAttributeName:"https://www.allearsenglish.com/legal/", NSFontAttributeName:font, NSParagraphStyleAttributeName:centerStyle])
+        
+        textViewString.append(legalHyperlinkString)
+        
+        
+        self.contentTextView.attributedText = textViewString
     }
     
     override func viewWillAppear(_ animated: Bool) {
