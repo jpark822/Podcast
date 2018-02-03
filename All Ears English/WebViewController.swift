@@ -42,7 +42,7 @@ class WebViewController : UIViewController, UIWebViewDelegate {
         }
         
         if let name = self.analyticsPageVisitName {
-            AnalyticsManager.sharedInstance.logPageVisit("Page Visit: \(name)")
+            AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: \(name)")
         }
     }
     

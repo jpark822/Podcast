@@ -48,7 +48,7 @@ class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, E
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
         
-        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Favorites List")
+        AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Favorites List")
     }
 
     override func viewWillDisappear(_ animated: Bool) {

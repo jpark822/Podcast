@@ -139,6 +139,7 @@ class Cache: NSObject {
             }
         }
         task.resume()
+        AnalyticsManager.sharedInstance.logKochavaEpisodeEvent(.downloadEpisode, item: item)
     }
     
     func copyPreloadedEpiosdesToCache() {

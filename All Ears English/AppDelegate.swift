@@ -13,6 +13,7 @@ import Firebase
 import UserNotifications
 import Mixpanel
 
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
 
@@ -24,6 +25,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
 
         FirebaseApp.configure()
         Mixpanel.sharedInstance(withToken: "d69005ea7336e8f91b42b4ed3b777962")
+        
+        // KochavaTracker
+        var trackerParametersDictionary: [AnyHashable: Any] = [:]
+        trackerParametersDictionary[kKVAParamAppGUIDStringKey] = "koall-ears-english-sh0kpjhzk"
+        trackerParametersDictionary[kKVAParamLogLevelEnumKey] = kKVALogLevelEnumInfo
+        KochavaTracker.shared.configure(withParametersDictionary: trackerParametersDictionary, delegate: nil)
         
 //        Bugfender.activateLogger("TEIeuDIEm2Ts4FAyBRY13ZAwWE9eSehJ")
 

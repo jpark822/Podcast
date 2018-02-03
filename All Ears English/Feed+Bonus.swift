@@ -30,7 +30,7 @@ extension Feed {
                 
                 var feedItems:[Item] = [Item]()
                 for xmlItem in channel["item"] {
-                    let newItem = Item(xmlItem)
+                    let newItem = Item(xmlItem, episodeType:.bonus)
                     feedItems.append(newItem)
                 }
                 

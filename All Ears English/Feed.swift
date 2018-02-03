@@ -45,38 +45,12 @@ class Feed: NSObject {
                 
                 var feedItems:[Item] = [Item]()
                 for xmlItem in channel["item"] {
-                    let newItem = Item(xmlItem)
+                    let newItem = Item(xmlItem, episodeType: .episode)
                     //brute parsing for build 38
 //                    if newItem.isAfterNewCutoff {
                         feedItems.append(newItem)
 //                    }
                 }
-                
-                //logging bug
-                
-                //new parsing
-//                var fakeFeedItems:[Item] = [Item]()
-//                for xmlItem in channel["item"] {
-//                    let anotherNewItem = Item(xmlItem)
-//                    if anotherNewItem.isAfterNewCutoff {
-//                        fakeFeedItems.append(anotherNewItem)
-//                    }
-//                }
-//
-//                //old parsing
-//                var moreFakeFeedItems:[Item] = [Item]()
-//                for xmlItem in channel["item"] {
-//                    let moreAnotherNewItem = Item(xmlItem)
-//                    if moreAnotherNewItem.isAfterOldCutoff {
-//                        moreFakeFeedItems.append(moreAnotherNewItem)
-//                    }
-//                }
-//
-//                if (moreFakeFeedItems.count < 500) {
-//                    BFLog("Count Discrepancy found. old parsing: %i items. New Parsing: %i. Brute Parsing %i", moreFakeFeedItems.count, fakeFeedItems.count, feedItems.count)
-//                }
-                //end logging bug
-                
                 
                 self.items = feedItems
                 if let completion = completion {
@@ -84,7 +58,6 @@ class Feed: NSObject {
                 }
             }
             else {
-//                BFLog("Feed parsing error")
                 print("FEED: unable to parse RSS feed")
                 let userInfo: [String: String] = [
                     NSLocalizedDescriptionKey: "Unable to read RSS feed",
@@ -111,7 +84,7 @@ class Feed: NSObject {
             
             let channel = xml["rss", "channel"]
             for xmlItem in channel["item"] {
-                let newItem = Item(xmlItem)
+                let newItem = Item(xmlItem, episodeType: .episode)
                 items.append(newItem)
             }
             return items
@@ -125,6 +98,12 @@ class Feed: NSObject {
 
 //MARK: Item implementation
     class Item {
+        enum EpisodeType:String {
+            case episode = "episode"
+            case bonus = "bonus"
+        }
+        
+        var episodeType:EpisodeType = .episode
         
         var number: String?
         var title: String? {
@@ -146,6 +125,7 @@ class Feed: NSObject {
                 self.parseId()
             }
         }
+        //type is video or audio. refactor to use an enum
         var type:String?
         var description: String?
         var url: String?
@@ -243,12 +223,16 @@ class Feed: NSObject {
             author = attributes["author"]
             duration = attributes["duration"]
             type = attributes["type"]
+            if let episodeTypeRawString = attributes["episodeType"],
+                let convertedEpisodeType = Feed.Item.EpisodeType(rawValue: episodeTypeRawString) {
+                self.episodeType = convertedEpisodeType
+            }
             self.parseTitle()
             self.parseDetails()
             self.parseId()
         }
         
-        convenience init(_ xmlItem: XML.Accessor) {
+        convenience init(_ xmlItem: XML.Accessor, episodeType:EpisodeType) {
             var attributes: [String: String] = Dictionary()
             let elementNames: [String: String] = [
                 "title": "title",
@@ -377,140 +361,3 @@ class Feed: NSObject {
     }
 
 }
-
-
-//class ItemBuilder: NSObject, XMLParserDelegate {
-//    
-//    fileprivate var feed: Feed
-//    fileprivate var parsingItem = false
-//    fileprivate var attributes: [String: String] = Dictionary()
-//    fileprivate var elementName: String?
-//    fileprivate var elementValue: String = ""
-//    fileprivate let targetAttributes: [String: String] = [
-//        "title": "title",
-//        "link": "link",
-//        "comments": "comments",
-//        "pubDate": "pubDate",
-//        "dc:creator": "creator",
-//        "category": "category",
-//        "guid": "guid",
-//        "description": "description",
-//        "url": "url",
-//        "itunes:subtitle": "subtitle",
-//        "itunes:summary": "summary",
-//        "itunes:author": "author",
-//        "itunes:duration": "duration"
-//    ]
-//    
-//    init(_ feed: Feed) {
-//        self.feed = feed
-//    }
-//    
-//    func parserDidStartDocument(_ parser: XMLParser) {
-//        //print("FEED: Start document")
-//    }
-//    
-//    func parser(_ parser: XMLParser, didStartElement name: String, namespaceURI: String?, qualifiedName: String?, attributes: [String: String] = [:]) {
-//        if !self.parsingItem {
-//            if name == "item" {
-//                //print("FEED: Start \(name) \(qualifiedName ?? name)")
-//                self.parsingItem = true
-//            }
-//        } else if name == "enclosure" {
-//            if let url = attributes["url"] {
-//                self.attributes["url"] = url
-//            }
-//            self.elementName = nil
-//            self.elementValue = ""
-//        } else if self.targetAttributes.keys.contains(name) {
-//            self.elementName = name
-//            self.elementValue = ""
-//        }
-//    }
-//    
-//    func parser(_ parser: XMLParser, foundCharacters text: String) {
-//        if self.parsingItem {
-//            self.elementValue += text
-//        }
-//    }
-//    
-//    func parser(_ parser: XMLParser, didEndElement name: String, namespaceURI: String?, qualifiedName: String?) {
-//        if parsingItem {
-//            if name == "item" {
-//                //print("FEED: End \(name) \(qualifiedName ?? name)")
-//                //print("\nitem")
-//                //for (key, value) in self.attributes {
-//                //    print("\(key) = \(value)")
-//                //}
-//                let item = Item(attributes)
-//                if item.isAfterCutoff {
-//                    self.feed.items.append(item)
-//                }
-//                self.parsingItem = false
-//                self.elementName = nil
-//                self.elementValue = ""
-//                self.attributes = [:]
-//            } else if self.elementName == name, let attributeName = self.targetAttributes[name] {
-//                self.attributes[attributeName] = self.elementValue
-//                self.elementName = nil
-//                self.elementValue = ""
-//            }
-//        }
-//    }
-//    
-//    func parserDidEndDocument(_ parser: XMLParser) {
-//        //print("FEED: End document")
-//        self.feed.itemsByGUID.removeAll()
-//        for item in self.feed.items {
-//            //print("\(item.guid ?? "") - \(item.title ?? "")")
-//            if let guid = item.guid {
-//                self.feed.itemsByGUID[guid] = item
-//            }
-//        }
-//    }
-//    
-//}
-//
-//
-//func buildItem(_ xmlItem: XML.Accessor) -> Feed.Item? {
-//    var attributes: [String: String] = Dictionary()
-//    let elementNames: [String: String] = [
-//        "title": "title",
-//        "link": "link",
-//        "pubDate": "pubDate",
-//        "guid": "guid",
-//        "description": "description",
-//        "itunes:subtitle": "subtitle",
-//        "itunes:duration": "duration"
-//    ]
-//    
-//    for (elementName, attributeName) in elementNames {
-//        //            print("FEED: Looking up \(elementName)")
-//        let element = xmlItem[elementName]
-//        if let text = element.text {
-//            //                print("FEED: \(attributeName) = \(text)")
-//            attributes[attributeName] = text
-//        }
-//        else {
-//            //                print("FEED: \(attributeName) = UNDEFINED!!!")
-//        }
-//    }
-//    let enclosure = xmlItem["enclosure"]
-//    if let url = enclosure.attributes["url"] {
-//        //            print("FEED: url = \(url)")
-//        attributes["url"] = url
-//    }
-//    if let type = enclosure.attributes["type"] {
-//        attributes["type"] = type
-//    }
-//    else {
-//        //            print("FEED: url = UNDEFINED!!!")
-//    }
-//    let item = Item(attributes)
-//    if item.isAfterCutoff {
-//        return item
-//    }
-//    else {
-//        return nil
-//    }
-//}

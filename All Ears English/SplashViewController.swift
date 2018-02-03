@@ -22,6 +22,8 @@ class SplashViewController: UIViewController {
     }
     
     @IBAction func letsGoPressed(_ sender: Any) {
+        AnalyticsManager.sharedInstance.logKochavaCustomEvent(.letsGoPressed, properties: nil)
+        
         let initialVC = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(withIdentifier: "MainTabBarControllerId") as! MainTabBarController
         self.present(initialVC, animated: true)
     }

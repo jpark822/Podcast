@@ -30,7 +30,7 @@ class ContactUsViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Contact Us")
+        AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Contact Us")
     }
 
 }

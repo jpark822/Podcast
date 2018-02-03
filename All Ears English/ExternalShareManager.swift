@@ -14,7 +14,7 @@ class ExternalShareManager: NSObject {
     
     func presentShareControllerFromViewController(fromController:UIViewController, title:String, urlString:String?, image:UIImage?) {
         
-        AnalyticsManager.sharedInstance.logShareBegin()
+        AnalyticsManager.sharedInstance.logMixpanelShareBegin()
         
         var activityItems:[Any] = [title]
         if let urlString = urlString,
@@ -34,7 +34,7 @@ class ExternalShareManager: NSObject {
         controller.completionWithItemsHandler = {
             (activityType, completed, returnedItems, activityError) in
             if completed {
-                AnalyticsManager.sharedInstance.logShareSuccess()
+                AnalyticsManager.sharedInstance.logMixpanelShareSuccess()
             }
         }
         

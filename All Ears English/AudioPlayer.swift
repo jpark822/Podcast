@@ -71,7 +71,7 @@ internal class AudioPlayer:NSObject {
     }
     
     func playerDidFinishPlaying(notification: NSNotification) {
-        AnalyticsManager.sharedInstance.logEpisodeEvent("Episode Finished", item: self.currentItem)
+        AnalyticsManager.sharedInstance.logMixpanelEpisodeEvent("Episode Finished", item: self.currentItem)
         
         //bonus content doesnt autoplay
         if ApplicationData.isAutoPlayEnabled && self.currentlyPlayingFeedType != .bonus {
@@ -168,7 +168,8 @@ internal class AudioPlayer:NSObject {
         self.updatePlayingInfoCenterData()
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
         
-        AnalyticsManager.sharedInstance.logEpisodeEvent("Play Episode", item: item)
+        AnalyticsManager.sharedInstance.logMixpanelEpisodeEvent("Play Episode", item: item)
+        AnalyticsManager.sharedInstance.logKochavaEpisodeEvent(.episodeListen, item: item)
     }
     
     func play() {

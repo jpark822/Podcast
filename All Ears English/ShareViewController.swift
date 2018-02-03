@@ -16,7 +16,7 @@ class ShareViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        AnalyticsManager.sharedInstance.logPageVisit("Page Visit: Share")
+        AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Share")
     }
     
     @IBAction func sharePressed(_ sender: Any) {
