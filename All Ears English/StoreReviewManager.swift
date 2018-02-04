@@ -32,7 +32,7 @@ class StoreReviewManager: NSObject {
         })
         
         let cancelAction = UIAlertAction(title: "No Thanks", style: UIAlertActionStyle.destructive, handler: { (alertAction) in
-            ApplicationData.userCompletedRating = true
+            
         })
         
         alertController.addAction(confirmAction)

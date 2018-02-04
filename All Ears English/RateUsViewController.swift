@@ -18,6 +18,7 @@ class RateUsViewController: UIViewController {
     
     override func viewWillAppear(_ animated: Bool) {
         AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Rate Us")
+        AnalyticsManager.sharedInstance.logKochavaPageView(.rating, properties: nil)
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -33,6 +34,7 @@ class RateUsViewController: UIViewController {
             })
         }
         ApplicationData.userCompletedRating = true
+        AnalyticsManager.sharedInstance.logKochavaCustomEvent(.rateAction, properties: nil)
     }
 
     @IBAction func declinePressed(_ sender: Any) {

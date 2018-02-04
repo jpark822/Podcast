@@ -169,7 +169,14 @@ internal class AudioPlayer:NSObject {
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
         
         AnalyticsManager.sharedInstance.logMixpanelEpisodeEvent("Play Episode", item: item)
-        AnalyticsManager.sharedInstance.logKochavaEpisodeEvent(.episodeListen, item: item)
+        switch item.episodeType {
+        case .episode:
+            AnalyticsManager.sharedInstance.logKochavaEpisodeEvent(.episodeListen, item: item)
+            break
+        case .bonus:
+            AnalyticsManager.sharedInstance.logKochavaEpisodeEvent(.bonusEpisodeListen, item: item)
+            break
+        }
     }
     
     func play() {

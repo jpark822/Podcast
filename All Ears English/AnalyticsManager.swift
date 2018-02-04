@@ -63,10 +63,7 @@ class AnalyticsManager: NSObject {
     }
     
     func logKochavaPageView(_ event:KochavaPageView, properties:[AnyHashable:Any]?) {
-        if let kochavaEvent = KochavaEvent(eventTypeEnum: .view) {
-            kochavaEvent.nameString = event.rawValue
-            KochavaTracker.shared.send(kochavaEvent)
-        }
+        KochavaTracker.shared.sendEvent(withNameString: event.rawValue, infoDictionary: properties)
     }
     
 

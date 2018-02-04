@@ -35,6 +35,7 @@ class ExternalShareManager: NSObject {
             (activityType, completed, returnedItems, activityError) in
             if completed {
                 AnalyticsManager.sharedInstance.logMixpanelShareSuccess()
+                AnalyticsManager.sharedInstance.logKochavaCustomEvent(.shareAppAction, properties: nil)
             }
         }
         

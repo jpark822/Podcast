@@ -54,6 +54,7 @@ class WebViewController : UIViewController, UIWebViewDelegate {
     }
 }
 
+//uiwebviewdelegate
 extension WebViewController {
     func webViewDidStartLoad(_ webView: UIWebView) {
         self.loadingActivityIndicator.isHidden = false
@@ -64,4 +65,17 @@ extension WebViewController {
         self.loadingActivityIndicator.isHidden = true
         self.loadingActivityIndicator.stopAnimating()
     }
+    
+    func webView(_ webView: UIWebView, shouldStartLoadWith request: URLRequest, navigationType: UIWebViewNavigationType) -> Bool {
+        
+        //capture "get instant access" event
+        if request.url?.host == "staticxx.facebook.com" {
+            AnalyticsManager.sharedInstance.logKochavaCustomEvent(.getInstantAccess, properties: nil)
+        }
+        
+        //always load
+        return true
+    }
 }
+
+

@@ -53,6 +53,8 @@ class FavoritesManager: NSObject {
         var allFavorites = self.getAllStoredFavorites()
         allFavorites.append(item)
         self.setStoredFavorites(favorites: allFavorites)
+        
+        AnalyticsManager.sharedInstance.logKochavaEpisodeEvent(.favoriteEpisode, item: item)
     }
     
     func removeFavorite(_ item:Feed.Item) {
@@ -90,7 +92,7 @@ class FavoritesManager: NSObject {
     }
 }
 
-//MARK: Archiving / Unarchiving helpers
+//MARK: Archiving / Unarchiving helpers. TODO: move into Feed.Item
 fileprivate extension FavoritesManager {
     enum FeedItemKey:String {
         case number = "number"
