@@ -12,18 +12,27 @@ import Crashlytics
 import Firebase
 import UserNotifications
 import Mixpanel
-
+import Foundation
 
 @UIApplicationMain
-class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterDelegate {
+class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
-    
+    let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+        UNUserNotificationCenter.current().delegate = self
+        
+        //Fabric
         Fabric.with([Crashlytics.self])
 
+        //Firebase
         FirebaseApp.configure()
+        Messaging.messaging().delegate = self
+        let token = Messaging.messaging().fcmToken
+        print("printing initial FCM token: \(token ?? "")")
+        
+        //Mixpanel
         Mixpanel.sharedInstance(withToken: "d69005ea7336e8f91b42b4ed3b777962")
         
         // KochavaTracker
@@ -34,24 +43,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         
 //        Bugfender.activateLogger("TEIeuDIEm2Ts4FAyBRY13ZAwWE9eSehJ")
 
-//        if #available(iOS 10.0, *) {
-//            UNUserNotificationCenter.current().delegate = self
-//            let authOptions: UNAuthorizationOptions = [.alert, .badge, .sound]
-//            UNUserNotificationCenter.current().requestAuthorization(
-//                    options: authOptions,
-//                    completionHandler: {_, _ in })
-//        } else {
-//            let settings: UIUserNotificationSettings =
-//                    UIUserNotificationSettings(types: [.alert, .badge, .sound], categories: nil)
-//            application.registerUserNotificationSettings(settings)
-//            if let notification = launchOptions?[UIApplicationLaunchOptionsKey.remoteNotification] as? [String: Any] {
-//                processRemoteNotification(notification)
-//            }
-//        }
-//        application.registerForRemoteNotifications()
-
         self.setInitialView()
-
+        self.promptOrRemindForPushNotifications()
+        
         return true
     }
     
@@ -84,21 +78,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
     }
-
-    func application(_ application: UIApplication,
-                     didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
-        Messaging.messaging().apnsToken = deviceToken
-        var token = ""
-        for i in 0..<deviceToken.count {
-            token = token + String(format: "%02.2hhx", arguments: [deviceToken[i]])
-        }
-        print("Remote notifications device token: \(token)")
-    }
-    
-    func application(_ application: UIApplication,
-                     didFailToRegisterForRemoteNotificationsWithError error: Error) {
-        print("Remote notification support is unavailable due to error: \(error.localizedDescription)")
-    }
     
 
     func applicationWillResignActive(_ application: UIApplication) {
@@ -125,40 +104,169 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UNUserNotificationCenterD
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
     }
 
-    @available(iOS 10.0, *)
+    
+    
+    //MARK: - Push notifications
+    func promptOrRemindForPushNotifications() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("settings \(settings)")
+            
+            switch settings.authorizationStatus {
+            case .notDetermined:
+                self.requestPushNotificationAuthorization()
+                break
+                
+            case .authorized:
+                //do nothing, we're good
+                break
+                
+            case .denied:
+                //do nothing, for now. show reminder dialogue later
+                break
+            }
+            
+            DispatchQueue.main.async {
+                UIApplication.shared.registerForRemoteNotifications()
+            }
+            
+        }
+    }
+    
+    //show the 1 time user dialogue asking for permissions
+    func requestPushNotificationAuthorization() {
+        
+        UNUserNotificationCenter.current().requestAuthorization(options: [.alert, .sound, .badge]) { (granted, error) in
+            print("granted: \(granted)")
+            
+            if (granted) {
+                self.registerForRemoteNotifications()
+            }
+            
+            self.registerForRemoteNotifications()
+        }
+    }
+    
+    //register with remote server. called after user approves dialogue
+    func registerForRemoteNotifications() {
+        UNUserNotificationCenter.current().getNotificationSettings { (settings) in
+            print("settings \(settings)")
+            
+            guard settings.authorizationStatus == .authorized else {
+                return
+            }
+            
+            UIApplication.shared.registerForRemoteNotifications()
+        }
+    }
+    
+    //MARK: push notification delegate methods
+    func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {
+        Messaging.messaging().apnsToken = deviceToken
+        
+        let tokenParts = deviceToken.map { data -> String in
+            return String(format: "%02.2hhx", data)
+        }
+        
+        let token = tokenParts.joined()
+        print("Device Token: \(token)")
+    }
+    
+    func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
+        print("Failed to register: \(error)")
+    }
+    
+// is never called in iOS 10
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
+//        print("notification received: didReceiveRemoteNotification")
+//        // If you are receiving a notification message while your app is in the background,
+//        // this callback will not be fired till the user taps on the notification launching the application.
+//        // TODO: Handle data of notification
+//
+//        // With swizzling disabled you must let Messaging know about the message, for Analytics
+//         Messaging.messaging().appDidReceiveMessage(userInfo)
+//
+//        // Print message ID.
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
+//
+//        // Print full message.
+//        print("didReceivRemoteNotification regular \(userInfo)")
+//    }
+    
+    //only used if background modes and remote notification entitlements are enabled. Note: only fire in the background for notifications with the content-available = 1.
+//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
+//                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
+//        print("notification received: didReceiveRemoteNotificationFetchHandler")
+//
+//        //send anayltics
+//         Messaging.messaging().appDidReceiveMessage(userInfo)
+//
+//        // Print message ID.
+//        if let messageID = userInfo[gcmMessageIDKey] {
+//            print("Message ID: \(messageID)")
+//        }
+//
+//        // Print full message.
+//        print("didReceivRemoteNotification background \(userInfo)")
+//
+//        completionHandler(UIBackgroundFetchResult.newData)
+//    }
+
+}
+
+extension AppDelegate: MessagingDelegate {
+    func messaging(_ messaging: Messaging, didRefreshRegistrationToken fcmToken: String) {
+        print("Firebase registration token didRefreshToken. current token: \(fcmToken)")
+        
+        // TODO: If necessary send token to application server.
+        // Note: This callback is fired at each app startup and whenever a new token is generated.
+    }
+}
+
+extension AppDelegate : UNUserNotificationCenterDelegate {
+    
+    //receive notification in the foreground. fires once when user receives notification, fires again when user taps notification
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
+        print("notification received: willPresent")
         
+        //print payload
+        let userInfo = notification.request.content.userInfo
+        print("userNotificationCenter willpresent notification  \(userInfo)")
+        
+        //send analytics
+        Messaging.messaging().appDidReceiveMessage(userInfo)
+        
+        //choose to display message and play sound
         completionHandler([.alert, .sound])
-        
     }
     
-    @available(iOS 10.0, *)
+    //called when the user taps into a notification from anywhere
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 didReceive response: UNNotificationResponse,
                                 withCompletionHandler completionHandler: @escaping () -> Void) {
+        print("notification received: didReceiveResponse")
         
-        print("title: \(response.notification.request.content.title)")
-        if let data = response.notification.request.content.userInfo["aee"] as? [String: Any] {
-            if let deepLink = data["deepLink"] as? String {
-                print("deepLink: \(deepLink)")
-                Player.shared?.open(deepLink)
+        let userInfo = response.notification.request.content.userInfo
+        print("userNotificationCenter  did receive response \(userInfo)")
+        
+        if let rootTabBarController = self.window?.rootViewController as? MainTabBarController,
+            let episodeType = userInfo["episodeType"] as? String {
+            
+            DispatchQueue.main.async {
+                rootTabBarController.dismiss(animated: true)
+                if episodeType == "bonus" {
+                    rootTabBarController.selectedIndex = MainTabBarController.ViewControllerIndex.bonus.rawValue
+                }
+                else {
+                    rootTabBarController.selectedIndex = MainTabBarController.ViewControllerIndex.episodes.rawValue
+                }
             }
         }
+        
         completionHandler()
     }
-    
-    @available(iOS, deprecated:10.0)
-    func processRemoteNotification(_ notification: [String: Any]?) {
-        if let data = notification?["aee"] as? [String: Any] {
-            if let deepLink = data["deepLink"] as? String {
-                print("deepLink: \(deepLink)")
-                Player.shared?.open(deepLink)
-            }
-        }
-    }
-    
-
 }
 

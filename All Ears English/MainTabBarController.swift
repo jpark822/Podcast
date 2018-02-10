@@ -16,11 +16,16 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
     
     static let didHideNowPlayingBannerNotification: Notification.Name = Notification.Name(rawValue: "didHideNowPlayingBannerNotification")
     static let didShowNowPlayingBannerNotification: Notification.Name = Notification.Name(rawValue: "didShowNowPlayingBannerNotification")
-    
-    enum MainTabBarTab:Int {
+
+    enum ViewControllerIndex:Int {
         case episodes = 0
-        case tips = 1
-        case contactUs = 2
+        case bonus = 1
+        case favorites = 2
+        case freeTips = 3
+        case about = 4
+        case contact = 5
+        case rate = 6
+        case share = 7
     }
 
     override func viewDidLoad() {
