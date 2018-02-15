@@ -259,9 +259,23 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
                 rootTabBarController.dismiss(animated: true)
                 if episodeType == "bonus" {
                     rootTabBarController.selectedIndex = MainTabBarController.ViewControllerIndex.bonus.rawValue
+                    
+                    if let bonusViewControllerControllers = rootTabBarController.viewControllers,
+                        let bonusNavController = bonusViewControllerControllers[MainTabBarController.ViewControllerIndex.bonus.rawValue] as? UINavigationController,
+                        let bonusListVC = bonusNavController.viewControllers[0] as? BonusEpisodesTableViewController {
+                        bonusListVC.fetchData()
+                        bonusListVC.tableView.scrollToTop()
+                    }
                 }
                 else {
                     rootTabBarController.selectedIndex = MainTabBarController.ViewControllerIndex.episodes.rawValue
+                    
+                    if let episodeViewControllerControllers = rootTabBarController.viewControllers,
+                        let episodeNavController = episodeViewControllerControllers[MainTabBarController.ViewControllerIndex.episodes.rawValue] as? UINavigationController,
+                        let episodeListVC = episodeNavController.viewControllers[0] as? EpisodeListTableViewController {
+                        episodeListVC.fetchData()
+                        episodeListVC.tableView.scrollToTop()
+                    }
                 }
             }
         }
