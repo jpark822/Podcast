@@ -226,7 +226,7 @@ extension AppDelegate: MessagingDelegate {
 
 extension AppDelegate : UNUserNotificationCenterDelegate {
     
-    //receive notification in the foreground. fires once when user receives notification, fires again when user taps notification
+    //fires when you receive a notification in the foreground
     func userNotificationCenter(_ center: UNUserNotificationCenter,
                                 willPresent notification: UNNotification,
                                 withCompletionHandler completionHandler: @escaping (UNNotificationPresentationOptions) -> Void) {
@@ -244,13 +244,12 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
     
     //called when the user taps into a notification from anywhere
-    func userNotificationCenter(_ center: UNUserNotificationCenter,
-                                didReceive response: UNNotificationResponse,
-                                withCompletionHandler completionHandler: @escaping () -> Void) {
+    func userNotificationCenter(_ center: UNUserNotificationCenter, didReceive response: UNNotificationResponse, withCompletionHandler completionHandler: @escaping () -> Void) {
         print("notification received: didReceiveResponse")
         
         let userInfo = response.notification.request.content.userInfo
         print("userNotificationCenter  did receive response \(userInfo)")
+        Messaging.messaging().appDidReceiveMessage(userInfo)
         
         if let rootTabBarController = self.window?.rootViewController as? MainTabBarController,
             let episodeType = userInfo["episodeType"] as? String {
