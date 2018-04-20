@@ -89,8 +89,9 @@ class Cache: NSObject {
                 self.items[guid] = localURL
                 return localURL
             }
-        } catch let error as NSError {
-            print(error)
+        }
+        catch let error as NSError {
+//            print(error)
         }
         return nil
     }
