@@ -17,8 +17,23 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
     @IBOutlet weak var tableView: UITableView!
     var pullToRefreshControl: UIRefreshControl!
     
+    //master list of episode items
     fileprivate var episodeItems:[Feed.Item] = []
+    //filtered items used when the user is searching
+    fileprivate var filteredEpisodeItems:[Feed.Item] = []
+    
     fileprivate var episodeCellReuseID = "EpisodeListCellReuseId"
+    
+    //searching
+    fileprivate let searchController = UISearchController(searchResultsController: nil)
+    fileprivate var isSearchBarEmpty:Bool {
+        return self.searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true
+    }
+    fileprivate var isSearching: Bool {
+        get {
+            return !self.isSearchBarEmpty
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -28,6 +43,7 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
         self.tableView.delegate = self
         
         self.setupRefreshControl()
+        self.setupSearchController()
         
         //we only want this indicator for the initial empty state
         self.loadingIndicator.startAnimating()
@@ -43,6 +59,8 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
         
         AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Bonus List")
     }
@@ -121,7 +139,7 @@ extension BonusEpisodesTableViewController {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: self.episodeCellReuseID, for: indexPath) as! EpisodeCell
         
-        cell.item = self.episodeItems[indexPath.row]
+        cell.item = self.isSearching ? self.filteredEpisodeItems[indexPath.row] : self.episodeItems[indexPath.row]
         cell.configureAsBonusItem()
         cell.delegate = self
         cell.indexPath = indexPath
@@ -133,7 +151,10 @@ extension BonusEpisodesTableViewController {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return Feed.shared.bonusItems.count
+        if self.isSearching{
+            return self.filteredEpisodeItems.count
+        }
+        return self.episodeItems.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -149,7 +170,7 @@ extension BonusEpisodesTableViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let episodeItem = self.episodeItems[indexPath.row]
+        let episodeItem = self.isSearching ? self.filteredEpisodeItems[indexPath.row] : self.episodeItems[indexPath.row]
         
         if episodeItem.isVideoContent {
             var finalUrl:URL? = nil
@@ -216,5 +237,59 @@ extension BonusEpisodesTableViewController {
         Cache.shared.download(cellItem, callback: { (downloadedItem) in
             self.tableView.reloadRows(at: [episodeCell.indexPath], with: .none)
         })
+    }
+}
+
+//MARK: - Searching
+extension BonusEpisodesTableViewController: UISearchResultsUpdating {
+    func setupSearchController() {
+        self.searchController.searchResultsUpdater = self
+        self.searchController.obscuresBackgroundDuringPresentation = false
+        self.searchController.searchBar.placeholder = "Search Episodes"
+        self.searchController.searchBar.barTintColor = UIColor.AEEYellow
+        UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont.PTSansRegular(size: 14)
+        self.tableView.tableHeaderView = self.searchController.searchBar
+        self.definesPresentationContext = true
+    }
+    
+    func filterContentForSearchText(_ searchText:String?) {
+        self.filteredEpisodeItems = self.episodeItems.filter({ (item) -> Bool in
+            
+            guard let lowercaseTrimmedSearchText = searchText?.trimmingCharacters(in: .whitespacesAndNewlines).lowercased() else {
+                return false
+            }
+            
+            //TODO add more criteria for filtering
+            if let lowercasedDisplayTitle = item.displayTitle?.lowercased() {
+                if lowercasedDisplayTitle.contains(lowercaseTrimmedSearchText) {
+                    return true
+                }
+            }
+            if let episodeNumber = item.number {
+                if episodeNumber.contains(lowercaseTrimmedSearchText) {
+                    return true
+                }
+            }
+            return false
+        })
+        tableView.reloadData()
+    }
+    
+    func updateSearchResults(for searchController: UISearchController) {
+        self.filterContentForSearchText(searchController.searchBar.text)
+    }
+}
+
+//Keyboard
+extension BonusEpisodesTableViewController {
+    func keyBoardWillShow(notification: NSNotification) {
+        if let keyBoardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
+            let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyBoardSize.height, right: 0)
+            self.tableView.contentInset = contentInsets
+        }
+    }
+    
+    func keyBoardWillHide(notification: NSNotification) {
+        self.updateContentInsetBasedOnNowPlayingBanner()
     }
 }
