@@ -110,6 +110,7 @@ fileprivate extension FavoritesManager {
         case duration = "duration"
         case type = "type"
         case episodeType = "episodeType"
+        case keywords = "keywords"
     }
     
     static func convertStoredDictionariesToFeedItems(dicts:[[String:String]]) -> [Feed.Item] {
@@ -122,48 +123,22 @@ fileprivate extension FavoritesManager {
     
     static func convertFeedItemToDictionary(item:Feed.Item) -> [String:String] {
         var dict = [String:String]()
-        if let number = item.number {
-            dict[FeedItemKey.number.rawValue] = number
-        }
-        if let title = item.title {
-            dict[FeedItemKey.title.rawValue] = title
-        }
-        if let link = item.link {
-            dict[FeedItemKey.link.rawValue] = link
-        }
-        if let comments = item.comments {
-            dict[FeedItemKey.comments.rawValue] = comments
-        }
-        if let pubdate = item.pubDate {
-            dict[FeedItemKey.pubDate.rawValue] = pubdate
-        }
-        if let creator = item.creator {
-            dict[FeedItemKey.creator.rawValue] = creator
-        }
-        if let guid = item.guid {
-            dict[FeedItemKey.guid.rawValue] = guid
-        }
-        if let description = item.description {
-            dict[FeedItemKey.description.rawValue] = description
-        }
-        if let url = item.url {
-            dict[FeedItemKey.url.rawValue] = url
-        }
-        if let subtitle = item.subtitle {
-            dict[FeedItemKey.subtitle.rawValue] = subtitle
-        }
-        if let summary = item.summary {
-            dict[FeedItemKey.summary.rawValue] = summary
-        }
-        if let author = item.author {
-            dict[FeedItemKey.author.rawValue] = author
-        }
-        if let duration = item.duration {
-            dict[FeedItemKey.duration.rawValue] = duration
-        }
-        if let type = item.type {
-            dict[FeedItemKey.type.rawValue] = type
-        }
+
+        dict[FeedItemKey.number.rawValue] = item.number
+        dict[FeedItemKey.title.rawValue] = item.title
+        dict[FeedItemKey.link.rawValue] = item.link
+        dict[FeedItemKey.comments.rawValue] = item.comments
+        dict[FeedItemKey.pubDate.rawValue] = item.pubDate
+        dict[FeedItemKey.creator.rawValue] = item.creator
+        dict[FeedItemKey.guid.rawValue] = item.guid
+        dict[FeedItemKey.description.rawValue] = item.description
+        dict[FeedItemKey.url.rawValue] = item.url
+        dict[FeedItemKey.subtitle.rawValue] = item.subtitle
+        dict[FeedItemKey.summary.rawValue] = item.summary
+        dict[FeedItemKey.author.rawValue] = item.author
+        dict[FeedItemKey.duration.rawValue] = item.duration
+        dict[FeedItemKey.type.rawValue] = item.type
+        dict[FeedItemKey.keywords.rawValue] = item.keywordString
         dict[FeedItemKey.episodeType.rawValue] = item.episodeType.rawValue
         
         return dict

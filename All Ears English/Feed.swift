@@ -96,7 +96,7 @@ class Feed: NSObject {
 
 
 
-//MARK: Item implementation
+//MARK: TODO last contractor made a mess of this model. its completely backwards and the inits are anti-pattern
     class Item {
         enum EpisodeType:String {
             case episode = "episode"
@@ -137,6 +137,12 @@ class Feed: NSObject {
                 self.parseDetails()
             }
         }
+        var keywordString:String? {
+            didSet {
+                self.parseKeywords()
+            }
+        }
+        var keywords = [String]()
         
         // computed for display or internal use
         var isVideoContent: Bool {
@@ -223,6 +229,8 @@ class Feed: NSObject {
             author = attributes["author"]
             duration = attributes["duration"]
             type = attributes["type"]
+            keywordString = attributes["keywords"]
+
             if let episodeTypeRawString = attributes["episodeType"],
                 let convertedEpisodeType = Feed.Item.EpisodeType(rawValue: episodeTypeRawString) {
                 self.episodeType = convertedEpisodeType
@@ -230,6 +238,7 @@ class Feed: NSObject {
             self.parseTitle()
             self.parseDetails()
             self.parseId()
+            self.parseKeywords()
         }
         
         convenience init(_ xmlItem: XML.Accessor, episodeType:EpisodeType) {
@@ -241,7 +250,8 @@ class Feed: NSObject {
                 "guid": "guid",
                 "description": "description",
                 "itunes:subtitle": "subtitle",
-                "itunes:duration": "duration"
+                "itunes:duration": "duration",
+                "itunes:keywords": "keywords"
             ]
             
             for (elementName, attributeName) in elementNames {
@@ -357,6 +367,11 @@ class Feed: NSObject {
             } else {
                 self.identifier = ""
             }
+        }
+        
+        func parseKeywords() {
+            guard let keywordString = self.keywordString else {return}
+            self.keywords = keywordString.components(separatedBy: [","])
         }
     }
 

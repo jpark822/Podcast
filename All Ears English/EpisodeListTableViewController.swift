@@ -272,6 +272,16 @@ extension EpisodeListTableViewController: UISearchResultsUpdating {
                     return true
                 }
             }
+            for keyword in item.keywords {
+                //make keyword searching restrictive to at least 3 characters to reduce noise
+                if lowercaseTrimmedSearchText.count < 3 {
+                    break
+                }
+                if keyword.range(of: lowercaseTrimmedSearchText) != nil {
+                    return true
+                }
+            }
+            
             return false
         })
         tableView.reloadData()
