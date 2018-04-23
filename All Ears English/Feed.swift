@@ -143,6 +143,12 @@ class Feed: NSObject {
             }
         }
         var keywords = [String]()
+        var categoriesString:String? {
+            didSet {
+                self.parseCategories()
+            }
+        }
+        var categories = [String]()
         
         // computed for display or internal use
         var isVideoContent: Bool {
@@ -230,6 +236,8 @@ class Feed: NSObject {
             duration = attributes["duration"]
             type = attributes["type"]
             keywordString = attributes["keywords"]
+            categoriesString = attributes["categories"]
+            
 
             if let episodeTypeRawString = attributes["episodeType"],
                 let convertedEpisodeType = Feed.Item.EpisodeType(rawValue: episodeTypeRawString) {
@@ -239,6 +247,7 @@ class Feed: NSObject {
             self.parseDetails()
             self.parseId()
             self.parseKeywords()
+            self.parseCategories()
         }
         
         convenience init(_ xmlItem: XML.Accessor, episodeType:EpisodeType) {
@@ -251,7 +260,8 @@ class Feed: NSObject {
                 "description": "description",
                 "itunes:subtitle": "subtitle",
                 "itunes:duration": "duration",
-                "itunes:keywords": "keywords"
+                "itunes:keywords": "keywords",
+                "app:category" : "categories"
             ]
             
             for (elementName, attributeName) in elementNames {
@@ -298,6 +308,9 @@ class Feed: NSObject {
                 if results.count > 0 {
                     let groups = results[0]
                     self.number = groups[1]
+                    if number == "930" {
+                        print("asdf")
+                    }
                     self.displayTitle = groups[2]
                 } else {
                     self.number = ""
@@ -372,6 +385,10 @@ class Feed: NSObject {
         func parseKeywords() {
             guard let keywordString = self.keywordString else {return}
             self.keywords = keywordString.components(separatedBy: [","])
+        }
+        func parseCategories() {
+            guard let categoriesString = self.categoriesString else {return}
+            self.categories = categoriesString.components(separatedBy: [","])
         }
     }
 

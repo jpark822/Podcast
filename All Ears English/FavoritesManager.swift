@@ -111,6 +111,7 @@ fileprivate extension FavoritesManager {
         case type = "type"
         case episodeType = "episodeType"
         case keywords = "keywords"
+        case categories = "categories"
     }
     
     static func convertStoredDictionariesToFeedItems(dicts:[[String:String]]) -> [Feed.Item] {
@@ -140,6 +141,7 @@ fileprivate extension FavoritesManager {
         dict[FeedItemKey.type.rawValue] = item.type
         dict[FeedItemKey.keywords.rawValue] = item.keywordString
         dict[FeedItemKey.episodeType.rawValue] = item.episodeType.rawValue
+        dict[FeedItemKey.categories.rawValue] = item.categoriesString
         
         return dict
     }

@@ -281,6 +281,15 @@ extension EpisodeListTableViewController: UISearchResultsUpdating {
                     return true
                 }
             }
+            for category in item.categories {
+                //make keyword searching restrictive to at least 3 characters to reduce noise
+                if lowercaseTrimmedSearchText.count < 3 {
+                    break
+                }
+                if category.range(of: lowercaseTrimmedSearchText) != nil {
+                    return true
+                }
+            }
             
             return false
         })
