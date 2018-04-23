@@ -260,7 +260,7 @@ class Feed: NSObject {
                 "description": "description",
                 "itunes:subtitle": "subtitle",
                 "itunes:duration": "duration",
-                "itunes:keywords": "keywords",
+                "app:keywords": "keywords",
                 "app:category" : "categories"
             ]
             
