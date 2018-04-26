@@ -67,21 +67,31 @@ class EpisodeCell: UITableViewCell {
             }
             
             //setting the main image
-            if let episodeNumber = item.number, !episodeNumber.isEmpty,
-                let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
-                self.episodeNumber.text = item.number
+            if let guid = item.guid,
+                let imageGuidURL = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(guid).jpg") {
                 
-                self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: self.getRandomPlaceholderImageForEpisode(), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                self.coverImageView.af_setImage(withURL: imageGuidURL, placeholderImage: self.getRandomPlaceholderImageForEpisode(), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: .noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                    //if this image fetch fails, try to use the old number-based image url
                     if response.result.value == nil {
-                        //there is no dedicated image or it failed
-                        self.coverImageView.image = UIImage(named: "episode_stub_image")
+                        if let episodeNumber = item.number, !episodeNumber.isEmpty,
+                            let imageUrl = URL(string: "https://s3.amazonaws.com/episode-banner-image/\(episodeNumber).jpg") {
+                            
+                            self.coverImageView.af_setImage(withURL: imageUrl, placeholderImage: self.getRandomPlaceholderImageForEpisode(), filter: nil, progress: nil, progressQueue: DispatchQueue.main, imageTransition: UIImageView.ImageTransition.noTransition, runImageTransitionIfCached: false, completion: { (response) in
+                                if response.result.value == nil {
+                                    //there is no dedicated image or it failed
+                                    self.coverImageView.image = UIImage(named: "episode_stub_image")
+                                }
+                            })
+                        }
                     }
                 })
             }
+            
+            if let episodeNumber = item.number, !episodeNumber.isEmpty {
+                self.episodeNumber.text = item.number
+            }
             else {
                 self.episodeNumber.text = "Bonus"
-                //there isnt a number, so show a default image
-                self.coverImageView.image = UIImage(named: "episode_stub_image")
             }
         }
     }

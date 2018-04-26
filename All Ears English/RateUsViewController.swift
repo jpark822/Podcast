@@ -26,13 +26,8 @@ class RateUsViewController: UIViewController {
     }
 
     @IBAction func confirmPressed(_ sender: Any) {
-        if #available( iOS 10.3,*){
-            SKStoreReviewController.requestReview()
-        }
-        else if let url = URL(string: "https://itunes.apple.com/us/app/all-ears-english-listening/id1260196995?ls=1&mt=8") {
-            UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
-            })
-        }
+        StoreReviewManager.sharedInstance.displayReviewController(fromViewController: self)
+        
         ApplicationData.userCompletedRating = true
         AnalyticsManager.sharedInstance.logKochavaCustomEvent(.rateAction, properties: nil)
     }
