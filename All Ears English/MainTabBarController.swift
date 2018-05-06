@@ -38,6 +38,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         self.setupNowPlayingBanner()
         
         self.configureMoreNavigationStyle()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {

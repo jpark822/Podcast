@@ -35,6 +35,8 @@ extension Feed {
                 }
                 
                 self.bonusItems = feedItems
+                self.getFeedMetadataAndPopulateFeed()
+                
                 if let completion = completion {
                     completion(feedItems)
                 }

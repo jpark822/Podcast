@@ -40,6 +40,7 @@
 		469F7F011F1B30430039FA03 /* MediaPlayer.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 469F7F001F1B30430039FA03 /* MediaPlayer.framework */; };
 		46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7A2AC1EFB967200B9AA23 /* Feed.swift */; };
 		46C7A2B11EFBC26300B9AA23 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */; };
+		4E25C590209E014C00B51C6B /* Feed+Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E25C58F209E014C00B51C6B /* Feed+Metadata.swift */; };
 		4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */; };
 		4E31E87D1F7FBA0C00AD05D2 /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E31E87C1F7FBA0C00AD05D2 /* Episodes.storyboard */; };
 		4E31E87F1F7FC03200AD05D2 /* EpisodePlayerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E87E1F7FC03200AD05D2 /* EpisodePlayerViewController.swift */; };
@@ -113,6 +114,7 @@
 		46C7A2AC1EFB967200B9AA23 /* Feed.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Feed.swift; sourceTree = "<group>"; };
 		46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		4E0F116A1FD5A51C00A84A2B /* All Ears English-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "All Ears English-Bridging-Header.h"; sourceTree = "<group>"; };
+		4E25C58F209E014C00B51C6B /* Feed+Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Metadata.swift"; sourceTree = "<group>"; };
 		4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		4E31E87C1F7FBA0C00AD05D2 /* Episodes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
 		4E31E87E1F7FC03200AD05D2 /* EpisodePlayerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodePlayerViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */,
 				46C7A2AC1EFB967200B9AA23 /* Feed.swift */,
 				4E4AE99B1F926EFE00B6CF10 /* Feed+Bonus.swift */,
+				4E25C58F209E014C00B51C6B /* Feed+Metadata.swift */,
 			);
 			name = Feed;
 			sourceTree = "<group>";
@@ -647,6 +650,7 @@
 				4E4AE9A91F9402AB00B6CF10 /* ContactUsViewController.swift in Sources */,
 				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
 				4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */,
+				4E25C590209E014C00B51C6B /* Feed+Metadata.swift in Sources */,
 				4E737504202A7C7000F5C25D /* UIFont+AEE.swift in Sources */,
 				4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */,
 				4E687F811F84F1120095CAAA /* NowPlayingBannerView.swift in Sources */,
