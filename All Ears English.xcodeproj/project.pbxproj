@@ -460,7 +460,6 @@
 				4672E5D71EF8787B006B5F25 /* Resources */,
 				466FD29F1EF88B8F009E3ACC /* ShellScript */,
 				A7453992E006234C0875F45A /* [CP] Embed Pods Frameworks */,
-				8F546FF73ADAF4B7A1FB6344 /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -565,21 +564,6 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "./Fabric.framework/run 16f9d19a2affc20f7cd124419e4dc03d7ec10116 c40fbd091f5a43ef8a64d425ba05de88332cd6148927579eca09147b89fdb27a";
-		};
-		8F546FF73ADAF4B7A1FB6344 /* [CP] Copy Pods Resources */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-			);
-			name = "[CP] Copy Pods Resources";
-			outputPaths = (
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-resources.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 		A7453992E006234C0875F45A /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
