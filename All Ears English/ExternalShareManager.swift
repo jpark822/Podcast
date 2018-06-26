@@ -41,5 +41,4 @@ class ExternalShareManager: NSObject {
         
         fromController.present(controller, animated: true)
     }
-
 }

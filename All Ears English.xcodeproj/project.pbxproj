@@ -67,6 +67,9 @@
 		4E687F8E1F8C18710095CAAA /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */; };
 		4E737504202A7C7000F5C25D /* UIFont+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E737503202A7C7000F5C25D /* UIFont+AEE.swift */; };
 		4E851B832034F6CD00E18B0B /* UITableView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E851B822034F6CD00E18B0B /* UITableView+Utilities.swift */; };
+		4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */; };
+		4EC62A8520E1B7890082D665 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC62A8420E1B7890082D665 /* Login.storyboard */; };
+		4EC62A8720E1B7910082D665 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC62A8620E1B7910082D665 /* SignUpViewController.swift */; };
 		4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */; };
 		4EF701561FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */; };
 		4EF701591FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */; };
@@ -141,6 +144,9 @@
 		4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		4E737503202A7C7000F5C25D /* UIFont+AEE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AEE.swift"; sourceTree = "<group>"; };
 		4E851B822034F6CD00E18B0B /* UITableView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utilities.swift"; sourceTree = "<group>"; };
+		4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		4EC62A8420E1B7890082D665 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
+		4EC62A8620E1B7910082D665 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = localEpisodeFeed.xml; sourceTree = "<group>"; };
 		4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 7b7979ab224c3df9f64c70eb78171e45.mp3; sourceTree = "<group>"; };
 		4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 8842ad63259786d023b3055a8f8df06d.mp3; sourceTree = "<group>"; };
@@ -231,6 +237,7 @@
 				4E4AE9A41F93E63400B6CF10 /* ShareViewController */,
 				4E4AE9A11F93D6A700B6CF10 /* RateViewController */,
 				4E4AE99D1F926FDF00B6CF10 /* Bonuses */,
+				4EC62A8120E1B7730082D665 /* Login */,
 				4E4AE99A1F926EEE00B6CF10 /* Feed */,
 				4E4AE9971F924A7000B6CF10 /* AnalyticsManager */,
 				4E4AE9941F8F8C2300B6CF10 /* StoreReviewManager */,
@@ -433,6 +440,16 @@
 			name = EpisodeCell;
 			sourceTree = "<group>";
 		};
+		4EC62A8120E1B7730082D665 /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				4EC62A8420E1B7890082D665 /* Login.storyboard */,
+				4EC62A8620E1B7910082D665 /* SignUpViewController.swift */,
+				4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */,
+			);
+			name = Login;
+			sourceTree = "<group>";
+		};
 		7DFAE26E221195811D48861F /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
@@ -535,6 +552,7 @@
 				4672E5E41EF8787B006B5F25 /* Assets.xcassets in Resources */,
 				4640CD501EFA3CA9006B0C5E /* Lindsay.png in Resources */,
 				46993BE61EFB6E4800806635 /* PT_Sans-Web-Bold.ttf in Resources */,
+				4EC62A8520E1B7890082D665 /* Login.storyboard in Resources */,
 				4E31E8841F815F4E00AD05D2 /* Home.storyboard in Resources */,
 				4672E5E21EF8787B006B5F25 /* Main.storyboard in Resources */,
 				4668D2901F1747B500845FE5 /* BannerView.xib in Resources */,
@@ -574,6 +592,7 @@
 				"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel/Mixpanel.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
@@ -584,6 +603,7 @@
 			outputPaths = (
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
@@ -620,6 +640,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC62A8720E1B7910082D665 /* SignUpViewController.swift in Sources */,
 				4E4AE99F1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift in Sources */,
 				4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */,
 				4602032C1F1B66960078A275 /* Cache.swift in Sources */,
@@ -649,6 +670,7 @@
 				4E4AE9AB1F97647800B6CF10 /* UIImage+Resize.swift in Sources */,
 				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
 				4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */,
+				4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */,
 				4E4AE9911F8F853F00B6CF10 /* ExternalShareManager.swift in Sources */,
 				4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */,
 				4E31E8861F81604C00AD05D2 /* MainTabBarController.swift in Sources */,

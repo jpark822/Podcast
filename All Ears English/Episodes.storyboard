@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_0" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
@@ -17,9 +17,6 @@
         </array>
         <array key="PT_Sans-Web-Regular.ttf">
             <string>PTSans-Regular</string>
-        </array>
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
         </array>
     </customFonts>
     <scenes>
@@ -55,7 +52,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Kw-aFM">
                                 <rect key="frame" x="0.0" y="295.5" width="320" height="272.5"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-49-PcW">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-49-PcW">
                                         <rect key="frame" x="20" y="39" width="28.5" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="Ogz-1O-bSH"/>
@@ -64,7 +61,7 @@
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcB-Dw-PFa">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rcB-Dw-PFa">
                                         <rect key="frame" x="271.5" y="39" width="28.5" height="15"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="15" id="R8i-3L-Tlf"/>
@@ -81,13 +78,13 @@
                                             <action selector="playbackRatePressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="m0Z-oX-lW1"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" ambiguous="YES" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
                                         <rect key="frame" x="8" y="62" width="304" height="56"/>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9M4-4R-8SO">
+                                    <slider opaque="NO" contentMode="scaleToFill" ambiguous="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="9M4-4R-8SO">
                                         <rect key="frame" x="18" y="8" width="284" height="31"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -109,24 +106,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ERz-bF-xrk">
-                                        <rect key="frame" x="8" y="125.5" width="304" height="45"/>
+                                        <rect key="frame" x="8" y="120.5" width="304" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMi-Hd-b0T">
-                                                <rect key="frame" x="0.0" y="0.0" width="54.5" height="45"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="54.5" height="50"/>
                                                 <state key="normal" image="ic_seek_prev"/>
                                                 <connections>
                                                     <action selector="previousSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="DO9-37-Hfw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Vg-fWP">
-                                                <rect key="frame" x="62.5" y="0.0" width="54.5" height="45"/>
+                                                <rect key="frame" x="62.5" y="0.0" width="54.5" height="50"/>
                                                 <state key="normal" image="ic_15_back"/>
                                                 <connections>
                                                     <action selector="skipBackwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="3ko-Kd-boT"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bg-XG-e1w">
-                                                <rect key="frame" x="125" y="0.0" width="54" height="45"/>
+                                                <rect key="frame" x="125" y="0.0" width="54" height="50"/>
                                                 <state key="normal" image="ic_play_50"/>
                                                 <state key="selected" image="ic_play_arrow_white"/>
                                                 <connections>
@@ -134,14 +131,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E05-Ry-XRa">
-                                                <rect key="frame" x="187" y="0.0" width="54.5" height="45"/>
+                                                <rect key="frame" x="187" y="0.0" width="54.5" height="50"/>
                                                 <state key="normal" image="ic_15_forward"/>
                                                 <connections>
                                                     <action selector="skipForwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="hJK-4F-ZRt"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-aA-fKv">
-                                                <rect key="frame" x="249.5" y="0.0" width="54.5" height="45"/>
+                                                <rect key="frame" x="249.5" y="0.0" width="54.5" height="50"/>
                                                 <state key="normal" image="ic_seek_next"/>
                                                 <connections>
                                                     <action selector="forwardSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="pf6-EQ-Oey"/>
@@ -202,7 +199,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="7i9-wF-e5Z" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-31.875" y="26.408450704225352"/>
+            <point key="canvasLocation" x="3341" y="-566"/>
         </scene>
         <!--Episode List Table View Controller-->
         <scene sceneID="XTt-lR-Mg5">
@@ -235,7 +232,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZGB-yC-jUE" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-1802.4000000000001" y="26.53673163418291"/>
+            <point key="canvasLocation" x="-1116" y="2"/>
         </scene>
         <!--Bonus Episodes Table View Controller-->
         <scene sceneID="lo0-ff-boX">
@@ -328,7 +325,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aN0-TB-CuR">
-                                                <rect key="frame" x="8" y="544" width="359" height="20"/>
+                                                <rect key="frame" x="8" y="544" width="359" height="22"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Description">
                                                         <attributes>
@@ -340,7 +337,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zUi-I8-ZOg">
-                                                <rect key="frame" x="0.0" y="579" width="375" height="1400"/>
+                                                <rect key="frame" x="0.0" y="581" width="375" height="1400"/>
                                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1400" id="Fw0-ne-VNK"/>
@@ -445,7 +442,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="88Z-Si-Gtm" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="967" y="145"/>
+            <point key="canvasLocation" x="2393" y="180"/>
         </scene>
         <!--Favorites List Table View Controller-->
         <scene sceneID="kJt-dH-hCs">
@@ -456,15 +453,15 @@
                         <viewControllerLayoutGuide type="bottom" id="qJQ-Gv-i1A"/>
                     </layoutGuides>
                     <view key="view" contentMode="scaleToFill" id="Dez-Ac-Bij">
-                        <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="NCx-pR-GCr">
-                                <rect key="frame" x="0.0" y="0.0" width="320" height="500"/>
+                                <rect key="frame" x="0.0" y="0.0" width="320" height="504"/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </tableView>
                             <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No favorite episodes found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VQm-m1-a0J">
-                                <rect key="frame" x="20" y="237" width="280" height="26"/>
+                                <rect key="frame" x="20" y="239" width="280" height="26"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="20"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -490,7 +487,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auV-Ul-3go" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1941.5999999999999" y="133.5832083958021"/>
+            <point key="canvasLocation" x="-17" y="24"/>
         </scene>
     </scenes>
     <resources>
