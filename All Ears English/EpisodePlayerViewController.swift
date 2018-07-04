@@ -30,7 +30,9 @@ class EpisodePlayerViewController : UIViewController {
     }
     var feedType:AudioPlayer.FeedType = .none
     
-    @IBOutlet weak var episodeImageView: UIImageView!
+    @IBOutlet weak var transcriptContainerView: UIView!
+    @IBOutlet weak var transcriptTextView: UITextView!
+    
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
     @IBOutlet weak var episodeDescriptionLabel: UILabel!
@@ -43,6 +45,17 @@ class EpisodePlayerViewController : UIViewController {
     fileprivate var displayLink: CADisplayLink!
     
     fileprivate var userIsScrubbing = false
+    
+    var transcript:TranscriptModel? {
+        didSet {
+            guard self.isViewLoaded,
+            let transcript = transcript else {
+                return
+            }
+            
+            self.transcriptTextView.text = transcript.fullTranscript
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -95,6 +108,23 @@ class EpisodePlayerViewController : UIViewController {
         }
     }
     
+    func fetchTranscript() {
+        guard let guid = self.episodeItem.guid else {
+            return
+        }
+        ServiceManager.sharedInstace.getTranscriptWithId(guid) { (transcriptModel, error) in
+            if let transcriptModel = transcriptModel {
+                if transcriptModel.id == self.transcript?.id {
+                    return
+                }
+                self.transcript = transcriptModel
+            }
+            else if let error = error {
+                
+            }
+        }
+    }
+    
     func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
         DispatchQueue.main.async {
             if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
@@ -105,6 +135,7 @@ class EpisodePlayerViewController : UIViewController {
     
     func setupInitialViewStateForEpisode() {
         self.episodeDescriptionLabel.text = self.episodeItem.title
+        self.fetchTranscript()
         self.updatePlaybackProgress()
         self.updateControlViews()
     }
@@ -153,6 +184,7 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     func updatePlaybackProgress() {
+        //Playback progress
         self.progressSlider.isEnabled = AudioPlayer.sharedInstance.queuePlayer.status == AVPlayerStatus.readyToPlay ? true : false
 
         self.timeElapsedLabel.text = AudioPlayer.sharedInstance.currentPlaybackFormattedTime
@@ -161,7 +193,28 @@ class EpisodePlayerViewController : UIViewController {
         if (self.userIsScrubbing == false) {
             self.progressSlider.value = AudioPlayer.sharedInstance.playbackProgress
         }
+        
+        //Transcript word tracking
+        if let transcript = self.transcript {
+            let elapsedTime = AudioPlayer.sharedInstance.queuePlayer.currentTime().seconds * 1000
+            for transcriptSegment in transcript.segments {
+                let bufferRange:Double = 100
+                let lowerTimeRange = transcriptSegment.timeStamp - bufferRange
+                let upperTimeRange = transcriptSegment.timeStamp + bufferRange
+                if elapsedTime >= lowerTimeRange && elapsedTime <= upperTimeRange {
+                    
+                    let rangeLength = transcriptSegment.endRange - transcriptSegment.startRange
+                    let textRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
+                    
+                    let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
+                    attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: textRange)
+                    self.transcriptTextView.attributedText = attributedString
+                    self.transcriptTextView.scrollRangeToVisible(textRange)
+                }
+            }
+        }
     }
+    
     @IBAction func dismissButtonPressed(_ sender: Any) {
         if let delegate = self.delegate {
             delegate.episodePlayerViewControllerDidPressDismiss(episodePlayerViewController: self)
