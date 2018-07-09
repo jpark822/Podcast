@@ -17,15 +17,27 @@ protocol SignUpViewControllerDelegate:class {
 
 class SignUpViewController: UIViewController {
 
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
     @IBOutlet weak var usernameTextField:UITextField!
     @IBOutlet weak var passwordTextField:UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel! {
+        didSet {
+            self.errorLabel.isHidden = true
+        }
+    }
     
     weak var delegate:SignUpViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.endEditing))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func endEditing() {
+        self.view.endEditing(true)
     }
     
     @IBAction func signUpPressed(_ sender:Any) {

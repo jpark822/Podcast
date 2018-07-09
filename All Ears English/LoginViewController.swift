@@ -11,21 +11,31 @@ import Firebase
 import FirebaseAuth
 
 protocol LoginUpViewControllerDelegate:class {
-    func loginViewControllerDelegateDidFinish(signupViewController:LoginViewController)
-    func loginViewControllerDelegateDidCancel(signupViewController:LoginViewController)
+    func loginViewControllerDelegateDidFinish(loginViewController:LoginViewController)
+    func loginViewControllerDelegateDidCancel(loginViewController:LoginViewController)
 }
 
 class LoginViewController: UIViewController {
     
     @IBOutlet weak var usernameTextField:UITextField!
     @IBOutlet weak var passwordTextField:UITextField!
-    @IBOutlet weak var errorLabel: UILabel!
+    @IBOutlet weak var errorLabel: UILabel! {
+        didSet {
+            self.errorLabel.isHidden = true
+        }
+    }
     
     weak var delegate:LoginUpViewControllerDelegate?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(self.endEditing))
+        self.view.addGestureRecognizer(tapGesture)
+    }
+    
+    @objc func endEditing() {
+        self.view.endEditing(true)
     }
     
     @IBAction func loginPressed(_ sender:Any) {
@@ -45,7 +55,7 @@ class LoginViewController: UIViewController {
                 return
             }
             else if result?.user != nil {
-                self.delegate?.loginViewControllerDelegateDidFinish(signupViewController: self)
+                self.delegate?.loginViewControllerDelegateDidFinish(loginViewController: self)
             }
             else {
                 self.errorLabel.text = "An error occurred"
@@ -54,7 +64,7 @@ class LoginViewController: UIViewController {
     }
     
     @IBAction func cancelPressed(_ sender:Any) {
-        self.delegate?.loginViewControllerDelegateDidCancel(signupViewController: self)
+        self.delegate?.loginViewControllerDelegateDidCancel(loginViewController: self)
     }
     
 }
