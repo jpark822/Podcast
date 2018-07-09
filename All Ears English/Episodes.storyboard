@@ -170,16 +170,35 @@
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rme-ZE-Ny7">
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="310.5"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="17"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
+                                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JXx-uC-jBL">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="311"/>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    </imageView>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Get realtime transcripts and keywords by subscribing!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viO-1p-baA">
+                                        <rect key="frame" x="12" y="108.5" width="251" height="93.5"/>
+                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="24"/>
+                                        <color key="textColor" red="0.99607843137254903" green="0.88235294117647056" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
+                                    <constraint firstItem="viO-1p-baA" firstAttribute="centerX" secondItem="V4P-mi-eNN" secondAttribute="centerX" id="0R6-IS-tTQ"/>
                                     <constraint firstAttribute="bottom" secondItem="Rme-ZE-Ny7" secondAttribute="bottom" id="5bS-yM-YYq"/>
+                                    <constraint firstAttribute="trailing" secondItem="viO-1p-baA" secondAttribute="trailing" constant="12" id="9sd-q8-s1s"/>
+                                    <constraint firstAttribute="trailing" secondItem="JXx-uC-jBL" secondAttribute="trailing" id="HSi-fZ-S6X"/>
+                                    <constraint firstItem="JXx-uC-jBL" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="IYn-FT-9lc"/>
+                                    <constraint firstAttribute="bottom" secondItem="JXx-uC-jBL" secondAttribute="bottom" constant="-0.5" id="JQl-Cv-cxp"/>
                                     <constraint firstAttribute="trailing" secondItem="Rme-ZE-Ny7" secondAttribute="trailing" id="NFp-hW-i1g"/>
                                     <constraint firstItem="Rme-ZE-Ny7" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="PuV-V1-R8b"/>
+                                    <constraint firstItem="viO-1p-baA" firstAttribute="centerY" secondItem="V4P-mi-eNN" secondAttribute="centerY" id="ieg-D1-clc"/>
+                                    <constraint firstItem="viO-1p-baA" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" constant="12" id="mjx-No-3DQ"/>
+                                    <constraint firstItem="JXx-uC-jBL" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="wqz-OP-ClJ"/>
                                     <constraint firstItem="Rme-ZE-Ny7" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="yvC-J9-xkf"/>
                                 </constraints>
                             </view>
@@ -207,6 +226,8 @@
                         <outlet property="timeElapsedLabel" destination="5R4-49-PcW" id="bck-Gc-P8Z"/>
                         <outlet property="timeRemainingLabel" destination="rcB-Dw-PFa" id="7L6-QH-LDl"/>
                         <outlet property="transcriptContainerView" destination="V4P-mi-eNN" id="Qmn-xT-IVC"/>
+                        <outlet property="transcriptObscureImageView" destination="JXx-uC-jBL" id="OSf-J0-BCU"/>
+                        <outlet property="transcriptSubscribeNowLabel" destination="viO-1p-baA" id="uyo-Sm-QkB"/>
                         <outlet property="transcriptTextView" destination="Rme-ZE-Ny7" id="gUt-bY-1N4"/>
                     </connections>
                 </viewController>

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import AVKit
 import AVFoundation
+import Firebase
 
 protocol EpisodePlayerViewControllerDelegate:class {
     func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController:EpisodePlayerViewController)
@@ -32,6 +33,8 @@ class EpisodePlayerViewController : UIViewController {
     
     @IBOutlet weak var transcriptContainerView: UIView!
     @IBOutlet weak var transcriptTextView: UITextView!
+    @IBOutlet weak var transcriptObscureImageView: UIImageView!
+    @IBOutlet weak var transcriptSubscribeNowLabel: UILabel!
     
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
@@ -104,23 +107,6 @@ class EpisodePlayerViewController : UIViewController {
             else {
                 //possible error state
                 self.setupInitialViewStateForEpisode()
-            }
-        }
-    }
-    
-    func fetchTranscript() {
-        guard let guid = self.episodeItem.guid else {
-            return
-        }
-        ServiceManager.sharedInstace.getTranscriptWithId(guid) { (transcriptModel, error) in
-            if let transcriptModel = transcriptModel {
-                if transcriptModel.id == self.transcript?.id {
-                    return
-                }
-                self.transcript = transcriptModel
-            }
-            else if let error = error {
-                
             }
         }
     }
@@ -198,8 +184,8 @@ class EpisodePlayerViewController : UIViewController {
         if let transcript = self.transcript {
             let elapsedTime = AudioPlayer.sharedInstance.queuePlayer.currentTime().seconds * 1000
             for transcriptSegment in transcript.segments {
-                let bufferRange:Double = 100
-                let lowerTimeRange = transcriptSegment.timeStamp - bufferRange
+                let bufferRange:Double = 50
+                let lowerTimeRange = transcriptSegment.timeStamp
                 let upperTimeRange = transcriptSegment.timeStamp + bufferRange
                 if elapsedTime >= lowerTimeRange && elapsedTime <= upperTimeRange {
                     
@@ -207,7 +193,7 @@ class EpisodePlayerViewController : UIViewController {
                     let textRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
                     
                     let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
-                    attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.red, range: textRange)
+                    attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.AEEYellow, range: textRange)
                     self.transcriptTextView.attributedText = attributedString
                     self.transcriptTextView.scrollRangeToVisible(textRange)
                 }
@@ -284,7 +270,45 @@ class EpisodePlayerViewController : UIViewController {
         ApplicationData.isAutoPlayEnabled = !ApplicationData.isAutoPlayEnabled
         self.updateControlViews()
     }
+}
+
+//MARK: transcripts
+extension EpisodePlayerViewController {
+    func fetchTranscript() {
+        guard let guid = self.episodeItem.guid else {
+            return
+        }
+        ServiceManager.sharedInstace.getTranscriptWithId(guid) { (transcriptModel, error) in
+            if let transcriptModel = transcriptModel {
+                if transcriptModel.id == self.transcript?.id {
+                    // dont reset the transcript if its the same episode
+                    return
+                }
+                self.transcript = transcriptModel
+                self.evaluateTranscriptState()
+            }
+            else if let error = error {
+                self.evaluateTranscriptState()
+            }
+        }
+    }
     
+    func evaluateTranscriptState() {
+        guard let transcript = self.transcript else {
+            self.showTranscript(false)
+            return
+        }
+        if Auth.auth().currentUser != nil && transcript.isFree {
+            self.showTranscript(true)
+        }
+        else {
+            self.showTranscript(false)
+        }
+    }
     
+    func showTranscript(_ isShowing:Bool) {
+        self.transcriptObscureImageView.isHidden = !isShowing
+        self.transcriptSubscribeNowLabel.isHidden = !isShowing
+    }
     
 }

@@ -16,22 +16,20 @@ class ServiceManager: NSObject {
     var sessionManager = SessionManager(configuration: .default)
     
     func getTranscriptWithId(_ episodeGuid:String, completion:@escaping (TranscriptModel?, Error?)->Void) {
-        if let path = Bundle.main.path(forResource: "exampleTranscript", ofType: "json") {
-            do {
-                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
-                let jsonObj = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as! [String:Any]
-                let transcriptModel = TranscriptModel(jsonDict: jsonObj)
+        Alamofire.request("https://s3.amazonaws.com/allearsenglish-mobileapp/transcripts/970.json").validate().responseJSON { (response) in
+            switch response.result{
+            case .failure(let error):
+                completion(nil, error)
+                return
+            case .success(let value):
+                guard let responseDict = value as? [String:Any] else {
+                    completion(nil, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"parsing error"]))
+                    return
+                }
+                let transcriptModel = TranscriptModel(jsonDict: responseDict)
                 completion(transcriptModel, nil)
-                
+                return
             }
-            catch let error {
-                print("parse error: \(error.localizedDescription)")
-                completion(nil, nil)
-            }
-        }
-        else {
-            print("Invalid filename/path.")
-            completion(nil, nil)
         }
     }
 }
