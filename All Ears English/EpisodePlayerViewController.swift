@@ -295,9 +295,11 @@ extension EpisodePlayerViewController {
     
     func evaluateTranscriptState() {
         guard let transcript = self.transcript else {
+            //If theres no valid transcript do we just show the logo here?
             self.showTranscript(false)
             return
         }
+        
         if Auth.auth().currentUser != nil && transcript.isFree {
             self.showTranscript(true)
         }
