@@ -41,6 +41,9 @@
 		46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7A2AC1EFB967200B9AA23 /* Feed.swift */; };
 		46C7A2B11EFBC26300B9AA23 /* EpisodeCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */; };
 		4E228D8F20EAA652002912AB /* exampleTranscript.json in Resources */ = {isa = PBXBuildFile; fileRef = 4E228D8E20EAA652002912AB /* exampleTranscript.json */; };
+		4E228D9D20F4371D002912AB /* SignupLoginCTASectionHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E228D9C20F4371D002912AB /* SignupLoginCTASectionHeader.swift */; };
+		4E228D9F20F43733002912AB /* SignupLoginCTASectionHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E228D9E20F43733002912AB /* SignupLoginCTASectionHeader.xib */; };
+		4E228DA120F43E9C002912AB /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E228DA020F43E9C002912AB /* ForgotPasswordViewController.swift */; };
 		4E25C590209E014C00B51C6B /* Feed+Metadata.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E25C58F209E014C00B51C6B /* Feed+Metadata.swift */; };
 		4E31E8761F7D0ACA00AD05D2 /* AudioPlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */; };
 		4E31E87D1F7FBA0C00AD05D2 /* Episodes.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4E31E87C1F7FBA0C00AD05D2 /* Episodes.storyboard */; };
@@ -121,6 +124,9 @@
 		46C7A2B01EFBC26300B9AA23 /* EpisodeCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EpisodeCell.swift; sourceTree = "<group>"; };
 		4E0F116A1FD5A51C00A84A2B /* All Ears English-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "All Ears English-Bridging-Header.h"; sourceTree = "<group>"; };
 		4E228D8E20EAA652002912AB /* exampleTranscript.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = exampleTranscript.json; sourceTree = "<group>"; };
+		4E228D9C20F4371D002912AB /* SignupLoginCTASectionHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupLoginCTASectionHeader.swift; sourceTree = "<group>"; };
+		4E228D9E20F43733002912AB /* SignupLoginCTASectionHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = SignupLoginCTASectionHeader.xib; sourceTree = "<group>"; };
+		4E228DA020F43E9C002912AB /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		4E25C58F209E014C00B51C6B /* Feed+Metadata.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Feed+Metadata.swift"; sourceTree = "<group>"; };
 		4E31E8751F7D0ACA00AD05D2 /* AudioPlayer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AudioPlayer.swift; sourceTree = "<group>"; };
 		4E31E87C1F7FBA0C00AD05D2 /* Episodes.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = Episodes.storyboard; sourceTree = "<group>"; };
@@ -310,6 +316,8 @@
 				4E31E87C1F7FBA0C00AD05D2 /* Episodes.storyboard */,
 				4E31E87E1F7FC03200AD05D2 /* EpisodePlayerViewController.swift */,
 				4E31E8871F81612B00AD05D2 /* EpisodeListTableViewController.swift */,
+				4E228D9C20F4371D002912AB /* SignupLoginCTASectionHeader.swift */,
+				4E228D9E20F43733002912AB /* SignupLoginCTASectionHeader.xib */,
 			);
 			name = Episodes;
 			sourceTree = "<group>";
@@ -471,6 +479,7 @@
 				4EC62A8420E1B7890082D665 /* Login.storyboard */,
 				4EC62A8620E1B7910082D665 /* SignUpViewController.swift */,
 				4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */,
+				4E228DA020F43E9C002912AB /* ForgotPasswordViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -564,6 +573,7 @@
 				46993BE41EFB6E3E00806635 /* Nunito-Bold.ttf in Resources */,
 				4640CD491EFA3638006B0C5E /* aboutus.html in Resources */,
 				46478FE01EFB6D0D00B2690C /* Montserrat-Regular.ttf in Resources */,
+				4E228D9F20F43733002912AB /* SignupLoginCTASectionHeader.xib in Resources */,
 				4E687F8E1F8C18710095CAAA /* EpisodeCell.xib in Resources */,
 				4672E5E71EF8787B006B5F25 /* LaunchScreen.storyboard in Resources */,
 				466FD2A51EF891BA009E3ACC /* GoogleService-Info.plist in Resources */,
@@ -688,9 +698,11 @@
 				4EB1F6FE20EAA4FC00C4E83C /* ServiceManager.swift in Sources */,
 				46C7A2B11EFBC26300B9AA23 /* EpisodeCell.swift in Sources */,
 				4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */,
+				4E228D9D20F4371D002912AB /* SignupLoginCTASectionHeader.swift in Sources */,
 				4E4AE9A61F93E64200B6CF10 /* ShareViewController.swift in Sources */,
 				464415D11EF8A83E00129F07 /* EpisodesViewController.swift in Sources */,
 				4672E5DD1EF8787B006B5F25 /* AppDelegate.swift in Sources */,
+				4E228DA120F43E9C002912AB /* ForgotPasswordViewController.swift in Sources */,
 				4668D2921F1748F700845FE5 /* BannerView.swift in Sources */,
 				469F7EFF1F1B01250039FA03 /* EpisodePlaybackViewController.swift in Sources */,
 				4E851B832034F6CD00E18B0B /* UITableView+Utilities.swift in Sources */,

@@ -21,22 +21,28 @@
         <!--Sign Up View Controller-->
         <scene sceneID="6IV-jt-Cah">
             <objects>
-                <viewController id="GSE-iB-VWM" customClass="SignUpViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewControllerId" id="GSE-iB-VWM" customClass="SignUpViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wt4-DG-wuA">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ev4-tn-mch">
-                                <rect key="frame" x="16" y="380" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Ev4-tn-mch">
+                                <rect key="frame" x="16" y="357" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="1aY-Zz-po2"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bps-l0-Zh2">
-                                <rect key="frame" x="16" y="419" width="343" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bps-l0-Zh2">
+                                <rect key="frame" x="16" y="396" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="PMp-TO-t3p"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="OfB-GC-8Lv">
                                 <rect key="frame" x="214" y="706" width="141" height="52"/>
@@ -45,8 +51,8 @@
                                     <action selector="signUpPressed:" destination="GSE-iB-VWM" eventType="touchUpInside" id="P3c-dH-BgV"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u3d-sg-bqA">
-                                <rect key="frame" x="17" y="185" width="67" height="19.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="u3d-sg-bqA">
+                                <rect key="frame" x="17" y="181.33333333333334" width="341" height="19.666666666666657"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -68,62 +74,68 @@
                                 <rect key="frame" x="0.0" y="148.33333333333334" width="375" height="29"/>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Personal Info" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2NA-c7-DVw">
-                                <rect key="frame" x="17" y="212" width="102" height="24"/>
+                                <rect key="frame" x="17" y="205" width="102" height="24"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q2t-Dx-zCG">
-                                <rect key="frame" x="17" y="244" width="342" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Q2t-Dx-zCG">
+                                <rect key="frame" x="17" y="237" width="342" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="7K7-LR-KEH"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-dh-PTC">
-                                <rect key="frame" x="17" y="282" width="342" height="30"/>
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="OBw-dh-PTC">
+                                <rect key="frame" x="17" y="275" width="342" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="QvS-aZ-iNh"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="NbM-rd-S1f">
-                                <rect key="frame" x="17" y="272" width="342" height="1"/>
+                                <rect key="frame" x="17" y="265" width="342" height="1"/>
                                 <color key="backgroundColor" red="0.59215686274509804" green="0.59215686274509804" blue="0.59215686274509804" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="mD8-E4-pm6"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="eZW-dl-ghK">
-                                <rect key="frame" x="17" y="312" width="342" height="1"/>
+                                <rect key="frame" x="17" y="305" width="342" height="1"/>
                                 <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="6rD-vT-T2Z"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Security" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6JS-UW-Jox">
-                                <rect key="frame" x="17" y="348" width="62" height="24"/>
+                                <rect key="frame" x="17" y="325" width="62" height="24"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jC8-C6-HlN">
-                                <rect key="frame" x="16" y="410" width="343" height="1"/>
+                                <rect key="frame" x="16" y="387" width="343" height="1"/>
                                 <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="t5K-U0-NKJ"/>
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nlN-ck-MdD">
-                                <rect key="frame" x="16" y="449" width="343" height="1"/>
+                                <rect key="frame" x="16" y="426" width="343" height="1"/>
                                 <color key="backgroundColor" red="0.59215686270000001" green="0.59215686270000001" blue="0.59215686270000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="1" id="QSV-er-SMt"/>
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Join All Ears English" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="DkU-PE-ugw">
-                                <rect key="frame" x="17" y="485" width="154" height="24"/>
+                                <rect key="frame" x="17" y="446" width="154" height="24"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="18"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="By creating an account you'll have access to episode transcripts. Just play the episode and follow along on the screen!" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Npk-JI-zoc">
-                                <rect key="frame" x="17" y="517" width="342" height="31.333333333333371"/>
+                                <rect key="frame" x="17" y="478" width="342" height="31.333333333333314"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="12"/>
                                 <color key="textColor" red="0.29019607843137252" green="0.29019607843137252" blue="0.29019607843137252" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -135,8 +147,9 @@
                             <constraint firstItem="NbM-rd-S1f" firstAttribute="top" secondItem="Q2t-Dx-zCG" secondAttribute="bottom" constant="-2" id="1vP-cg-HOr"/>
                             <constraint firstItem="Q2t-Dx-zCG" firstAttribute="top" secondItem="2NA-c7-DVw" secondAttribute="bottom" constant="8" id="33r-xM-dZF"/>
                             <constraint firstItem="Npk-JI-zoc" firstAttribute="top" secondItem="DkU-PE-ugw" secondAttribute="bottom" constant="8" id="3au-Fa-5GA"/>
+                            <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="u3d-sg-bqA" secondAttribute="trailing" constant="17" id="5eS-O1-geU"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="OfB-GC-8Lv" secondAttribute="trailing" constant="20" id="7DI-on-UfV"/>
-                            <constraint firstItem="6JS-UW-Jox" firstAttribute="top" secondItem="OBw-dh-PTC" secondAttribute="bottom" constant="36" id="AE2-9t-Iey"/>
+                            <constraint firstItem="6JS-UW-Jox" firstAttribute="top" secondItem="OBw-dh-PTC" secondAttribute="bottom" constant="20" id="AE2-9t-Iey"/>
                             <constraint firstItem="jC8-C6-HlN" firstAttribute="top" secondItem="Ev4-tn-mch" secondAttribute="bottom" id="AiW-PD-N0u"/>
                             <constraint firstItem="DkU-PE-ugw" firstAttribute="leading" secondItem="riU-Qb-TyG" secondAttribute="leading" constant="17" id="Ecg-z4-w9a"/>
                             <constraint firstItem="NbM-rd-S1f" firstAttribute="leading" secondItem="Q2t-Dx-zCG" secondAttribute="leading" id="FkZ-Uj-bUU"/>
@@ -147,7 +160,6 @@
                             <constraint firstItem="u3d-sg-bqA" firstAttribute="leading" secondItem="riU-Qb-TyG" secondAttribute="leading" constant="17" id="LMJ-6x-3vd"/>
                             <constraint firstItem="Ocj-bl-FZk" firstAttribute="leading" secondItem="riU-Qb-TyG" secondAttribute="leading" constant="17" id="Las-Su-Dai"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="07I-Ra-cD7" secondAttribute="trailing" id="PIj-Bp-Tdj"/>
-                            <constraint firstItem="2NA-c7-DVw" firstAttribute="top" secondItem="u3d-sg-bqA" secondAttribute="bottom" constant="7.3333333333333428" id="U15-3e-ZEe"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="Npk-JI-zoc" secondAttribute="trailing" constant="16" id="Uvm-8h-Df6"/>
                             <constraint firstItem="Bps-l0-Zh2" firstAttribute="trailing" secondItem="Ev4-tn-mch" secondAttribute="trailing" id="VIE-WK-rz0"/>
                             <constraint firstItem="Ev4-tn-mch" firstAttribute="leading" secondItem="riU-Qb-TyG" secondAttribute="leading" constant="16" id="XEZ-Z9-dIP"/>
@@ -156,7 +168,7 @@
                             <constraint firstItem="OBw-dh-PTC" firstAttribute="leading" secondItem="Q2t-Dx-zCG" secondAttribute="leading" id="cJ7-rt-Ffs"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="Ev4-tn-mch" secondAttribute="trailing" constant="16" id="cTz-fR-Abm"/>
                             <constraint firstItem="NbM-rd-S1f" firstAttribute="trailing" secondItem="Q2t-Dx-zCG" secondAttribute="trailing" id="dO5-6h-ifW"/>
-                            <constraint firstItem="u3d-sg-bqA" firstAttribute="top" secondItem="07I-Ra-cD7" secondAttribute="bottom" constant="7.6666666666666572" id="dx1-xh-I9C"/>
+                            <constraint firstItem="u3d-sg-bqA" firstAttribute="top" secondItem="07I-Ra-cD7" secondAttribute="bottom" constant="4" id="dx1-xh-I9C"/>
                             <constraint firstItem="6JS-UW-Jox" firstAttribute="leading" secondItem="OBw-dh-PTC" secondAttribute="leading" id="ejP-t6-pfz"/>
                             <constraint firstItem="Q2t-Dx-zCG" firstAttribute="leading" secondItem="2NA-c7-DVw" secondAttribute="leading" id="f70-04-1KD"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="bottom" secondItem="OfB-GC-8Lv" secondAttribute="bottom" constant="20" id="fEx-m9-usj"/>
@@ -164,13 +176,14 @@
                             <constraint firstItem="OBw-dh-PTC" firstAttribute="top" secondItem="Q2t-Dx-zCG" secondAttribute="bottom" constant="8" id="hIH-Cz-lZd"/>
                             <constraint firstItem="0yb-kI-ZKE" firstAttribute="leading" secondItem="riU-Qb-TyG" secondAttribute="leading" constant="17" id="hnh-w2-StW"/>
                             <constraint firstItem="OBw-dh-PTC" firstAttribute="trailing" secondItem="Q2t-Dx-zCG" secondAttribute="trailing" id="hrJ-hC-BBH"/>
+                            <constraint firstItem="2NA-c7-DVw" firstAttribute="top" secondItem="u3d-sg-bqA" secondAttribute="bottom" constant="4" id="m44-H7-ior"/>
                             <constraint firstItem="nlN-ck-MdD" firstAttribute="leading" secondItem="Bps-l0-Zh2" secondAttribute="leading" id="mFI-DJ-VtC"/>
                             <constraint firstItem="eZW-dl-ghK" firstAttribute="top" secondItem="OBw-dh-PTC" secondAttribute="bottom" id="mg0-O4-a2K"/>
                             <constraint firstItem="07I-Ra-cD7" firstAttribute="top" secondItem="Ocj-bl-FZk" secondAttribute="bottom" constant="17" id="nQ1-b6-8Zc"/>
                             <constraint firstItem="Ev4-tn-mch" firstAttribute="top" secondItem="6JS-UW-Jox" secondAttribute="bottom" constant="8" id="nvT-h1-U8Z"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="Ocj-bl-FZk" secondAttribute="trailing" constant="16" id="pYV-4k-dVw"/>
                             <constraint firstItem="jC8-C6-HlN" firstAttribute="leading" secondItem="Ev4-tn-mch" secondAttribute="leading" id="qcT-u4-9TE"/>
-                            <constraint firstItem="DkU-PE-ugw" firstAttribute="top" secondItem="Bps-l0-Zh2" secondAttribute="bottom" constant="36" id="qnX-Sd-sqv"/>
+                            <constraint firstItem="DkU-PE-ugw" firstAttribute="top" secondItem="Bps-l0-Zh2" secondAttribute="bottom" constant="20" id="qnX-Sd-sqv"/>
                             <constraint firstItem="riU-Qb-TyG" firstAttribute="trailing" secondItem="Q2t-Dx-zCG" secondAttribute="trailing" constant="16" id="rOT-BU-wTH"/>
                             <constraint firstItem="Bps-l0-Zh2" firstAttribute="top" secondItem="Ev4-tn-mch" secondAttribute="bottom" constant="9" id="rhr-vN-JQU"/>
                             <constraint firstItem="nlN-ck-MdD" firstAttribute="top" secondItem="Bps-l0-Zh2" secondAttribute="bottom" id="xSq-uf-zeJ"/>
@@ -228,17 +241,23 @@
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0F6-Mh-4Tb">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="0F6-Mh-4Tb">
                                 <rect key="frame" x="16" y="212.66666666666666" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="GV8-HJ-vbN"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
                             </textField>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H26-Pk-Ggy">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="H26-Pk-Ggy">
                                 <rect key="frame" x="16" y="251.66666666666663" width="343" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="CKi-E2-QKA"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                             </textField>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rrc-KF-Nss">
                                 <rect key="frame" x="16" y="242.66666666666666" width="343" height="1"/>
@@ -303,10 +322,10 @@
             </objects>
             <point key="canvasLocation" x="1144.8" y="-229.06403940886702"/>
         </scene>
-        <!--View Controller-->
+        <!--Forgot Password View Controller-->
         <scene sceneID="a3G-4U-r1M">
             <objects>
-                <viewController id="PRg-kk-ntz" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ForgotPasswordViewControllerId" id="PRg-kk-ntz" customClass="ForgotPasswordViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="77H-cA-dim">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -329,6 +348,7 @@
                                 <state key="normal" image="buttonResetPassword"/>
                                 <connections>
                                     <action selector="loginPressed:" destination="pIL-lW-kxi" eventType="touchUpInside" id="qJb-QL-Ukg"/>
+                                    <action selector="resetPasswordPressed:" destination="PRg-kk-ntz" eventType="touchUpInside" id="wXK-98-eKV"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="We need to confirm your email to send you instructions to reset your password." textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p96-eR-zzQ">
@@ -337,8 +357,11 @@
                                 <color key="textColor" red="0.2901960784" green="0.2901960784" blue="0.2901960784" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ay8-PV-DPu">
+                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ay8-PV-DPu">
                                 <rect key="frame" x="16" y="280.66666666666669" width="342" height="30"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="30" id="Yv5-el-ByZ"/>
+                                </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <textInputTraits key="textInputTraits"/>
@@ -375,6 +398,9 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="S55-5F-Tyk"/>
                     </view>
+                    <connections>
+                        <outlet property="usernameTextField" destination="ay8-PV-DPu" id="FJy-ON-Z2i"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmG-C7-4pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

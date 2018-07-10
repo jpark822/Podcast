@@ -9,6 +9,7 @@
 import UIKit
 import AlamofireImage
 import Alamofire
+import FirebaseAuth
 
 class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate, UITableViewDataSource, UITableViewDelegate {
 
@@ -21,6 +22,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
     fileprivate var filteredEpisodeItems:[Feed.Item] = []
     
     fileprivate var episodeCellReuseID = "EpisodeListCellReuseId"
+    fileprivate var signupHeaderReuseID = "signupHeaderReuseId"
     fileprivate var isFirstLaunch = true
     
     //searching
@@ -28,6 +30,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
     fileprivate var isSearchBarEmpty:Bool {
         return self.searchController.searchBar.text?.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty ?? true
     }
+    
     fileprivate var isSearching: Bool {
         get {
             return !self.isSearchBarEmpty
@@ -38,6 +41,9 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         super.viewDidLoad()
         
         self.tableView.register(UINib(nibName: "EpisodeCell", bundle: nil) , forCellReuseIdentifier: self.episodeCellReuseID)
+        self.tableView.register(UINib(nibName: "SignupLoginCTASectionHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: self.signupHeaderReuseID)
+        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        self.tableView.estimatedSectionHeaderHeight = 200;
         self.tableView.dataSource = self
         self.tableView.delegate = self
         
@@ -68,6 +74,10 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         super.viewWillAppear(animated)
         self.updateContentInsetBasedOnNowPlayingBanner()
         AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Episode List")
+        
+        if Auth.auth().currentUser != nil {
+            self.setupLogoutButton()
+        }
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -205,6 +215,22 @@ extension EpisodeListTableViewController {
         let newHeightWithDescription = newHeight + EpisodeCell.preferredDetailHeight
         return newHeightWithDescription
     }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if section == 0 && Auth.auth().currentUser == nil {
+            let header = tableView.dequeueReusableHeaderFooterView(withIdentifier: self.signupHeaderReuseID) as! SignupLoginCTASectionHeader
+            header.delegate = self
+            return header
+        }
+        return UIView(frame: CGRect.zero)
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        if section == 0 && Auth.auth().currentUser == nil {
+            return UITableViewAutomaticDimension
+        }
+        return 0
+    }
 }
 
 //MARK: EpisodePlayerViewControllerDelegate
@@ -312,5 +338,55 @@ extension EpisodeListTableViewController {
     
     func keyBoardWillHide(notification: NSNotification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
+    }
+}
+
+extension EpisodeListTableViewController:SignupLoginCTASectionHeaderDelegate {
+    func signupLoginCTASectionHeaderDidPressLogin(header: SignupLoginCTASectionHeader) {
+        let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewControllerId") as! LoginViewController
+        loginVC.delegate = self
+        self.present(loginVC, animated: true)
+    }
+    
+    func signupLoginCTASectionHeaderDidPressSignUp(header: SignupLoginCTASectionHeader) {
+        let signupVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewControllerId") as! SignUpViewController
+        signupVC.delegate = self
+        self.present(signupVC, animated: true)
+    }
+}
+
+extension EpisodeListTableViewController:SignUpViewControllerDelegate, LoginUpViewControllerDelegate {
+    //Signup
+    func signUpViewControllerDelegateDidCancel(signupViewController: SignUpViewController) {
+        signupViewController.dismiss(animated: true)
+    }
+    func signUpViewControllerDelegateDidFinish(signupViewController: SignUpViewController) {
+        self.tableView.reloadData()
+        self.setupLogoutButton()
+        signupViewController.dismiss(animated: true)
+    }
+    //Login
+    func loginViewControllerDelegateDidCancel(loginViewController: LoginViewController) {
+        loginViewController.dismiss(animated: true)
+    }
+    func loginViewControllerDelegateDidFinish(loginViewController: LoginViewController) {
+        self.tableView.reloadData()
+        self.setupLogoutButton()
+        loginViewController.dismiss(animated: true)
+    }
+    
+    func setupLogoutButton() {
+        let logoutButton = UIBarButtonItem(title: "Logout", style: .plain, target: self, action: #selector(self.logoutPressed))
+        self.navigationItem.leftBarButtonItem = logoutButton
+    }
+    @objc func logoutPressed() {
+        do {
+            try Auth.auth().signOut()
+            self.tableView.reloadData()
+            self.navigationItem.leftBarButtonItem = nil
+        }
+        catch {
+            
+        }
     }
 }
