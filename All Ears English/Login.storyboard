@@ -33,7 +33,7 @@
                                 </constraints>
                                 <nil key="textColor"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
-                                <textInputTraits key="textInputTraits"/>
+                                <textInputTraits key="textInputTraits" keyboardType="emailAddress" textContentType="email"/>
                             </textField>
                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Bps-l0-Zh2">
                                 <rect key="frame" x="16" y="396" width="343" height="30"/>
@@ -235,8 +235,8 @@
                                     <action selector="loginPressed:" destination="pIL-lW-kxi" eventType="touchUpInside" id="k13-42-i0d"/>
                                 </connections>
                             </button>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="w03-MZ-9Sm">
-                                <rect key="frame" x="17" y="185" width="67" height="19.666666666666657"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="w03-MZ-9Sm">
+                                <rect key="frame" x="17" y="185" width="342" height="19.666666666666657"/>
                                 <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
                                 <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -279,6 +279,9 @@
                                 <state key="normal" title="Forgot Password?">
                                     <color key="titleColor" red="0.99607843139999996" green="0.88235294119999996" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 </state>
+                                <connections>
+                                    <action selector="forgotPasswordPressed:" destination="pIL-lW-kxi" eventType="touchUpInside" id="aVP-8E-IgF"/>
+                                </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -299,6 +302,7 @@
                             <constraint firstItem="GCZ-pK-4cp" firstAttribute="top" secondItem="Iga-7h-ZLY" secondAttribute="bottom" constant="17" id="WFQ-qc-Yxq"/>
                             <constraint firstItem="w03-MZ-9Sm" firstAttribute="leading" secondItem="tjQ-gu-gkh" secondAttribute="leading" constant="17" id="Whd-w7-g8J"/>
                             <constraint firstItem="tjQ-gu-gkh" firstAttribute="trailing" secondItem="R3g-5t-fz4" secondAttribute="trailing" constant="20" id="eSU-up-F2r"/>
+                            <constraint firstItem="tjQ-gu-gkh" firstAttribute="trailing" secondItem="w03-MZ-9Sm" secondAttribute="trailing" constant="16" id="gKf-ap-WTc"/>
                             <constraint firstItem="hql-Or-e4B" firstAttribute="top" secondItem="H26-Pk-Ggy" secondAttribute="bottom" id="icZ-qx-oNN"/>
                             <constraint firstItem="GCZ-pK-4cp" firstAttribute="leading" secondItem="tjQ-gu-gkh" secondAttribute="leading" id="kM7-pu-WbN"/>
                             <constraint firstItem="H26-Pk-Ggy" firstAttribute="top" secondItem="0F6-Mh-4Tb" secondAttribute="bottom" constant="9" id="n0E-ri-yTq"/>
@@ -320,7 +324,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="BP8-g2-tjb" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1144.8" y="-229.06403940886702"/>
+            <point key="canvasLocation" x="265" y="509"/>
         </scene>
         <!--Forgot Password View Controller-->
         <scene sceneID="a3G-4U-r1M">
@@ -333,6 +337,9 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="9LC-eN-zHQ">
                                 <rect key="frame" x="17" y="61" width="18" height="22"/>
                                 <state key="normal" image="buttonExitX"/>
+                                <connections>
+                                    <action selector="cancelPressed:" destination="PRg-kk-ntz" eventType="touchUpInside" id="50h-zm-4Go"/>
+                                </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Forgot Password" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4Uh-Wn-bdE">
                                 <rect key="frame" x="17" y="100" width="342" height="31.333333333333343"/>
@@ -373,6 +380,12 @@
                                     <constraint firstAttribute="height" constant="1" id="aYZ-vj-hj6"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="error label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="Nzz-BP-8NJ">
+                                <rect key="frame" x="17" y="185" width="342" height="19.666666666666657"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="15"/>
+                                <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
@@ -384,14 +397,18 @@
                             <constraint firstItem="S55-5F-Tyk" firstAttribute="trailing" secondItem="p96-eR-zzQ" secondAttribute="trailing" constant="17" id="B7l-YH-IjF"/>
                             <constraint firstItem="LHJ-oy-znh" firstAttribute="leading" secondItem="S55-5F-Tyk" secondAttribute="leading" id="Hy8-QT-202"/>
                             <constraint firstItem="S55-5F-Tyk" firstAttribute="trailing" secondItem="4Uh-Wn-bdE" secondAttribute="trailing" constant="16" id="Kzs-Ll-t56"/>
+                            <constraint firstItem="S55-5F-Tyk" firstAttribute="trailing" secondItem="Nzz-BP-8NJ" secondAttribute="trailing" constant="16" id="LJv-Kh-obN"/>
                             <constraint firstItem="SEa-wr-n0T" firstAttribute="top" secondItem="ay8-PV-DPu" secondAttribute="bottom" id="M6Z-NG-ZeJ"/>
                             <constraint firstItem="ay8-PV-DPu" firstAttribute="trailing" secondItem="p96-eR-zzQ" secondAttribute="trailing" id="Mjs-8k-afO"/>
+                            <constraint firstItem="Nzz-BP-8NJ" firstAttribute="leading" secondItem="S55-5F-Tyk" secondAttribute="leading" constant="17" id="U46-FN-tXd"/>
+                            <constraint firstItem="p96-eR-zzQ" firstAttribute="top" secondItem="Nzz-BP-8NJ" secondAttribute="bottom" constant="8.6666666666666856" id="XdF-Lu-FUk"/>
                             <constraint firstItem="4Uh-Wn-bdE" firstAttribute="top" secondItem="9LC-eN-zHQ" secondAttribute="bottom" constant="17" id="Xsk-BK-jm3"/>
                             <constraint firstItem="S55-5F-Tyk" firstAttribute="trailing" secondItem="LHJ-oy-znh" secondAttribute="trailing" id="a93-ek-5Sz"/>
                             <constraint firstItem="S55-5F-Tyk" firstAttribute="bottom" secondItem="i5s-wd-AYU" secondAttribute="bottom" constant="20" id="fw7-y5-WjC"/>
                             <constraint firstItem="9LC-eN-zHQ" firstAttribute="leading" secondItem="S55-5F-Tyk" secondAttribute="leading" constant="17" id="gW7-Q6-KCX"/>
                             <constraint firstItem="4Uh-Wn-bdE" firstAttribute="leading" secondItem="S55-5F-Tyk" secondAttribute="leading" constant="17" id="mE5-gB-6gS"/>
                             <constraint firstItem="p96-eR-zzQ" firstAttribute="leading" secondItem="S55-5F-Tyk" secondAttribute="leading" constant="16" id="nrM-sM-0TT"/>
+                            <constraint firstItem="Nzz-BP-8NJ" firstAttribute="top" secondItem="LHJ-oy-znh" secondAttribute="bottom" constant="7.6666666666666572" id="pde-aU-5lt"/>
                             <constraint firstItem="S55-5F-Tyk" firstAttribute="trailing" secondItem="i5s-wd-AYU" secondAttribute="trailing" constant="20" id="tak-SX-rFm"/>
                             <constraint firstItem="SEa-wr-n0T" firstAttribute="trailing" secondItem="ay8-PV-DPu" secondAttribute="trailing" id="vKE-cJ-JVM"/>
                             <constraint firstItem="p96-eR-zzQ" firstAttribute="top" secondItem="LHJ-oy-znh" secondAttribute="bottom" constant="36" id="viF-cF-Wd1"/>
@@ -399,12 +416,13 @@
                         <viewLayoutGuide key="safeArea" id="S55-5F-Tyk"/>
                     </view>
                     <connections>
+                        <outlet property="errorLabel" destination="Nzz-BP-8NJ" id="W2Y-W9-NDV"/>
                         <outlet property="usernameTextField" destination="ay8-PV-DPu" id="FJy-ON-Z2i"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="hmG-C7-4pW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1977" y="-229"/>
+            <point key="canvasLocation" x="1247" y="508"/>
         </scene>
     </scenes>
     <resources>

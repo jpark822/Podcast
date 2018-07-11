@@ -343,9 +343,8 @@ extension EpisodeListTableViewController {
 
 extension EpisodeListTableViewController:SignupLoginCTASectionHeaderDelegate {
     func signupLoginCTASectionHeaderDidPressLogin(header: SignupLoginCTASectionHeader) {
-        let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewControllerId") as! LoginViewController
-        loginVC.delegate = self
-        self.present(loginVC, animated: true)
+        let loginNavVC = LoginViewController.loginViewControllerWithNavigation(delegate: self)
+        self.present(loginNavVC, animated: true)
     }
     
     func signupLoginCTASectionHeaderDidPressSignUp(header: SignupLoginCTASectionHeader) {

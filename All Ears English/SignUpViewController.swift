@@ -57,13 +57,27 @@ class SignUpViewController: UIViewController {
     @IBAction func signUpPressed(_ sender:Any) {
         self.errorLabel.isHidden = true
         
+        guard let firstName = self.firstNameTextField.text,
+            firstName.isEmpty == false else {
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = "Please enter a first name"
+                return
+        }
+        
+        guard let lastName = self.lastNameTextField.text,
+            lastName.isEmpty == false else {
+                self.errorLabel.isHidden = false
+                self.errorLabel.text = "Please enter a last name"
+                return
+        }
+        
         guard let username = self.usernameTextField.text,
             username.isEmpty == false else {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Please enter a username"
                 return
         }
-        guard let password = self.usernameTextField.text,
+        guard let password = self.passwordTextField.text,
             password.isEmpty == false else {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Please enter a password"
@@ -77,6 +91,11 @@ class SignUpViewController: UIViewController {
                 return
             }
             else if result?.user != nil {
+                let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
+                changeRequest?.displayName = "\(firstName) \(lastName)"
+                changeRequest?.commitChanges { (error) in
+                    
+                }
                 self.delegate?.signUpViewControllerDelegateDidFinish(signupViewController: self)
             }
             else {

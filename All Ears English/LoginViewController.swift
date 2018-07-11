@@ -45,6 +45,11 @@ class LoginViewController: UIViewController {
         self.passwordTextField.delegate = self
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        self.navigationController?.navigationBar.isHidden = true
+    }
+    
     @objc func endEditing() {
         self.view.endEditing(true)
     }
@@ -56,7 +61,7 @@ class LoginViewController: UIViewController {
                 self.errorLabel.text = "Please enter a username"
                 return
         }
-        guard let password = self.usernameTextField.text,
+        guard let password = self.passwordTextField.text,
             password.isEmpty == false else {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Please enter a password"
@@ -64,10 +69,11 @@ class LoginViewController: UIViewController {
         }
         
         self.errorLabel.isHidden = true
+
         Auth.auth().signIn(withEmail: username, password: password) { (result, error) in
             if let error = error {
                 self.errorLabel.isHidden = false
-                self.errorLabel.text = error.localizedDescription
+                self.errorLabel.text = "Please check your username and password"
                 return
             }
             else if result?.user != nil {
@@ -80,8 +86,20 @@ class LoginViewController: UIViewController {
         }
     }
     
+    @IBAction func forgotPasswordPressed(_ sender: Any) {
+        let forgotPasswordVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "ForgotPasswordViewControllerId") as! ForgotPasswordViewController
+        self.navigationController?.pushViewController(forgotPasswordVC, animated: true)
+    }
+    
     @IBAction func cancelPressed(_ sender:Any) {
         self.delegate?.loginViewControllerDelegateDidCancel(loginViewController: self)
+    }
+    
+    static func loginViewControllerWithNavigation(delegate:LoginUpViewControllerDelegate?) -> UINavigationController {
+        let loginVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "LoginViewControllerId") as! LoginViewController
+        loginVC.delegate = delegate
+        let navController = UINavigationController(rootViewController: loginVC)
+        return navController
     }
 }
 
