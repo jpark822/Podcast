@@ -26,6 +26,7 @@ class SignUpViewController: UIViewController {
             self.errorLabel.isHidden = true
         }
     }
+    @IBOutlet weak var signUpButton: UIButton!
     
     weak var delegate:SignUpViewControllerDelegate?
     
@@ -84,7 +85,9 @@ class SignUpViewController: UIViewController {
                 return
         }
         
+        self.signUpButton.isEnabled = false
         Auth.auth().createUser(withEmail: username, password: password) { (result, error) in
+            self.signUpButton.isEnabled = true
             if let error = error {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = error.localizedDescription

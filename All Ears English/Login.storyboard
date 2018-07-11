@@ -197,6 +197,7 @@
                         <outlet property="firstNameTextField" destination="Q2t-Dx-zCG" id="fMM-fZ-CK4"/>
                         <outlet property="lastNameTextField" destination="OBw-dh-PTC" id="ue1-jZ-EYm"/>
                         <outlet property="passwordTextField" destination="Bps-l0-Zh2" id="hXh-ff-pMT"/>
+                        <outlet property="signUpButton" destination="OfB-GC-8Lv" id="S1t-lu-WWI"/>
                         <outlet property="usernameTextField" destination="Ev4-tn-mch" id="6ge-gi-voo"/>
                     </connections>
                 </viewController>
@@ -318,6 +319,7 @@
                     </view>
                     <connections>
                         <outlet property="errorLabel" destination="w03-MZ-9Sm" id="uM9-Gp-nK1"/>
+                        <outlet property="loginButton" destination="R3g-5t-fz4" id="ZCo-sA-A6s"/>
                         <outlet property="passwordTextField" destination="H26-Pk-Ggy" id="PuG-wJ-21G"/>
                         <outlet property="usernameTextField" destination="0F6-Mh-4Tb" id="Q0o-Ou-ohA"/>
                     </connections>

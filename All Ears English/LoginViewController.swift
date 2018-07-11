@@ -17,6 +17,7 @@ protocol LoginUpViewControllerDelegate:class {
 
 class LoginViewController: UIViewController {
     
+    @IBOutlet weak var loginButton: UIButton!
     @IBOutlet weak var usernameTextField:UITextField!
     @IBOutlet weak var passwordTextField:UITextField!
     @IBOutlet weak var errorLabel: UILabel! {
@@ -69,8 +70,9 @@ class LoginViewController: UIViewController {
         }
         
         self.errorLabel.isHidden = true
-
+        self.loginButton.isEnabled = false
         Auth.auth().signIn(withEmail: username, password: password) { (result, error) in
+            self.loginButton.isEnabled = true
             if let error = error {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Please check your username and password"
