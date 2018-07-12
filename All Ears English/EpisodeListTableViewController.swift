@@ -78,6 +78,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         if Auth.auth().currentUser != nil {
             self.setupLogoutButton()
         }
+        self.tableView.reloadData()
     }
     
     override func viewWillDisappear(_ animated: Bool) {

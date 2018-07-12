@@ -31,11 +31,15 @@ class EpisodePlayerViewController : UIViewController {
     }
     var feedType:AudioPlayer.FeedType = .none
     
+    //Transcript related views
     @IBOutlet weak var transcriptContainerView: UIView!
     @IBOutlet weak var transcriptTextView: UITextView!
     @IBOutlet weak var transcriptObscureImageView: UIImageView!
     @IBOutlet weak var transcriptSubscribeNowLabel: UILabel!
+    @IBOutlet weak var transcriptNonexistentCoverImageView: UIImageView!
+    @IBOutlet weak var transcriptSignupView: UIView!
     
+    //Player controls
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
     @IBOutlet weak var episodeDescriptionLabel: UILabel!
@@ -193,6 +197,8 @@ class EpisodePlayerViewController : UIViewController {
                     let textRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
                     
                     let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
+                    attributedString.addAttribute(NSFontAttributeName, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
+                    attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.AEEYellow, range: textRange)
                     self.transcriptTextView.attributedText = attributedString
                     self.transcriptTextView.scrollRangeToVisible(textRange)
@@ -270,6 +276,17 @@ class EpisodePlayerViewController : UIViewController {
         ApplicationData.isAutoPlayEnabled = !ApplicationData.isAutoPlayEnabled
         self.updateControlViews()
     }
+    
+    @IBAction func signupButtonPressed(_ sender: Any) {
+        let signupVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewControllerId") as! SignUpViewController
+        signupVC.delegate = self
+        self.present(signupVC, animated: true)
+    }
+    
+    @IBAction func loginButtonPressed(_ sender: Any) {
+        let loginNavVC = LoginViewController.loginViewControllerWithNavigation(delegate: self)
+        self.present(loginNavVC, animated: true)
+    }
 }
 
 //MARK: transcripts
@@ -287,30 +304,72 @@ extension EpisodePlayerViewController {
                 self.transcript = transcriptModel
                 self.evaluateTranscriptState()
             }
-            else if let error = error {
+            else if let _ = error {
                 self.evaluateTranscriptState()
             }
         }
     }
     
     func evaluateTranscriptState() {
-        guard let transcript = self.transcript else {
-            //If theres no valid transcript do we just show the logo here?
-            self.showTranscript(false)
+        guard Auth.auth().currentUser != nil else {
+            //no user
+            self.showTranscriptSignupView()
             return
         }
         
-        if Auth.auth().currentUser != nil && transcript.isFree {
-            self.showTranscript(true)
+        guard let transcript = self.transcript else {
+            //No valid transcript for episode
+            self.showNonexistentTranscriptCoverImage()
+            return
         }
+        
+        if transcript.isFree == true {
+            self.showTranscriptView()
+        }
+        //else if it isnt free, but the user bought a subscription, show transcript
         else {
-            self.showTranscript(false)
+            self.showTranscriptSignupView()
         }
+        
     }
     
-    func showTranscript(_ isShowing:Bool) {
-        self.transcriptObscureImageView.isHidden = !isShowing
-        self.transcriptSubscribeNowLabel.isHidden = !isShowing
+    func showTranscriptView() {
+        self.transcriptTextView.isHidden = false
+        self.transcriptNonexistentCoverImageView.isHidden = true
+        self.transcriptSignupView.isHidden = true
     }
     
+    func showNonexistentTranscriptCoverImage() {
+        self.transcriptTextView.isHidden = true
+        self.transcriptNonexistentCoverImageView.isHidden = false
+        self.transcriptSignupView.isHidden = true
+    }
+    
+    func showTranscriptSignupView() {
+        self.transcriptTextView.isHidden = true
+        self.transcriptNonexistentCoverImageView.isHidden = true
+        self.transcriptSignupView.isHidden = false
+    }
+}
+
+//MARK: Signup and login
+extension EpisodePlayerViewController:SignUpViewControllerDelegate, LoginUpViewControllerDelegate {
+    //Signup
+    func signUpViewControllerDelegateDidCancel(signupViewController: SignUpViewController) {
+        self.evaluateTranscriptState()
+        signupViewController.dismiss(animated: true)
+    }
+    func signUpViewControllerDelegateDidFinish(signupViewController: SignUpViewController) {
+        self.evaluateTranscriptState()
+        signupViewController.dismiss(animated: true)
+    }
+    //Login
+    func loginViewControllerDelegateDidCancel(loginViewController: LoginViewController) {
+        self.evaluateTranscriptState()
+        loginViewController.dismiss(animated: true)
+    }
+    func loginViewControllerDelegateDidFinish(loginViewController: LoginViewController) {
+        self.evaluateTranscriptState()
+        loginViewController.dismiss(animated: true)
+    }
 }

@@ -17,7 +17,7 @@ class ServiceManager: NSObject {
     
     func getTranscriptWithId(_ episodeGuid:String, completion:@escaping (TranscriptModel?, Error?)->Void) {
         //TODO change to use GUID
-        Alamofire.request("https://s3.amazonaws.com/allearsenglish-mobileapp/transcripts/9d6592c3e7c04735a56821f1d83b639d.json").validate().responseJSON { (response) in
+        Alamofire.request("https://s3.amazonaws.com/allearsenglish-mobileapp/transcripts/\(episodeGuid).json").validate().responseJSON { (response) in
             switch response.result{
             case .failure(let error):
                 completion(nil, error)
