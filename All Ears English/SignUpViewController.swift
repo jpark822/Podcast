@@ -165,4 +165,20 @@ extension SignUpViewController:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.currentEditingField = textField
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.firstNameTextField {
+            self.lastNameTextField.becomeFirstResponder()
+        }
+        else if textField == self.lastNameTextField {
+            self.usernameTextField.becomeFirstResponder()
+        }
+        else if textField == self.usernameTextField {
+            self.passwordTextField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
 }

@@ -157,4 +157,14 @@ extension LoginViewController:UITextFieldDelegate {
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.currentEditingField = textField
     }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        if textField == self.usernameTextField {
+            self.passwordTextField.becomeFirstResponder()
+        }
+        else {
+            textField.resignFirstResponder()
+        }
+        return false
+    }
 }
