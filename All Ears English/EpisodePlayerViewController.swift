@@ -192,8 +192,8 @@ class EpisodePlayerViewController : UIViewController {
                 let lowerTimeRange = transcriptSegment.timeStamp
                 let upperTimeRange = transcriptSegment.timeStamp + bufferRange
                 if elapsedTime >= lowerTimeRange && elapsedTime <= upperTimeRange {
-                    
-                    let rangeLength = transcriptSegment.endRange - transcriptSegment.startRange
+                    let endRange = transcriptSegment.endRange > transcript.fullTranscript.count ? transcript.fullTranscript.count : transcriptSegment.endRange
+                    let rangeLength = endRange - transcriptSegment.startRange
                     let textRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
                     
                     let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
