@@ -200,8 +200,10 @@ class EpisodePlayerViewController : UIViewController {
                     attributedString.addAttribute(NSFontAttributeName, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.AEEYellow, range: textRange)
-                    self.transcriptTextView.attributedText = attributedString
-                    self.transcriptTextView.scrollRangeToVisible(textRange)
+                    DispatchQueue.main.async {
+                        self.transcriptTextView.attributedText = attributedString
+                        self.transcriptTextView.scrollRangeToVisible(textRange)
+                    }
                 }
             }
         }
