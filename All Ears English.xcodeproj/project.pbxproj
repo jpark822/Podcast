@@ -78,6 +78,7 @@
 		4EC065B421971BE700A3F90B /* IAPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC065B321971BE700A3F90B /* IAPStore.swift */; };
 		4EC62A8520E1B7890082D665 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC62A8420E1B7890082D665 /* Login.storyboard */; };
 		4EC62A8720E1B7910082D665 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC62A8620E1B7910082D665 /* SignUpViewController.swift */; };
+		4EDC9EA6219743B6009D32C4 /* SelectSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */; };
 		4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */; };
 		4EF701561FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */; };
 		4EF701591FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */; };
@@ -163,6 +164,7 @@
 		4EC065B321971BE700A3F90B /* IAPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPStore.swift; sourceTree = "<group>"; };
 		4EC62A8420E1B7890082D665 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4EC62A8620E1B7910082D665 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubscriptionViewController.swift; sourceTree = "<group>"; };
 		4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = localEpisodeFeed.xml; sourceTree = "<group>"; };
 		4EF701551FB3308500A6C0A4 /* 7b7979ab224c3df9f64c70eb78171e45.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 7b7979ab224c3df9f64c70eb78171e45.mp3; sourceTree = "<group>"; };
 		4EF701581FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 */ = {isa = PBXFileReference; lastKnownFileType = audio.mp3; path = 8842ad63259786d023b3055a8f8df06d.mp3; sourceTree = "<group>"; };
@@ -494,6 +496,7 @@
 				4EC62A8620E1B7910082D665 /* SignUpViewController.swift */,
 				4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */,
 				4E228DA020F43E9C002912AB /* ForgotPasswordViewController.swift */,
+				4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -725,6 +728,7 @@
 				4E4AE9AB1F97647800B6CF10 /* UIImage+Resize.swift in Sources */,
 				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
 				4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */,
+				4EDC9EA6219743B6009D32C4 /* SelectSubscriptionViewController.swift in Sources */,
 				4EB1F70120EAA56400C4E83C /* TranscriptModel.swift in Sources */,
 				4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */,
 				4E4AE9911F8F853F00B6CF10 /* ExternalShareManager.swift in Sources */,
