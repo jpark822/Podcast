@@ -74,6 +74,8 @@
 		4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */; };
 		4EB1F6FE20EAA4FC00C4E83C /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */; };
 		4EB1F70120EAA56400C4E83C /* TranscriptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */; };
+		4EC065B221971BD200A3F90B /* IAPHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC065B121971BD200A3F90B /* IAPHelper.swift */; };
+		4EC065B421971BE700A3F90B /* IAPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC065B321971BE700A3F90B /* IAPStore.swift */; };
 		4EC62A8520E1B7890082D665 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC62A8420E1B7890082D665 /* Login.storyboard */; };
 		4EC62A8720E1B7910082D665 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC62A8620E1B7910082D665 /* SignUpViewController.swift */; };
 		4EF701541FAE25DA00A6C0A4 /* localEpisodeFeed.xml in Resources */ = {isa = PBXBuildFile; fileRef = 4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */; };
@@ -157,6 +159,8 @@
 		4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptModel.swift; sourceTree = "<group>"; };
+		4EC065B121971BD200A3F90B /* IAPHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPHelper.swift; sourceTree = "<group>"; };
+		4EC065B321971BE700A3F90B /* IAPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPStore.swift; sourceTree = "<group>"; };
 		4EC62A8420E1B7890082D665 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4EC62A8620E1B7910082D665 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		4EF701531FAE25DA00A6C0A4 /* localEpisodeFeed.xml */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = localEpisodeFeed.xml; sourceTree = "<group>"; };
@@ -245,6 +249,7 @@
 		4672E5DB1EF8787B006B5F25 /* All Ears English */ = {
 			isa = PBXGroup;
 			children = (
+				4EC065B0219665B700A3F90B /* InAppPurchaseHelper */,
 				4EB1F6FF20EAA54E00C4E83C /* Models */,
 				4EB1F6FC20EAA4E400C4E83C /* ServiceManager */,
 				4E4AE9A71F94029C00B6CF10 /* ContactUs */,
@@ -473,6 +478,15 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		4EC065B0219665B700A3F90B /* InAppPurchaseHelper */ = {
+			isa = PBXGroup;
+			children = (
+				4EC065B121971BD200A3F90B /* IAPHelper.swift */,
+				4EC065B321971BE700A3F90B /* IAPStore.swift */,
+			);
+			name = InAppPurchaseHelper;
+			sourceTree = "<group>";
+		};
 		4EC62A8120E1B7730082D665 /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -676,7 +690,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4EC065B421971BE700A3F90B /* IAPStore.swift in Sources */,
 				4EC62A8720E1B7910082D665 /* SignUpViewController.swift in Sources */,
+				4EC065B221971BD200A3F90B /* IAPHelper.swift in Sources */,
 				4E4AE99F1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift in Sources */,
 				4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */,
 				4602032C1F1B66960078A275 /* Cache.swift in Sources */,
@@ -851,8 +867,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "2b31fb29-e05f-40e7-9ca1-5dabf6483293";
-				PROVISIONING_PROFILE_SPECIFIER = "Jay Dev Profile";
+				PROVISIONING_PROFILE = "8e177c9b-9216-4fc0-ae18-0c742ffa8bd5";
+				PROVISIONING_PROFILE_SPECIFIER = JayDevProfile9/22;
 				SWIFT_OBJC_BRIDGING_HEADER = "All Ears English/All Ears English-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 3.0;
@@ -877,8 +893,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				PROVISIONING_PROFILE = "f7b58412-a751-4aa7-a2bf-c0c3d96512ca";
-				PROVISIONING_PROFILE_SPECIFIER = "AEE AppStore Distro";
+				PROVISIONING_PROFILE = "4880249b-fda3-4873-a483-0705f10c26f7";
+				PROVISIONING_PROFILE_SPECIFIER = AEEAppStoreDistro9/2019;
 				SWIFT_OBJC_BRIDGING_HEADER = "All Ears English/All Ears English-Bridging-Header.h";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = 1;

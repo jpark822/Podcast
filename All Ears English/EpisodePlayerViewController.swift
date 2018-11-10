@@ -189,8 +189,8 @@ class EpisodePlayerViewController : UIViewController {
             let elapsedTime = AudioPlayer.sharedInstance.queuePlayer.currentTime().seconds * 1000
             for transcriptSegment in transcript.segments {
                 let bufferRange:Double = 50
-                let lowerTimeRange = transcriptSegment.timeStamp
-                let upperTimeRange = transcriptSegment.timeStamp + bufferRange
+                let lowerTimeRange = transcriptSegment.timeStamp - bufferRange
+                let upperTimeRange = transcriptSegment.timeStamp
                 if elapsedTime >= lowerTimeRange && elapsedTime <= upperTimeRange {
                     let endRange = transcriptSegment.endRange > transcript.fullTranscript.count ? transcript.fullTranscript.count : transcriptSegment.endRange
                     let rangeLength = endRange - transcriptSegment.startRange
@@ -200,7 +200,9 @@ class EpisodePlayerViewController : UIViewController {
                     attributedString.addAttribute(NSFontAttributeName, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.AEEYellow, range: textRange)
-                    DispatchQueue.main.async {
+                    
+                    ///Regular async doesn't work here, but hacking in asyncAfter works
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         self.transcriptTextView.attributedText = attributedString
                         self.transcriptTextView.scrollRangeToVisible(textRange)
                     }

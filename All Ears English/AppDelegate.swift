@@ -123,6 +123,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
             case .denied:
                 //do nothing, for now. show reminder dialogue later
                 break
+            case .provisional:
+                break
             }
             
             DispatchQueue.main.async {
