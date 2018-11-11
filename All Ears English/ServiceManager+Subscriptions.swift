@@ -35,40 +35,17 @@ extension ServiceManager {
                 return
             }
             
-            guard let responseDict = result?.data as? [String:Any] else {
-                completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
-                return
-            }
-            guard let allReceiptDict = responseDict["receipt"] as? [String:Any] else {
-                completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
-                return
-            }
-            
-            guard let inAppArray = allReceiptDict["in_app"] as? [[String:Any]] else {
-                completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
-                return
-            }
-            
-            guard let latestReceiptDict = inAppArray.first else {
-                completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
-                return
-            }
-            guard let expirationDateMillisecondString = latestReceiptDict["expires_date_ms"] as? String else {
-                completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
-                return
-            }
-            guard let expirationDateMilliseconds = Double(expirationDateMillisecondString) else {
+            guard let responseDict = result?.data as? [String:Any],
+                let allReceiptDict = responseDict["receipt"] as? [String:Any],
+                let inAppArray = allReceiptDict["in_app"] as? [[String:Any]],
+                let latestReceiptDict = inAppArray.first,
+                let expirationDateMillisecondString = latestReceiptDict["expires_date_ms"] as? String,
+                let expirationDateMilliseconds = Double(expirationDateMillisecondString) else {
                 completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
                 return
             }
             
             let expirationDate = Date(timeIntervalSince1970: expirationDateMilliseconds / 1000.0)
-            
-            let dateformatter = DateFormatter()
-            dateformatter.timeZone = NSTimeZone.system
-            dateformatter.dateStyle = .long
-            
-            let datestring = dateformatter.string(from: expirationDate)
             
             let isValid = expirationDate > Date() ? true : false
             

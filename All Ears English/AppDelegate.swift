@@ -44,6 +44,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 //        Bugfender.activateLogger("TEIeuDIEm2Ts4FAyBRY13ZAwWE9eSehJ")
 
         self.setInitialView()
+        IAPStore.store.restoreCompletedTransactions {
+            ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
+                print("valid subscription: \(hasValidSub)")
+            })
+        }
         self.promptOrRemindForPushNotifications()
         
         return true
