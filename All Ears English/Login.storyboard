@@ -222,12 +222,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tM4-ma-2Cl" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="264.80000000000001" y="-228.32512315270938"/>
+            <point key="canvasLocation" x="950" y="-205"/>
         </scene>
         <!--Select Subscription View Controller-->
         <scene sceneID="LTh-3Q-3EN">
             <objects>
-                <viewController id="rnR-Hc-HaV" customClass="SelectSubscriptionViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SelectSubscriptionViewControllerId" id="rnR-Hc-HaV" customClass="SelectSubscriptionViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="qXa-ap-0sZ">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="812"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -237,6 +237,7 @@
                                 <state key="normal" image="buttonExitX"/>
                                 <connections>
                                     <action selector="cancelPressed:" destination="GSE-iB-VWM" eventType="touchUpInside" id="JzT-6D-TNJ"/>
+                                    <action selector="cancelPressed:" destination="rnR-Hc-HaV" eventType="touchUpInside" id="O9O-0d-t0l"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Subscriber Sign Up" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IWs-Hg-KFe">
@@ -359,7 +360,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Mn9-Yd-dsk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="962.39999999999998" y="-227.58620689655174"/>
+            <point key="canvasLocation" x="242" y="-205"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="3LN-yz-WGb">

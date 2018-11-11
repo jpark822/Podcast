@@ -7,10 +7,11 @@
 //
 
 import UIKit
+import StoreKit
 
 protocol SelectSubscriptionViewControllerDelegate:class {
-    func selectSubscriptionViewControllerDidSelectMonthly(viewController:SelectSubscriptionViewController)
-    func selectSubscriptionViewControllerDidSelectYearly(viewController:SelectSubscriptionViewController)
+    func selectSubscriptionViewControllerDidSelectSubscription(product:SKProduct, viewController:SelectSubscriptionViewController)
+    func SelectSubscriptionViewControllerDelegateDidCancel(viewController:SelectSubscriptionViewController)
 }
 
 class SelectSubscriptionViewController: UIViewController {
@@ -23,18 +24,44 @@ class SelectSubscriptionViewController: UIViewController {
         case renew
     }
     
+    fileprivate var monthlyPassSKProduct:SKProduct!
+    fileprivate var yearlyPassSKProduct:SKProduct!
+    
     var stateType:StateType = .signup
     
     weak var delegate:SelectSubscriptionViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        self.monthlyButton.isEnabled = false
+        self.yearlyButton.isEnabled = false
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.navigationController?.isNavigationBarHidden = true
+        self.fetchData()
+    }
+    
+    func fetchData() {
+        IAPStore.store.requestProductsWithCompletionHandler { (success, products) in
+            if success {
+                for product in products {
+                    if product.productIdentifier == IAPStore.monthlyPass {
+                        self.monthlyButton.isEnabled = true
+                        self.monthlyPassSKProduct = product
+                    }
+                    if product.productIdentifier == IAPStore.yearlyPass {
+                        self.yearlyButton.isEnabled = true
+                        self.yearlyPassSKProduct = product
+                    }
+                }
+            }
+        }
+    }
+    
+    @IBAction func cancelPressed(_ sender: Any) {
+        self.delegate?.SelectSubscriptionViewControllerDelegateDidCancel(viewController: self)
     }
     
     @IBAction func monthlyButtonPressed(_ sender: Any) {
@@ -42,6 +69,7 @@ class SelectSubscriptionViewController: UIViewController {
         case .renew:
             break
         case .signup:
+            self.delegate?.selectSubscriptionViewControllerDidSelectSubscription(product: self.monthlyPassSKProduct, viewController: self)
             break
         }
         
@@ -54,11 +82,6 @@ class SelectSubscriptionViewController: UIViewController {
         case .signup:
             break
         }
-    }
-    
-    func continueToCreateAccount() {
-        let createAccountVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewControllerId") as! SignUpViewController
-        self.navigationController?.pushViewController(createAccountVC, animated: true)
     }
     
     func startPurchase() {

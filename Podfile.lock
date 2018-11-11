@@ -10,6 +10,9 @@ PODS:
     - FirebaseAnalytics (= 5.1.0)
   - Firebase/CoreOnly (5.5.0):
     - FirebaseCore (= 5.1.0)
+  - Firebase/Functions (5.5.0):
+    - Firebase/CoreOnly
+    - FirebaseFunctions (= 2.1.0)
   - Firebase/Messaging (5.5.0):
     - Firebase/CoreOnly
     - FirebaseMessaging (= 3.1.0)
@@ -30,6 +33,9 @@ PODS:
   - FirebaseAuthInterop (1.0.0)
   - FirebaseCore (5.1.0):
     - GoogleUtilities/Logger (~> 5.2)
+  - FirebaseFunctions (2.1.0):
+    - FirebaseCore (~> 5.0)
+    - GTMSessionFetcher/Core (~> 1.1)
   - FirebaseInstanceID (3.2.0):
     - FirebaseCore (~> 5.1)
     - GoogleUtilities/Environment (~> 5.2)
@@ -76,6 +82,7 @@ DEPENDENCIES:
   - AlamofireImage (~> 3.3)
   - Firebase/Auth
   - Firebase/Core
+  - Firebase/Functions
   - Firebase/Messaging
   - KochavaTrackeriOS
   - Mixpanel
@@ -90,6 +97,7 @@ SPEC REPOS:
     - FirebaseAuth
     - FirebaseAuthInterop
     - FirebaseCore
+    - FirebaseFunctions
     - FirebaseInstanceID
     - FirebaseMessaging
     - GoogleAppMeasurement
@@ -117,6 +125,7 @@ SPEC CHECKSUMS:
   FirebaseAuth: 657a25e4be044d2d333663ebf515a861c5a59cd7
   FirebaseAuthInterop: 0ffa57668be100582bb7643d4fcb7615496c41fc
   FirebaseCore: ee4b35cf8c8e781da296cc7c15125e4608bb954d
+  FirebaseFunctions: 0cb3bc0bbeac1daf6fea378a1064ff7f484e4c4e
   FirebaseInstanceID: 8cd2c6cfe7b9ab65ce7e248f6da7f26f6775b9be
   FirebaseMessaging: f67b3719f520ee200da0e20ce577fe2bce0c01d0
   GoogleAppMeasurement: e785bdb86d3d280abc778156cec323a975f11d1d
@@ -128,6 +137,6 @@ SPEC CHECKSUMS:
   Protobuf: 1eb9700044745f00181c136ef21b8ff3ad5a0fd5
   SwiftyXMLParser: b5a79fb8a730903703d0a92d30752a0b05158967
 
-PODFILE CHECKSUM: c1ea768224c5256cfb2796d15cde2a0ccd4b4a7b
+PODFILE CHECKSUM: 735bc75626f84e78b782e29a4cd84afdd79b8662
 
 COCOAPODS: 1.5.3

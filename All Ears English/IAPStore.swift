@@ -16,9 +16,4 @@ public enum IAPStore {
     fileprivate static let productIdentifiers: Set<ProductIdentifier> = [IAPStore.monthlyPass, IAPStore.yearlyPass]
     
     public static let store = IAPHelper(productIdentifiers: IAPStore.productIdentifiers)
-
-    //TODO
-//    public static var userHasValidSubscription : Bool {
-//        return DataStore.hasEntitlement(value: "video_subscription")
-//    }
 }

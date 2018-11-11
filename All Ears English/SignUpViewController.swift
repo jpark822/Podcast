@@ -9,6 +9,7 @@
 import UIKit
 import Firebase
 import FirebaseAuth
+import StoreKit
 
 protocol SignUpViewControllerDelegate:class {
     func signUpViewControllerDelegateDidFinish(signupViewController:SignUpViewController)
@@ -29,6 +30,7 @@ class SignUpViewController: UIViewController {
     @IBOutlet weak var signUpButton: UIButton!
     
     weak var delegate:SignUpViewControllerDelegate?
+    var subscriptionSKProduct:SKProduct?
     
     //Used to move the view in response to the keyboard
     var currentEditingField:UITextField?
@@ -56,6 +58,12 @@ class SignUpViewController: UIViewController {
     }
     
     @IBAction func signUpPressed(_ sender:Any) {
+        guard let subscriptionProduct = self.subscriptionSKProduct else {
+            self.errorLabel.isHidden = false
+            self.errorLabel.text = "An error occurred"
+            return
+        }
+        
         self.errorLabel.isHidden = true
         
         guard let firstName = self.firstNameTextField.text,
@@ -87,21 +95,31 @@ class SignUpViewController: UIViewController {
         
         self.signUpButton.isEnabled = false
         Auth.auth().createUser(withEmail: username, password: password) { (result, error) in
-            self.signUpButton.isEnabled = true
             if let error = error {
+                self.signUpButton.isEnabled = true
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = error.localizedDescription
-                return
             }
+            //success
             else if result?.user != nil {
                 let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
                 changeRequest?.displayName = "\(firstName) \(lastName)"
                 changeRequest?.commitChanges { (error) in
-                    
                 }
-                self.delegate?.signUpViewControllerDelegateDidFinish(signupViewController: self)
+                
+                IAPStore.store.purchaseProduct(subscriptionProduct, completion: { (success, error) in
+                    self.signUpButton.isEnabled = true
+                    if error != nil {
+                        self.errorLabel.isHidden = false
+                        self.errorLabel.text = "There was an error purchasing your subscription"
+                    }
+                    else {
+                        self.delegate?.signUpViewControllerDelegateDidFinish(signupViewController: self)
+                    }
+                })
             }
             else {
+                self.signUpButton.isEnabled = true
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "An error occurred"
             }

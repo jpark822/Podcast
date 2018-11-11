@@ -282,9 +282,9 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     @IBAction func signupButtonPressed(_ sender: Any) {
-        let signupVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewControllerId") as! SignUpViewController
-        signupVC.delegate = self
-        self.present(signupVC, animated: true)
+        let signupsubVC = SubscriptionSignupNavigationController()
+        signupsubVC.subscriptionNavigationDelegate = self
+        self.present(signupsubVC, animated: true)
     }
     
     @IBAction func loginButtonPressed(_ sender: Any) {
@@ -321,16 +321,21 @@ extension EpisodePlayerViewController {
             return
         }
         
+        guard ApplicationData.isSubscribedToAEE == true else {
+            //no sub TODO show a renew flow
+            self.showTranscriptSignupView()
+            return
+        }
+        
         guard let transcript = self.transcript else {
             //No valid transcript for episode
             self.showNonexistentTranscriptCoverImage()
             return
         }
         
-        if transcript.isFree == true {
+        if transcript.isFree == true || ApplicationData.isSubscribedToAEE == true {
             self.showTranscriptView()
         }
-        //else if it isnt free, but the user bought a subscription, show transcript
         else {
             self.showTranscriptSignupView()
         }
@@ -357,16 +362,7 @@ extension EpisodePlayerViewController {
 }
 
 //MARK: Signup and login
-extension EpisodePlayerViewController:SignUpViewControllerDelegate, LoginUpViewControllerDelegate {
-    //Signup
-    func signUpViewControllerDelegateDidCancel(signupViewController: SignUpViewController) {
-        self.evaluateTranscriptState()
-        signupViewController.dismiss(animated: true)
-    }
-    func signUpViewControllerDelegateDidFinish(signupViewController: SignUpViewController) {
-        self.evaluateTranscriptState()
-        signupViewController.dismiss(animated: true)
-    }
+extension EpisodePlayerViewController: LoginUpViewControllerDelegate {
     //Login
     func loginViewControllerDelegateDidCancel(loginViewController: LoginViewController) {
         self.evaluateTranscriptState()
@@ -376,4 +372,16 @@ extension EpisodePlayerViewController:SignUpViewControllerDelegate, LoginUpViewC
         self.evaluateTranscriptState()
         loginViewController.dismiss(animated: true)
     }
+}
+
+extension EpisodePlayerViewController:SubscriptionSignupNavigationControllerDelegate {
+    func subscriptionSignupNavigationControllerDidFinishWithPurchase(viewController: SubscriptionSignupNavigationController) {
+        
+    }
+    
+    func subscriptionSignupNavigationControllerDidCancel(viewController: SubscriptionSignupNavigationController) {
+        viewController.dismiss(animated: true)
+    }
+    
+    
 }

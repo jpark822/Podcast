@@ -79,7 +79,11 @@ class LoginViewController: UIViewController {
                 return
             }
             else if result?.user != nil {
-                self.delegate?.loginViewControllerDelegateDidFinish(loginViewController: self)
+                IAPStore.store.restoreCompletedTransactions {
+                    ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
+                        self.delegate?.loginViewControllerDelegateDidFinish(loginViewController: self)
+                    })
+                }
             }
             else {
                 self.errorLabel.isHidden = false
