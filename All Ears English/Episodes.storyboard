@@ -1,14 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14313.18" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
-        <capability name="Constraints with non-1.0 multipliers" minToolsVersion="5.1"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14283.14"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -44,7 +41,7 @@
                                 </connections>
                             </button>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hNm-Kw-aFM">
-                                <rect key="frame" x="0.0" y="381.5" width="375" height="285.5"/>
+                                <rect key="frame" x="0.0" y="382" width="375" height="285"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0:00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5R4-49-PcW">
                                         <rect key="frame" x="20" y="39" width="28.5" height="15"/>
@@ -65,7 +62,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kau-uT-o0D">
-                                        <rect key="frame" x="8" y="247.5" width="30" height="30"/>
+                                        <rect key="frame" x="8" y="247" width="30" height="30"/>
                                         <color key="tintColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <state key="normal" title="1x"/>
                                         <connections>
@@ -73,7 +70,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
-                                        <rect key="frame" x="8" y="62" width="359" height="59"/>
+                                        <rect key="frame" x="8" y="62" width="359" height="58.5"/>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -87,20 +84,20 @@
                                         </connections>
                                     </slider>
                                     <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="VqE-Rh-2UF">
-                                        <rect key="frame" x="316" y="247.5" width="51" height="31"/>
+                                        <rect key="frame" x="316" y="246.5" width="51" height="31"/>
                                         <color key="onTintColor" red="0.99607843139999996" green="0.88235294119999996" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <connections>
                                             <action selector="autoPlaySwitchPressed:" destination="kX4-DS-RbJ" eventType="valueChanged" id="MID-Iw-VcL"/>
                                         </connections>
                                     </switch>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Auto Play" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pfm-Or-GZ6">
-                                        <rect key="frame" x="236" y="253" width="72" height="20.5"/>
+                                        <rect key="frame" x="236" y="252" width="72" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ERz-bF-xrk">
-                                        <rect key="frame" x="8" y="128.5" width="359" height="50"/>
+                                        <rect key="frame" x="8" y="128" width="359" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMi-Hd-b0T">
                                                 <rect key="frame" x="0.0" y="0.0" width="65.5" height="50"/>
@@ -167,43 +164,43 @@
                                 </constraints>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="V4P-mi-eNN">
-                                <rect key="frame" x="50" y="84" width="275" height="282.5"/>
+                                <rect key="frame" x="50" y="84" width="275" height="283"/>
                                 <subviews>
                                     <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Rme-ZE-Ny7">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="282.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
                                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="24"/>
                                         <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
                                     </textView>
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Cover" translatesAutoresizingMaskIntoConstraints="NO" id="Tdy-Vo-nmD">
-                                        <rect key="frame" x="-0.5" y="0.0" width="275" height="282.5"/>
+                                        <rect key="frame" x="-0.5" y="0.0" width="275" height="283"/>
                                     </imageView>
                                     <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2Du-mV-vAo">
-                                        <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="283.5"/>
                                         <subviews>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transcriptBlur" translatesAutoresizingMaskIntoConstraints="NO" id="JXx-uC-jBL">
-                                                <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="283.5"/>
                                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                             </imageView>
                                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="he2-OQ-72z">
-                                                <rect key="frame" x="0.0" y="56.5" width="275" height="226.5"/>
+                                                <rect key="frame" x="0.0" y="56.5" width="275" height="227"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to get real time episode transcripts!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="viO-1p-baA">
-                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="75.5"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="76"/>
                                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="24"/>
                                                         <color key="textColor" red="0.99607843137254903" green="0.88235294117647056" blue="0.0039215686274509803" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fCG-zp-7pb">
-                                                        <rect key="frame" x="0.0" y="75.5" width="275" height="75.5"/>
+                                                        <rect key="frame" x="0.0" y="76" width="275" height="75.5"/>
                                                         <state key="normal" image="transcriptButtonSignup"/>
                                                         <connections>
                                                             <action selector="signupButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="tam-dG-wuA"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="loa-4X-RbR">
-                                                        <rect key="frame" x="0.0" y="151" width="275" height="75.5"/>
+                                                        <rect key="frame" x="0.0" y="151.5" width="275" height="75.5"/>
                                                         <state key="normal" image="transcriptButtonLogin"/>
                                                         <connections>
                                                             <action selector="loginButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="7cX-dw-22H"/>
@@ -224,20 +221,63 @@
                                             <constraint firstAttribute="bottom" secondItem="JXx-uC-jBL" secondAttribute="bottom" id="qvi-rc-L1b"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="tcg-Xe-pz2">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="transcriptBlur" translatesAutoresizingMaskIntoConstraints="NO" id="lP7-kO-Tjn">
+                                                <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
+                                                <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                            </imageView>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="Mln-bJ-Ii5">
+                                                <rect key="frame" x="0.0" y="56.5" width="275" height="226.5"/>
+                                                <subviews>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Sign up to get real time episode transcripts!" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1h-mv-58Z">
+                                                        <rect key="frame" x="0.0" y="0.0" width="275" height="113.5"/>
+                                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="24"/>
+                                                        <color key="textColor" red="0.99607843139999996" green="0.88235294119999996" blue="0.0039215686269999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <nil key="highlightedColor"/>
+                                                    </label>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="puk-mm-8Zl">
+                                                        <rect key="frame" x="0.0" y="113.5" width="275" height="113"/>
+                                                        <state key="normal" image="transcriptButtonRenew"/>
+                                                        <connections>
+                                                            <action selector="renewSubscriptionPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="Utu-GR-7dm"/>
+                                                            <action selector="signupButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="bSF-Xk-fcW"/>
+                                                        </connections>
+                                                    </button>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
+                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstItem="lP7-kO-Tjn" firstAttribute="top" secondItem="tcg-Xe-pz2" secondAttribute="top" id="0ws-hZ-osM"/>
+                                            <constraint firstItem="Mln-bJ-Ii5" firstAttribute="leading" secondItem="tcg-Xe-pz2" secondAttribute="leading" id="74r-kS-krs"/>
+                                            <constraint firstAttribute="trailing" secondItem="lP7-kO-Tjn" secondAttribute="trailing" id="91s-FY-MFP"/>
+                                            <constraint firstAttribute="bottom" secondItem="lP7-kO-Tjn" secondAttribute="bottom" id="Fn6-qa-rIO"/>
+                                            <constraint firstAttribute="trailing" secondItem="Mln-bJ-Ii5" secondAttribute="trailing" id="cPz-rs-HhK"/>
+                                            <constraint firstItem="Mln-bJ-Ii5" firstAttribute="height" secondItem="tcg-Xe-pz2" secondAttribute="height" multiplier="80:100" id="rvx-xJ-h2H"/>
+                                            <constraint firstAttribute="bottom" secondItem="Mln-bJ-Ii5" secondAttribute="bottom" id="x0D-vT-NEK"/>
+                                            <constraint firstItem="lP7-kO-Tjn" firstAttribute="leading" secondItem="tcg-Xe-pz2" secondAttribute="leading" id="xQL-Io-emh"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="Rme-ZE-Ny7" secondAttribute="bottom" id="5bS-yM-YYq"/>
                                     <constraint firstItem="Tdy-Vo-nmD" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" constant="-0.5" id="B1h-r2-cZz"/>
                                     <constraint firstAttribute="bottom" secondItem="Tdy-Vo-nmD" secondAttribute="bottom" id="DKP-4X-uHS"/>
+                                    <constraint firstItem="tcg-Xe-pz2" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="EtX-yn-axJ"/>
                                     <constraint firstItem="2Du-mV-vAo" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="GHZ-s5-RFz"/>
                                     <constraint firstAttribute="trailing" secondItem="Tdy-Vo-nmD" secondAttribute="trailing" constant="0.5" id="GlA-ug-4zJ"/>
                                     <constraint firstAttribute="bottom" secondItem="2Du-mV-vAo" secondAttribute="bottom" constant="-0.5" id="JZ0-2T-zxK"/>
                                     <constraint firstAttribute="trailing" secondItem="Rme-ZE-Ny7" secondAttribute="trailing" id="NFp-hW-i1g"/>
                                     <constraint firstItem="Rme-ZE-Ny7" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="PuV-V1-R8b"/>
+                                    <constraint firstItem="tcg-Xe-pz2" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="VaE-Yv-cLy"/>
                                     <constraint firstItem="2Du-mV-vAo" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="dbZ-TF-p06"/>
+                                    <constraint firstAttribute="trailing" secondItem="tcg-Xe-pz2" secondAttribute="trailing" id="iRF-kP-S5t"/>
                                     <constraint firstAttribute="trailing" secondItem="2Du-mV-vAo" secondAttribute="trailing" id="ojD-5r-Hyg"/>
                                     <constraint firstItem="Tdy-Vo-nmD" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="r1c-GK-CIo"/>
+                                    <constraint firstAttribute="bottom" secondItem="tcg-Xe-pz2" secondAttribute="bottom" id="tYA-kq-srJ"/>
                                     <constraint firstItem="Rme-ZE-Ny7" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="yvC-J9-xkf"/>
                                 </constraints>
                             </view>
@@ -267,6 +307,7 @@
                         <outlet property="transcriptContainerView" destination="V4P-mi-eNN" id="Qmn-xT-IVC"/>
                         <outlet property="transcriptNonexistentCoverImageView" destination="Tdy-Vo-nmD" id="0Ty-Z1-5H4"/>
                         <outlet property="transcriptObscureImageView" destination="JXx-uC-jBL" id="OSf-J0-BCU"/>
+                        <outlet property="transcriptRenewView" destination="tcg-Xe-pz2" id="v2P-Hj-Xhz"/>
                         <outlet property="transcriptSignupView" destination="2Du-mV-vAo" id="AVd-mU-raZ"/>
                         <outlet property="transcriptSubscribeNowLabel" destination="viO-1p-baA" id="uyo-Sm-QkB"/>
                         <outlet property="transcriptTextView" destination="Rme-ZE-Ny7" id="gUt-bY-1N4"/>
@@ -374,13 +415,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AEE 101: this is a very very very very very very very long long long loooooong title in a very small space" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jfb-Pe-NOR">
-                                                <rect key="frame" x="8" y="387" width="359" height="86"/>
+                                                <rect key="frame" x="8" y="387" width="359" height="85.5"/>
                                                 <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud8-uv-PLZ">
-                                                <rect key="frame" x="112" y="489" width="150" height="40"/>
+                                                <rect key="frame" x="112.5" y="489" width="150" height="40"/>
                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.4823529412" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="V5H-Wv-gfz"/>
@@ -419,7 +460,7 @@
                                                 </constraints>
                                             </webView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGi-Ox-oWb" userLabel="Download">
-                                                <rect key="frame" x="280" y="489" width="40" height="40"/>
+                                                <rect key="frame" x="280.5" y="489" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="JUO-1e-PdQ"/>
                                                     <constraint firstAttribute="width" secondItem="DGi-Ox-oWb" secondAttribute="height" multiplier="1:1" id="vug-Fj-vwN"/>
@@ -430,7 +471,7 @@
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IHh-1h-gK3">
-                                                <rect key="frame" x="290" y="499" width="20" height="20"/>
+                                                <rect key="frame" x="290.5" y="498.5" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rG-lP-eZv">
                                                 <rect key="frame" x="8" y="489" width="30" height="30"/>
@@ -577,7 +618,8 @@
         <image name="ic_seek_prev" width="50" height="50"/>
         <image name="ic_share" width="24" height="24"/>
         <image name="transcriptBlur" width="282" height="283"/>
-        <image name="transcriptButtonLogin" width="159" height="41"/>
-        <image name="transcriptButtonSignup" width="159" height="41"/>
+        <image name="transcriptButtonLogin" width="196" height="41"/>
+        <image name="transcriptButtonRenew" width="204" height="49"/>
+        <image name="transcriptButtonSignup" width="196" height="41"/>
     </resources>
 </document>

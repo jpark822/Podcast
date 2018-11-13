@@ -38,6 +38,7 @@ class EpisodePlayerViewController : UIViewController {
     @IBOutlet weak var transcriptSubscribeNowLabel: UILabel!
     @IBOutlet weak var transcriptNonexistentCoverImageView: UIImageView!
     @IBOutlet weak var transcriptSignupView: UIView!
+    @IBOutlet weak var transcriptRenewView: UIView!
     
     //Player controls
     @IBOutlet weak var timeElapsedLabel: UILabel!
@@ -291,6 +292,9 @@ class EpisodePlayerViewController : UIViewController {
         let loginNavVC = LoginViewController.loginViewControllerWithNavigation(delegate: self)
         self.present(loginNavVC, animated: true)
     }
+    
+    @IBAction func renewSubscriptionPressed(_ sender: Any) {
+    }
 }
 
 //MARK: transcripts
@@ -322,8 +326,8 @@ extension EpisodePlayerViewController {
         }
         
         guard ApplicationData.isSubscribedToAEE == true else {
-            //no sub TODO show a renew flow
-            self.showTranscriptSignupView()
+            //We have a user, but theyre sub isnt valid (no initial purchase or expired sub)
+            self.self.showTranscriptRenewView()
             return
         }
         
@@ -346,18 +350,28 @@ extension EpisodePlayerViewController {
         self.transcriptTextView.isHidden = false
         self.transcriptNonexistentCoverImageView.isHidden = true
         self.transcriptSignupView.isHidden = true
+        self.transcriptRenewView.isHidden = true
     }
     
     func showNonexistentTranscriptCoverImage() {
         self.transcriptTextView.isHidden = true
         self.transcriptNonexistentCoverImageView.isHidden = false
         self.transcriptSignupView.isHidden = true
+        self.transcriptRenewView.isHidden = true
     }
     
     func showTranscriptSignupView() {
         self.transcriptTextView.isHidden = true
         self.transcriptNonexistentCoverImageView.isHidden = true
         self.transcriptSignupView.isHidden = false
+        self.transcriptRenewView.isHidden = true
+    }
+    
+    func showTranscriptRenewView() {
+        self.transcriptTextView.isHidden = true
+        self.transcriptNonexistentCoverImageView.isHidden = true
+        self.transcriptSignupView.isHidden = true
+        self.transcriptRenewView.isHidden = false
     }
 }
 
@@ -376,10 +390,12 @@ extension EpisodePlayerViewController: LoginUpViewControllerDelegate {
 
 extension EpisodePlayerViewController:SubscriptionSignupNavigationControllerDelegate {
     func subscriptionSignupNavigationControllerDidFinishWithPurchase(viewController: SubscriptionSignupNavigationController) {
-        
+        self.evaluateTranscriptState()
+        viewController.dismiss(animated: true)
     }
     
     func subscriptionSignupNavigationControllerDidCancel(viewController: SubscriptionSignupNavigationController) {
+        self.evaluateTranscriptState()
         viewController.dismiss(animated: true)
     }
     
