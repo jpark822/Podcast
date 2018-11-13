@@ -324,6 +324,17 @@ extension EpisodePlayerViewController {
     }
     
     func evaluateTranscriptState() {
+        guard let transcript = self.transcript else {
+            //No valid transcript for episode
+            self.showNonexistentTranscriptCoverImage()
+            return
+        }
+        
+        if transcript.isFree == true {
+            self.showTranscriptView()
+            return
+        }
+        
         guard Auth.auth().currentUser != nil else {
             //no user
             self.showTranscriptSignupView()
@@ -336,19 +347,7 @@ extension EpisodePlayerViewController {
             return
         }
         
-        guard let transcript = self.transcript else {
-            //No valid transcript for episode
-            self.showNonexistentTranscriptCoverImage()
-            return
-        }
-        
-        if transcript.isFree == true || ApplicationData.isSubscribedToAEE == true {
-            self.showTranscriptView()
-        }
-        else {
-            self.showTranscriptSignupView()
-        }
-        
+        self.showTranscriptSignupView()
     }
     
     func showTranscriptView() {
