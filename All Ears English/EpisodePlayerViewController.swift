@@ -347,7 +347,8 @@ extension EpisodePlayerViewController {
             return
         }
         
-        self.showTranscriptSignupView()
+        //we have a transcript that isn't free, a user, and a valid subscription 
+        self.showTranscriptView()
     }
     
     func showTranscriptView() {
