@@ -27,9 +27,9 @@ class SubscriptionSignupNavigationController: UINavigationController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let chooseSubVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SelectSubscriptionViewControllerId") as! SelectSubscriptionViewController
-        chooseSubVC.delegate = self
-        self.viewControllers = [chooseSubVC]
+        let selectSubVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SelectSubscriptionViewControllerId") as! SelectSubscriptionViewController
+        selectSubVC.delegate = self
+        self.viewControllers = [selectSubVC]
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -39,6 +39,7 @@ class SubscriptionSignupNavigationController: UINavigationController {
 
 
 extension SubscriptionSignupNavigationController:SelectSubscriptionViewControllerDelegate {
+    
     func selectSubscriptionViewControllerDidSelectSubscription(product: SKProduct, viewController: SelectSubscriptionViewController) {
         switch self.state {
         case .signup:
@@ -48,7 +49,13 @@ extension SubscriptionSignupNavigationController:SelectSubscriptionViewControlle
             self.pushViewController(signupVC, animated: true)
             break
         case .renew:
-            //TODO attempt to purchase
+            viewController.isPurchaseEnabled = false
+            IAPStore.store.purchaseProduct(product) { (success, error) in
+                viewController.isPurchaseEnabled = true
+                if success == true {
+                    self.subscriptionNavigationDelegate?.subscriptionSignupNavigationControllerDidFinishWithPurchase(viewController: self)
+                }
+            }
             break
         }
     }

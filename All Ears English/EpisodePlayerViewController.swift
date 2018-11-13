@@ -284,6 +284,7 @@ class EpisodePlayerViewController : UIViewController {
     
     @IBAction func signupButtonPressed(_ sender: Any) {
         let signupsubVC = SubscriptionSignupNavigationController()
+        signupsubVC.state = .signup
         signupsubVC.subscriptionNavigationDelegate = self
         self.present(signupsubVC, animated: true)
     }
@@ -294,6 +295,10 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     @IBAction func renewSubscriptionPressed(_ sender: Any) {
+        let renewSubVC = SubscriptionSignupNavigationController()
+        renewSubVC.state = .renew
+        renewSubVC.subscriptionNavigationDelegate = self
+        self.present(renewSubVC, animated:true)
     }
 }
 

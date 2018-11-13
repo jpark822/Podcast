@@ -19,17 +19,18 @@ class SelectSubscriptionViewController: UIViewController {
     @IBOutlet weak var monthlyButton: UIButton!
     @IBOutlet weak var yearlyButton: UIButton!
     
-    enum StateType {
-        case signup
-        case renew
-    }
     
     fileprivate var monthlyPassSKProduct:SKProduct!
     fileprivate var yearlyPassSKProduct:SKProduct!
     
-    var stateType:StateType = .signup
-    
     weak var delegate:SelectSubscriptionViewControllerDelegate?
+    
+    var isPurchaseEnabled:Bool = false {
+        didSet {
+            self.monthlyButton.isEnabled = isPurchaseEnabled
+            self.yearlyButton.isEnabled = isPurchaseEnabled
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -65,26 +66,12 @@ class SelectSubscriptionViewController: UIViewController {
     }
     
     @IBAction func monthlyButtonPressed(_ sender: Any) {
-        switch self.stateType {
-        case .renew:
-            break
-        case .signup:
-            self.delegate?.selectSubscriptionViewControllerDidSelectSubscription(product: self.monthlyPassSKProduct, viewController: self)
-            break
-        }
-        
+
+        self.delegate?.selectSubscriptionViewControllerDidSelectSubscription(product: self.monthlyPassSKProduct, viewController: self)
     }
     
     @IBAction func yearlyButtonPressed(_ sender: Any) {
-        switch self.stateType {
-        case .renew:
-            break
-        case .signup:
-            break
-        }
-    }
-    
-    func startPurchase() {
-        //TODO buy the subscription
+
+        self.delegate?.selectSubscriptionViewControllerDidSelectSubscription(product: self.yearlyPassSKProduct, viewController: self)
     }
 }
