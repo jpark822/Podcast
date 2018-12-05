@@ -44,11 +44,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
 //        Bugfender.activateLogger("TEIeuDIEm2Ts4FAyBRY13ZAwWE9eSehJ")
 
         self.setInitialView()
-        IAPStore.store.restoreCompletedTransactions {
-            ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
-                print("valid subscription: \(hasValidSub)")
-            })
-        }
+        
         self.promptOrRemindForPushNotifications()
         
         return true
@@ -102,6 +98,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         UIApplication.shared.applicationIconBadgeNumber = 0
+        IAPStore.store.restoreCompletedTransactions {(success, error) in 
+            ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
+                print("valid subscription: \(hasValidSub)")
+            })
+        }
     }
 
 

@@ -403,6 +403,4 @@ extension EpisodePlayerViewController:SubscriptionSignupNavigationControllerDele
         self.evaluateTranscriptState()
         viewController.dismiss(animated: true)
     }
-    
-    
 }

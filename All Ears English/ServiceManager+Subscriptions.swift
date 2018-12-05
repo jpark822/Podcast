@@ -36,9 +36,8 @@ extension ServiceManager {
             }
             
             guard let responseDict = result?.data as? [String:Any],
-                let allReceiptDict = responseDict["receipt"] as? [String:Any],
-                let inAppArray = allReceiptDict["in_app"] as? [[String:Any]],
-                let latestReceiptDict = inAppArray.first,
+                let receiptInfoArray = responseDict["latest_receipt_info"] as? [[String:Any]],
+                let latestReceiptDict = receiptInfoArray.last,
                 let expirationDateMillisecondString = latestReceiptDict["expires_date_ms"] as? String,
                 let expirationDateMilliseconds = Double(expirationDateMillisecondString) else {
                 completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))

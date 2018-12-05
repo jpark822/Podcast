@@ -72,15 +72,16 @@ class LoginViewController: UIViewController {
         self.errorLabel.isHidden = true
         self.loginButton.isEnabled = false
         Auth.auth().signIn(withEmail: username, password: password) { (result, error) in
-            self.loginButton.isEnabled = true
             if let error = error {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "Please check your username and password"
+                self.loginButton.isEnabled = true
                 return
             }
             else if result?.user != nil {
-                IAPStore.store.restoreCompletedTransactions {
+                IAPStore.store.restoreCompletedTransactions {(success, error) in 
                     ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
+                        self.loginButton.isEnabled = true
                         self.delegate?.loginViewControllerDelegateDidFinish(loginViewController: self)
                     })
                 }
@@ -88,6 +89,7 @@ class LoginViewController: UIViewController {
             else {
                 self.errorLabel.isHidden = false
                 self.errorLabel.text = "An error occurred"
+                self.loginButton.isEnabled = true
             }
         }
     }

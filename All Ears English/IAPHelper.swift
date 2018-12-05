@@ -19,7 +19,7 @@ public typealias ProductIdentifier = String
 /// Completion handler called when products are fetched.
 public typealias RequestProductsCompletionHandler = (_ success: Bool, _ products: [SKProduct]) -> ()
 public typealias PurchaseProductsCompletionHandler = (_ success:Bool, _ error:Error?) -> ()
-public typealias RestoreProductsCompletionHandler = () -> ()
+public typealias RestoreProductsCompletionHandler = (_ success:Bool, _ error:Error?) -> ()
 
 
 /// A Helper class for In-App-Purchases, it can fetch products, tell you if a product has been purchased,
@@ -114,20 +114,6 @@ extension IAPHelper: SKProductsRequestDelegate {
 
 //MARK: SKPaymentTransactionObserver
 extension IAPHelper: SKPaymentTransactionObserver {
-    public func paymentQueue(_ queue: SKPaymentQueue, updatedDownloads downloads: [SKDownload]) {
-        print("SK updated downloads")
-    }
-    public func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
-        print("SK removed transactions")
-    }
-    
-    public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
-        print("SK transaction restore completed")
-    }
-    
-    public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
-        print("SK transaction restore failed")
-    }
     
     public func paymentQueue(_ queue: SKPaymentQueue, updatedTransactions transactions: [SKPaymentTransaction]) {
         for transaction in transactions {
@@ -149,15 +135,38 @@ extension IAPHelper: SKPaymentTransactionObserver {
         }
     }
     
+    public func paymentQueue(_ queue: SKPaymentQueue, updatedDownloads downloads: [SKDownload]) {
+        print("SK updated downloads")
+    }
+    public func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction]) {
+        print("SK removed transactions")
+    }
+    
     fileprivate func completeTransaction(_ transaction: SKPaymentTransaction) {
         print("completeTransaction...")
         self.storePurchaseAndNotifyForProductIdentifier(transaction.payment.productIdentifier)
         SKPaymentQueue.default().finishTransaction(transaction)
         ApplicationData.isSubscribedToAEE = true
         self.purchaseProductCompletionHandler?(true, nil)
-        //Note: generally you would call a server to upload a receipt here. Instead, we check receipts on login and applaunch
+        //generally you would call a server to upload a receipt here. Instead, we check receipts on login and applaunch
     }
     
+    fileprivate func failedTransaction(_ transaction: SKPaymentTransaction) {
+        print("failedTransaction...")
+        if let originalTransaction = transaction.original {
+            let productIdentifier = originalTransaction.payment.productIdentifier
+            NotificationCenter.default.post(name: IAPHelperProductPurchasedFailedNotification, object: productIdentifier)
+        }
+        
+        SKPaymentQueue.default().finishTransaction(transaction)
+        self.purchaseProductCompletionHandler?(false, transaction.error)
+        
+        //if transaction.error.code != SKErrorPaymentCancelled {
+        //print("Transaction error: \(transaction.error.localizedDescription)")
+        //}
+    }
+    
+    //Restoring transactions
     fileprivate func restoreTransaction(_ transaction: SKPaymentTransaction) {
         if let productIdentifier = transaction.original?.payment.productIdentifier {
             if productIdentifier == IAPStore.monthlyPass {
@@ -175,23 +184,19 @@ extension IAPHelper: SKPaymentTransactionObserver {
             print("restoreTransaction... skipping")
         }
         SKPaymentQueue.default().finishTransaction(transaction)
-        self.restoreProductsCompletionHandler?()
     }
     
-    fileprivate func failedTransaction(_ transaction: SKPaymentTransaction) {
-        print("failedTransaction...")
-        if let originalTransaction = transaction.original {
-            let productIdentifier = originalTransaction.payment.productIdentifier
-            NotificationCenter.default.post(name: IAPHelperProductPurchasedFailedNotification, object: productIdentifier)
-        }
-        
-        SKPaymentQueue.default().finishTransaction(transaction)
-        self.purchaseProductCompletionHandler?(false, transaction.error)
-        
-        //if transaction.error.code != SKErrorPaymentCancelled {
-        //print("Transaction error: \(transaction.error.localizedDescription)")
-        //}
+    public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
+        print("SK transaction restore completed")
+        self.restoreProductsCompletionHandler?(true, nil)
     }
+    
+    public func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: Error) {
+        print("SK transaction restore failed \(error)")
+        self.restoreProductsCompletionHandler?(false, error)
+    }
+    
+    
     
     // Helper: Saves the fact that the product has been purchased/restored and posts a notification.
     fileprivate func storePurchaseAndNotifyForProductIdentifier(_ productIdentifier: String) {

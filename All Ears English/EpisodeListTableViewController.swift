@@ -349,23 +349,15 @@ extension EpisodeListTableViewController:SignupLoginCTASectionHeaderDelegate {
     }
     
     func signupLoginCTASectionHeaderDidPressSignUp(header: SignupLoginCTASectionHeader) {
-        let signupVC = UIStoryboard(name: "Login", bundle: nil).instantiateViewController(withIdentifier: "SignUpViewControllerId") as! SignUpViewController
-        signupVC.delegate = self
-        self.present(signupVC, animated: true)
+        let signupsubVC = SubscriptionSignupNavigationController()
+        signupsubVC.state = .signup
+        signupsubVC.subscriptionNavigationDelegate = self
+        self.present(signupsubVC, animated: true)
     }
 }
 
-extension EpisodeListTableViewController:SignUpViewControllerDelegate, LoginUpViewControllerDelegate {
-    //Signup
-    func signUpViewControllerDelegateDidCancel(signupViewController: SignUpViewController) {
-        signupViewController.dismiss(animated: true)
-    }
-    func signUpViewControllerDelegateDidFinish(signupViewController: SignUpViewController) {
-        self.tableView.reloadData()
-        self.setupLogoutButton()
-        signupViewController.dismiss(animated: true)
-    }
-    //Login
+//Login
+extension EpisodeListTableViewController: LoginUpViewControllerDelegate {
     func loginViewControllerDelegateDidCancel(loginViewController: LoginViewController) {
         loginViewController.dismiss(animated: true)
     }
@@ -388,5 +380,18 @@ extension EpisodeListTableViewController:SignUpViewControllerDelegate, LoginUpVi
         catch {
             
         }
+    }
+}
+
+//Signup
+extension EpisodeListTableViewController:SubscriptionSignupNavigationControllerDelegate {
+    func subscriptionSignupNavigationControllerDidFinishWithPurchase(viewController: SubscriptionSignupNavigationController) {
+        self.tableView.reloadData()
+        self.setupLogoutButton()
+        viewController.dismiss(animated: true)
+    }
+    
+    func subscriptionSignupNavigationControllerDidCancel(viewController: SubscriptionSignupNavigationController) {
+        viewController.dismiss(animated: true)
     }
 }
