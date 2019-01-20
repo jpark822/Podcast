@@ -8,6 +8,8 @@
 
 import UIKit
 import Alamofire
+import Firebase
+import FirebaseAuth
 
 
 class ServiceManager: NSObject {
@@ -16,8 +18,10 @@ class ServiceManager: NSObject {
     var sessionManager = SessionManager(configuration: .default)
     
     func getTranscriptWithId(_ episodeGuid:String, completion:@escaping (TranscriptModel?, Error?)->Void) {
-        //TODO change to use GUID
-        Alamofire.request("https://s3.amazonaws.com/allearsenglish-mobileapp/transcripts/\(episodeGuid).json").validate().responseJSON { (response) in
+        
+        let url = Auth.auth().currentUser?.email == "test@test.com" ? "https://s3.amazonaws.com/allearsenglish-mobileapp/test-transcripts/\(episodeGuid).json" : "https://s3.amazonaws.com/allearsenglish-mobileapp/transcripts/\(episodeGuid).json"
+        
+        Alamofire.request(url).validate().responseJSON { (response) in
             switch response.result{
             case .failure(let error):
                 completion(nil, error)

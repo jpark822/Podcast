@@ -11,6 +11,8 @@ import Crashlytics
 import Alamofire
 import SwiftyXMLParser
 import Foundation
+import Firebase
+import FirebaseAuth
 //import BugfenderSDK
 
 class Feed: NSObject {
@@ -21,6 +23,7 @@ class Feed: NSObject {
 //    fileprivate let baseURL = URL.init(string: "http://apptesting.libsyn.com/rss")!
 //#else
     fileprivate let baseURL = URL.init(string: "https://allearsenglish.libsyn.com/App")!
+    fileprivate let testBaseUrl = URL.init(string: "https://apptesting.libsyn.com/rss")!
 //#endif
     
     internal let bonusURL = URL.init(string:"https://appforaee.libsyn.com/rss")!
@@ -34,11 +37,14 @@ class Feed: NSObject {
 
     func fetchData(completion:(([Feed.Item]?)->Void)?) {
         self.items.removeAll()
-        Alamofire.request(baseURL).responseData { response in
+        
+        let feedUrl = Auth.auth().currentUser?.email == "test@test.com" ? self.testBaseUrl : self.baseURL
+        
+        Alamofire.request(feedUrl).responseData { response in
             let statusCode = response.response?.statusCode ?? 0
             
             if let error = response.error {
-//                BFLog("Feed Error:%@ Status code:%i", error.localizedDescription, statusCode)
+                //                BFLog("Feed Error:%@ Status code:%i", error.localizedDescription, statusCode)
                 
                 if let completion = completion {
                     completion(nil)
@@ -74,6 +80,7 @@ class Feed: NSObject {
             }
         }
     }
+    
 
     func fetchLocalEpisodeItems() -> [Feed.Item] {
         var items:[Feed.Item] = []
@@ -251,6 +258,9 @@ class Feed: NSObject {
             self.parseId()
             self.parseKeywords()
             self.parseCategories()
+            if self.number == "1085" {
+                print("here")
+            }
         }
         
         convenience init(_ xmlItem: XML.Accessor, episodeType:EpisodeType) {

@@ -1,19 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="13529" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina3_5" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="13527"/>
-        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
-        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
-        <array key="Chalkduster.ttf">
-            <string>Chalkduster</string>
-        </array>
         <array key="Nunito-Bold.ttf">
             <string>Nunito-Bold</string>
         </array>
@@ -22,9 +17,6 @@
         </array>
         <array key="PT_Sans-Web-Regular.ttf">
             <string>PTSans-Regular</string>
-        </array>
-        <array key="Verdana.ttf">
-            <string>Verdana</string>
         </array>
     </customFonts>
     <scenes>
@@ -284,13 +276,13 @@
                                                 </constraints>
                                             </imageView>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="AEE 101: this is a very very very very very very very long long long loooooong title in a very small space" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="RnS-FH-DSz">
-                                                <rect key="frame" x="8" y="387" width="359" height="86"/>
+                                                <rect key="frame" x="8" y="387" width="359" height="85.5"/>
                                                 <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="22"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YzK-gs-jaQ">
-                                                <rect key="frame" x="112" y="489" width="150" height="40"/>
+                                                <rect key="frame" x="112" y="489" width="151" height="40"/>
                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.4823529412" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="D0f-Iw-gKq"/>
@@ -310,7 +302,7 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" usesAttributedText="YES" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O71-6Y-K3b">
-                                                <rect key="frame" x="8" y="544" width="359" height="20"/>
+                                                <rect key="frame" x="8" y="544" width="359" height="22"/>
                                                 <attributedString key="attributedText">
                                                     <fragment content="Description">
                                                         <attributes>
@@ -322,14 +314,14 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <webView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="g01-yi-Nud">
-                                                <rect key="frame" x="0.0" y="579" width="375" height="1400"/>
+                                                <rect key="frame" x="0.0" y="581" width="375" height="1400"/>
                                                 <color key="backgroundColor" red="0.36078431370000003" green="0.38823529410000002" blue="0.4039215686" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="1400" id="4Ev-qL-C01"/>
                                                 </constraints>
                                             </webView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Cww-VC-EMZ" userLabel="Download">
-                                                <rect key="frame" x="280" y="489" width="40" height="40"/>
+                                                <rect key="frame" x="281" y="489" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="O1l-Cb-CCm"/>
                                                     <constraint firstAttribute="width" secondItem="Cww-VC-EMZ" secondAttribute="height" multiplier="1:1" id="bhH-dk-Wvv"/>
@@ -340,7 +332,7 @@
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="qw2-KQ-PwW">
-                                                <rect key="frame" x="290" y="499" width="20" height="20"/>
+                                                <rect key="frame" x="291" y="498.5" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="jac-3F-fZf">
                                                 <rect key="frame" x="8" y="489" width="30" height="30"/>
@@ -511,17 +503,17 @@
                                 <color key="trackTintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             </progressView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rt0-yv-fHA" userLabel="Time">
-                                <rect key="frame" x="0.0" y="318.5" width="320" height="21.5"/>
+                                <rect key="frame" x="0.0" y="318.5" width="320" height="21"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Em0-ae-0ho">
-                                        <rect key="frame" x="8" y="1" width="41" height="20"/>
+                                        <rect key="frame" x="8" y="0.0" width="41" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="0:00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="zID-sj-c5r">
-                                        <rect key="frame" x="271" y="1" width="41" height="20"/>
+                                        <rect key="frame" x="271" y="0.0" width="41" height="20"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMinY="YES" flexibleMaxY="YES"/>
                                         <fontDescription key="fontDescription" name="Verdana" family="Verdana" pointSize="12"/>
                                         <nil key="textColor"/>
@@ -710,16 +702,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cover" width="512" height="512"/>
-        <image name="Slogan" width="194" height="24"/>
-        <image name="ic_cloud_download" width="24" height="24"/>
-        <image name="ic_keyboard_arrow_down_48pt" width="48" height="48"/>
-        <image name="ic_menu" width="24" height="24"/>
-        <image name="ic_play_arrow_48pt" width="48" height="48"/>
-        <image name="ic_play_arrow_white" width="24" height="24"/>
-        <image name="ic_playlist_play_white" width="24" height="24"/>
-        <image name="ic_public_white" width="24" height="24"/>
-        <image name="ic_share" width="24" height="24"/>
+        <image name="Cover" width="1024" height="1024"/>
+        <image name="Slogan" width="388" height="49"/>
+        <image name="ic_cloud_download" width="48" height="48"/>
+        <image name="ic_keyboard_arrow_down_48pt" width="96" height="96"/>
+        <image name="ic_menu" width="48" height="48"/>
+        <image name="ic_play_arrow_48pt" width="96" height="96"/>
+        <image name="ic_play_arrow_white" width="48" height="48"/>
+        <image name="ic_playlist_play_white" width="48" height="48"/>
+        <image name="ic_public_white" width="48" height="48"/>
+        <image name="ic_share" width="48" height="48"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="nhW-fn-SWt"/>
