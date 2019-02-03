@@ -8,6 +8,7 @@
 
 import UIKit
 import StoreKit
+import SafariServices
 
 protocol SelectSubscriptionViewControllerDelegate:class {
     func selectSubscriptionViewControllerDidSelectSubscription(product:SKProduct, viewController:SelectSubscriptionViewController)
@@ -73,5 +74,13 @@ class SelectSubscriptionViewController: UIViewController {
     @IBAction func yearlyButtonPressed(_ sender: Any) {
 
         self.delegate?.selectSubscriptionViewControllerDidSelectSubscription(product: self.yearlyPassSKProduct, viewController: self)
+    }
+    
+    @IBAction func privacyPolicyButtonPressed(_ sender: Any) {
+        if let url = URL(string: "https://www.allearsenglish.com/legal/") {
+            let safariVC = SFSafariViewController(url: url)
+            self.present(safariVC, animated: true)
+        }
+        
     }
 }
