@@ -15,6 +15,8 @@ struct TranscriptModel {
     
     let segments:[TranscriptSegment]
     
+    let keywords = ["all ears english", "episode"]
+    
     init(jsonDict:[String:Any]) {
         self.id = jsonDict["id"] as? String ?? ""
         self.isFree = jsonDict["isFree"] as? Bool ?? false

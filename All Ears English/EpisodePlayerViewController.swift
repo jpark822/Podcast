@@ -68,6 +68,8 @@ class EpisodePlayerViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.transcriptTextView.delegate = self
+        
         switch self.feedType {
         case .none:
             break
@@ -202,11 +204,31 @@ class EpisodePlayerViewController : UIViewController {
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.AEEYellow, range: textRange)
                     
+                    //add keywords
+                    self.highlightKeywordsInTranscript(attributedTranscript: attributedString)
+                    
                     ///Regular async doesn't work here, but hacking in asyncAfter works
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
                         self.transcriptTextView.attributedText = attributedString
                         self.transcriptTextView.scrollRangeToVisible(textRange)
                     }
+                }
+            }
+        }
+    }
+    
+    func highlightKeywordsInTranscript(attributedTranscript:NSMutableAttributedString) {
+        guard let transcript = self.transcript else {
+            return
+        }
+    
+        for keyword in transcript.keywords {
+            let rangesOfOccurence = transcript.fullTranscript.nsRanges(of: keyword, options: [.caseInsensitive])
+            for range in rangesOfOccurence {
+                let unsanitziedString = "AEE://\(keyword)"
+                let sanitizedString = unsanitziedString.addingPercentEncoding(withAllowedCharacters: [])
+                if let url = URL(string:sanitizedString!) {
+                    attributedTranscript.addAttributes([NSLinkAttributeName:url], range: range)
                 }
             }
         }
@@ -407,5 +429,13 @@ extension EpisodePlayerViewController:SubscriptionSignupNavigationControllerDele
     func subscriptionSignupNavigationControllerDidCancel(viewController: SubscriptionSignupNavigationController) {
         self.evaluateTranscriptState()
         viewController.dismiss(animated: true)
+    }
+}
+
+//MARK: UITextViewDelegate
+extension EpisodePlayerViewController:UITextViewDelegate {
+    func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
+        print(URL.absoluteString.removingPercentEncoding?.replacingOccurrences(of: "AEE://", with: ""))
+        return false
     }
 }
