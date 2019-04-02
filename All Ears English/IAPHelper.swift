@@ -51,15 +51,22 @@ open class IAPHelper : NSObject  {
             }
         }
         super.init()
-        SKPaymentQueue.default().add(self)
+        if SKPaymentQueue.canMakePayments() {
+            SKPaymentQueue.default().add(self)
+        }
     }
     
     //fetch
     func requestProductsWithCompletionHandler(_ handler: @escaping RequestProductsCompletionHandler) {
-        requestProductsCompletionHandler = handler
-        productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
-        productsRequest?.delegate = self
-        productsRequest?.start()
+        if SKPaymentQueue.canMakePayments() {
+            requestProductsCompletionHandler = handler
+            productsRequest = SKProductsRequest(productIdentifiers: productIdentifiers)
+            productsRequest?.delegate = self
+            productsRequest?.start()
+        }
+        else {
+            self.requestProductsCompletionHandler?(false, [])
+        }
     }
     
     //purchase
@@ -76,12 +83,13 @@ open class IAPHelper : NSObject  {
     
     //restore
     func restoreCompletedTransactions(completion:@escaping RestoreProductsCompletionHandler) {
-        self.restoreProductsCompletionHandler = completion
-        SKPaymentQueue.default().restoreCompletedTransactions()
-    }
-    
-    class func canMakePayments() -> Bool {
-        return SKPaymentQueue.canMakePayments()
+        if SKPaymentQueue.canMakePayments() {
+            self.restoreProductsCompletionHandler = completion
+            SKPaymentQueue.default().restoreCompletedTransactions()
+        }
+        else {
+            self.restoreProductsCompletionHandler?(false, NSError(domain: "AEE", code: 998, userInfo: [NSLocalizedDescriptionKey:"inapp purchases not enabled"]))
+        }
     }
 }
 
