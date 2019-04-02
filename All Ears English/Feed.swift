@@ -28,7 +28,6 @@ class Feed: NSObject {
     
     internal let bonusURL = URL.init(string:"https://appforaee.libsyn.com/rss")!
     fileprivate var parser: XMLParser?
-//    fileprivate var itemBuilder: ItemBuilder!
 
     var items = [Item]()
     var itemsByGUID: [String: Feed.Item] = [:]
