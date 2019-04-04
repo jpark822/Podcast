@@ -15,7 +15,7 @@ struct TranscriptModel {
     
     let segments:[TranscriptSegment]
     
-    let keywords = ["all ears english", "episode"]
+    let keywords:[KeywordModel] = [KeywordModel(name: "all ears english", definition: "title of this podcast"), KeywordModel(name: "episode", definition: "a single instance of an episode on this podcast")]
     
     init(jsonDict:[String:Any]) {
         self.id = jsonDict["id"] as? String ?? ""
@@ -55,5 +55,26 @@ struct TranscriptSegment {
             parsedSegments.append(segmentModel)
         }
         return parsedSegments
+    }
+}
+
+struct KeywordModel:Codable, Equatable, Hashable {
+    let name:String
+    let definition:String
+    
+    enum CodingKeys:String, CodingKey {
+        case name
+        case definition
+    }
+    
+    init(name:String, definition:String) {
+        self.name = name
+        self.definition = definition
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try container.decodeIfPresent(String.self, forKey: .name) ?? ""
+        self.definition = try container.decodeIfPresent(String.self, forKey: .definition) ?? ""
     }
 }

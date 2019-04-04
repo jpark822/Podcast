@@ -261,6 +261,67 @@
                                             <constraint firstItem="lP7-kO-Tjn" firstAttribute="leading" secondItem="tcg-Xe-pz2" secondAttribute="leading" id="xQL-Io-emh"/>
                                         </constraints>
                                     </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="WPC-LN-Syh">
+                                        <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
+                                        <subviews>
+                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9S-Yz-vq5">
+                                                <rect key="frame" x="8" y="8" width="40" height="22"/>
+                                                <state key="normal" image="keywordBackButton">
+                                                    <color key="titleColor" red="0.99607843139999996" green="1" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
+                                                </state>
+                                                <connections>
+                                                    <action selector="keywordBackButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="ET2-9H-hAO"/>
+                                                </connections>
+                                            </button>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword phrase" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-BO-CmZ">
+                                                <rect key="frame" x="8" y="70.5" width="259" height="28.5"/>
+                                                <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="22"/>
+                                                <color key="textColor" red="0.9882352941176471" green="0.8666666666666667" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword Definition " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qik-ze-WTn">
+                                                <rect key="frame" x="8" y="106.5" width="259" height="21"/>
+                                                <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
+                                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51D-XQ-fgv">
+                                                <rect key="frame" x="28.5" y="147.5" width="218" height="41"/>
+                                                <state key="normal" image="keywordSaveButton"/>
+                                                <connections>
+                                                    <action selector="keywordSaveButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="4dc-Xr-Xn3"/>
+                                                </connections>
+                                            </button>
+                                            <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIz-v8-zJw">
+                                                <rect key="frame" x="77.5" y="148" width="120" height="41"/>
+                                                <state key="normal" image="keywordIsSavedButton"/>
+                                                <connections>
+                                                    <action selector="keywordRemoveButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="40p-nh-JcG"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
+                                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="kV4-BO-CmZ" secondAttribute="trailing" constant="8" id="13Q-oY-Ejw"/>
+                                            <constraint firstItem="EIz-v8-zJw" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WPC-LN-Syh" secondAttribute="leading" constant="8" id="N87-gh-BvJ"/>
+                                            <constraint firstItem="kV4-BO-CmZ" firstAttribute="leading" secondItem="WPC-LN-Syh" secondAttribute="leading" constant="8" id="Oua-HN-r1B"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="51D-XQ-fgv" secondAttribute="trailing" constant="8" id="SYR-n5-VmV"/>
+                                            <constraint firstItem="kV4-BO-CmZ" firstAttribute="centerY" secondItem="WPC-LN-Syh" secondAttribute="centerY" multiplier="60:100" id="VBR-wp-AY8"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="EIz-v8-zJw" secondAttribute="bottom" constant="8" id="W23-LH-CeK"/>
+                                            <constraint firstAttribute="trailing" secondItem="qik-ze-WTn" secondAttribute="trailing" constant="8" id="XHB-me-ZKh"/>
+                                            <constraint firstItem="EIz-v8-zJw" firstAttribute="top" secondItem="qik-ze-WTn" secondAttribute="bottom" constant="20.5" id="YTk-Wq-KnX"/>
+                                            <constraint firstItem="EIz-v8-zJw" firstAttribute="centerX" secondItem="WPC-LN-Syh" secondAttribute="centerX" id="aYY-eP-Jut"/>
+                                            <constraint firstItem="51D-XQ-fgv" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="WPC-LN-Syh" secondAttribute="leading" constant="8" id="crJ-ZL-JEC"/>
+                                            <constraint firstItem="51D-XQ-fgv" firstAttribute="top" secondItem="qik-ze-WTn" secondAttribute="bottom" constant="20" id="d5S-60-F0e"/>
+                                            <constraint firstItem="qik-ze-WTn" firstAttribute="top" secondItem="kV4-BO-CmZ" secondAttribute="bottom" constant="7.5" id="gWE-EW-2HG"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="51D-XQ-fgv" secondAttribute="bottom" constant="8" id="jCx-SB-0SX"/>
+                                            <constraint firstItem="G9S-Yz-vq5" firstAttribute="leading" secondItem="WPC-LN-Syh" secondAttribute="leading" constant="8" id="sta-wH-Dbl"/>
+                                            <constraint firstItem="G9S-Yz-vq5" firstAttribute="top" secondItem="WPC-LN-Syh" secondAttribute="top" constant="8" id="w30-hP-GqG"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="EIz-v8-zJw" secondAttribute="trailing" constant="8" id="w8F-75-0ev"/>
+                                            <constraint firstItem="51D-XQ-fgv" firstAttribute="centerX" secondItem="WPC-LN-Syh" secondAttribute="centerX" id="xl1-VP-xos"/>
+                                            <constraint firstItem="qik-ze-WTn" firstAttribute="leading" secondItem="WPC-LN-Syh" secondAttribute="leading" constant="8" id="yxg-Wr-eJL"/>
+                                        </constraints>
+                                    </view>
                                 </subviews>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
@@ -271,11 +332,15 @@
                                     <constraint firstItem="2Du-mV-vAo" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="GHZ-s5-RFz"/>
                                     <constraint firstAttribute="trailing" secondItem="Tdy-Vo-nmD" secondAttribute="trailing" constant="0.5" id="GlA-ug-4zJ"/>
                                     <constraint firstAttribute="bottom" secondItem="2Du-mV-vAo" secondAttribute="bottom" constant="-0.5" id="JZ0-2T-zxK"/>
+                                    <constraint firstAttribute="trailing" secondItem="WPC-LN-Syh" secondAttribute="trailing" id="LJu-02-dsL"/>
                                     <constraint firstAttribute="trailing" secondItem="Rme-ZE-Ny7" secondAttribute="trailing" id="NFp-hW-i1g"/>
                                     <constraint firstItem="Rme-ZE-Ny7" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="PuV-V1-R8b"/>
+                                    <constraint firstItem="WPC-LN-Syh" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="R2h-ob-YGF"/>
+                                    <constraint firstItem="WPC-LN-Syh" firstAttribute="leading" secondItem="V4P-mi-eNN" secondAttribute="leading" id="VAr-Lc-Lmo"/>
                                     <constraint firstItem="tcg-Xe-pz2" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="VaE-Yv-cLy"/>
                                     <constraint firstItem="2Du-mV-vAo" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="dbZ-TF-p06"/>
                                     <constraint firstAttribute="trailing" secondItem="tcg-Xe-pz2" secondAttribute="trailing" id="iRF-kP-S5t"/>
+                                    <constraint firstAttribute="bottom" secondItem="WPC-LN-Syh" secondAttribute="bottom" id="lzR-nA-LS8"/>
                                     <constraint firstAttribute="trailing" secondItem="2Du-mV-vAo" secondAttribute="trailing" id="ojD-5r-Hyg"/>
                                     <constraint firstItem="Tdy-Vo-nmD" firstAttribute="top" secondItem="V4P-mi-eNN" secondAttribute="top" id="r1c-GK-CIo"/>
                                     <constraint firstAttribute="bottom" secondItem="tcg-Xe-pz2" secondAttribute="bottom" id="tYA-kq-srJ"/>
@@ -300,6 +365,12 @@
                         <outlet property="autoPlayLabel" destination="pfm-Or-GZ6" id="cYP-aw-1ik"/>
                         <outlet property="autoPlaySwitch" destination="VqE-Rh-2UF" id="djQ-Lf-aQv"/>
                         <outlet property="episodeDescriptionLabel" destination="uWh-0k-GGL" id="Gd9-4T-cgl"/>
+                        <outlet property="keywordBackButton" destination="G9S-Yz-vq5" id="NOf-F9-mbU"/>
+                        <outlet property="keywordDefinitionLabel" destination="qik-ze-WTn" id="dCA-F1-mbE"/>
+                        <outlet property="keywordRemoveButton" destination="EIz-v8-zJw" id="Iih-A7-b1t"/>
+                        <outlet property="keywordSaveButton" destination="51D-XQ-fgv" id="b4x-93-hcf"/>
+                        <outlet property="keywordTitleLabel" destination="kV4-BO-CmZ" id="4bA-mC-Bys"/>
+                        <outlet property="keywordView" destination="WPC-LN-Syh" id="nwj-WY-iak"/>
                         <outlet property="playButton" destination="2Bg-XG-e1w" id="2Nw-RV-V2X"/>
                         <outlet property="playbackRateButton" destination="kau-uT-o0D" id="ZWi-AA-x6B"/>
                         <outlet property="progressSlider" destination="9M4-4R-8SO" id="r1x-G9-lcD"/>
@@ -618,6 +689,9 @@
         <image name="ic_seek_next" width="50" height="50"/>
         <image name="ic_seek_prev" width="50" height="50"/>
         <image name="ic_share" width="48" height="48"/>
+        <image name="keywordBackButton" width="40" height="13"/>
+        <image name="keywordIsSavedButton" width="120" height="41"/>
+        <image name="keywordSaveButton" width="218" height="41"/>
         <image name="transcriptBlur" width="282" height="283"/>
         <image name="transcriptButtonLogin" width="196" height="41"/>
         <image name="transcriptButtonRenew" width="204" height="49"/>

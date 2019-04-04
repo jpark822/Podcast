@@ -40,6 +40,15 @@ class EpisodePlayerViewController : UIViewController {
     @IBOutlet weak var transcriptSignupView: UIView!
     @IBOutlet weak var transcriptRenewView: UIView!
     
+    //keyword related views
+    @IBOutlet weak var keywordView: UIView!
+    @IBOutlet weak var keywordBackButton: UIButton!
+    @IBOutlet weak var keywordTitleLabel: UILabel!
+    @IBOutlet weak var keywordDefinitionLabel: UILabel!
+    @IBOutlet weak var keywordSaveButton: UIButton!
+    @IBOutlet weak var keywordRemoveButton: UIButton!
+    
+    
     //Player controls
     @IBOutlet weak var timeElapsedLabel: UILabel!
     @IBOutlet weak var timeRemainingLabel: UILabel!
@@ -50,9 +59,12 @@ class EpisodePlayerViewController : UIViewController {
     @IBOutlet weak var autoPlaySwitch: UISwitch!
     @IBOutlet weak var autoPlayLabel: UILabel!
     
+    
     fileprivate var displayLink: CADisplayLink!
     
     fileprivate var userIsScrubbing = false
+    
+    fileprivate var currentlyViewedKeyword:KeywordModel?
     
     var transcript:TranscriptModel? {
         didSet {
@@ -223,9 +235,10 @@ class EpisodePlayerViewController : UIViewController {
         }
     
         for keyword in transcript.keywords {
-            let rangesOfOccurence = transcript.fullTranscript.nsRanges(of: keyword, options: [.caseInsensitive])
+            let keywordName = keyword.name
+            let rangesOfOccurence = transcript.fullTranscript.nsRanges(of: keywordName, options: [.caseInsensitive])
             for range in rangesOfOccurence {
-                let unsanitziedString = "AEE://\(keyword)"
+                let unsanitziedString = "AEE://\(keywordName)"
                 let sanitizedString = unsanitziedString.addingPercentEncoding(withAllowedCharacters: [])
                 if let url = URL(string:sanitizedString!) {
                     attributedTranscript.addAttributes([NSLinkAttributeName:url], range: range)
@@ -322,6 +335,31 @@ class EpisodePlayerViewController : UIViewController {
         renewSubVC.subscriptionNavigationDelegate = self
         self.present(renewSubVC, animated:true)
     }
+    
+    //keyword view actions
+    @IBAction func keywordBackButtonPressed(_ sender: Any) {
+        self.keywordView.isHidden = true
+        self.currentlyViewedKeyword = nil
+    }
+    
+    @IBAction func keywordSaveButtonPressed(_ sender: Any) {
+        if let currentKeyword = self.currentlyViewedKeyword {
+            KeywordFavoritesManager.sharedInstance.saveKeyword(currentKeyword)
+            
+            self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? true : false
+            self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? false : true
+        }
+    }
+    
+    @IBAction func keywordRemoveButtonPressed(_ sender: Any) {
+        if let currentKeyword = self.currentlyViewedKeyword {
+            KeywordFavoritesManager.sharedInstance.removeKeyword(currentKeyword)
+            
+            self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? true : false
+            self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? false : true
+        }
+    }
+    
 }
 
 //MARK: transcripts
@@ -435,7 +473,26 @@ extension EpisodePlayerViewController:SubscriptionSignupNavigationControllerDele
 //MARK: UITextViewDelegate
 extension EpisodePlayerViewController:UITextViewDelegate {
     func textView(_ textView: UITextView, shouldInteractWith URL: URL, in characterRange: NSRange, interaction: UITextItemInteraction) -> Bool {
-        print(URL.absoluteString.removingPercentEncoding?.replacingOccurrences(of: "AEE://", with: ""))
+        let parsedKeywordName = URL.absoluteString.removingPercentEncoding?.replacingOccurrences(of: "AEE://", with: "")
+        
+        guard let transcript = self.transcript else {
+            return false
+        }
+        
+        for keyword in transcript.keywords {
+            if keyword.name == parsedKeywordName {
+                self.currentlyViewedKeyword = keyword
+                self.keywordView.isHidden = false
+                self.keywordTitleLabel.text = keyword.name
+                self.keywordDefinitionLabel.text = keyword.definition
+                
+                self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(keyword) ? true : false
+                self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(keyword) ? false : true
+
+                break
+            }
+        }
+        
         return false
     }
 }
