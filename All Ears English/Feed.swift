@@ -40,9 +40,8 @@ class Feed: NSObject {
         let feedUrl = Auth.auth().currentUser?.email == "test@test.com" ? self.testBaseUrl : self.baseURL
         
         Alamofire.request(feedUrl).responseData { response in
-            let statusCode = response.response?.statusCode ?? 0
             
-            if let error = response.error {
+            if let _ = response.error {
                 //                BFLog("Feed Error:%@ Status code:%i", error.localizedDescription, statusCode)
                 
                 if let completion = completion {
