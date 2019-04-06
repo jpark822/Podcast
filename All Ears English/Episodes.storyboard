@@ -632,6 +632,104 @@
             </objects>
             <point key="canvasLocation" x="2393" y="180"/>
         </scene>
+        <!--Favorites Home View Controller-->
+        <scene sceneID="Ee0-Qd-2Bm">
+            <objects>
+                <viewController storyboardIdentifier="FavoritesHomeViewControllerId" id="FMR-Pw-fCT" customClass="FavoritesHomeViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="TuG-Zq-Td9"/>
+                        <viewControllerLayoutGuide type="bottom" id="hIW-mY-t2z"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="0mM-rx-oGs">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <segmentedControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="top" segmentControlStyle="plain" selectedSegmentIndex="0" translatesAutoresizingMaskIntoConstraints="NO" id="RtE-y5-VyZ">
+                                <rect key="frame" x="16" y="20" width="343" height="29"/>
+                                <segments>
+                                    <segment title="Episodes"/>
+                                    <segment title="Keywords"/>
+                                </segments>
+                                <connections>
+                                    <action selector="segmentedControlChangedValue:" destination="FMR-Pw-fCT" eventType="valueChanged" id="XxD-jo-mqe"/>
+                                </connections>
+                            </segmentedControl>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="xuQ-Uq-w2c">
+                                <rect key="frame" x="0.0" y="56" width="375" height="1"/>
+                                <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="1" id="sET-x8-62T"/>
+                                </constraints>
+                            </view>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="CN0-Lg-qYw">
+                                <rect key="frame" x="0.0" y="57" width="375" height="546"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="RtE-y5-VyZ" firstAttribute="leading" secondItem="0mM-rx-oGs" secondAttribute="leading" constant="16" id="4Sy-oX-H3x"/>
+                            <constraint firstItem="RtE-y5-VyZ" firstAttribute="top" secondItem="0mM-rx-oGs" secondAttribute="top" constant="20" id="DRt-2i-E9d"/>
+                            <constraint firstItem="CN0-Lg-qYw" firstAttribute="top" secondItem="xuQ-Uq-w2c" secondAttribute="bottom" id="JV5-TC-Xgr"/>
+                            <constraint firstItem="CN0-Lg-qYw" firstAttribute="leading" secondItem="0mM-rx-oGs" secondAttribute="leading" id="Vpc-8F-YgH"/>
+                            <constraint firstAttribute="trailing" secondItem="RtE-y5-VyZ" secondAttribute="trailing" constant="16" id="q1q-55-sOF"/>
+                            <constraint firstItem="xuQ-Uq-w2c" firstAttribute="leading" secondItem="0mM-rx-oGs" secondAttribute="leading" id="qVB-aP-y1Y"/>
+                            <constraint firstAttribute="bottom" secondItem="CN0-Lg-qYw" secondAttribute="bottom" id="r0d-MN-9Kg"/>
+                            <constraint firstAttribute="trailing" secondItem="CN0-Lg-qYw" secondAttribute="trailing" id="tMe-iH-tIF"/>
+                            <constraint firstItem="xuQ-Uq-w2c" firstAttribute="top" secondItem="RtE-y5-VyZ" secondAttribute="bottom" constant="8" id="xN3-Hv-QOz"/>
+                            <constraint firstAttribute="trailing" secondItem="xuQ-Uq-w2c" secondAttribute="trailing" id="yRX-k2-V5p"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                    <connections>
+                        <outlet property="childViewControllerContentView" destination="CN0-Lg-qYw" id="s6O-Wl-vIV"/>
+                        <outlet property="segmentedControl" destination="RtE-y5-VyZ" id="hKl-rI-GU4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="AL4-KF-36c" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="77.599999999999994" y="0.44977511244377816"/>
+        </scene>
+        <!--Favorite Keywords View Controller-->
+        <scene sceneID="Jbp-TA-Kgp">
+            <objects>
+                <viewController storyboardIdentifier="FavoriteKeywordsViewControllerId" id="CtC-MS-jeV" customClass="FavoriteKeywordsViewController" customModule="All_Ears_English" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="b3O-rS-fQk"/>
+                        <viewControllerLayoutGuide type="bottom" id="X9V-Fj-EgL"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="lTT-pA-ns0">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="kxw-Wz-zgr">
+                                <rect key="frame" x="0.0" y="0.0" width="375" height="603"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            </tableView>
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No favorite keywords found" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="NEL-PZ-Drb">
+                                <rect key="frame" x="16" y="288.5" width="343" height="26"/>
+                                <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="20"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="NEL-PZ-Drb" firstAttribute="centerY" secondItem="kxw-Wz-zgr" secondAttribute="centerY" id="5p1-uw-n8S"/>
+                            <constraint firstAttribute="trailing" secondItem="kxw-Wz-zgr" secondAttribute="trailing" id="ER0-pJ-D0b"/>
+                            <constraint firstItem="NEL-PZ-Drb" firstAttribute="leading" secondItem="lTT-pA-ns0" secondAttribute="leading" constant="16" id="Gua-cj-d0t"/>
+                            <constraint firstItem="kxw-Wz-zgr" firstAttribute="top" secondItem="lTT-pA-ns0" secondAttribute="top" id="J34-9j-lGl"/>
+                            <constraint firstItem="kxw-Wz-zgr" firstAttribute="leading" secondItem="lTT-pA-ns0" secondAttribute="leading" id="M6C-cn-lEE"/>
+                            <constraint firstAttribute="bottom" secondItem="kxw-Wz-zgr" secondAttribute="bottom" id="jMO-ze-87l"/>
+                            <constraint firstAttribute="trailing" secondItem="NEL-PZ-Drb" secondAttribute="trailing" constant="16" id="kxh-cR-3QZ"/>
+                        </constraints>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" translucent="NO" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="s9S-l7-WUR" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="856.79999999999995" y="303.59820089955025"/>
+        </scene>
         <!--Favorites List Table View Controller-->
         <scene sceneID="kJt-dH-hCs">
             <objects>
@@ -675,7 +773,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="auV-Ul-3go" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-17" y="24"/>
+            <point key="canvasLocation" x="857" y="-359"/>
         </scene>
     </scenes>
     <resources>

@@ -71,7 +71,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         bonusesNavVC.tabBarItem = UITabBarItem(title: "Bonuses", image: bonusesTabImage, tag: 0)
         _ = bonusesVC.view
         
-        let favoritesVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "FavoritesListTableViewControllerId") as! FavoritesListTableViewController
+        let favoritesVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "FavoritesHomeViewControllerId") as! FavoritesHomeViewController
         favoritesVC.title = "Favorites"
         let favoritesTabImage = UIImage.imageWithImage(image: UIImage(named: "tab_favorites")!, scaledToSize: iconImageSize) ?? UIImage(named: "tab_favorites")
         let favoritesNavVC = UINavigationController(rootViewController: favoritesVC)

@@ -73,6 +73,8 @@
 		4E851B832034F6CD00E18B0B /* UITableView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E851B822034F6CD00E18B0B /* UITableView+Utilities.swift */; };
 		4E97479B2254274F00F9D862 /* String+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97479A2254274F00F9D862 /* String+AEE.swift */; };
 		4E9747A0225658D600F9D862 /* KeywordFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97479F225658D600F9D862 /* KeywordFavoritesManager.swift */; };
+		4E9747A22258E4FD00F9D862 /* FavoritesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9747A12258E4FD00F9D862 /* FavoritesHomeViewController.swift */; };
+		4E9747A42258E60400F9D862 /* FavoriteKeywordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9747A32258E60400F9D862 /* FavoriteKeywordsViewController.swift */; };
 		4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */; };
 		4EB1F6FE20EAA4FC00C4E83C /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */; };
 		4EB1F70120EAA56400C4E83C /* TranscriptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */; };
@@ -163,6 +165,8 @@
 		4E851B822034F6CD00E18B0B /* UITableView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utilities.swift"; sourceTree = "<group>"; };
 		4E97479A2254274F00F9D862 /* String+AEE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AEE.swift"; sourceTree = "<group>"; };
 		4E97479F225658D600F9D862 /* KeywordFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFavoritesManager.swift; sourceTree = "<group>"; };
+		4E9747A12258E4FD00F9D862 /* FavoritesHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHomeViewController.swift; sourceTree = "<group>"; };
+		4E9747A32258E60400F9D862 /* FavoriteKeywordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteKeywordsViewController.swift; sourceTree = "<group>"; };
 		4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptModel.swift; sourceTree = "<group>"; };
@@ -363,7 +367,9 @@
 		4E4AE98C1F8C25B700B6CF10 /* FavoritesList */ = {
 			isa = PBXGroup;
 			children = (
+				4E9747A12258E4FD00F9D862 /* FavoritesHomeViewController.swift */,
 				4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */,
+				4E9747A32258E60400F9D862 /* FavoriteKeywordsViewController.swift */,
 			);
 			name = FavoritesList;
 			sourceTree = "<group>";
@@ -730,6 +736,7 @@
 				4E31E87F1F7FC03200AD05D2 /* EpisodePlayerViewController.swift in Sources */,
 				4E4AE9A31F93D6C900B6CF10 /* RateUsViewController.swift in Sources */,
 				4E4AE9A91F9402AB00B6CF10 /* ContactUsViewController.swift in Sources */,
+				4E9747A22258E4FD00F9D862 /* FavoritesHomeViewController.swift in Sources */,
 				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
 				4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */,
 				4E25C590209E014C00B51C6B /* Feed+Metadata.swift in Sources */,
@@ -756,6 +763,7 @@
 				4EB1F70120EAA56400C4E83C /* TranscriptModel.swift in Sources */,
 				4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */,
 				4E4AE9911F8F853F00B6CF10 /* ExternalShareManager.swift in Sources */,
+				4E9747A42258E60400F9D862 /* FavoriteKeywordsViewController.swift in Sources */,
 				4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */,
 				4E31E8861F81604C00AD05D2 /* MainTabBarController.swift in Sources */,
 			);
