@@ -22,6 +22,9 @@ class FavoriteKeywordsViewController: UIViewController {
             }
             if keywordModels.count == 0 {
                 self.tableView.isHidden = true
+                
+                self.noFavoritesLabel.text = ApplicationData.isSubscribedToAEE ? "No Favorite keywords found" : "Upgrade to premium to save keywords"
+                
                 self.noFavoritesLabel.isHidden = false
             }
             else {
