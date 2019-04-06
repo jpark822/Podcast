@@ -15,7 +15,7 @@ struct TranscriptModel {
     
     let segments:[TranscriptSegment]
     
-    let keywords:[KeywordModel] = [KeywordModel(name: "all ears english", definition: "title of this podcast"), KeywordModel(name: "episode", definition: "a single instance of an episode on this podcast")]
+    let keywords:[KeywordModel] = [KeywordModel(name: "all ears english", definition: "title of this podcast"), KeywordModel(name: "episode", definition: "a single instance of an episode on this podcast a single instance of an episode on this podcast a single instance of an episode on this podcast a single instance of an episode on this podcast")]
     
     init(jsonDict:[String:Any]) {
         self.id = jsonDict["id"] as? String ?? ""

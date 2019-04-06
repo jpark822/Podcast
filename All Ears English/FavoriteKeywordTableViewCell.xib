@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina4_7" orientation="portrait">
+        <adaptation id="fullscreen"/>
+    </device>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="PT_Sans-Web-Bold.ttf">
+            <string>PTSans-Bold</string>
+        </array>
+        <array key="PT_Sans-Web-Regular.ttf">
+            <string>PTSans-Regular</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="FavoriteKeywordTableViewCell" customModule="All_Ears_English" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="568" height="145"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="amw-4N-nS8">
+                    <rect key="frame" x="8" y="8" width="552" height="129"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="54Q-Im-iye">
+                            <rect key="frame" x="0.0" y="0.0" width="552" height="51.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="260" text="keyword name" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BDy-ZZ-GAt">
+                                    <rect key="frame" x="12" y="12" width="500" height="27.5"/>
+                                    <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="21"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hhl-hW-a12">
+                                    <rect key="frame" x="0.0" y="50.5" width="552" height="1"/>
+                                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="1" id="Gn9-g5-kVw"/>
+                                    </constraints>
+                                </view>
+                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="261" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="s8U-mO-Zpa">
+                                    <rect key="frame" x="520" y="12" width="20" height="22"/>
+                                    <state key="normal" image="iconTrashCan"/>
+                                    <connections>
+                                        <action selector="deleteButtonPressed:" destination="iN0-l3-epB" eventType="touchUpInside" id="MRn-bW-EvP"/>
+                                    </connections>
+                                </button>
+                            </subviews>
+                            <color key="backgroundColor" cocoaTouchSystemColor="groupTableViewBackgroundColor"/>
+                            <constraints>
+                                <constraint firstAttribute="bottom" secondItem="BDy-ZZ-GAt" secondAttribute="bottom" constant="12" id="2xR-Jy-t24"/>
+                                <constraint firstAttribute="trailing" secondItem="s8U-mO-Zpa" secondAttribute="trailing" constant="12" id="EJg-XF-uvD"/>
+                                <constraint firstItem="BDy-ZZ-GAt" firstAttribute="top" secondItem="54Q-Im-iye" secondAttribute="top" constant="12" id="GIF-p6-owI"/>
+                                <constraint firstItem="hhl-hW-a12" firstAttribute="leading" secondItem="54Q-Im-iye" secondAttribute="leading" id="LhX-9f-Pun"/>
+                                <constraint firstItem="s8U-mO-Zpa" firstAttribute="leading" secondItem="BDy-ZZ-GAt" secondAttribute="trailing" constant="8" id="WVD-Yz-tEM"/>
+                                <constraint firstItem="BDy-ZZ-GAt" firstAttribute="leading" secondItem="54Q-Im-iye" secondAttribute="leading" constant="12" id="aFf-yl-okI"/>
+                                <constraint firstAttribute="trailing" secondItem="hhl-hW-a12" secondAttribute="trailing" id="aqM-0c-a1t"/>
+                                <constraint firstAttribute="bottom" secondItem="hhl-hW-a12" secondAttribute="bottom" id="pnu-5o-1IV"/>
+                                <constraint firstItem="s8U-mO-Zpa" firstAttribute="top" secondItem="54Q-Im-iye" secondAttribute="top" constant="12" id="xoU-Sn-5Zu"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="PU1-Ac-vPw">
+                            <rect key="frame" x="0.0" y="51.5" width="552" height="77.5"/>
+                            <subviews>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="keyword definition" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BQA-X0-V8b">
+                                    <rect key="frame" x="12" y="12" width="528" height="53.5"/>
+                                    <fontDescription key="fontDescription" name="PTSans-Regular" family="PT Sans" pointSize="18"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                            <constraints>
+                                <constraint firstAttribute="trailing" secondItem="BQA-X0-V8b" secondAttribute="trailing" constant="12" id="RA7-Zo-B4M"/>
+                                <constraint firstItem="BQA-X0-V8b" firstAttribute="leading" secondItem="PU1-Ac-vPw" secondAttribute="leading" constant="12" id="raA-J3-6Dx"/>
+                                <constraint firstAttribute="bottom" secondItem="BQA-X0-V8b" secondAttribute="bottom" constant="12" id="yMa-4V-PLf"/>
+                                <constraint firstItem="BQA-X0-V8b" firstAttribute="top" secondItem="PU1-Ac-vPw" secondAttribute="top" constant="12" id="zla-ij-ekC"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    <constraints>
+                        <constraint firstItem="54Q-Im-iye" firstAttribute="top" secondItem="amw-4N-nS8" secondAttribute="top" id="Fcy-go-eZ4"/>
+                        <constraint firstAttribute="trailing" secondItem="54Q-Im-iye" secondAttribute="trailing" id="FyV-Bs-dT5"/>
+                        <constraint firstAttribute="trailing" secondItem="PU1-Ac-vPw" secondAttribute="trailing" id="GRs-gz-glH"/>
+                        <constraint firstItem="54Q-Im-iye" firstAttribute="leading" secondItem="amw-4N-nS8" secondAttribute="leading" id="YMp-SJ-gXO"/>
+                        <constraint firstAttribute="bottom" secondItem="PU1-Ac-vPw" secondAttribute="bottom" id="Z8n-A1-eiI"/>
+                        <constraint firstItem="PU1-Ac-vPw" firstAttribute="top" secondItem="54Q-Im-iye" secondAttribute="bottom" id="uN6-JF-mbQ"/>
+                        <constraint firstItem="PU1-Ac-vPw" firstAttribute="leading" secondItem="amw-4N-nS8" secondAttribute="leading" id="zaF-FV-LAb"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="amw-4N-nS8" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="8" id="CX5-cE-w8Y"/>
+                <constraint firstItem="amw-4N-nS8" firstAttribute="top" secondItem="vUN-kp-3ea" secondAttribute="top" constant="8" id="EG3-LD-fhG"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="amw-4N-nS8" secondAttribute="trailing" constant="8" id="IyH-nt-Dzc"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="bottom" secondItem="amw-4N-nS8" secondAttribute="bottom" constant="8" id="QbI-aT-fJd"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <connections>
+                <outlet property="definitionLabel" destination="BQA-X0-V8b" id="wdH-6e-Ded"/>
+                <outlet property="definitionView" destination="PU1-Ac-vPw" id="rX1-vt-IDe"/>
+                <outlet property="keywordInnerView" destination="amw-4N-nS8" id="S48-Lb-1Yw"/>
+                <outlet property="nameLabel" destination="BDy-ZZ-GAt" id="hnA-gG-vuX"/>
+                <outlet property="nameView" destination="54Q-Im-iye" id="G7Q-d5-csQ"/>
+            </connections>
+            <point key="canvasLocation" x="286.39999999999998" y="-80.50974512743629"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="iconTrashCan" width="20" height="22"/>
+    </resources>
+</document>

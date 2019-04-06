@@ -75,6 +75,8 @@
 		4E9747A0225658D600F9D862 /* KeywordFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97479F225658D600F9D862 /* KeywordFavoritesManager.swift */; };
 		4E9747A22258E4FD00F9D862 /* FavoritesHomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9747A12258E4FD00F9D862 /* FavoritesHomeViewController.swift */; };
 		4E9747A42258E60400F9D862 /* FavoriteKeywordsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9747A32258E60400F9D862 /* FavoriteKeywordsViewController.swift */; };
+		4E9747A62258EF1100F9D862 /* FavoriteKeywordTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E9747A52258EF1100F9D862 /* FavoriteKeywordTableViewCell.swift */; };
+		4E9747A82258EF1A00F9D862 /* FavoriteKeywordTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E9747A72258EF1A00F9D862 /* FavoriteKeywordTableViewCell.xib */; };
 		4EAE48A320E2F49D007E0C0D /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */; };
 		4EB1F6FE20EAA4FC00C4E83C /* ServiceManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */; };
 		4EB1F70120EAA56400C4E83C /* TranscriptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */; };
@@ -167,6 +169,8 @@
 		4E97479F225658D600F9D862 /* KeywordFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFavoritesManager.swift; sourceTree = "<group>"; };
 		4E9747A12258E4FD00F9D862 /* FavoritesHomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesHomeViewController.swift; sourceTree = "<group>"; };
 		4E9747A32258E60400F9D862 /* FavoriteKeywordsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteKeywordsViewController.swift; sourceTree = "<group>"; };
+		4E9747A52258EF1100F9D862 /* FavoriteKeywordTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoriteKeywordTableViewCell.swift; sourceTree = "<group>"; };
+		4E9747A72258EF1A00F9D862 /* FavoriteKeywordTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FavoriteKeywordTableViewCell.xib; sourceTree = "<group>"; };
 		4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceManager.swift; sourceTree = "<group>"; };
 		4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TranscriptModel.swift; sourceTree = "<group>"; };
@@ -370,6 +374,8 @@
 				4E9747A12258E4FD00F9D862 /* FavoritesHomeViewController.swift */,
 				4E4AE98D1F8C25D100B6CF10 /* FavoritesListTableViewController.swift */,
 				4E9747A32258E60400F9D862 /* FavoriteKeywordsViewController.swift */,
+				4E9747A52258EF1100F9D862 /* FavoriteKeywordTableViewCell.swift */,
+				4E9747A72258EF1A00F9D862 /* FavoriteKeywordTableViewCell.xib */,
 			);
 			name = FavoritesList;
 			sourceTree = "<group>";
@@ -613,6 +619,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4E9747A82258EF1A00F9D862 /* FavoriteKeywordTableViewCell.xib in Resources */,
 				46993BE41EFB6E3E00806635 /* Nunito-Bold.ttf in Resources */,
 				4640CD491EFA3638006B0C5E /* aboutus.html in Resources */,
 				46478FE01EFB6D0D00B2690C /* Montserrat-Regular.ttf in Resources */,
@@ -744,6 +751,7 @@
 				4E31E88B1F81771300AD05D2 /* UIColor+AEE.swift in Sources */,
 				4E687F811F84F1120095CAAA /* NowPlayingBannerView.swift in Sources */,
 				4EB1F6FE20EAA4FC00C4E83C /* ServiceManager.swift in Sources */,
+				4E9747A62258EF1100F9D862 /* FavoriteKeywordTableViewCell.swift in Sources */,
 				46C7A2B11EFBC26300B9AA23 /* EpisodeCell.swift in Sources */,
 				4E687F781F82687D0095CAAA /* ApplicationData.swift in Sources */,
 				4E228D9D20F4371D002912AB /* SignupLoginCTASectionHeader.swift in Sources */,
