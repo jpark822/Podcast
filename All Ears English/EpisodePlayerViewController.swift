@@ -211,6 +211,7 @@ class EpisodePlayerViewController : UIViewController {
                     let rangeLength = endRange - transcriptSegment.startRange
                     let textRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
                     
+                    //highlight currently playing text
                     let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
                     attributedString.addAttribute(NSFontAttributeName, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
                     attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
@@ -241,7 +242,7 @@ class EpisodePlayerViewController : UIViewController {
                 let unsanitziedString = "AEE://\(keywordName)"
                 let sanitizedString = unsanitziedString.addingPercentEncoding(withAllowedCharacters: [])
                 if let url = URL(string:sanitizedString!) {
-                    attributedTranscript.addAttributes([NSLinkAttributeName:url], range: range)
+                    attributedTranscript.addAttributes([NSLinkAttributeName:url, NSUnderlineStyleAttributeName:0], range: range)
                 }
             }
         }

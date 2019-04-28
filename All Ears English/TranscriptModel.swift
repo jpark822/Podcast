@@ -15,19 +15,28 @@ struct TranscriptModel {
     
     let segments:[TranscriptSegment]
     
-    let keywords:[KeywordModel] = [KeywordModel(name: "all ears english", definition: "title of this podcast"), KeywordModel(name: "episode", definition: "a single instance of an episode on this podcast a single instance of an episode on this podcast a single instance of an episode on this podcast a single instance of an episode on this podcast")]
+    let keywords:[KeywordModel]
     
     init(jsonDict:[String:Any]) {
         self.id = jsonDict["id"] as? String ?? ""
         self.isFree = jsonDict["isFree"] as? Bool ?? false
         self.fullTranscript = jsonDict["fullText"] as? String ?? ""
         
-        guard let segmentArray = jsonDict["phrases"] as? [[String:Any]] else {
+        if let segmentArray = jsonDict["phrases"] as? [[String:Any]] {
+            self.segments = TranscriptSegment.transcriptSegmentsForJsonArray(jsonArray: segmentArray)
+        }
+        else {
             self.segments = []
-            return
         }
         
-        self.segments = TranscriptSegment.transcriptSegmentsForJsonArray(jsonArray: segmentArray)
+        if let keywordArray = jsonDict["keywords"] as? [[String:Any]] {
+            self.keywords = KeywordModel.keywordModelsForJsonArray(keywordArray)
+        }
+        else {
+            self.keywords = []
+        }
+        
+        
     }
 }
 
@@ -70,6 +79,20 @@ struct KeywordModel:Codable, Equatable, Hashable {
     init(name:String, definition:String) {
         self.name = name
         self.definition = definition
+    }
+    
+    init(jsonDict:[String:Any]) {
+        self.name = jsonDict["name"] as? String ?? ""
+        self.definition = jsonDict["definition"] as? String ?? ""
+    }
+    
+    static func keywordModelsForJsonArray(_ jsonArray:[[String:Any]]) -> [KeywordModel] {
+        var keywordModels = [KeywordModel]()
+        for jsonDict in jsonArray {
+            let keywordModel = KeywordModel(jsonDict: jsonDict)
+            keywordModels.append(keywordModel)
+        }
+        return keywordModels
     }
     
     init(from decoder: Decoder) throws {

@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait">
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14460.20"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14490.49"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -70,7 +70,7 @@
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="249" text="AEE 101: This is an episode with a very long title that will span across multiple lines using word wrap." textAlignment="center" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="uWh-0k-GGL">
-                                        <rect key="frame" x="8" y="62" width="359" height="58.5"/>
+                                        <rect key="frame" x="8" y="62" width="359" height="86.5"/>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
@@ -97,24 +97,24 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="ERz-bF-xrk">
-                                        <rect key="frame" x="8" y="128" width="359" height="50"/>
+                                        <rect key="frame" x="8" y="156" width="359" height="22"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WMi-Hd-b0T">
-                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="65.5" height="22"/>
                                                 <state key="normal" image="ic_seek_prev"/>
                                                 <connections>
                                                     <action selector="previousSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="DO9-37-Hfw"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="apu-Vg-fWP">
-                                                <rect key="frame" x="73.5" y="0.0" width="65.5" height="50"/>
+                                                <rect key="frame" x="73.5" y="0.0" width="65.5" height="22"/>
                                                 <state key="normal" image="ic_15_back"/>
                                                 <connections>
                                                     <action selector="skipBackwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="3ko-Kd-boT"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="2Bg-XG-e1w">
-                                                <rect key="frame" x="147" y="0.0" width="65" height="50"/>
+                                                <rect key="frame" x="147" y="0.0" width="65" height="22"/>
                                                 <state key="normal" image="ic_play_50"/>
                                                 <state key="selected" image="ic_play_arrow_white"/>
                                                 <connections>
@@ -122,14 +122,14 @@
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="E05-Ry-XRa">
-                                                <rect key="frame" x="220" y="0.0" width="65.5" height="50"/>
+                                                <rect key="frame" x="220" y="0.0" width="65.5" height="22"/>
                                                 <state key="normal" image="ic_15_forward"/>
                                                 <connections>
                                                     <action selector="skipForwardPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="hJK-4F-ZRt"/>
                                                 </connections>
                                             </button>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x5P-aA-fKv">
-                                                <rect key="frame" x="293.5" y="0.0" width="65.5" height="50"/>
+                                                <rect key="frame" x="293.5" y="0.0" width="65.5" height="22"/>
                                                 <state key="normal" image="ic_seek_next"/>
                                                 <connections>
                                                     <action selector="forwardSeekPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="pf6-EQ-Oey"/>
@@ -265,7 +265,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="275" height="283"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="G9S-Yz-vq5">
-                                                <rect key="frame" x="8" y="8" width="40" height="22"/>
+                                                <rect key="frame" x="8" y="8" width="16" height="22"/>
                                                 <state key="normal" image="keywordBackButton">
                                                     <color key="titleColor" red="0.99607843139999996" green="1" blue="0.0039215686269999999" alpha="1" colorSpace="calibratedRGB"/>
                                                 </state>
@@ -274,26 +274,26 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword phrase" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-BO-CmZ">
-                                                <rect key="frame" x="8" y="70.5" width="259" height="28.5"/>
+                                                <rect key="frame" x="8" y="72" width="259" height="26"/>
                                                 <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="22"/>
                                                 <color key="textColor" red="0.9882352941176471" green="0.8666666666666667" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword Definition " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qik-ze-WTn">
-                                                <rect key="frame" x="8" y="106.5" width="259" height="21"/>
+                                                <rect key="frame" x="8" y="105.5" width="259" height="19"/>
                                                 <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51D-XQ-fgv">
-                                                <rect key="frame" x="28.5" y="147.5" width="218" height="41"/>
+                                                <rect key="frame" x="129.5" y="144.5" width="16" height="22"/>
                                                 <state key="normal" image="keywordSaveButton"/>
                                                 <connections>
                                                     <action selector="keywordSaveButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="4dc-Xr-Xn3"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIz-v8-zJw">
-                                                <rect key="frame" x="77.5" y="148" width="120" height="41"/>
+                                                <rect key="frame" x="129.5" y="145" width="16" height="22"/>
                                                 <state key="normal" image="keywordIsSavedButton"/>
                                                 <connections>
                                                     <action selector="keywordRemoveButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="40p-nh-JcG"/>
@@ -493,7 +493,7 @@
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" reversesTitleShadowWhenHighlighted="YES" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ud8-uv-PLZ">
-                                                <rect key="frame" x="112" y="489" width="151" height="40"/>
+                                                <rect key="frame" x="112.5" y="489" width="150" height="40"/>
                                                 <color key="backgroundColor" red="0.23529411759999999" green="0.4823529412" blue="0.85490196080000003" alpha="1" colorSpace="calibratedRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="V5H-Wv-gfz"/>
@@ -532,7 +532,7 @@
                                                 </constraints>
                                             </webView>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DGi-Ox-oWb" userLabel="Download">
-                                                <rect key="frame" x="281" y="489" width="40" height="40"/>
+                                                <rect key="frame" x="280.5" y="489" width="40" height="40"/>
                                                 <constraints>
                                                     <constraint firstAttribute="width" constant="40" id="JUO-1e-PdQ"/>
                                                     <constraint firstAttribute="width" secondItem="DGi-Ox-oWb" secondAttribute="height" multiplier="1:1" id="vug-Fj-vwN"/>
@@ -543,7 +543,7 @@
                                                 </connections>
                                             </button>
                                             <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="gray" translatesAutoresizingMaskIntoConstraints="NO" id="IHh-1h-gK3">
-                                                <rect key="frame" x="291" y="498.5" width="20" height="20"/>
+                                                <rect key="frame" x="290.5" y="498.5" width="20" height="20"/>
                                             </activityIndicatorView>
                                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7rG-lP-eZv">
                                                 <rect key="frame" x="8" y="489" width="30" height="30"/>
@@ -781,16 +781,16 @@
         </scene>
     </scenes>
     <resources>
-        <image name="Cover" width="1024" height="1024"/>
-        <image name="ic_15_back" width="50" height="50"/>
-        <image name="ic_15_forward" width="50" height="50"/>
-        <image name="ic_cloud_download" width="48" height="48"/>
-        <image name="ic_down_chevron" width="40" height="40"/>
+        <image name="Cover" width="512" height="512"/>
+        <image name="ic_15_back" width="25" height="25"/>
+        <image name="ic_15_forward" width="25" height="25"/>
+        <image name="ic_cloud_download" width="24" height="24"/>
+        <image name="ic_down_chevron" width="100" height="100"/>
         <image name="ic_play_50" width="50" height="50"/>
-        <image name="ic_play_arrow_white" width="48" height="48"/>
+        <image name="ic_play_arrow_white" width="24" height="24"/>
         <image name="ic_seek_next" width="50" height="50"/>
         <image name="ic_seek_prev" width="50" height="50"/>
-        <image name="ic_share" width="48" height="48"/>
+        <image name="ic_share" width="24" height="24"/>
         <image name="keywordBackButton" width="40" height="13"/>
         <image name="keywordIsSavedButton" width="120" height="41"/>
         <image name="keywordSaveButton" width="218" height="41"/>
