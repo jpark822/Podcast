@@ -42,7 +42,7 @@ class FavoriteKeywordsViewController: UIViewController {
         
         self.tableView.register(UINib(nibName: "FavoriteKeywordTableViewCell", bundle: nil), forCellReuseIdentifier: self.keywordCellReuseId)
         
-        self.tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.rowHeight = UITableView.automaticDimension
         self.tableView.delegate = self
         
         self.tableView.dataSource = self

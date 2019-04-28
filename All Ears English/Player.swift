@@ -42,7 +42,7 @@ class Player: NSObject {
             return
         }
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: AVAudioSession.Mode.default)
             if let localURL = Cache.shared.get(item) {
                 self.player = AVPlayer(url: localURL)
                 print("playing \(localURL)")
@@ -220,7 +220,7 @@ class Player: NSObject {
                 seconds = 0
             }
             let position = CMTime.init(value: CMTimeValue(seconds*1000000), timescale: 1000000)
-            player.seek(to: position, toleranceBefore: kCMTimeZero, toleranceAfter: kCMTimeZero) { (finished) in
+            player.seek(to: position, toleranceBefore: CMTime.zero, toleranceAfter: CMTime.zero) { (finished) in
                 self.updatePlayingNowInfo()
             }
         }
@@ -232,3 +232,8 @@ protocol PlayerDelegate: NSObjectProtocol {
 }
 
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
+}

@@ -192,7 +192,7 @@ class Cache: NSObject {
     }
     
     func removeGuidFromDownloadingAndNotify(guid:String) {
-        if let indexOfGuid = self.currentlyDownloadingGuids.index(of: guid) {
+        if let indexOfGuid = self.currentlyDownloadingGuids.firstIndex(of: guid) {
             self.currentlyDownloadingGuids.remove(at: indexOfGuid)
         }
         DispatchQueue.main.async {

@@ -93,12 +93,12 @@ class EpisodesViewController: UITableViewController, PlayerDelegate {
             let expression = try? NSRegularExpression(pattern: pattern)
             if let regex = expression {
 
-                let matches = regex.matches(in: path, options: [], range: NSMakeRange(0, path.characters.count))
+                let matches = regex.matches(in: path, options: [], range: NSMakeRange(0, path.count))
                 if matches.count == 1,
                    let match = matches.first {
 
                     if match.numberOfRanges > 1 {
-                        let range = match.rangeAt(1)
+                        let range = match.range(at: 1)
                         let start = path.index(path.startIndex, offsetBy:range.location)
                         let end = path.index(start, offsetBy: range.length)
                         let identifier = path[start..<end]

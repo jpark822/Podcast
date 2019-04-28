@@ -42,7 +42,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         
         self.tableView.register(UINib(nibName: "EpisodeCell", bundle: nil) , forCellReuseIdentifier: self.episodeCellReuseID)
         self.tableView.register(UINib(nibName: "SignupLoginCTASectionHeader", bundle: nil), forHeaderFooterViewReuseIdentifier: self.signupHeaderReuseID)
-        self.tableView.sectionHeaderHeight = UITableViewAutomaticDimension;
+        self.tableView.sectionHeaderHeight = UITableView.automaticDimension;
         self.tableView.estimatedSectionHeaderHeight = 200;
         self.tableView.dataSource = self
         self.tableView.delegate = self
@@ -56,8 +56,8 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(favoritesManagerDidUnfavoriteItem(notification:)), name: FavoritesManager.favoritesManagerDidUnfavoriteItemNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         self.automaticallyAdjustsScrollViewInsets = false
     }
@@ -87,8 +87,8 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
     
     func setupRefreshControl() {
         self.pullToRefreshControl = UIRefreshControl()
-        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSFontAttributeName:UIFont(name: "PTSans-Regular", size: 17.0)!])
-        self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControlEvents.valueChanged)
+        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font):UIFont(name: "PTSans-Regular", size: 17.0)!]))
+        self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControl.Event.valueChanged)
         self.pullToRefreshControl.backgroundColor = UIColor.white
         self.tableView.addSubview(self.pullToRefreshControl)
         self.tableView.refreshControl = self.pullToRefreshControl
@@ -97,7 +97,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
     func showRefreshControl() {
         self.pullToRefreshControl.beginRefreshing()
         if (self.tableView.contentOffset.y == 0) {
-            UIView.animate(withDuration: 0.25, delay: 0, options: [UIViewAnimationOptions.beginFromCurrentState], animations: { 
+            UIView.animate(withDuration: 0.25, delay: 0, options: [UIView.AnimationOptions.beginFromCurrentState], animations: { 
                 self.tableView.contentOffset = CGPoint(x:0, y: -self.tableView.refreshControl!.frame.size.height)
             }, completion: { (finished) in
                 
@@ -105,7 +105,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         }
     }
 
-    func fetchData() {
+    @objc func fetchData() {
         Feed.shared.fetchData { (feedItems) in
             DispatchQueue.main.async {
                 
@@ -121,7 +121,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         }
     }
     
-    func episodeItemCachedStateDidChange(notification: Notification) {
+    @objc func episodeItemCachedStateDidChange(notification: Notification) {
         guard let userInfo = notification.userInfo,
             let guid = userInfo["guid"] as? String else {
             return
@@ -138,7 +138,7 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         }
     }
     
-    func favoritesManagerDidUnfavoriteItem(notification:Notification) {
+    @objc func favoritesManagerDidUnfavoriteItem(notification:Notification) {
         guard let userInfo = notification.userInfo,
             let guid = userInfo["guid"] as? String else {
                 return
@@ -155,11 +155,11 @@ class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControl
         }
     }
     
-    func nowPlayingBannerDidShowHandler(notification: Notification) {
+    @objc func nowPlayingBannerDidShowHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
     
-    func nowPlayingBannerDidHideHandler(notification: Notification) {
+    @objc func nowPlayingBannerDidHideHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
     
@@ -228,7 +228,7 @@ extension EpisodeListTableViewController {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         if section == 0 && Auth.auth().currentUser == nil {
-            return UITableViewAutomaticDimension
+            return UITableView.automaticDimension
         }
         return 0
     }
@@ -330,14 +330,14 @@ extension EpisodeListTableViewController: UISearchResultsUpdating {
 
 //Keyboard
 extension EpisodeListTableViewController {
-    func keyBoardWillShow(notification: NSNotification) {
-        if let keyBoardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
+    @objc func keyBoardWillShow(notification: NSNotification) {
+        if let keyBoardSize = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect {
             let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyBoardSize.height, right: 0)
             self.tableView.contentInset = contentInsets
         }
     }
     
-    func keyBoardWillHide(notification: NSNotification) {
+    @objc func keyBoardWillHide(notification: NSNotification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
 }
@@ -394,4 +394,15 @@ extension EpisodeListTableViewController:SubscriptionSignupNavigationControllerD
     func subscriptionSignupNavigationControllerDidCancel(viewController: SubscriptionSignupNavigationController) {
         viewController.dismiss(animated: true)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

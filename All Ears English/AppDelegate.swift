@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     var window: UIWindow?
     let gcmMessageIDKey = "gcm.message_id"
 
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
+    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
         
         //Fabric
@@ -56,7 +56,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().backgroundColor = UIColor.white
         
-        UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName:UIFont(name: "PTSans-Regular", size: 17.0)!]
+        UINavigationBar.appearance().titleTextAttributes = convertToOptionalNSAttributedStringKeyDictionary([NSAttributedString.Key.font.rawValue:UIFont(name: "PTSans-Regular", size: 17.0)!])
         UINavigationBar.appearance().barTintColor = UIColor.AEEYellow
         UINavigationBar.appearance().tintColor = UIColor.darkGray
         UINavigationBar.appearance().isTranslucent = false
@@ -291,3 +291,9 @@ extension AppDelegate : UNUserNotificationCenterDelegate {
     }
 }
 
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}

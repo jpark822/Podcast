@@ -59,8 +59,8 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidShowHandler(notification:)), name: MainTabBarController.didShowNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(nowPlayingBannerDidHideHandler(notification:)), name: MainTabBarController.didHideNowPlayingBannerNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(episodeItemCachedStateDidChange(notification:)), name: Cache.episodeItemDidChangeCachedStateNotification, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
-        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillHide), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillShow), name: UIResponder.keyboardWillShowNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(self.keyBoardWillHide), name: UIResponder.keyboardWillHideNotification, object: nil)
         
         AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Bonus List")
     }
@@ -73,13 +73,13 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
     
     func setupRefreshControl() {
         self.pullToRefreshControl = UIRefreshControl()
-        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: [NSFontAttributeName:UIFont(name: "PTSans-Regular", size: 17.0)!])
-        self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControlEvents.valueChanged)
+        self.pullToRefreshControl.attributedTitle = NSAttributedString(string: "Pull to refresh", attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font):UIFont(name: "PTSans-Regular", size: 17.0)!]))
+        self.pullToRefreshControl.addTarget(self, action: #selector(fetchData), for: UIControl.Event.valueChanged)
         self.pullToRefreshControl.backgroundColor = UIColor.white
         self.tableView.addSubview(self.pullToRefreshControl)
     }
     
-    func fetchData() {
+    @objc func fetchData() {
         Feed.shared.fetchBonusFeed { (feedItems) in
             DispatchQueue.main.async {
                 self.loadingIndicator.isHidden = true
@@ -96,7 +96,7 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
         }
     }
     
-    func episodeItemCachedStateDidChange(notification: Notification) {
+    @objc func episodeItemCachedStateDidChange(notification: Notification) {
         guard let userInfo = notification.userInfo,
             let guid = userInfo["guid"] as? String else {
                 return
@@ -113,11 +113,11 @@ class BonusEpisodesTableViewController: UIViewController, EpisodePlayerViewContr
         }
     }
     
-    func nowPlayingBannerDidShowHandler(notification: Notification) {
+    @objc func nowPlayingBannerDidShowHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
     
-    func nowPlayingBannerDidHideHandler(notification: Notification) {
+    @objc func nowPlayingBannerDidHideHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
     
@@ -301,14 +301,25 @@ extension BonusEpisodesTableViewController: UISearchResultsUpdating {
 
 //Keyboard
 extension BonusEpisodesTableViewController {
-    func keyBoardWillShow(notification: NSNotification) {
-        if let keyBoardSize = notification.userInfo?[UIKeyboardFrameBeginUserInfoKey] as? CGRect {
+    @objc func keyBoardWillShow(notification: NSNotification) {
+        if let keyBoardSize = notification.userInfo?[UIResponder.keyboardFrameBeginUserInfoKey] as? CGRect {
             let contentInsets = UIEdgeInsets(top: 0, left: 0, bottom: keyBoardSize.height, right: 0)
             self.tableView.contentInset = contentInsets
         }
     }
     
-    func keyBoardWillHide(notification: NSNotification) {
+    @objc func keyBoardWillHide(notification: NSNotification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

@@ -70,7 +70,7 @@ internal class AudioPlayer:NSObject {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func playerDidFinishPlaying(notification: NSNotification) {
+    @objc func playerDidFinishPlaying(notification: NSNotification) {
         AnalyticsManager.sharedInstance.logMixpanelEpisodeEvent("Episode Finished", item: self.currentItem)
         
         //bonus content doesnt autoplay
@@ -78,7 +78,7 @@ internal class AudioPlayer:NSObject {
             _ = self.seekToNextTrack()
         }
         else {
-            self.queuePlayer.seek(to: kCMTimeZero)
+            self.queuePlayer.seek(to: CMTime.zero)
             self.pause()
         }
         NotificationCenter.default.post(name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: self)
@@ -86,7 +86,7 @@ internal class AudioPlayer:NSObject {
     
     private func initAudioSessionAndControls() -> Bool {
         do {
-            try AVAudioSession.sharedInstance().setCategory(AVAudioSessionCategoryPlayback)
+            try AVAudioSession.sharedInstance().setCategory(AVAudioSession.Category(rawValue: convertFromAVAudioSessionCategory(AVAudioSession.Category.playback)), mode: .default)
             self.queuePlayer.automaticallyWaitsToMinimizeStalling = true
             
             UIApplication.shared.beginReceivingRemoteControlEvents()
@@ -161,7 +161,7 @@ internal class AudioPlayer:NSObject {
             print("playing \(itemUrl)")
         }
         
-        self.queuePlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithmTimeDomain
+        self.queuePlayer.currentItem?.audioTimePitchAlgorithm = AVAudioTimePitchAlgorithm.timeDomain
         self.queuePlayer.play()
         self.queuePlayer.rate = self.playbackRate
         
@@ -265,7 +265,7 @@ extension AudioPlayer {
     }
     
     func seekToBeginningOfTrack() {
-        self.queuePlayer.seek(to: kCMTimeZero)
+        self.queuePlayer.seek(to: CMTime.zero)
         NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
     }
     
@@ -302,7 +302,7 @@ extension AudioPlayer {
     
     func seekForward(seconds:Double) {
         let currentTime = queuePlayer.currentTime()
-        let seekToTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(currentTime) + seconds, currentTime.timescale)
+        let seekToTime = CMTimeMakeWithSeconds(CMTimeGetSeconds(currentTime) + seconds, preferredTimescale: currentTime.timescale)
         self.queuePlayer.seek(to: seekToTime)
         
         //need up update control center with new elapsed time
@@ -318,7 +318,7 @@ extension AudioPlayer {
         let duration = CMTimeGetSeconds(currentPlayerAVItem.duration)
         let secondToSeekTo = Double(progress) * duration
         
-        self.queuePlayer.seek(to: CMTimeMakeWithSeconds(secondToSeekTo, self.queuePlayer.currentTime().timescale))
+        self.queuePlayer.seek(to: CMTimeMakeWithSeconds(secondToSeekTo, preferredTimescale: self.queuePlayer.currentTime().timescale))
         
         //need up update control center with new elapsed time
         self.updatePlayingInfoCenterData()
@@ -328,7 +328,7 @@ extension AudioPlayer {
     func seekToTimeInSeconds(_ seconds: Double) {
         DispatchQueue.main.async {
             print("seeking to \(seconds)")
-            self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, self.queuePlayer.currentTime().timescale))
+            self.queuePlayer.seek(to: CMTimeMakeWithSeconds(seconds, preferredTimescale: self.queuePlayer.currentTime().timescale))
             NotificationCenter.default.post(name: AudioPlayer.playbackStateDidChangeNotification, object: self, userInfo: nil)
             
             let time = DispatchTime.now() + 0.25
@@ -341,27 +341,27 @@ extension AudioPlayer {
 
 //MARK: Now Playing and Command Center remote controls
 extension AudioPlayer {
-    func commandCenterPlayPressed() {
+    @objc func commandCenterPlayPressed() {
         self.play()
     }
     
-    func commandCenterPausePressed() {
+    @objc func commandCenterPausePressed() {
         self.pause()
     }
     
-    func commandCenterNextTrackPressed()  {
+    @objc func commandCenterNextTrackPressed()  {
         if self.seekToNextTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
     }
     
-    func commandCenterPreviousTrackPressed() {
+    @objc func commandCenterPreviousTrackPressed() {
         if self.seekToBeginningOrPreviousTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
     }
     
-    func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
+    @objc func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
         self.seekToTimeInSeconds(event.positionTime)
         //seeking will take care of notification and updating playing center info
     }
@@ -466,4 +466,9 @@ extension AudioPlayer {
         let text = String(format: "%lld:%02lld", arguments: [minutes, seconds])
         return text
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromAVAudioSessionCategory(_ input: AVAudioSession.Category) -> String {
+	return input.rawValue
 }

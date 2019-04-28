@@ -23,7 +23,7 @@ class EpisodePlaybackViewController: UIViewController {
         super.viewDidLoad()
         self.volumeView?.showsRouteButton = false
         displayLink = CADisplayLink(target: self, selector: #selector(updateProgress))
-        displayLink.add(to: .current, forMode: .defaultRunLoopMode)
+        displayLink.add(to: .current, forMode: RunLoop.Mode.default)
         self.updateUI()
     }
 
@@ -48,12 +48,12 @@ class EpisodePlaybackViewController: UIViewController {
         }
     }
 
-    func updatePlayButton() {
+    @objc func updatePlayButton() {
         let playing = Player.shared?.playing ?? false
         if playing {
-            self.playButton?.setImage(UIImage(named: "ic_pause_48pt"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_pause_48pt"), for: UIControl.State.normal)
         } else {
-            self.playButton?.setImage(UIImage(named: "ic_play_arrow_48pt"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_play_arrow_48pt"), for: UIControl.State.normal)
         }
     }
     
@@ -71,7 +71,7 @@ class EpisodePlaybackViewController: UIViewController {
         self.updatePlayButton()
     }
 
-    func updateProgress() {
+    @objc func updateProgress() {
         self.progressView?.progress = Player.shared?.progress ?? 0
         if let formattedTime = Player.shared?.formattedTime {
             self.timeText?.text = formattedTime.current

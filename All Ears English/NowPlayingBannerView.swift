@@ -71,14 +71,14 @@ class NowPlayingBannerView : UIView {
         }
         
         if AudioPlayer.sharedInstance.isPlaying {
-            self.playButton.setImage(UIImage(named: "ic_pause_white"), for: UIControlState.normal)
+            self.playButton.setImage(UIImage(named: "ic_pause_white"), for: UIControl.State.normal)
         }
         else {
-            self.playButton.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.normal)
+            self.playButton.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControl.State.normal)
         }
     }
     
-    func viewTappedHandler(recognizer:UITapGestureRecognizer) {
+    @objc func viewTappedHandler(recognizer:UITapGestureRecognizer) {
         if let delegate = self.delegate {
             delegate.nowPlayingBannerViewWasTapped(nowPlayingBannerView: self)
         }

@@ -210,13 +210,13 @@ extension MainTabBarController {
 
 //MARK: notifications
 extension MainTabBarController {
-    func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
+    @objc func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
         DispatchQueue.main.async {
             self.updateNowPlayingBannerState()
         }
     }
     
-    func audioPlayerPlaybackStateDidChange(notification:Notification) {
+    @objc func audioPlayerPlaybackStateDidChange(notification:Notification) {
         DispatchQueue.main.async {
             self.updateNowPlayingBannerState()
         }

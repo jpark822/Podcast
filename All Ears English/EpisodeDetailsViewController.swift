@@ -74,7 +74,7 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate, Episode
             let html = "<span style=\"font-family: 'PT Sans', Verdana, Serif; font-size: 17px;\">\(description)</span>"
             let data = html.data(using: String.Encoding.utf8, allowLossyConversion: true)
             if let data = data {
-                let text = try? NSAttributedString(data: data, options: [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType], documentAttributes: nil)
+                let text = try? NSAttributedString(data: data, options: convertToNSAttributedStringDocumentReadingOptionKeyDictionary([convertFromNSAttributedStringDocumentAttributeKey(NSAttributedString.DocumentAttributeKey.documentType): convertFromNSAttributedStringDocumentType(NSAttributedString.DocumentType.html)]), documentAttributes: nil)
                 self.episodeDescription?.attributedText = text
             }
         }
@@ -127,7 +127,7 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate, Episode
     AudioPlayer.sharedInstance.seekToBeginningOrPreviousTrack()
     }
     
-    func updatePlayButton() {
+    @objc func updatePlayButton() {
         var playing = Player.shared?.playing ?? false
         if playing,
            let playerItemIdentifier = Player.shared?.item?.identifier,
@@ -135,9 +135,9 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate, Episode
             playing = playerItemIdentifier == itemIdentifier
         }
         if playing {
-            self.playButton?.setImage(UIImage(named: "ic_pause_white"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_pause_white"), for: UIControl.State.normal)
         } else {
-            self.playButton?.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControl.State.normal)
         }
     }
     
@@ -223,4 +223,19 @@ class EpisodeDetailsViewController: UIViewController, UIWebViewDelegate, Episode
     func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController: EpisodePlayerViewController) {
         self.dismiss(animated: true)
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringDocumentReadingOptionKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.DocumentReadingOptionKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.DocumentReadingOptionKey(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringDocumentAttributeKey(_ input: NSAttributedString.DocumentAttributeKey) -> String {
+	return input.rawValue
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringDocumentType(_ input: NSAttributedString.DocumentType) -> String {
+	return input.rawValue
 }

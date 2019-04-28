@@ -94,7 +94,7 @@ class EpisodePlayerViewController : UIViewController {
         }
         
         displayLink = CADisplayLink(target: self, selector: #selector(EpisodePlayerViewController.updatePlaybackProgress))
-        displayLink.add(to: .current, forMode: .defaultRunLoopMode)
+        displayLink.add(to: .current, forMode: RunLoop.Mode.default)
         
         self.setupInitialViewStateForEpisode()
     }
@@ -117,7 +117,7 @@ class EpisodePlayerViewController : UIViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
-    func audioPlayerPlaybackStateDidChange(notification: Notification) {
+    @objc func audioPlayerPlaybackStateDidChange(notification: Notification) {
         print("Audio player state change. updating Playback VC views")
         DispatchQueue.main.async {
             if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
@@ -130,7 +130,7 @@ class EpisodePlayerViewController : UIViewController {
         }
     }
     
-    func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
+    @objc func audioPlayerDidFinishPlayingCurrentTrack(notification: Notification) {
         DispatchQueue.main.async {
             if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
                 self.episodeItem = currentLoadedAudioPlayerItem
@@ -149,10 +149,10 @@ class EpisodePlayerViewController : UIViewController {
         
         //play button
         if AudioPlayer.sharedInstance.isPlaying {
-            self.playButton?.setImage(UIImage(named: "ic_pause_50"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_pause_50"), for: UIControl.State.normal)
         }
         else {
-            self.playButton?.setImage(UIImage(named: "ic_play_50"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_play_50"), for: UIControl.State.normal)
         }
         
         //playback rate
@@ -171,7 +171,7 @@ class EpisodePlayerViewController : UIViewController {
         default:
             playbackRateString = "1x"
         }
-        self.playbackRateButton.setTitle(playbackRateString, for: UIControlState.normal)
+        self.playbackRateButton.setTitle(playbackRateString, for: UIControl.State.normal)
         
         //Turn off autoplay for bonus content
         if AudioPlayer.sharedInstance.currentlyPlayingFeedType == .bonus {
@@ -188,9 +188,9 @@ class EpisodePlayerViewController : UIViewController {
         }
     }
     
-    func updatePlaybackProgress() {
+    @objc func updatePlaybackProgress() {
         //Playback progress
-        self.progressSlider.isEnabled = AudioPlayer.sharedInstance.queuePlayer.status == AVPlayerStatus.readyToPlay ? true : false
+        self.progressSlider.isEnabled = AudioPlayer.sharedInstance.queuePlayer.status == AVPlayer.Status.readyToPlay ? true : false
 
         self.timeElapsedLabel.text = AudioPlayer.sharedInstance.currentPlaybackFormattedTime
         self.timeRemainingLabel.text = "-\(AudioPlayer.sharedInstance.remainingPlaybackFormattedTime)"
@@ -213,9 +213,9 @@ class EpisodePlayerViewController : UIViewController {
                     
                     //highlight currently playing text
                     let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
-                    attributedString.addAttribute(NSFontAttributeName, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
-                    attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
-                    attributedString.addAttribute(NSForegroundColorAttributeName, value: UIColor.AEEYellow, range: textRange)
+                    attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
+                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.AEEYellow, range: textRange)
                     
                     //add keywords
                     self.highlightKeywordsInTranscript(attributedTranscript: attributedString)
@@ -242,7 +242,7 @@ class EpisodePlayerViewController : UIViewController {
                 let unsanitziedString = "AEE://\(keywordName)"
                 let sanitizedString = unsanitziedString.addingPercentEncoding(withAllowedCharacters: [])
                 if let url = URL(string:sanitizedString!) {
-                    attributedTranscript.addAttributes([NSLinkAttributeName:url, NSUnderlineStyleAttributeName:0], range: range)
+                    attributedTranscript.addAttributes(convertToNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.link):url, convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle):0]), range: range)
                 }
             }
         }
@@ -496,4 +496,14 @@ extension EpisodePlayerViewController:UITextViewDelegate {
         
         return false
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToNSAttributedStringKeyDictionary(_ input: [String: Any]) -> [NSAttributedString.Key: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }

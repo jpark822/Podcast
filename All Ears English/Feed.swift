@@ -300,35 +300,43 @@ class Feed: NSObject {
             self.init(attributes)
         }
 
+        //consider using regex here instead to extract the episode number. Episode titles are not consistently formatted, so there's a little guessing in the parsing here
         func parseTitle() {
             if let text = self.title {
-                let pattern = "AEE\\s+(\\w+):\\s*(.*)"
-                let regex = try! NSRegularExpression(pattern: pattern)
-                let matches = regex.matches(in: text, range: NSMakeRange(0, text.utf16.count))
-                let results = matches.map { match -> [String] in
-                    var groups = [String]()
-                    for index in 0..<match.numberOfRanges {
-                        let range = match.rangeAt(index)
-                        let start = String.UTF16Index(range.location)
-                        let end = String.UTF16Index(range.location + range.length)
-                        let group = String(text.utf16[start..<end])!
-                        groups.append(group)
+                var hasBegunRecordingEpisodeNumber = false
+                var finishedRecordingEpisodeNumber = false
+                
+                var episodeNumber = ""
+                var textAfterEpisodeNumber = ""
+                
+                text.forEach { (char) in
+                    if char.isNumber && finishedRecordingEpisodeNumber == false {
+                        hasBegunRecordingEpisodeNumber = true
+                        episodeNumber.append(char)
                     }
-                    return groups
-                }
-                if results.count > 0 {
-                    let groups = results[0]
-                    self.number = groups[1]
-                    if number == "930" {
+                    //we've reached the end of the episode number
+                    if char.isNumber == false && hasBegunRecordingEpisodeNumber == true {
+                        finishedRecordingEpisodeNumber = true
                     }
-                    self.displayTitle = groups[2]
-                } else {
-                    self.number = ""
-                    self.displayTitle = self.title
+                    
+                    if char == ":" {
+                        finishedRecordingEpisodeNumber = true
+                    }
+                    
+                    if finishedRecordingEpisodeNumber == true {
+                        if char != ":" {
+                            textAfterEpisodeNumber.append(char)
+                        }
+                    }
                 }
-            } else {
-                self.number = ""
-                self.displayTitle = ""
+                self.number = episodeNumber
+                
+                if episodeNumber.isEmpty {
+                    self.displayTitle = text
+                }
+                else {
+                    self.displayTitle = textAfterEpisodeNumber.trimmingCharacters(in: .whitespaces)
+                }
             }
         }
 
@@ -367,28 +375,30 @@ class Feed: NSObject {
 
         func parseId() {
             if let text = self.guid {
-                let pattern = ".*\\?p=(.*)"
-                let regex = try! NSRegularExpression(pattern: pattern)
-                let matches = regex.matches(in: text, range: NSMakeRange(0, text.utf16.count))
-                let results = matches.map { match -> [String] in
-                    var groups = [String]()
-                    for index in 0..<match.numberOfRanges {
-                        let range = match.rangeAt(index)
-                        let start = String.UTF16Index(range.location)
-                        let end = String.UTF16Index(range.location + range.length)
-                        let group = String(text.utf16[start..<end])!
-                        groups.append(group)
-                    }
-                    return groups
-                }
-                if results.count > 0 {
-                    let groups = results[0]
-                    self.identifier = groups[1]
-                } else {
-                    self.identifier = self.guid
-                }
-            } else {
-                self.identifier = ""
+                self.identifier = text
+//                let pattern = ".*\\?p=(.*)"
+//                let regex = try! NSRegularExpression(pattern: pattern)
+//                let matches = regex.matches(in: text, range: NSMakeRange(0, text.utf16.count))
+//                let results = matches.map { match -> [String] in
+//                    var groups = [String]()
+//                    for index in 0..<match.numberOfRanges {
+//                        let range = match.range(at: index)
+//                        let start = String.UTF16Index(range.location)
+//                        let end = String.UTF16Index(range.location + range.length)
+//                        let group = String(text.utf16[start..<end])!
+//                        groups.append(group)
+//                    }
+//                    return groups
+//                }
+//                if results.count > 0 {
+//                    let groups = results[0]
+//                    self.identifier = groups[1]
+//                } else {
+//                    self.identifier = self.guid
+//                }
+//            }
+//            else {
+//                self.identifier = ""
             }
         }
         

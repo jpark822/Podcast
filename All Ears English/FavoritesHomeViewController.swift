@@ -62,13 +62,13 @@ class FavoritesHomeViewController: UIViewController {
     func displayCurrentTab(_ tabIndex: Int){
         if let childVC = viewControllerForSelectedSegmentIndex(tabIndex) {
             
-            self.addChildViewController(childVC)
+            self.addChild(childVC)
             self.childViewControllerContentView.addSubview(childVC.view)
             
             childVC.view.frame = self.childViewControllerContentView.bounds
             childVC.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             
-            childVC.didMove(toParentViewController: self)
+            childVC.didMove(toParent: self)
         }
     }
     
@@ -76,10 +76,10 @@ class FavoritesHomeViewController: UIViewController {
         guard let viewController = self.currentViewController else {
             return
         }
-        viewController.willMove(toParentViewController: nil)
+        viewController.willMove(toParent: nil)
         
         viewController.view.removeFromSuperview()
         
-        viewController.removeFromParentViewController()
+        viewController.removeFromParent()
     }
 }

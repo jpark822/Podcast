@@ -57,7 +57,7 @@ class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, E
         NotificationCenter.default.removeObserver(self)
     }
 
-    func episodeItemCachedStateDidChange(notification: Notification) {
+    @objc func episodeItemCachedStateDidChange(notification: Notification) {
         guard let userInfo = notification.userInfo,
             let guid = userInfo["guid"] as? String else {
                 return
@@ -74,11 +74,11 @@ class FavoritesListTableViewController: UIViewController, EpisodeCellDelegate, E
         }
     }
     
-    func nowPlayingBannerDidShowHandler(notification: Notification) {
+    @objc func nowPlayingBannerDidShowHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
     
-    func nowPlayingBannerDidHideHandler(notification: Notification) {
+    @objc func nowPlayingBannerDidHideHandler(notification: Notification) {
         self.updateContentInsetBasedOnNowPlayingBanner()
     }
     

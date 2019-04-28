@@ -23,7 +23,7 @@ class StoreReviewManager: NSObject {
         //if theyve attempted more than three times, auto push to appstore
         if StoreReviewManager.userAttemptedRatingOverThreeInstances == true {
             if let url = URL(string: "https://itunes.apple.com/us/app/all-ears-english-listening/id1260196995?ls=1&mt=8") {
-                UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
                 })
             }
             print("over three times")
@@ -37,7 +37,7 @@ class StoreReviewManager: NSObject {
                 SKStoreReviewController.requestReview()
             }
             else if let url = URL(string: "https://itunes.apple.com/us/app/all-ears-english-listening/id1260196995?ls=1&mt=8") {
-                UIApplication.shared.open(url, options: [:], completionHandler: { (success) in
+                UIApplication.shared.open(url, options: convertToUIApplicationOpenExternalURLOptionsKeyDictionary([:]), completionHandler: { (success) in
                 })
             }
             ApplicationData.userCompletedRating = true
@@ -99,4 +99,9 @@ class StoreReviewManager: NSObject {
         
         return true
     }
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToUIApplicationOpenExternalURLOptionsKeyDictionary(_ input: [String: Any]) -> [UIApplication.OpenExternalURLOptionsKey: Any] {
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (UIApplication.OpenExternalURLOptionsKey(rawValue: key), value)})
 }

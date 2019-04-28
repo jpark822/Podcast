@@ -30,15 +30,15 @@ class BannerView: UIView {
         let view = viewFromNibForClass()
         view.frame = bounds
         view.autoresizingMask = [
-            UIViewAutoresizing.flexibleWidth,
-            UIViewAutoresizing.flexibleHeight
+            UIView.AutoresizingMask.flexibleWidth,
+            UIView.AutoresizingMask.flexibleHeight
         ]
         addSubview(view)
         let recognizer = UITapGestureRecognizer(target: self, action: #selector(tap))
         view.addGestureRecognizer(recognizer)
     }
     
-    func tap(_ sender: UIGestureRecognizer) {
+    @objc func tap(_ sender: UIGestureRecognizer) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let controller = storyboard.instantiateViewController(withIdentifier: "EpisodePlaybackViewController")
         self.presentingController?.present(controller, animated: true)
@@ -70,7 +70,7 @@ class BannerView: UIView {
         self.updatePlayButton()
     }
     
-    func updateDetails() {
+    @objc func updateDetails() {
         guard let item = Player.shared?.item else {
             UIView.animate(withDuration: 0.15, animations: {
                 self.alpha = 0
@@ -83,11 +83,11 @@ class BannerView: UIView {
         self.episodeTitle?.text = item.title
     }
     
-    func updatePlayButton() {
+    @objc func updatePlayButton() {
         if Player.shared?.playing ?? false {
-            self.playButton?.setImage(UIImage(named: "ic_pause_white"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_pause_white"), for: UIControl.State.normal)
         } else {
-            self.playButton?.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControlState.normal)
+            self.playButton?.setImage(UIImage(named: "ic_play_arrow_white"), for: UIControl.State.normal)
         }
     }
     

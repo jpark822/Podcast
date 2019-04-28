@@ -20,8 +20,8 @@ class ContactUsViewController: UIViewController {
         let centerStyle = NSMutableParagraphStyle()
         centerStyle.alignment = .center
         
-        let textViewString = NSMutableAttributedString(string: "Need help?\n\n\nContact Lindsay McMahon\nLindsay@allearsenglish.com\n\n\nwww.allearsenglish.com", attributes:[NSFontAttributeName:font, NSParagraphStyleAttributeName:centerStyle])
-        let legalHyperlinkString = NSMutableAttributedString(string: "\n\nLegal", attributes: [NSLinkAttributeName:"https://www.allearsenglish.com/legal/", NSFontAttributeName:font, NSParagraphStyleAttributeName:centerStyle])
+        let textViewString = NSMutableAttributedString(string: "Need help?\n\n\nContact Lindsay McMahon\nLindsay@allearsenglish.com\n\n\nwww.allearsenglish.com", attributes:convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.font):font, convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle):centerStyle]))
+        let legalHyperlinkString = NSMutableAttributedString(string: "\n\nLegal", attributes: convertToOptionalNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.link):"https://www.allearsenglish.com/legal/", convertFromNSAttributedStringKey(NSAttributedString.Key.font):font, convertFromNSAttributedStringKey(NSAttributedString.Key.paragraphStyle):centerStyle]))
         
         textViewString.append(legalHyperlinkString)
         
@@ -33,4 +33,15 @@ class ContactUsViewController: UIViewController {
         AnalyticsManager.sharedInstance.logMixpanelPageVisit("Page Visit: Contact Us")
     }
 
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertToOptionalNSAttributedStringKeyDictionary(_ input: [String: Any]?) -> [NSAttributedString.Key: Any]? {
+	guard let input = input else { return nil }
+	return Dictionary(uniqueKeysWithValues: input.map { key, value in (NSAttributedString.Key(rawValue: key), value)})
+}
+
+// Helper function inserted by Swift 4.2 migrator.
+fileprivate func convertFromNSAttributedStringKey(_ input: NSAttributedString.Key) -> String {
+	return input.rawValue
 }
