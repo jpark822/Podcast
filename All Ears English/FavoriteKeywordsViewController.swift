@@ -11,7 +11,7 @@ import UIKit
 class FavoriteKeywordsViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    @IBOutlet weak var noFavoritesLabel: UILabel!
+    @IBOutlet weak var noFavoritesLabel: UILabel!    
     
     let keywordCellReuseId = "keywordCellReuseId"
     

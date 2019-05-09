@@ -242,7 +242,7 @@ class EpisodePlayerViewController : UIViewController {
                 let unsanitziedString = "AEE://\(keywordName)"
                 let sanitizedString = unsanitziedString.addingPercentEncoding(withAllowedCharacters: [])
                 if let url = URL(string:sanitizedString!) {
-                    attributedTranscript.addAttributes(convertToNSAttributedStringKeyDictionary([convertFromNSAttributedStringKey(NSAttributedString.Key.link):url, convertFromNSAttributedStringKey(NSAttributedString.Key.underlineStyle):0]), range: range)
+                    attributedTranscript.addAttributes([NSAttributedString.Key.link:url, NSAttributedString.Key.underlineStyle:NSUnderlineStyle.single.rawValue], range: range)
                 }
             }
         }
@@ -349,6 +349,8 @@ class EpisodePlayerViewController : UIViewController {
             
             self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? true : false
             self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? false : true
+            
+            Analytics.logEvent("keyword_save_favorite", parameters: ["keyword_name":currentKeyword.name, "keyword_definition":currentKeyword.definition])
         }
     }
     
@@ -358,6 +360,8 @@ class EpisodePlayerViewController : UIViewController {
             
             self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? true : false
             self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? false : true
+            
+            Analytics.logEvent("keyword_remove_favorite", parameters: ["keyword_name":currentKeyword.name, "keyword_definition":currentKeyword.definition])
         }
     }
     
@@ -489,6 +493,8 @@ extension EpisodePlayerViewController:UITextViewDelegate {
                 
                 self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(keyword) ? true : false
                 self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(keyword) ? false : true
+                
+                Analytics.logEvent("keyword_view", parameters: ["keyword_name":keyword.name, "keyword_definition":keyword.definition])
 
                 break
             }

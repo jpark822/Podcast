@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FavoritesHomeViewController: UIViewController {
     
@@ -18,6 +19,13 @@ class FavoritesHomeViewController: UIViewController {
     @IBOutlet weak var childViewControllerContentView: UIView!
     
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+    
+    //hiding segmentedControl
+    @IBOutlet weak var segmentedControlTopConstraint: NSLayoutConstraint!
+    @IBOutlet weak var segmentedControlTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var segmentedControlLeadingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var segmentedControlBottomConstraint: NSLayoutConstraint!
+    @IBOutlet weak var segmentedControlHeightContsraint: NSLayoutConstraint!
     
     var currentViewController: UIViewController? {
         return viewControllerForSelectedSegmentIndex(self.segmentedControl.selectedSegmentIndex)
@@ -37,6 +45,27 @@ class FavoritesHomeViewController: UIViewController {
         super.viewDidLoad()
         
         self.displayCurrentTab(self.segmentedControl.selectedSegmentIndex)
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        if ApplicationData.isSubscribedToAEE == true || Auth.auth().currentUser?.email == "test@test.com" {
+            self.segmentedControlTopConstraint.constant = 20
+            self.segmentedControlTrailingConstraint.constant = 16
+            self.segmentedControlLeadingConstraint.constant = 16
+            self.segmentedControlBottomConstraint.constant = 8
+            self.segmentedControlHeightContsraint.constant = 28
+        }
+        else {
+            self.segmentedControlTopConstraint.constant = 0
+            self.segmentedControlTrailingConstraint.constant = 0
+            self.segmentedControlLeadingConstraint.constant = 0
+            self.segmentedControlBottomConstraint.constant = 0
+            self.segmentedControlHeightContsraint.constant = 0
+        }
+        
+        self.view.layoutIfNeeded()
     }
     
     override func viewWillDisappear(_ animated: Bool) {
