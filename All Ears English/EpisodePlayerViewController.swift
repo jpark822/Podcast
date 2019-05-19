@@ -74,6 +74,7 @@ class EpisodePlayerViewController : UIViewController {
             }
             
             self.transcriptTextView.text = transcript.fullTranscript
+            print("setting transcript")
         }
     }
     
@@ -341,6 +342,7 @@ class EpisodePlayerViewController : UIViewController {
     @IBAction func keywordBackButtonPressed(_ sender: Any) {
         self.keywordView.isHidden = true
         self.currentlyViewedKeyword = nil
+        self.updatePlaybackProgress()
     }
     
     @IBAction func keywordSaveButtonPressed(_ sender: Any) {
@@ -350,7 +352,8 @@ class EpisodePlayerViewController : UIViewController {
             self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? true : false
             self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? false : true
             
-            Analytics.logEvent("keyword_save_favorite", parameters: ["keyword_name":currentKeyword.name, "keyword_definition":currentKeyword.definition])
+            let generator = UINotificationFeedbackGenerator()
+            generator.notificationOccurred(.success)
         }
     }
     
@@ -361,7 +364,6 @@ class EpisodePlayerViewController : UIViewController {
             self.keywordSaveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? true : false
             self.keywordRemoveButton.isHidden = KeywordFavoritesManager.sharedInstance.containsKeyword(currentKeyword) ? false : true
             
-            Analytics.logEvent("keyword_remove_favorite", parameters: ["keyword_name":currentKeyword.name, "keyword_definition":currentKeyword.definition])
         }
     }
     

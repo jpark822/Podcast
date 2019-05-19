@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class FavoriteKeywordsViewController: UIViewController {
     
@@ -51,6 +52,8 @@ class FavoriteKeywordsViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         self.fetchKeywordsAndReload()
+        
+        Analytics.logEvent("view_favorite_keyword_screen", parameters: nil)
     }
     
     func fetchKeywordsAndReload() {

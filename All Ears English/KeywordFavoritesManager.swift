@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 class KeywordFavoritesManager: NSObject {
     enum KeywordFavoritesKey:String {
@@ -35,7 +36,7 @@ class KeywordFavoritesManager: NSObject {
             UserDefaults.standard.set(encoded, forKey: KeywordFavoritesKey.storedKeywords.rawValue)
         }
         
-        print(storedKeywords)
+        Analytics.logEvent("keyword_save_favorite", parameters: ["keyword_name":keyword.name, "keyword_definition":keyword.definition])
     }
 
     func removeKeyword(_ keyword:KeywordModel) {
@@ -48,7 +49,7 @@ class KeywordFavoritesManager: NSObject {
             UserDefaults.standard.set(encoded, forKey: KeywordFavoritesKey.storedKeywords.rawValue)
         }
         
-        print(storedKeywords)
+        Analytics.logEvent("keyword_remove_favorite", parameters: ["keyword_name":keyword.name, "keyword_definition":keyword.definition])
     }
     
     func containsKeyword(_ keyword:KeywordModel) -> Bool {
