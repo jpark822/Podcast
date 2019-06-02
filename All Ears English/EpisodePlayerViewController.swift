@@ -74,6 +74,7 @@ class EpisodePlayerViewController : UIViewController {
             }
             
             self.transcriptTextView.text = transcript.fullTranscript
+            self.updatePlaybackProgress()
             print("setting transcript")
         }
     }
@@ -82,6 +83,9 @@ class EpisodePlayerViewController : UIViewController {
         super.viewDidLoad()
         
         self.transcriptTextView.delegate = self
+        
+        self.displayLink = CADisplayLink(target: self, selector: #selector(EpisodePlayerViewController.updatePlaybackProgress))
+        self.displayLink.add(to: .current, forMode: RunLoop.Mode.default)
         
         switch self.feedType {
         case .none:
@@ -94,13 +98,12 @@ class EpisodePlayerViewController : UIViewController {
             AudioPlayer.sharedInstance.play(bonusItem: self.episodeItem)
         }
         
-        displayLink = CADisplayLink(target: self, selector: #selector(EpisodePlayerViewController.updatePlaybackProgress))
-        displayLink.add(to: .current, forMode: RunLoop.Mode.default)
-        
         self.setupInitialViewStateForEpisode()
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
         
         if let currentLoadedAudioPlayerItem = AudioPlayer.sharedInstance.currentItem {
             //changing the item will trigger UI updates
@@ -110,11 +113,21 @@ class EpisodePlayerViewController : UIViewController {
             self.setupInitialViewStateForEpisode()
         }
         
+        self.updatePlaybackProgress()
+        
         NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerPlaybackStateDidChange), name:AudioPlayer.playbackStateDidChangeNotification , object: AudioPlayer.sharedInstance)
         NotificationCenter.default.addObserver(self, selector: #selector(audioPlayerDidFinishPlayingCurrentTrack), name: AudioPlayer.didFinishPlayingCurrentTrackNotification, object: AudioPlayer.sharedInstance)
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        self.updatePlaybackProgress()
+    }
+    
     override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        
         NotificationCenter.default.removeObserver(self)
     }
     
@@ -190,41 +203,52 @@ class EpisodePlayerViewController : UIViewController {
     }
     
     @objc func updatePlaybackProgress() {
-        //Playback progress
-        self.progressSlider.isEnabled = AudioPlayer.sharedInstance.queuePlayer.status == AVPlayer.Status.readyToPlay ? true : false
+        DispatchQueue.main.async {
+            //Playback progress
+            self.progressSlider.isEnabled = AudioPlayer.sharedInstance.queuePlayer.status == AVPlayer.Status.readyToPlay ? true : false
 
-        self.timeElapsedLabel.text = AudioPlayer.sharedInstance.currentPlaybackFormattedTime
-        self.timeRemainingLabel.text = "-\(AudioPlayer.sharedInstance.remainingPlaybackFormattedTime)"
-        
-        if (self.userIsScrubbing == false) {
-            self.progressSlider.value = AudioPlayer.sharedInstance.playbackProgress
-        }
-        
-        //Transcript word tracking
-        if let transcript = self.transcript {
-            let elapsedTime = AudioPlayer.sharedInstance.queuePlayer.currentTime().seconds * 1000
-            for transcriptSegment in transcript.segments {
-                let bufferRange:Double = 50
-                let lowerTimeRange = transcriptSegment.timeStamp - bufferRange
-                let upperTimeRange = transcriptSegment.timeStamp
-                if elapsedTime >= lowerTimeRange && elapsedTime <= upperTimeRange {
-                    let endRange = transcriptSegment.endRange > transcript.fullTranscript.count ? transcript.fullTranscript.count : transcriptSegment.endRange
-                    let rangeLength = endRange - transcriptSegment.startRange
-                    let textRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
-                    
-                    //highlight currently playing text
-                    let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
-                    attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
-                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
-                    attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.AEEYellow, range: textRange)
-                    
-                    //add keywords
-                    self.highlightKeywordsInTranscript(attributedTranscript: attributedString)
-                    
-                    ///Regular async doesn't work here, but hacking in asyncAfter works
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+            self.timeElapsedLabel.text = AudioPlayer.sharedInstance.currentPlaybackFormattedTime
+            self.timeRemainingLabel.text = "-\(AudioPlayer.sharedInstance.remainingPlaybackFormattedTime)"
+            
+            if (self.userIsScrubbing == false) {
+                self.progressSlider.value = AudioPlayer.sharedInstance.playbackProgress
+            }
+            
+            //Transcript word tracking
+            if let transcript = self.transcript {
+                let elapsedTime = AudioPlayer.sharedInstance.queuePlayer.currentTime().seconds * 1000
+                
+                var foundTextRange:NSRange = NSMakeRange(0, 0)
+
+                for transcriptSegment in transcript.segments {
+                    let lowerBufferRange:Double = 50
+                    let upperBufferRange:Double = 50
+                    let lowerTimeRange = transcriptSegment.timeStamp - lowerBufferRange
+                    let upperTimeRange = transcriptSegment.timeStamp + upperBufferRange
+                    if elapsedTime >= lowerTimeRange && elapsedTime <= upperTimeRange {
+                        let endRange = transcriptSegment.endRange > transcript.fullTranscript.count ? transcript.fullTranscript.count : transcriptSegment.endRange
+                        let rangeLength = endRange - transcriptSegment.startRange
+                        foundTextRange = NSMakeRange(transcriptSegment.startRange, rangeLength)
+                        
+                        //highlight currently playing text
+                        let attributedString = NSMutableAttributedString(string:transcript.fullTranscript)
+                        attributedString.addAttribute(NSAttributedString.Key.font, value: UIFont.PTSansRegular(size: 24), range: NSMakeRange(0, transcript.fullTranscript.count))
+                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.white, range: NSMakeRange(0, transcript.fullTranscript.count))
+                        attributedString.addAttribute(NSAttributedString.Key.foregroundColor, value: UIColor.AEEYellow, range: foundTextRange)
+                        
+                        //add keywords
+                        self.highlightKeywordsInTranscript(attributedTranscript: attributedString)
+                        
                         self.transcriptTextView.attributedText = attributedString
-                        self.transcriptTextView.scrollRangeToVisible(textRange)
+                        
+                        
+                    }
+                }
+                
+                ///Regular async doesn't work here, but hacking in asyncAfter works
+                if foundTextRange != NSMakeRange(0, 0) && elapsedTime > 0 {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) {
+                        self.transcriptTextView.scrollRangeToVisible(foundTextRange)
                     }
                 }
             }
@@ -238,7 +262,7 @@ class EpisodePlayerViewController : UIViewController {
     
         for keyword in transcript.keywords {
             let keywordName = keyword.name
-            let rangesOfOccurence = transcript.fullTranscript.nsRanges(of: keywordName, options: [.caseInsensitive])
+            let rangesOfOccurence = transcript.fullTranscript.nsRangesForFullWord(of: keywordName)
             for range in rangesOfOccurence {
                 let unsanitziedString = "AEE://\(keywordName)"
                 let sanitizedString = unsanitziedString.addingPercentEncoding(withAllowedCharacters: [])

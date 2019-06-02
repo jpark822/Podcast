@@ -12,6 +12,8 @@ import Foundation
 class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, EpisodePlayerViewControllerDelegate {
     
     var nowPlayingBannerView:NowPlayingBannerView!
+    var episodePlayerViewController:EpisodePlayerViewController?
+    
     static let nowPlayingBannerHeight:CGFloat = 60.0
     
     static let didHideNowPlayingBannerNotification: Notification.Name = Notification.Name(rawValue: "didHideNowPlayingBannerNotification")
@@ -58,6 +60,7 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         let iconImageSize = CGSize(width: 22, height: 22)
         let episodeListVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodeListTableViewControllerId") as! EpisodeListTableViewController
         episodeListVC.title = "Episodes"
+        episodeListVC.episodeListDelegate = self
         let episodeListTabImage = UIImage(named: "ic_playlist_play_white")
         let epispodeNavVC = UINavigationController(rootViewController: episodeListVC)
         epispodeNavVC.tabBarItem = UITabBarItem(title: "Episodes", image: episodeListTabImage, tag: 0)
@@ -230,10 +233,17 @@ extension MainTabBarController {
             return
         }
         
-        let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
-        playerVC.episodeItem = currentItem
-        playerVC.delegate = self
-        self.present(playerVC, animated: true)
+        if let episodePlayerVC = self.episodePlayerViewController {
+            episodePlayerVC.delegate = self
+            self.present(episodePlayerVC, animated:true)
+        }
+        else {
+            let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
+            playerVC.episodeItem = currentItem
+            playerVC.delegate = self
+            self.episodePlayerViewController = playerVC
+            self.present(playerVC, animated: true)
+        }
     }
 }
 
@@ -241,5 +251,31 @@ extension MainTabBarController {
 extension MainTabBarController {
     func episodePlayerViewControllerDidPressDismiss(episodePlayerViewController: EpisodePlayerViewController) {
         self.dismiss(animated: true)
+    }
+}
+
+extension MainTabBarController:EpisodeListTableViewControllerDelegate {
+    func episodeListTableViewControllerDidSelect(episode: Feed.Item) {
+        if let episodePlayerVC = self.episodePlayerViewController,
+            let currentItem = AudioPlayer.sharedInstance.currentItem,
+            currentItem.guid == episode.guid {
+            episodePlayerVC.delegate = self
+            self.present(episodePlayerVC, animated: true)
+        }
+        else if let episodePlayerVC = self.episodePlayerViewController,
+            let currentItem = AudioPlayer.sharedInstance.currentItem,
+            currentItem.guid == episode.guid {
+            episodePlayerVC.episodeItem = currentItem
+            episodePlayerVC.delegate = self
+            self.present(episodePlayerVC, animated: true)
+        }
+        else {
+            let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
+            playerVC.episodeItem = episode
+            playerVC.feedType = .episodes
+            playerVC.delegate = self
+            self.episodePlayerViewController = playerVC
+            self.present(playerVC, animated: true)
+        }
     }
 }

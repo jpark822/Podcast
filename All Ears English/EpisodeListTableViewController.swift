@@ -11,7 +11,13 @@ import AlamofireImage
 import Alamofire
 import FirebaseAuth
 
+protocol EpisodeListTableViewControllerDelegate:class {
+    func episodeListTableViewControllerDidSelect(episode:Feed.Item)
+}
+
 class EpisodeListTableViewController: UIViewController, EpisodePlayerViewControllerDelegate, EpisodeCellDelegate, UITableViewDataSource, UITableViewDelegate {
+    
+    weak var episodeListDelegate:EpisodeListTableViewControllerDelegate?
 
     var pullToRefreshControl: UIRefreshControl!
     @IBOutlet weak var tableView: UITableView!
@@ -198,11 +204,9 @@ extension EpisodeListTableViewController {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let playerVC = UIStoryboard(name: "Episodes", bundle: nil).instantiateViewController(withIdentifier: "EpisodePlayerViewControllerId") as! EpisodePlayerViewController
-        playerVC.episodeItem = self.isSearching ? self.filteredEpisodeItems[indexPath.row] : self.episodeItems[indexPath.row]
-        playerVC.feedType = .episodes
-        playerVC.delegate = self
-        self.present(playerVC, animated: true)
+        let episodeItem = self.isSearching ? self.filteredEpisodeItems[indexPath.row] : self.episodeItems[indexPath.row]
+        
+        self.episodeListDelegate?.episodeListTableViewControllerDidSelect(episode: episodeItem)
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {

@@ -38,15 +38,28 @@ import Foundation
 //}
 
 extension StringProtocol where Index == String.Index {
-    func nsRange(of string: Self, options: String.CompareOptions = [], range: Range<Index>? = nil, locale: Locale? = nil) -> NSRange? {
-        guard let range = self.range(of: string, options: options, range: range ?? startIndex..<endIndex, locale: locale ?? .current) else { return nil }
-        return NSRange(range, in: self)
-    }
-    func nsRanges(of string: Self, options: String.CompareOptions = [], range: Range<Index>? = nil, locale: Locale? = nil) -> [NSRange] {
+//    func nsRange(of string: Self, options: String.CompareOptions = [], range: Range<Index>? = nil, locale: Locale? = nil) -> NSRange? {
+//        guard let range = self.range(of: string, options: options, range: range ?? startIndex..<endIndex, locale: locale ?? .current) else { return nil }
+//        return NSRange(range, in: self)
+//    }
+    
+//    func nsRanges(of string: Self, options: String.CompareOptions = [], range: Range<Index>? = nil, locale: Locale? = nil) -> [NSRange] {
+//        var start = range?.lowerBound ?? startIndex
+//        let end = range?.upperBound ?? endIndex
+//        var ranges: [NSRange] = []
+//        while start < end, let range = self.range(of: string, options: options, range: start..<end, locale: locale ?? .current) {
+//            ranges.append(NSRange(range, in: self))
+//            start = range.upperBound
+//        }
+//        return ranges
+//    }
+    
+    func nsRangesForFullWord(of string: Self, range: Range<Index>? = nil, locale: Locale? = nil) -> [NSRange] {
         var start = range?.lowerBound ?? startIndex
         let end = range?.upperBound ?? endIndex
         var ranges: [NSRange] = []
-        while start < end, let range = self.range(of: string, options: options, range: start..<end, locale: locale ?? .current) {
+        let pattern = "\\b\(string)\\b"
+        while start < end, let range = self.range(of: pattern, options: [.regularExpression, .caseInsensitive], range: start..<end, locale: locale ?? .current) {
             ranges.append(NSRange(range, in: self))
             start = range.upperBound
         }
