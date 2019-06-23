@@ -58,7 +58,12 @@ extension StringProtocol where Index == String.Index {
         var start = range?.lowerBound ?? startIndex
         let end = range?.upperBound ?? endIndex
         var ranges: [NSRange] = []
-        let pattern = "\\b\(string)\\b"
+        var pattern = "\\b\(string)\\b"
+        
+        if string.contains("'") {
+            pattern = string as! String
+        }
+        
         while start < end, let range = self.range(of: pattern, options: [.regularExpression, .caseInsensitive], range: start..<end, locale: locale ?? .current) {
             ranges.append(NSRange(range, in: self))
             start = range.upperBound
