@@ -341,29 +341,34 @@ extension AudioPlayer {
 
 //MARK: Now Playing and Command Center remote controls
 extension AudioPlayer {
-    @objc func commandCenterPlayPressed() {
+    @objc func commandCenterPlayPressed() -> MPRemoteCommandHandlerStatus {
         self.play()
+        return MPRemoteCommandHandlerStatus.success
     }
     
-    @objc func commandCenterPausePressed() {
+    @objc func commandCenterPausePressed() -> MPRemoteCommandHandlerStatus {
         self.pause()
+        return MPRemoteCommandHandlerStatus.success
     }
     
-    @objc func commandCenterNextTrackPressed()  {
+    @objc func commandCenterNextTrackPressed() -> MPRemoteCommandHandlerStatus  {
         if self.seekToNextTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
+        return MPRemoteCommandHandlerStatus.success
     }
     
-    @objc func commandCenterPreviousTrackPressed() {
+    @objc func commandCenterPreviousTrackPressed() -> MPRemoteCommandHandlerStatus {
         if self.seekToBeginningOrPreviousTrack() != nil {
             self.updatePlayingInfoCenterData()
         }
+        return MPRemoteCommandHandlerStatus.success
     }
     
-    @objc func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent) {
+    @objc func commandCenterDidChangePlaybackPosition(event: MPChangePlaybackPositionCommandEvent)  -> MPRemoteCommandHandlerStatus {
         self.seekToTimeInSeconds(event.positionTime)
         //seeking will take care of notification and updating playing center info
+        return MPRemoteCommandHandlerStatus.success
     }
     
     func updatePlayingInfoCenterData() {

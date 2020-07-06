@@ -70,6 +70,9 @@
 		4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */; };
 		4E687F8E1F8C18710095CAAA /* EpisodeCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */; };
 		4E737504202A7C7000F5C25D /* UIFont+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E737503202A7C7000F5C25D /* UIFont+AEE.swift */; };
+		4E8108EB247139C600D72F0B /* PurchaseCarouselModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8108EA247139C600D72F0B /* PurchaseCarouselModel.swift */; };
+		4E8108ED24713D4600D72F0B /* PurchaseCarouselViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8108EC24713D4600D72F0B /* PurchaseCarouselViewController.swift */; };
+		4E8108F024713DF400D72F0B /* PurchaseCarouselCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E8108EF24713DF400D72F0B /* PurchaseCarouselCollectionViewCell.swift */; };
 		4E851B832034F6CD00E18B0B /* UITableView+Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E851B822034F6CD00E18B0B /* UITableView+Utilities.swift */; };
 		4E97479B2254274F00F9D862 /* String+AEE.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97479A2254274F00F9D862 /* String+AEE.swift */; };
 		4E9747A0225658D600F9D862 /* KeywordFavoritesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4E97479F225658D600F9D862 /* KeywordFavoritesManager.swift */; };
@@ -84,6 +87,9 @@
 		4EC065B421971BE700A3F90B /* IAPStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC065B321971BE700A3F90B /* IAPStore.swift */; };
 		4EC62A8520E1B7890082D665 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4EC62A8420E1B7890082D665 /* Login.storyboard */; };
 		4EC62A8720E1B7910082D665 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EC62A8620E1B7910082D665 /* SignUpViewController.swift */; };
+		4ED50E5A24606F9F00F696EE /* QuizModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED50E5924606F9F00F696EE /* QuizModel.swift */; };
+		4ED50E5C24606FD900F696EE /* QuizQuestionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4ED50E5B24606FD900F696EE /* QuizQuestionModel.swift */; };
+		4ED50E5E2460711600F696EE /* exampleQuiz.json in Resources */ = {isa = PBXBuildFile; fileRef = 4ED50E5D2460711600F696EE /* exampleQuiz.json */; };
 		4EDC9EA6219743B6009D32C4 /* SelectSubscriptionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */; };
 		4EDC9EA821974940009D32C4 /* SubscriptionSignupNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC9EA721974940009D32C4 /* SubscriptionSignupNavigationController.swift */; };
 		4EDC9EAA21975C6E009D32C4 /* ServiceManager+Subscriptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4EDC9EA921975C6E009D32C4 /* ServiceManager+Subscriptions.swift */; };
@@ -164,6 +170,9 @@
 		4E687F8A1F8C0BBD0095CAAA /* FavoritesManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FavoritesManager.swift; sourceTree = "<group>"; };
 		4E687F8D1F8C18710095CAAA /* EpisodeCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = EpisodeCell.xib; sourceTree = "<group>"; };
 		4E737503202A7C7000F5C25D /* UIFont+AEE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+AEE.swift"; sourceTree = "<group>"; };
+		4E8108EA247139C600D72F0B /* PurchaseCarouselModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCarouselModel.swift; sourceTree = "<group>"; };
+		4E8108EC24713D4600D72F0B /* PurchaseCarouselViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCarouselViewController.swift; sourceTree = "<group>"; };
+		4E8108EF24713DF400D72F0B /* PurchaseCarouselCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PurchaseCarouselCollectionViewCell.swift; sourceTree = "<group>"; };
 		4E851B822034F6CD00E18B0B /* UITableView+Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableView+Utilities.swift"; sourceTree = "<group>"; };
 		4E97479A2254274F00F9D862 /* String+AEE.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+AEE.swift"; sourceTree = "<group>"; };
 		4E97479F225658D600F9D862 /* KeywordFavoritesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeywordFavoritesManager.swift; sourceTree = "<group>"; };
@@ -178,6 +187,9 @@
 		4EC065B321971BE700A3F90B /* IAPStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = IAPStore.swift; sourceTree = "<group>"; };
 		4EC62A8420E1B7890082D665 /* Login.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Login.storyboard; sourceTree = "<group>"; };
 		4EC62A8620E1B7910082D665 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		4ED50E5924606F9F00F696EE /* QuizModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizModel.swift; sourceTree = "<group>"; };
+		4ED50E5B24606FD900F696EE /* QuizQuestionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizQuestionModel.swift; sourceTree = "<group>"; };
+		4ED50E5D2460711600F696EE /* exampleQuiz.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = exampleQuiz.json; sourceTree = "<group>"; };
 		4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectSubscriptionViewController.swift; sourceTree = "<group>"; };
 		4EDC9EA721974940009D32C4 /* SubscriptionSignupNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionSignupNavigationController.swift; sourceTree = "<group>"; };
 		4EDC9EA921975C6E009D32C4 /* ServiceManager+Subscriptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ServiceManager+Subscriptions.swift"; sourceTree = "<group>"; };
@@ -485,6 +497,17 @@
 			name = EpisodeCell;
 			sourceTree = "<group>";
 		};
+		4E8108EE24713DB200D72F0B /* Purchase */ = {
+			isa = PBXGroup;
+			children = (
+				4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */,
+				4EDC9EA721974940009D32C4 /* SubscriptionSignupNavigationController.swift */,
+				4E8108EC24713D4600D72F0B /* PurchaseCarouselViewController.swift */,
+				4E8108EF24713DF400D72F0B /* PurchaseCarouselCollectionViewCell.swift */,
+			);
+			name = Purchase;
+			sourceTree = "<group>";
+		};
 		4E97479E225658AB00F9D862 /* KeywordManager */ = {
 			isa = PBXGroup;
 			children = (
@@ -496,6 +519,7 @@
 		4EB1F6FC20EAA4E400C4E83C /* ServiceManager */ = {
 			isa = PBXGroup;
 			children = (
+				4ED50E5D2460711600F696EE /* exampleQuiz.json */,
 				4E228D8E20EAA652002912AB /* exampleTranscript.json */,
 				4EB1F6FD20EAA4FC00C4E83C /* ServiceManager.swift */,
 				4EDC9EA921975C6E009D32C4 /* ServiceManager+Subscriptions.swift */,
@@ -507,6 +531,9 @@
 			isa = PBXGroup;
 			children = (
 				4EB1F70020EAA56400C4E83C /* TranscriptModel.swift */,
+				4ED50E5924606F9F00F696EE /* QuizModel.swift */,
+				4ED50E5B24606FD900F696EE /* QuizQuestionModel.swift */,
+				4E8108EA247139C600D72F0B /* PurchaseCarouselModel.swift */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -523,12 +550,11 @@
 		4EC62A8120E1B7730082D665 /* Login */ = {
 			isa = PBXGroup;
 			children = (
+				4E8108EE24713DB200D72F0B /* Purchase */,
 				4EC62A8420E1B7890082D665 /* Login.storyboard */,
 				4EC62A8620E1B7910082D665 /* SignUpViewController.swift */,
 				4EAE48A220E2F49D007E0C0D /* LoginViewController.swift */,
 				4E228DA020F43E9C002912AB /* ForgotPasswordViewController.swift */,
-				4EDC9EA5219743B6009D32C4 /* SelectSubscriptionViewController.swift */,
-				4EDC9EA721974940009D32C4 /* SubscriptionSignupNavigationController.swift */,
 			);
 			name = Login;
 			sourceTree = "<group>";
@@ -633,6 +659,7 @@
 				4E687F7F1F84F0600095CAAA /* NowPlayingBannerView.xib in Resources */,
 				4EF701591FB330A000A6C0A4 /* 8842ad63259786d023b3055a8f8df06d.mp3 in Resources */,
 				46993BE01EFB6DA800806635 /* PT_Sans-Web-Regular.ttf in Resources */,
+				4ED50E5E2460711600F696EE /* exampleQuiz.json in Resources */,
 				4EF7015D1FB330CA00A6C0A4 /* c29c8a597a77de3a959d463838bdffd7.mp3 in Resources */,
 				4640CD511EFA3CA9006B0C5E /* Michelle.png in Resources */,
 				4672E5E41EF8787B006B5F25 /* Assets.xcassets in Resources */,
@@ -676,12 +703,13 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
 				"${BUILT_PRODUCTS_DIR}/GoogleUtilities/GoogleUtilities.framework",
 				"${BUILT_PRODUCTS_DIR}/Mixpanel/Mixpanel.framework",
+				"${BUILT_PRODUCTS_DIR}/PromisesObjC/FBLPromises.framework",
 				"${BUILT_PRODUCTS_DIR}/Protobuf/Protobuf.framework",
 				"${BUILT_PRODUCTS_DIR}/SwiftyXMLParser/SwiftyXMLParser.framework",
 				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
@@ -693,13 +721,14 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleUtilities.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBLPromises.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Protobuf.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SwiftyXMLParser.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-All Ears English/Pods-All Ears English-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F5CAFB336CD9049E78787C40 /* [CP] Check Pods Manifest.lock */ = {
@@ -732,6 +761,7 @@
 				4EC065B221971BD200A3F90B /* IAPHelper.swift in Sources */,
 				4E4AE99F1F926FF200B6CF10 /* BonusEpisodesTableViewController.swift in Sources */,
 				4E4AE9991F924A8D00B6CF10 /* AnalyticsManager.swift in Sources */,
+				4ED50E5A24606F9F00F696EE /* QuizModel.swift in Sources */,
 				4602032C1F1B66960078A275 /* Cache.swift in Sources */,
 				4E4AE9961F8F8C3400B6CF10 /* StoreReviewManager.swift in Sources */,
 				4E9747A0225658D600F9D862 /* KeywordFavoritesManager.swift in Sources */,
@@ -744,6 +774,7 @@
 				4E31E87F1F7FC03200AD05D2 /* EpisodePlayerViewController.swift in Sources */,
 				4E4AE9A31F93D6C900B6CF10 /* RateUsViewController.swift in Sources */,
 				4E4AE9A91F9402AB00B6CF10 /* ContactUsViewController.swift in Sources */,
+				4ED50E5C24606FD900F696EE /* QuizQuestionModel.swift in Sources */,
 				4E9747A22258E4FD00F9D862 /* FavoritesHomeViewController.swift in Sources */,
 				46C7A2AD1EFB967200B9AA23 /* Feed.swift in Sources */,
 				4E4AE98E1F8C25D100B6CF10 /* FavoritesListTableViewController.swift in Sources */,
@@ -758,6 +789,7 @@
 				4E228D9D20F4371D002912AB /* SignupLoginCTASectionHeader.swift in Sources */,
 				4E4AE9A61F93E64200B6CF10 /* ShareViewController.swift in Sources */,
 				4EDC9EAA21975C6E009D32C4 /* ServiceManager+Subscriptions.swift in Sources */,
+				4E8108F024713DF400D72F0B /* PurchaseCarouselCollectionViewCell.swift in Sources */,
 				464415D11EF8A83E00129F07 /* EpisodesViewController.swift in Sources */,
 				4672E5DD1EF8787B006B5F25 /* AppDelegate.swift in Sources */,
 				4E228DA120F43E9C002912AB /* ForgotPasswordViewController.swift in Sources */,
@@ -766,6 +798,7 @@
 				4E851B832034F6CD00E18B0B /* UITableView+Utilities.swift in Sources */,
 				4E4AE9AB1F97647800B6CF10 /* UIImage+Resize.swift in Sources */,
 				4699F6171F0211E200D9D9CB /* Player.swift in Sources */,
+				4E8108EB247139C600D72F0B /* PurchaseCarouselModel.swift in Sources */,
 				4EDC9EA821974940009D32C4 /* SubscriptionSignupNavigationController.swift in Sources */,
 				4E687F8B1F8C0BBD0095CAAA /* FavoritesManager.swift in Sources */,
 				4EDC9EA6219743B6009D32C4 /* SelectSubscriptionViewController.swift in Sources */,
@@ -775,6 +808,7 @@
 				4E9747A42258E60400F9D862 /* FavoriteKeywordsViewController.swift in Sources */,
 				4663448A1EFCC9BE00080704 /* EpisodeDetailsViewController.swift in Sources */,
 				4E31E8861F81604C00AD05D2 /* MainTabBarController.swift in Sources */,
+				4E8108ED24713D4600D72F0B /* PurchaseCarouselViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -904,9 +938,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_ENTITLEMENTS = "All Ears English/All Ears English.entitlements";
-				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 79H836U56A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -914,10 +949,11 @@
 				);
 				INFOPLIST_FILE = "All Ears English/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "8e177c9b-9216-4fc0-ae18-0c742ffa8bd5";
-				PROVISIONING_PROFILE_SPECIFIER = JayDevProfile11/10;
+				PROVISIONING_PROFILE_SPECIFIER = JayDevProfile25/18;
 				SWIFT_OBJC_BRIDGING_HEADER = "All Ears English/All Ears English-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 5.0;
@@ -935,6 +971,7 @@
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Distribution";
 				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 5;
 				DEVELOPMENT_TEAM = 79H836U56A;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
@@ -942,10 +979,11 @@
 				);
 				INFOPLIST_FILE = "All Ears English/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.6;
 				PRODUCT_BUNDLE_IDENTIFIER = com.allearsenglish.ios.AllEarsEnglish;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "4880249b-fda3-4873-a483-0705f10c26f7";
-				PROVISIONING_PROFILE_SPECIFIER = AEEAppStoreDistro9/2019;
+				PROVISIONING_PROFILE_SPECIFIER = JayAppStoreDistro5/18;
 				SWIFT_OBJC_BRIDGING_HEADER = "All Ears English/All Ears English-Bridging-Header.h";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;

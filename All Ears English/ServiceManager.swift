@@ -37,4 +37,20 @@ class ServiceManager: NSObject {
             }
         }
     }
+    
+    func getQuizWithId(_ episideGuid:String, completion:@escaping (QuizModel?, Error?) -> Void) {
+        
+        if let path = Bundle.main.path(forResource: "exampleQuiz", ofType: "json") {
+            do {
+                let data = try Data(contentsOf: URL(fileURLWithPath: path), options: .alwaysMapped)
+                let quizModel = try JSONDecoder().decode(QuizModel.self, from: data)
+                
+                completion(quizModel, nil)
+            }
+            catch (let error) {
+                print(error)
+                completion(nil, NSError(domain: "", code: 999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
+            }
+        }
+    }
 }

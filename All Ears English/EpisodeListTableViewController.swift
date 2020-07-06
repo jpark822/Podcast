@@ -280,6 +280,9 @@ extension EpisodeListTableViewController: UISearchResultsUpdating {
         self.searchController.obscuresBackgroundDuringPresentation = false
         self.searchController.searchBar.placeholder = "Search Episodes"
         self.searchController.searchBar.barTintColor = UIColor.AEEYellow
+        if #available(iOS 13.0, *) {
+            self.searchController.searchBar.searchTextField.backgroundColor = UIColor.white
+        }
         UITextField.appearance(whenContainedInInstancesOf: [UISearchBar.self]).font = UIFont.PTSansRegular(size: 14)
         self.tableView.tableHeaderView = self.searchController.searchBar
         self.definesPresentationContext = true
@@ -390,9 +393,11 @@ extension EpisodeListTableViewController: LoginUpViewControllerDelegate {
 //Signup
 extension EpisodeListTableViewController:SubscriptionSignupNavigationControllerDelegate {
     func subscriptionSignupNavigationControllerDidFinishWithPurchase(viewController: SubscriptionSignupNavigationController) {
-        self.tableView.reloadData()
-        self.setupLogoutButton()
-        viewController.dismiss(animated: true)
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            self.setupLogoutButton()
+            viewController.dismiss(animated: true)
+        }
     }
     
     func subscriptionSignupNavigationControllerDidCancel(viewController: SubscriptionSignupNavigationController) {

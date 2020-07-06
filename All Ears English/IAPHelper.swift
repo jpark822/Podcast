@@ -1,29 +1,18 @@
-//
-//  IAPHelper.swift
-//  All Ears English
-//
-//  Created by Jay Park on 11/10/18.
-//  Copyright © 2018 All Ears English. All rights reserved.
-//
-
-
 import StoreKit
 
-/// Notification that is generated when a product is purchased.
+//MARK: notifications
 public let IAPHelperProductPurchasedSuccessNotification:NSNotification.Name = NSNotification.Name(rawValue: "IAPHelperProductPurchasedSuccessNotification")
 public let IAPHelperProductPurchasedFailedNotification:NSNotification.Name = NSNotification.Name(rawValue: "IAPHelperProductPurchasedFailedNotification")
 
-/// Product identifiers are unique strings registered on the app store.
+
 public typealias ProductIdentifier = String
 
-/// Completion handler called when products are fetched.
+//MARK: completion handler declarations
 public typealias RequestProductsCompletionHandler = (_ success: Bool, _ products: [SKProduct]) -> ()
 public typealias PurchaseProductsCompletionHandler = (_ success:Bool, _ error:Error?) -> ()
 public typealias RestoreProductsCompletionHandler = (_ success:Bool, _ error:Error?) -> ()
 
 
-/// A Helper class for In-App-Purchases, it can fetch products, tell you if a product has been purchased,
-/// purchase products, and restore purchases.  Uses NSUserDefaults to cache if a product has been purchased.
 open class IAPHelper : NSObject  {
     
     // Used to keep track of the possible products and which ones have been purchased.
@@ -37,7 +26,6 @@ open class IAPHelper : NSObject  {
     fileprivate var restoreProductsCompletionHandler: RestoreProductsCompletionHandler?
     
     
-    /// MARK: - API
     public init(productIdentifiers: Set<ProductIdentifier>) {
         self.productIdentifiers = productIdentifiers
         for productIdentifier in productIdentifiers {
@@ -205,8 +193,7 @@ extension IAPHelper: SKPaymentTransactionObserver {
     }
     
     
-    
-    // Helper: Saves the fact that the product has been purchased/restored and posts a notification.
+    //on purchase and restore, notify
     fileprivate func storePurchaseAndNotifyForProductIdentifier(_ productIdentifier: String) {
         if !purchasedProductIdentifiers.contains(productIdentifier) {
             purchasedProductIdentifiers.insert(productIdentifier)

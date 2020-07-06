@@ -98,7 +98,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     func applicationDidBecomeActive(_ application: UIApplication) {
         // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
         UIApplication.shared.applicationIconBadgeNumber = 0
-        IAPStore.store.restoreCompletedTransactions {(success, error) in 
+        
+        //MARK: forces appleID login prompt
+        IAPStore.store.restoreCompletedTransactions {(success, error) in
             ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
                 print("valid subscription: \(hasValidSub)")
             })

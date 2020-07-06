@@ -48,14 +48,16 @@ class SelectSubscriptionViewController: UIViewController {
     func fetchData() {
         IAPStore.store.requestProductsWithCompletionHandler { (success, products) in
             if success {
-                for product in products {
-                    if product.productIdentifier == IAPStore.monthlyPass {
-                        self.monthlyButton.isEnabled = true
-                        self.monthlyPassSKProduct = product
-                    }
-                    if product.productIdentifier == IAPStore.yearlyPass {
-                        self.yearlyButton.isEnabled = true
-                        self.yearlyPassSKProduct = product
+                DispatchQueue.main.async {
+                    for product in products {
+                        if product.productIdentifier == IAPStore.monthlyPass {
+                            self.monthlyButton.isEnabled = true
+                            self.monthlyPassSKProduct = product
+                        }
+                        if product.productIdentifier == IAPStore.yearlyPass {
+                            self.yearlyButton.isEnabled = true
+                            self.yearlyPassSKProduct = product
+                        }
                     }
                 }
             }

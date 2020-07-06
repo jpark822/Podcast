@@ -1,0 +1,36 @@
+{
+    "id": "abcd1234efgh5678",
+    "episodeId": "p2490gjoaregoiajoifj",
+    "questions": [
+        {
+            "questionText": "What color are fire trucks?",
+            "answerOptions": [
+                "blue",
+                "yellow",
+                "red",
+                "orange"
+            ],
+            "answer": "red"
+        },
+        {
+            "questionText": "What is the first letter of the alphabet?",
+            "answerOptions": [
+                "x",
+                "5",
+                "d",
+                "a"
+            ],
+            "answer": "a"
+        },
+        {
+            "questionText": "What is Bugs Bunny's catchphrase?",
+            "answerOptions": [
+                "Not again",
+                "What does the fox say?",
+                "Dude where's my car?",
+                "What's up doc?"
+            ],
+            "answer": "What's up doc?"
+        }
+    ]
+}

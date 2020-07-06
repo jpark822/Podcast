@@ -155,6 +155,7 @@ class EpisodePlayerViewController : UIViewController {
     func setupInitialViewStateForEpisode() {
         self.episodeDescriptionLabel.text = self.episodeItem.title
         self.fetchTranscript()
+        self.fetchQuiz()
         self.updatePlaybackProgress()
         self.updateControlViews()
     }
@@ -393,8 +394,9 @@ class EpisodePlayerViewController : UIViewController {
     
 }
 
-//MARK: transcripts
+//MARK: transcripts and quizzes
 extension EpisodePlayerViewController {
+    //Transcipts
     func fetchTranscript() {
         guard let guid = self.episodeItem.guid else {
             return
@@ -473,6 +475,13 @@ extension EpisodePlayerViewController {
         self.transcriptNonexistentCoverImageView.isHidden = true
         self.transcriptSignupView.isHidden = true
         self.transcriptRenewView.isHidden = false
+    }
+    
+    //Quizes
+    func fetchQuiz() {
+        ServiceManager.sharedInstace.getQuizWithId("asdf") { (quizModel, error) in
+            print("got it")
+        }
     }
 }
 
