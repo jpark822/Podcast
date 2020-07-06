@@ -30,19 +30,15 @@ extension ServiceManager {
         }
         
         let body:[String:Any] = [
-            "body":[
-                "data" : [
                 "receipt":receipt
-            ]
-        ]
         ]
         #if DEBUG
-        let functionName = "validateNodejs10"
+        let functionName = "validateNodejs10Sandbox"
         #else
-        let functionName = "validate"
+        let functionName = "validateNodejs10"
         #endif
         
-        
+        print("calling \(functionName)")
         Functions.functions().httpsCallable(functionName).call(body) { (result, error) in
             if let error = error as NSError? {
                 completion(false, error)
