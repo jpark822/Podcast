@@ -17,6 +17,9 @@ class ServiceManager: NSObject {
     
     var sessionManager = SessionManager(configuration: .default)
     
+    //for subscription management
+    var validSubCompletionBlock: ((Bool, Error?)->Void)? = nil
+    
     func getTranscriptWithId(_ episodeGuid:String, completion:@escaping (TranscriptModel?, Error?)->Void) {
         
         let url = Auth.auth().currentUser?.email == "test@test.com" ? "https://s3.amazonaws.com/allearsenglish-mobileapp/test-transcripts/\(episodeGuid).json" : "https://s3.amazonaws.com/allearsenglish-mobileapp/transcripts/\(episodeGuid).json"

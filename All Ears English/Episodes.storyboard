@@ -273,26 +273,26 @@
                                                 </connections>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword phrase" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kV4-BO-CmZ">
-                                                <rect key="frame" x="8" y="76.5" width="259" height="28.5"/>
+                                                <rect key="frame" x="8" y="78" width="259" height="26"/>
                                                 <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="22"/>
                                                 <color key="textColor" red="0.9882352941176471" green="0.8666666666666667" blue="0.0039215686274509803" alpha="1" colorSpace="calibratedRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Keyword Definition " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="qik-ze-WTn">
-                                                <rect key="frame" x="8" y="112.5" width="259" height="21"/>
+                                                <rect key="frame" x="8" y="111.5" width="259" height="19"/>
                                                 <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="16"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" verticalCompressionResistancePriority="752" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="51D-XQ-fgv">
-                                                <rect key="frame" x="28.5" y="153.5" width="218" height="41"/>
+                                                <rect key="frame" x="28.5" y="150.5" width="218" height="41"/>
                                                 <state key="normal" image="keywordSaveButton"/>
                                                 <connections>
                                                     <action selector="keywordSaveButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="4dc-Xr-Xn3"/>
                                                 </connections>
                                             </button>
                                             <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EIz-v8-zJw">
-                                                <rect key="frame" x="77.5" y="154" width="120" height="41"/>
+                                                <rect key="frame" x="77.5" y="151" width="120" height="41"/>
                                                 <state key="normal" image="keywordIsSavedButton"/>
                                                 <connections>
                                                     <action selector="keywordRemoveButtonPressed:" destination="kX4-DS-RbJ" eventType="touchUpInside" id="40p-nh-JcG"/>

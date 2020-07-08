@@ -9,6 +9,7 @@
 import Foundation
 import Firebase
 import FirebaseFunctions
+import StoreKit
 
 extension ServiceManager {
     func getReceiptData() -> String? {
@@ -24,8 +25,21 @@ extension ServiceManager {
     }
     
     func checkForValidSubscription(completion: @escaping (Bool, Error?)->Void) {
+        self.validSubCompletionBlock = completion
+        
+        let refreshReq = SKReceiptRefreshRequest()
+        refreshReq.delegate = self
+        refreshReq.start()
+    }
+}
+
+extension ServiceManager:SKRequestDelegate {
+    func requestDidFinish(_ request: SKRequest) {
         guard let receipt = self.getReceiptData() else {
-            completion(false, nil)
+            if let completion = self.validSubCompletionBlock {
+                completion(false, nil)
+                self.validSubCompletionBlock = nil
+            }
             return
         }
         
@@ -41,7 +55,10 @@ extension ServiceManager {
         print("calling \(functionName)")
         Functions.functions().httpsCallable(functionName).call(body) { (result, error) in
             if let error = error as NSError? {
-                completion(false, error)
+                if let completion = self.validSubCompletionBlock {
+                    completion(false, error)
+                    self.validSubCompletionBlock = nil
+                }
                 return
             }
             
@@ -50,7 +67,10 @@ extension ServiceManager {
                 let latestReceiptDict = receiptInfoArray.last,
                 let expirationDateMillisecondString = latestReceiptDict["expires_date_ms"] as? String,
                 let expirationDateMilliseconds = Double(expirationDateMillisecondString) else {
-                completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
+                if let completion = self.validSubCompletionBlock {
+                    completion(false, NSError(domain: "AEE", code: -999, userInfo: [NSLocalizedDescriptionKey:"Parsing error"]))
+                    self.validSubCompletionBlock = nil
+                }
                 return
             }
             
@@ -59,7 +79,18 @@ extension ServiceManager {
             let isValid = expirationDate > Date() ? true : false
             
             ApplicationData.isSubscribedToAEE = isValid
-            completion(isValid, nil)
+            if let completion = self.validSubCompletionBlock {
+                completion(isValid, nil)
+                self.validSubCompletionBlock = nil
+            }
         }
+    }
+    
+    func request(_ request: SKRequest, didFailWithError error: Error) {
+        if let completion = self.validSubCompletionBlock {
+            completion(false, error)
+            self.validSubCompletionBlock = nil
+        }
+        print("request failed")
     }
 }

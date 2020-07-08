@@ -179,7 +179,9 @@ extension IAPHelper: SKPaymentTransactionObserver {
         } else {
             print("restoreTransaction... skipping")
         }
+        print("completing transaction")
         SKPaymentQueue.default().finishTransaction(transaction)
+        self.purchaseProductCompletionHandler?(true, nil)
     }
     
     public func paymentQueueRestoreCompletedTransactionsFinished(_ queue: SKPaymentQueue) {
