@@ -41,6 +41,8 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
         
         self.configureMoreNavigationStyle()
         
+        self.checkForValidSubscription()
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -54,6 +56,12 @@ class MainTabBarController: UITabBarController, NowPlayingBannerViewDelegate, Ep
     
     override func viewWillDisappear(_ animated: Bool) {
         NotificationCenter.default.removeObserver(self)
+    }
+    
+    private func checkForValidSubscription() {
+        //Naive check for valid subscription on startup
+        ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
+        })
     }
     
     func setupTabBarViewControllers() {

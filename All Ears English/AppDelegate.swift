@@ -100,11 +100,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         UIApplication.shared.applicationIconBadgeNumber = 0
         
         //MARK: forces appleID login prompt
-        IAPStore.store.restoreCompletedTransactions {(success, error) in
-            ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
-                print("valid subscription: \(hasValidSub)")
-            })
-        }
+//        IAPStore.store.restoreCompletedTransactions {(success, error) in
+//            ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
+//                print("valid subscription: \(hasValidSub)")
+//            })
+//        }
     }
 
 

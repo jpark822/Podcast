@@ -79,7 +79,7 @@ class LoginViewController: UIViewController {
                 return
             }
             else if result?.user != nil {
-                IAPStore.store.restoreCompletedTransactions {(success, error) in 
+                IAPStore.store.restoreCompletedTransactions {(success, error) in
                     ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
                         self.loginButton.isEnabled = true
                         self.delegate?.loginViewControllerDelegateDidFinish(loginViewController: self)
