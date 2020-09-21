@@ -18,7 +18,7 @@ import Foundation
 class AppDelegate: UIResponder, UIApplicationDelegate  {
 
     var window: UIWindow?
-    let gcmMessageIDKey = "gcm.message_id"
+    private let gcmMessageIDKey = "gcm.message_id"
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         UNUserNotificationCenter.current().delegate = self
@@ -40,11 +40,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         trackerParametersDictionary[kKVAParamAppGUIDStringKey] = "koall-ears-english-sh0kpjhzk"
         trackerParametersDictionary[kKVAParamLogLevelEnumKey] = kKVALogLevelEnumInfo
         KochavaTracker.shared.configure(withParametersDictionary: trackerParametersDictionary, delegate: nil)
-        
-//        Bugfender.activateLogger("TEIeuDIEm2Ts4FAyBRY13ZAwWE9eSehJ")
 
         self.setInitialView()
         
+        //Consider moving to a more contextual place
         self.promptOrRemindForPushNotifications()
         
         return true
@@ -52,7 +51,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     
     func setInitialView() {
         UITabBar.appearance().isTranslucent = false
-//        UITabBar.appearance().tintColor = UIColor.blue
         UITabBar.appearance().barTintColor = UIColor.white
         UITabBar.appearance().backgroundColor = UIColor.white
         
@@ -60,7 +58,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         UINavigationBar.appearance().barTintColor = UIColor.AEEYellow
         UINavigationBar.appearance().tintColor = UIColor.darkGray
         UINavigationBar.appearance().isTranslucent = false
-//        UINavigationBar.appearance().tintColor = UIColor.materiallTeal()
         
         let viewed = UserDefaults.standard.bool(forKey: "splash.viewed");
         if viewed {
@@ -78,33 +75,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
         self.window = UIWindow(frame: UIScreen.main.bounds)
         self.window?.rootViewController = initialViewController
         self.window?.makeKeyAndVisible()
-    }
-    
-
-    func applicationWillResignActive(_ application: UIApplication) {
-        // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
-        // Use this method to pause ongoing tasks, disable timers, and invalidate graphics rendering callbacks. Games should use this method to pause the game.
-    }
-
-    func applicationDidEnterBackground(_ application: UIApplication) {
-        // Use this method to release shared resources, save user data, invalidate timers, and store enough application state information to restore your application to its current state in case it is terminated later.
-        // If your application supports background execution, this method is called instead of applicationWillTerminate: when the user quits.
-    }
-
-    func applicationWillEnterForeground(_ application: UIApplication) {
-        // Called as part of the transition from the background to the active state; here you can undo many of the changes made on entering the background.
-    }
-
-    func applicationDidBecomeActive(_ application: UIApplication) {
-        // Restart any tasks that were paused (or not yet started) while the application was inactive. If the application was previously in the background, optionally refresh the user interface.
-        UIApplication.shared.applicationIconBadgeNumber = 0
-        
-        //MARK: forces appleID login prompt
-//        IAPStore.store.restoreCompletedTransactions {(success, error) in
-//            ServiceManager.sharedInstace.checkForValidSubscription(completion: { (hasValidSub, error) in
-//                print("valid subscription: \(hasValidSub)")
-//            })
-//        }
     }
 
 
@@ -132,6 +102,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
                 //do nothing, for now. show reminder dialogue later
                 break
             case .provisional:
+                break
+            case .ephemeral:
                 break
             }
             
@@ -184,44 +156,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate  {
     func application(_ application: UIApplication, didFailToRegisterForRemoteNotificationsWithError error: Error) {
         print("Failed to register: \(error)")
     }
-    
-// is never called in iOS 10
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any]) {
-//        print("notification received: didReceiveRemoteNotification")
-//        // If you are receiving a notification message while your app is in the background,
-//        // this callback will not be fired till the user taps on the notification launching the application.
-//        // TODO: Handle data of notification
-//
-//        // With swizzling disabled you must let Messaging know about the message, for Analytics
-//         Messaging.messaging().appDidReceiveMessage(userInfo)
-//
-//        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
-//
-//        // Print full message.
-//        print("didReceivRemoteNotification regular \(userInfo)")
-//    }
-    
-    //only used if background modes and remote notification entitlements are enabled. Note: only fire in the background for notifications with the content-available = 1.
-//    func application(_ application: UIApplication, didReceiveRemoteNotification userInfo: [AnyHashable: Any],
-//                     fetchCompletionHandler completionHandler: @escaping (UIBackgroundFetchResult) -> Void) {
-//        print("notification received: didReceiveRemoteNotificationFetchHandler")
-//
-//        //send anayltics
-//         Messaging.messaging().appDidReceiveMessage(userInfo)
-//
-//        // Print message ID.
-//        if let messageID = userInfo[gcmMessageIDKey] {
-//            print("Message ID: \(messageID)")
-//        }
-//
-//        // Print full message.
-//        print("didReceivRemoteNotification background \(userInfo)")
-//
-//        completionHandler(UIBackgroundFetchResult.newData)
-//    }
 
 }
 

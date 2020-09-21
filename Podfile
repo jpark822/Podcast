@@ -7,6 +7,7 @@ target 'All Ears English' do
 
   # Pods for All Ears English
   pod 'Firebase/Core'
+  pod 'Firebase/Crashlytics'
   pod 'Firebase/Functions'
   pod 'Firebase/Messaging'
   pod 'Firebase/Auth'

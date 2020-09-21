@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16097.3" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina4_7" orientation="portrait" appearance="light"/>
     <dependencies>
         <deployment identifier="iOS"/>
@@ -266,7 +266,7 @@
                                 <rect key="frame" x="0.0" y="400" width="375" height="267"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yr1-i8-ccZ">
-                                        <rect key="frame" x="20" y="177" width="335" height="50"/>
+                                        <rect key="frame" x="20" y="119" width="335" height="50"/>
                                         <color key="backgroundColor" red="0.0" green="0.47843137254901957" blue="0.80000000000000004" alpha="1" colorSpace="calibratedRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="50" id="eYL-Mb-UNM"/>
@@ -279,29 +279,41 @@
                                             <action selector="signUpPressed:" destination="irh-iJ-TK2" eventType="touchUpInside" id="uZl-1Q-eSw"/>
                                         </connections>
                                     </button>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="749" text="Learn with Transcripts" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Sz-2G-thc">
-                                        <rect key="frame" x="20" y="20" width="335" height="31.5"/>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="254" horizontalCompressionResistancePriority="749" verticalCompressionResistancePriority="755" text="Tap  a word or phrase to learn the meaning" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="0Sz-2G-thc">
+                                        <rect key="frame" x="20" y="8" width="335" height="62.5"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="62.5" id="DzH-R8-xqN"/>
+                                        </constraints>
                                         <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="24"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="TcC-Ac-WL3">
-                                        <rect key="frame" x="168" y="136.5" width="39" height="37"/>
+                                        <rect key="frame" x="168" y="78.5" width="39" height="37"/>
                                         <color key="tintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <color key="pageIndicatorTintColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </pageControl>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Subscribe for $26.99/month or $239.99/year (Save 26%)" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="K34-pe-uTO">
+                                        <rect key="frame" x="16" y="185" width="343" height="62.5"/>
+                                        <fontDescription key="fontDescription" name="PTSans-Bold" family="PT Sans" pointSize="24"/>
+                                        <nil key="textColor"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
                                 </subviews>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="K34-pe-uTO" secondAttribute="trailing" constant="16" id="7cO-QJ-mRt"/>
                                     <constraint firstItem="yr1-i8-ccZ" firstAttribute="leading" secondItem="VJG-a8-xnj" secondAttribute="leading" constant="20" id="Ab5-Fw-QoH"/>
-                                    <constraint firstAttribute="bottom" secondItem="yr1-i8-ccZ" secondAttribute="bottom" constant="40" id="N7U-Sp-Qdh"/>
-                                    <constraint firstItem="TcC-Ac-WL3" firstAttribute="top" relation="greaterThanOrEqual" secondItem="0Sz-2G-thc" secondAttribute="bottom" constant="16" id="P5Q-QO-TYn"/>
-                                    <constraint firstItem="0Sz-2G-thc" firstAttribute="top" secondItem="VJG-a8-xnj" secondAttribute="top" constant="20" id="UGB-Ek-sq0"/>
+                                    <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="K34-pe-uTO" secondAttribute="bottom" constant="16" id="C4W-ur-6Ny"/>
+                                    <constraint firstItem="TcC-Ac-WL3" firstAttribute="top" secondItem="0Sz-2G-thc" secondAttribute="bottom" constant="8" id="P5Q-QO-TYn"/>
+                                    <constraint firstItem="0Sz-2G-thc" firstAttribute="top" secondItem="VJG-a8-xnj" secondAttribute="top" constant="8" id="UGB-Ek-sq0"/>
                                     <constraint firstItem="0Sz-2G-thc" firstAttribute="leading" secondItem="VJG-a8-xnj" secondAttribute="leading" constant="20" id="WxI-gi-0fl"/>
+                                    <constraint firstItem="K34-pe-uTO" firstAttribute="top" secondItem="yr1-i8-ccZ" secondAttribute="bottom" constant="16" id="gQS-kg-cBN"/>
                                     <constraint firstItem="TcC-Ac-WL3" firstAttribute="centerX" secondItem="yr1-i8-ccZ" secondAttribute="centerX" id="gvl-PI-Xi6"/>
                                     <constraint firstItem="yr1-i8-ccZ" firstAttribute="top" secondItem="TcC-Ac-WL3" secondAttribute="bottom" constant="3.5" id="kJr-rZ-MYi"/>
                                     <constraint firstAttribute="trailing" secondItem="0Sz-2G-thc" secondAttribute="trailing" constant="20" id="qrt-cu-wfk"/>
                                     <constraint firstAttribute="trailing" secondItem="yr1-i8-ccZ" secondAttribute="trailing" constant="20" id="uN8-nQ-Nv6"/>
+                                    <constraint firstItem="K34-pe-uTO" firstAttribute="leading" secondItem="VJG-a8-xnj" secondAttribute="leading" constant="16" id="zzf-9i-cYo"/>
                                 </constraints>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5BL-X8-o2G">
